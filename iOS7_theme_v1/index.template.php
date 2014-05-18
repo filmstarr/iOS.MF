@@ -176,44 +176,17 @@ echo '
 ';
 }
 		
-		//Show the toolbar by default
-		$show_toolbar = true;
-
-		//Unless we're on an iPhone
-		if ($context['browser']['is_iphone'])
-		{
-				$show_toolbar = false;
-		}
-		
-		//If we've requested to show or hide the toolbar then save the choice in a cookie
-		if (isset($_REQUEST['show_toolbar']))
-		{
-			$show_toolbar = $_REQUEST['show_toolbar'] === 'true' ? true : false;
-			setcookie('show_toolbar', $_REQUEST['show_toolbar'], time()+60*60*24*365);
-		}
-		
-		//Retrieve any previous show or hide toolbar request if there isn't one now
-		if (isset($_COOKIE['show_toolbar']) && !isset($_REQUEST['show_toolbar']))
-		{
-			$show_toolbar = $_COOKIE['show_toolbar'] === 'true' ? true : false;
-		}
-
-		//Toolbar HTML		
-		if ($show_toolbar)
-		{
-			echo '<style> #copyright {margin-bottom: 47px;} </style>';
-	  	$pizza_url = 'http://pizza.ninjapixel.eu';
+		//Toolbar HTML
+		echo '<style> #copyright {margin-bottom: 47px;} </style>';
 		  echo '<div class="toolbar">
 		  <ul>
 		    <li><div onclick="window.location.href=\'',$scripturl,'\'" style="background: url('.$settings['theme_url'].'/images/toolbar/home.png) transparent center no-repeat;"></div></li>
 		    <li><div onclick="window.history.back();" style="background: url('.$settings['theme_url'].'/images/toolbar/back.png) transparent center no-repeat;"></div></li>
 		    <li><div onclick="location.reload();" style="background: url('.$settings['theme_url'].'/images/toolbar/refresh.png) transparent center no-repeat;"></div></li>
 		    <li><div onclick="window.history.forward();" style="background: url('.$settings['theme_url'].'/images/toolbar/forward.png) transparent center no-repeat;"></div></li>
-		    <li><div onclick="window.open(\'', $pizza_url ,'\');" style="background: url('.$settings['theme_url'].'/images/toolbar/pizza.png) transparent center no-repeat;"></div></li>
 		    <li><div onclick="window.location.href=\'?action=unread;all\'" style="background: url('.$settings['theme_url'].'/images/toolbar/inbox.png) transparent center no-repeat;"></div></li>
 	  	</ul>
 		</div>';
-		}
 }
 
 function template_html_below()
