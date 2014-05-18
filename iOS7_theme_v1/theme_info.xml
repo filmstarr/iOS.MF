@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<theme-info xmlns="http://www.simplemachines.org/xml/theme-info" xmlns:smf="http://www.simplemachines.org/">
+  <id>filmstarr:iOS7-Theme</id>
+  <version>2.0 RC4</version>
+  <name>iOS7</name>
+  <author name="filmstarr">filmstarr@hotmail.com</author>
+  <website>http://www.filmstarr.co.uk/</website>
+  <layers>html,body</layers>
+  <templates>index</templates>
+</theme-info>
