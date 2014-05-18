@@ -11,5 +11,7 @@ Gestures
 ==============
 
 Swipe left to go back.
+
 Swipe right to go forward.
+
 Two finger tap inside topic for quick reply.
