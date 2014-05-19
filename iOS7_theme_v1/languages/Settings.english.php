@@ -5,6 +5,6 @@ global $settings;
 
 // Important! Before editing these language files please read the text at the top of index.english.php.
 $txt['theme_thumbnail_href'] = $settings['images_url'] . '/thumbnail.png';
-$txt['theme_description'] = 'An iPhone and iPod Touch optimized theme<br /><br />iOS7 by <a href="mailto:filmstarr@hotmail.com.com">filmstarr</a>.';
+$txt['theme_description'] = 'An iOS 7 styled iPhone theme<br /><br />iOS7 by <a href="mailto:filmstarr@hotmail.com.com">filmstarr</a>.';
 
 ?>
