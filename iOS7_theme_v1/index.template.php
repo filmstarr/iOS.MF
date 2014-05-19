@@ -146,7 +146,7 @@ function template_body_below()
   
   //Subtle default mode button
 $backname = $backlink = '';
-$backlink = $settings['theme_url'].'/index.php?theme=1';
+$backlink = '/index.php?theme=1';
 $backname = 'Default Theme';
 echo '<a class="button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
