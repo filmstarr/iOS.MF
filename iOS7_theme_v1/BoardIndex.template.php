@@ -29,7 +29,6 @@ function template_main()
       
   echo '
   </ul>';
-
   }
 
 
