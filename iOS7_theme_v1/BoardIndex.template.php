@@ -6,9 +6,11 @@ function template_main()
 
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
 		
+  $firstContent = true;
   foreach ($context['categories'] as $category)
   {
-      echo '<ul class="content2 firstContent">';
+      echo '<ul class="content2', $firstContent ? ' firstContent">' : '">';
+      $firstContent = false;
       $i=0;
       foreach ($category['boards'] as $board)
       {
