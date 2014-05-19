@@ -8,8 +8,6 @@ function template_main()
 		
   foreach ($context['categories'] as $category)
   {
-    if ($category['id'] != 4)
-    {
       echo '<ul class="content2 firstContent">';
       $i=0;
       foreach ($category['boards'] as $board)
@@ -29,8 +27,7 @@ function template_main()
       
   echo '
   </ul>';
-      
-    }      
+
   }
 
 
