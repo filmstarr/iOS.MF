@@ -1,7 +1,7 @@
-iOS7-SMF-Theme
+iOS.MF
 ==============
 
-An iOS 7 forum theme for use with SMF on mobile devices.
+An iOS forum theme for use with SMF on mobile devices.
 
 This is a very lightweight theme with only a limited set of pages available and theming applied, but which provides a good user experience for interacting with a the core functionality of SMF.
 
