@@ -16,6 +16,11 @@ Swipe right to go forward.
 
 Two finger tap inside topic for quick reply.
 
+Installation
+==============
+
+To install, zip the contents of the iOS.MF_theme_v1 folder (careful not to nest any additional folders) and install through the Themes and Layout section in the SMF Administration Center.
+
 Credits
 ==============
 
