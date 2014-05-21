@@ -14,7 +14,7 @@ function template_init()
 {
   global $context, $settings, $options, $txt;
 
-  $settings['theme_version'] = '1.1';
+  $settings['theme_version'] = '1.0';
   
   // Portal disabling mafia
   // SimplePortal
