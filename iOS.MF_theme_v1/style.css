@@ -350,6 +350,11 @@ float: left;
   -webkit-appearance:caret;
 }
 
+.inputContainer img {
+  vertical-align: middle;
+  margin-left: -4px;
+}
+
 .inputContainer .inputLabel {
   height: 31px;
   font-size: 16px;
@@ -370,8 +375,8 @@ float: left;
   width: 80px;
 }
 
-#newTopic {
-  padding-left: 0px;
+#newTopic, .noLeftPadding {
+  padding-left: 0px !important;
 }
 
 #miobr{

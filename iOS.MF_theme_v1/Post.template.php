@@ -10,7 +10,7 @@ function template_main()
         $("#message").autosize();
         $("#theTitle").html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
         $("#classic").hide();
-				$("#message").focus();
+        $("#message").focus();
       });
     </script>';
       
@@ -19,14 +19,14 @@ function template_main()
 if(!empty($context['post_error']['messages']) && count($context['post_error']['messages']))    
 {
   echo '<div id="errors"><div>*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
-		if(empty($context['subject'])) {
-  		echo '<style> #newTopic { padding-top: 9px; } </style>';				
-		}
-		else {
-  		echo '<style> #postContainer { padding-top: 9px; } </style>';				
-	  }
+    if(empty($context['subject'])) {
+      echo '<style> #newTopic { padding-top: 9px; } </style>';        
+    }
+    else {
+      echo '<style> #postContainer { padding-top: 9px; } </style>';        
+    }
 }
-		
+    
 if(empty($context['subject'] ))
 {
   echo '<div id="newTopic" class="inputContainer">';
@@ -60,12 +60,24 @@ echo'
   {
     echo '<div style="position: relative;">';
       echo '<input type="file" size="60" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
-			echo '<div id="inputbuttonbackground"><div id="inputbutton" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
+      echo '<div id="inputbuttonbackground"><div id="inputbutton" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
     echo '</div>';
   }
     
   echo '</div>';
 
+    if($context['require_verification'])
+    {
+echo '<div class="noLeftPadding inputContainer">';
+echo '<span class="inputLabel">Code</span>';
+echo template_control_verification($context['visual_verification_id'], 'all');
+echo '</div>';
+echo '<div class="noLeftPadding inputContainer">';
+echo '<span class="inputLabel">Verify</span>';
+echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
+echo '</div>';
+    }
+  
   echo '<div class="child buttons">
   
   <button class="button" type="submit">', $txt['iPost'] ,'</button>

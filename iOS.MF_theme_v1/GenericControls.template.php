@@ -46,10 +46,6 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
     if ($display_type == 'single' && $verify_context['tracking'] != $i)
       continue;
 
-    if ($display_type != 'single')
-      echo '
-      <div>';
-
     // Do the actual stuff - image first?
     if ($i == 0 && $verify_context['show_visual'])
     {
@@ -76,10 +72,6 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
           <input type="text" name="', $verify_id, '_vv[q][', $verify_context['questions'][$qIndex]['id'], ']" size="30" value="', $verify_context['questions'][$qIndex]['a'], '" ', $verify_context['questions'][$qIndex]['is_error'] ? 'style="border: 1px red solid;"' : '', ' tabindex="', $context['tabindex']++, '" />
         </div>';
     }
-
-    if ($display_type != 'single')
-      echo '
-      </div>';
 
     // If we were displaying just one and we did it, break.
     if ($display_type == 'single' && $verify_context['tracking'] == $i)
