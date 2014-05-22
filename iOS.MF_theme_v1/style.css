@@ -329,7 +329,7 @@ float: left;
 #searchbar{
   display: none;
   padding-right: 0px;
-	padding-bottom: 11px;
+  padding-bottom: 11px;
   border-top: 0px;
 }
 
@@ -342,8 +342,8 @@ float: left;
   font-size: 14px;
   border: 1px solid #E0E0E0;
   padding: 6px;
-	padding-left: 8px;
-	padding-right: 8px;		
+  padding-left: 8px;
+  padding-right: 8px;    
   border-radius: 5px;
   background: white;
   width: 204px;
@@ -704,11 +704,11 @@ h3.catbg
 
 #inputbuttonbackground {
   background-color: #F0F0F4;
-	position: absolute;
-	top: 1px;
-	left: 0px;
-	height: 22px;
-	padding-right: 5px;
+  position: absolute;
+  top: 1px;
+  left: 0px;
+  height: 22px;
+  padding-right: 5px;
 }
 
 #editdel {
@@ -782,6 +782,11 @@ hr{
   background: #F0F0F4;
 }
 
+.padTop {
+  padding-top: 9px !important;
+  padding-bottom: 0px !important;
+}
+
 #attachment_wrapper {
   padding: 0px 9px 9px 9px;
   background: #F0F0F4;
@@ -793,8 +798,8 @@ hr{
 
 .newPost {
   padding: 6px;
-	padding-top: 7px;
-	padding-bottom: 3px;
+  padding-top: 7px;
+  padding-bottom: 3px;
   border-radius: 5px;
   background: white;
   border: 1px solid #E0E0E0;
@@ -862,8 +867,8 @@ hr{
   margin-bottom: 5px;
   font-size: 16px;
   width: 120px;
-  margin-left: auto;		
-  margin-right: auto;		
+  margin-left: auto;    
+  margin-right: auto;    
 }
 
 .counter {
@@ -877,30 +882,30 @@ hr{
     left: 0;
     width: 100%;
     background: #F0F0F4;
-		height: 43px;
+    height: 43px;
 }
 
 .toolbar > ul {
-  list-style: none;		
+  list-style: none;    
   width: 100%;
 }
 
 .toolbar > ul > li {
-	width: 55px;
+  width: 55px;
   display: inline-block;
 }
 
 .toolbar > ul > li > div {
   float: right;
-	width: 32px;
-	height: 43px;
+  width: 32px;
+  height: 43px;
   background-size: 32px 32px !important;
 }
 
-a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic > input { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic > input, div { -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
 #quickReply {
-	display: none;
+  display: none;
     background: #F0F0F4;
 }
 
@@ -918,12 +923,12 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 #showhidesearch:active,
 #inputbutton:active
 {
-	opacity: 0.3;
+  opacity: 0.3;
 }
 
 .message_time > a {
-	font-style: italic !important;
-	font-size: 11px !important;
-	text-decoration: none !important;
-  	color: black !important;
+  font-style: italic !important;
+  font-size: 11px !important;
+  text-decoration: none !important;
+    color: black !important;
 }

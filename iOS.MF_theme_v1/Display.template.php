@@ -9,7 +9,7 @@ function template_main()
   $messageIDs = array();
   
   quick_reply();
-		
+    
   echo'  
     <div class="buttons">';
   
@@ -116,17 +116,17 @@ function template_main()
   $i=0;
   
   while ($message = $context['get_message']())
-  {		
+  {    
     $ignoring = false;
     $messageIDs[] = $message['id'];
 
     if (!in_array($message['member']['id'], $context['user']['ignoreusers']))
     {
     $i++;
-				
+        
   echo '<li onclick="this.className = \'clicked\';">
-   <a id="msg', $message['id'], '"></a>', $message['first_new'] ? '<a id="new"></a>' : '' , '	 
-	 
+   <a id="msg', $message['id'], '"></a>', $message['first_new'] ? '<a id="new"></a>' : '' , '   
+   
   <div>';
 // Can the user modify the contents of this post?
       if ($message['can_modify'])
@@ -233,58 +233,78 @@ echo '</div>
   
   </div>';
 
-}	
-	
+}  
+  
 function quick_reply()
-{		
+{    
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
-				
-		echo '<script>
+        
+    echo '<script>
 
     $(function(){
       $("#message").autosize();
     });
 
-		var touchStart = Date.now();
+    var touchStart = Date.now();
     var lastReplyToggle = Date.now();
-		var toggleQuickReply = function() {
-			if (Date.now()-lastReplyToggle > 100 && Date.now() - touchStart < 100)
-		  {
-				if ($("#quickReply").is(":visible"))
-		    {
-	  	    $("#message ").blur();
- 					$("#quickReply").hide();		  
-	    	}
-	    	else
-	    	{
- 					$("#quickReply").show();
-	      	$("#message ").blur();
-	      	$("#message ").focus();
-				}
-				lastReplyToggle = Date.now();
-			}
-		};
-		
+    var toggleQuickReply = function() {
+      if ($("#quickReply").is(":visible"))
+      {
+        $("#message ").blur();
+        $("#quickReply").hide();      
+      }
+      else
+      {
+        $("#quickReply").show();
+        $("#message ").blur();
+        $("#message ").focus();
+      }
+    };
+      
+    var toggleGestureFired = function() {
+      if (Date.now()-lastReplyToggle > 100 && Date.now() - touchStart < 100)
+      {
+        toggleQuickReply();
+        lastReplyToggle = Date.now();
+      }
+    };
+    
     Touchy(window, {
       two: function (hand, finger1, finger2) {
 
-				hand.on("start", function() {touchStart=Date.now();});
-				hand.on("end", toggleQuickReply);
-	    }
-		});
+        hand.on("start", function() {touchStart=Date.now();});
+        hand.on("end", toggleGestureFired);
+      }
+    });
 
-		</script>';
-		
-		echo '<div id="quickReply">';
-	  echo '<form action="', $scripturl, '?action=post2;', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);saveEntities();" enctype="multipart/form-data" style="margin: 0;">';
+    var title = document.getElementById("theTitle");
+    title.onclick = toggleQuickReply;
+    title.style.color = "#007AFF";
+      
+    </script>';
+    
+    echo '<div id="quickReply">';
+    echo '<form action="', $scripturl, '?action=post2;', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);saveEntities();" enctype="multipart/form-data" style="margin: 0;">';
 
-		echo'
+    echo'
   <div id="postContainer" class="inputContainer" style="padding-bottom: 0;">
     <div class="newPost">
       <textarea class="editor" name="message" id="message" rows="1" cols="60" tabindex="2" style="width: 100%; height: 16px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
     </div>
   </div>';
 
+  if($context['require_verification'])
+    {
+echo '<div class="noLeftPadding inputContainer padTop">';
+echo '<span class="inputLabel">Code</span>';
+echo template_control_verification($context['visual_verification_id'], 'all');
+echo '</div>';
+echo '<div class="noLeftPadding inputContainer padTop">';
+echo '<span class="inputLabel">Verify</span>';
+echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
+echo '</div>';
+  }
+  
   echo '<div class="child buttons">
   
   <button class="button" type="submit">', $txt['iPost'] ,'</button>
@@ -307,8 +327,8 @@ function quick_reply()
       <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />    
       <input type="hidden" name="goback" value="', $options['return_to_post'] ,'" />
     </form>';
-		
-		echo '</div>';
+    
+    echo '</div>';
 }
 
-?>	
+?>

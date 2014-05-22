@@ -14,7 +14,7 @@ Swipe left to go back.
 
 Swipe right to go forward.
 
-Two finger tap inside topic for quick reply.
+Two finger tap inside topic to activate quick reply, alternatively tap on the topic title.
 
 Installation
 ==============
