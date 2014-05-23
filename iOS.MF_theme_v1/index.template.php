@@ -18,7 +18,7 @@ function template_init()
   
   // Portal disabling mafia
   // SimplePortal
-  $settings['disable_sp'] = true;
+  $settings['disable_sp'] = false;
 
   // TinyPortal
   if (function_exists('tp_hidebars'))
@@ -72,7 +72,16 @@ var loading = "', $txt['iLoading'],'...";
     $options['collapse_header_ic'] = !empty($_COOKIE['upshrinkIC']);
   }
 
+  echo $context['html_headers'];
+
   echo '
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    jQuery("#compat_css").remove();
+  });
+</script>
+
 </head>
 <body><div id="wrapper">';
 }
