@@ -42,6 +42,7 @@ function template_html_above()
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
 <link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/style.css" type="text/css" />
+<link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/SimplePortal.css" type="text/css" />
 <script type="application/x-javascript">
 
 ', (isset($_COOKIE['disablequoting'])) ? 'var aquoting = 1;
