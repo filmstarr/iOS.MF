@@ -26,6 +26,8 @@ Credits
 
 This theme is based on the excellent SMF4iPhone by Fabius, butchs and FarFromPerfection: http://custom.simplemachines.org/themes/index.php?lemma=2089.
 
+Thanks to xKroniK13x for contributions and suggestions towards this theme.
+
 The theme uses the Adk Skype Emoticons to give crisp retina smileys (licence: http://creativecommons.org/licenses/by/3.0/).
 
 Internally we use the jQuery, Hammer.js, Touchy and jQuery Autosize libraries.
