@@ -5,21 +5,8 @@ function template_main()
 {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
 
-  if($context['user']['is_guest'])
-  echo '  
-
-  
-  <div class="buttons">
-  
-  </div>';
-  else
-  echo '  
-
-  
-    <div class="child buttons" id="newtopic">
-  
-  <button class="button" onclick="window.location.href=\'', $scripturl , '?action=post;board=' , $context['current_board'] , '.0  \';">', $txt['new_topic'], '</button>
-  
+  echo '<div class="child buttons" id="newtopic">
+    <button', $context['user']['is_guest'] ? ' disabled' : '' , ' class="button" onclick="window.location.href=\'', $scripturl , '?action=post;board=' , $context['current_board'] , '.0  \';">', $txt['new_topic'], '</button>
   </div>';
   
     //Display child boards
@@ -30,8 +17,8 @@ function template_main()
     {
       echo '<li onclick="this.className = \'clicked\'; window.location.href=\'' . $board['href'] .'\';">';
       echo '<div class="sticky childBoard"></div>';
-      echo '<div class="title', ($board['new']) ? ' stickyShortTitle' : '' ,'">', $board['name'] ,'</div>';
-      if ($board['new']) {
+      echo '<div class="title', ($context['user']['is_logged'] && $board['new']) ? ' stickyShortTitle' : '' ,'">', $board['name'] ,'</div>';
+      if ($context['user']['is_logged'] && $board['new']) {
           echo '<div class="new">'. $txt['new_button'] .'</div>';
       }
       
