@@ -16,8 +16,8 @@ function template_main()
       {
         $i++;
 					echo '<li onclick="this.className = \'clicked\'; window.location.href=\''. $board['href'] .'\';">';
-        echo '<div class="title', ($board['new']) ? ' shortTitle' : '' ,'">', $board['name'] ,'</div>';
-		  if ($board['new']) {
+        echo '<div class="title', ($context['user']['is_logged'] && $board['new']) ? ' shortTitle' : '' ,'">', $board['name'] ,'</div>';
+		  if ($context['user']['is_logged'] && $board['new']) {
           echo '<div class="new">'. $txt['new_button'] .'</div>';
         }
         echo '<div class="description">', $board['last_post']['member']['name'] , ', ', $board['last_post']['time']=='N/A' ? $txt['no'] . ' ' . $txt['topics'] : iPhoneTime($board['last_post']['timestamp']) ,

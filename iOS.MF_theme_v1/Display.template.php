@@ -11,16 +11,12 @@ function template_main()
   quick_reply();
     
   echo'  
-    <div class="buttons">';
-  
-  
-  if($context['user']['is_logged']) echo '
+    <div class="buttons">
 
-  <button class="button twobuttons" id="quoting" onclick="quoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'].' '.$txt['iOff']:$txt['iQuoting'].' '.$txt['iOn'], '</button>
+  <button', $context['user']['is_guest'] ? ' disabled' : '' , ' class="button twobuttons" id="quoting" onclick="quoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'].' '.$txt['iOff']:$txt['iQuoting'].' '.$txt['iOn'], '</button>
 
-  <button class="button twobuttons" onclick="window.location.href=\''.$scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'].'\';">', $txt['reply'] ,'</button>'; echo'
+  <button', $context['user']['is_guest'] ? ' disabled' : '' , ' class="button twobuttons" onclick="window.location.href=\''.$scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'].'\';">', $txt['reply'] ,'</button>'; echo'
     </div>';
-  
   
   // Is this topic also a poll?
   if ($context['is_poll'])
