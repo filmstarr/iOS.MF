@@ -22,6 +22,26 @@ function template_main()
   
   </div>';
   
+    //Display child boards
+  if (!empty($context['boards']) && (!empty($options['show_children']) || $context['start'] == 0))
+  {
+    echo '<ul class="content2">';
+    foreach ($context['boards'] as $board)
+    {
+      echo '<li onclick="this.className = \'clicked\'; window.location.href=\'' . $board['href'] .'\';">';
+      echo '<div class="sticky childBoard"></div>';
+      echo '<div class="title', ($board['new']) ? ' stickyShortTitle' : '' ,'">', $board['name'] ,'</div>';
+      if ($board['new']) {
+          echo '<div class="new">'. $txt['new_button'] .'</div>';
+      }
+      
+      echo '<div class="description">', $board['last_post']['member']['name'] , ', ', $board['last_post']['time']=='N/A' ? $txt['no'] . ' ' . $txt['topics'] : iPhoneTime($board['last_post']['timestamp']) ,
+'</div>';
+
+    }
+    echo '</ul>';
+  }
+  
   $topic_sticky_count = 0;
   foreach ($context['topics'] as $topic)
     {if($topic['is_sticky']){

@@ -854,6 +854,10 @@ hr{
     margin-right: 4px;
 }
 
+.childBoard {
+  background: #FFCD00 !important;
+}
+
 .smiley {
     width: 14px;
     height: 14px;
