@@ -6,7 +6,7 @@ function template_main()
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
 
   echo '<div class="child buttons" id="newtopic">
-    <button', $context['user']['is_guest'] ? ' disabled' : '' , ' class="button" onclick="window.location.href=\'', $scripturl , '?action=post;board=' , $context['current_board'] , '.0  \';">', $txt['new_topic'], '</button>
+    <button class="button" onclick="window.location.href=\'', $scripturl , '?action=post;board=' , $context['current_board'] , '.0  \';">', $txt['new_topic'], '</button>
   </div>';
   
     //Display child boards

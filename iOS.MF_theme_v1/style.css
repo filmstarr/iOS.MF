@@ -337,7 +337,7 @@ float: left;
   font-size: 16px;
 }
 
-.inputContainer input[type="text"] {
+.inputContainer input[type="text"], .inputContainer input[type="password"] {
   height: 20px;
   font-size: 14px;
   border: 1px solid #E0E0E0;
@@ -908,7 +908,7 @@ hr{
 
 a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic > input, div { -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
-#quickReply {
+#quickReply, #quickLogin {
   display: none;
     background: #F0F0F4;
 }

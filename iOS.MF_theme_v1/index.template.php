@@ -66,12 +66,6 @@ var loading = "', $txt['iLoading'],'...";
 ((!empty($_GET['topic'])) && ($_GET['topic'])) ? '
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/quote.js"></script>' : '';
 
-  if ($context['user']['is_guest'])
-  {
-    $options['collapse_header'] = !empty($_COOKIE['upshrink']);
-    $options['collapse_header_ic'] = !empty($_COOKIE['upshrinkIC']);
-  }
-
   echo '
 </head>
 <body><div id="wrapper">';
@@ -138,6 +132,7 @@ else
 
   </div>';
   
+  quick_login();
 }
 
 function template_body_below()
@@ -276,6 +271,56 @@ $ret = str_replace('>' . $urlname . '<', '>' . $chunked . '<', $ret);
 function template_button_strip()
 {
   return;
+}
+
+function quick_login()
+{    
+  global $context, $settings, $options, $txt, $scripturl, $modSettings;
+    
+    echo '<script>
+
+    var toggleQuickLogin = function() {
+      if ($("#quickLogin").is(":visible"))
+      {
+        $("#user ").blur();
+        $("#quickLogin").hide();      
+      }
+      else
+      {
+        $("#quickLogin").show();
+        $("#user ").blur();
+        $("#user ").focus();
+      }
+    };
+      
+    var title = document.getElementById("theTitle");
+    title.onclick = toggleQuickLogin;
+    title.style.color = "#007AFF";
+      
+    </script>';
+
+    echo '<div id="quickLogin">  
+  <form action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
+
+<div class="noLeftPadding inputContainer padTop">';
+  echo'<span class="inputLabel">'. $txt['username'] .'</span>';
+  echo'<input id="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
+</div>
+<div class="noLeftPadding inputContainer padTop">';
+  echo'<span class="inputLabel">'. $txt['password'] .'</span>';
+  echo'<input type="password" tabindex="', $context['tabindex']++, '" name="passwrd" />
+</div>
+<div class="noLeftPadding inputContainer padTop" style="height: 16px; line-height: 16px;">';
+  echo'<span class="inputLabel">'. $txt['iRemember'] .'</span>';
+  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" id="cookieneverexp">
+</div>
+    
+  <input type="hidden" name="hash_passwrd" value="" />
+  <div class="child buttons">
+    <button class="button" type="submit">Login</button>
+  </div>
+  </form>
+  </div>';
 }
 
 ?>
