@@ -7,6 +7,14 @@ This is a very lightweight theme with only a limited set of pages available and 
 
 This has been used with various versions of SMF from 2.0 RC3 through to SMF 2.0.7, but has not been tested with all of them.
 
+To-Do
+==============
+
+- [ ] Re-add subscription and registration templates
+- [ ] Style personal messages template and add link
+- [ ] Look for an alternative to the taskbar (this doesn't work amazingly with mobile Safari). This should have links to home, unread, inbox, profile (maybe), and search (maybe, depending on how it works).
+- [ ] Add retina version of a new default user image
+
 Gestures
 ==============
 
