@@ -60,8 +60,8 @@ h1{
 
 #theTitle{
   height: 20px;
-  margin-left: auto;
   margin-right: 24px;
+  margin-left: 24px
   line-height: 20px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -751,14 +751,21 @@ button[disabled] {
   margin-bottom: 0px;
 }
 
-#showhidesearch{
+#showhidesearch, #showhidelogin{
   position: absolute;
-    top: 10px;
-    right: 8px;
-    height: 24px;
-    width: 24px;
-    background: url(images/topBar/magnifier.png) no-repeat;
-    border-radius: 5px;
+  top: 10px;
+  height: 24px;
+  border-radius: 5px;
+}
+
+#showhidesearch{
+  right: 8px;
+  width: 24px;
+  background: url(images/topBar/magnifier.png) no-repeat;
+}
+
+#showhidelogin{
+  left: 8px;
 }
 
 @media all and (-webkit-min-device-pixel-ratio: 1.5) {
@@ -925,7 +932,8 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 
 #email a:active,
 #showhidesearch:active,
-#inputbutton:active
+#showhidelogin:active,
+#inputbutton:active,
 {
   opacity: 0.3;
 }
