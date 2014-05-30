@@ -114,7 +114,7 @@ else
   
   echo'</h1>
    
-  <a href="#" id="showhidesearch" onclick="if(document.getElementById(\'quickSearch\').style.display==\'block\'){document.getElementById(\'quickSearch\').style.display=\'none\';}else{document.getElementById(\'quickSearch\').style.display=\'block\';document.searchform.search.focus();}" id="tabsearch"', $issearch ,'></a>    
+  <a href="#" id="showhidesearch" onclick="if(document.getElementById(\'searchbar\').style.display==\'block\'){document.getElementById(\'searchbar\').style.display=\'none\';}else{document.getElementById(\'searchbar\').style.display=\'block\';document.searchform.search.focus();}" id="tabsearch"', $issearch ,'></a>    
     <button id="showhidelogin" class="button">' , $context['user']['is_logged'] ? $txt['iLogout'] : $txt['login'] , '</button>
 
   </div>';
