@@ -21,6 +21,13 @@ To-Do
 - [ ] Look for an alternative to the taskbar (this doesn't work amazingly with mobile Safari). This should have links to home, unread, inbox, profile (maybe), and search (maybe, depending on how it works).
 - [ ] Add retina version of a new default user image
 
+Installation
+==============
+
+Install the theme by uploading the iOS.MF_theme_v1.zip file through the SMF Administration Center > Configuration > Themes and Layout > Manage and Install > From a file.
+
+It is recommended that you use this theme with the "Show most recent posts at the top" option on.
+
 Gestures
 ==============
 
@@ -29,11 +36,6 @@ Swipe left to go back.
 Swipe right to go forward.
 
 Two finger tap inside topic to activate quick reply, alternatively tap on the topic title.
-
-Installation
-==============
-
-Install the theme by uploading the iOS.MF_theme_v1.zip file through the SMF Administration Center > Configuration > Themes and Layout > Manage and Install > From a file.
 
 Credits
 ==============
