@@ -20,6 +20,7 @@ To-Do
 - [ ] Style personal messages template and add link on menu
 - [ ] Look for an alternative to the taskbar (this doesn't work amazingly with mobile Safari). This should have links to home, unread, inbox, profile (maybe), and search (maybe, depending on how it works).
 - [ ] Add retina version of a new default user image
+- [ ] Size of landscape highlight isn't correct
 
 Installation
 ==============
