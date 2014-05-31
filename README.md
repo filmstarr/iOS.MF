@@ -10,6 +10,9 @@ This has been used with various versions of SMF from 2.0 RC3 through to SMF 2.0.
 To-Do
 ==============
 
+- [ ] Sort out smilies directory
+- [ ] Newest post first - default in member options (add this) or notice in readme
+- [ ] Press and hold to go to first/last post/page - create generic control
 - [ ] Style subscription and registration templates
 - [ ] Fix guest posting
 - [ ] Fix posts still highlight when quoting is off or the user is a guest and can't post
