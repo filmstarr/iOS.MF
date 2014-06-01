@@ -148,7 +148,7 @@ echo '</div>
         <div class="message"', (!isset($_COOKIE['disablequoting'])&&$context['can_reply']) ? '  onclick="window.location.href=\''. $scripturl. '?action=post;quote='. $message['id'].
      ';topic='. $context['current_topic'].
         '.'. $context['start']. ';num_replies='. $context['num_replies']. ';'. $context['session_var']. '='. $context['session_id']. '\'"':'','><span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
-    ', str_replace('/Smileys/default/','/Themes/iOS7_theme_v1/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['body'])));
+    ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['body'])));
 
     // Assuming there are attachments...
     if (!empty($message['attachment']))
