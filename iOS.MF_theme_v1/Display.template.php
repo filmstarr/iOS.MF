@@ -8,7 +8,10 @@ function template_main()
   $ignoredMsgs = array();
   $messageIDs = array();
   
-  quick_reply();
+  if ($context['can_reply'])
+  {
+    quick_reply();
+  }
     
   echo'  
     <div class="buttons">
