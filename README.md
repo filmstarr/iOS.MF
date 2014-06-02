@@ -26,6 +26,8 @@ Swipe left to go back.
 
 Swipe right to go forward.
 
+Press and hold the previous/next page buttons to go to first/last page respectively.
+
 Two finger tap inside topic to activate quick reply, alternatively tap on the topic title.
 
 Credits
