@@ -944,3 +944,7 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   text-decoration: none !important;
     color: black !important;
 }
+
+#previousPage, #nextPage, #pageButtons, #pagecount {
+  -webkit-user-select: none;
+}

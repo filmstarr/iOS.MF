@@ -346,7 +346,7 @@ function template_control_paging()
   </script>
 
 
-  <div class="page buttons">
+  <div id="pageButtons" class="page buttons">
   
   <button id="previousPage" class="button" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
   
