@@ -55,7 +55,7 @@ echo '</div>
     </div>
         <div class="message" onclick="window.location.href=\''. $message['href'] . '\';">
         <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
-    ', str_replace('/Smileys/default/','/Themes/iOS7_theme_v1/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['message'])));
+    ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['message'])));
 
     // Assuming there are attachments...
     if (!empty($message['attachment']))
@@ -113,10 +113,6 @@ echo '</div>
     echo '</div>';
     echo '</li>';      
   }
-    
-    
-    
-    
     
   echo '</ul>';
 		
