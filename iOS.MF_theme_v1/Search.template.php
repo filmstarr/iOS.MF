@@ -6,7 +6,7 @@ function template_main(){}
 function template_results()
 {
   global $context, $settings, $options, $txt, $scripturl;		
-		
+
   if (empty($context['topics'])){
     echo '<h3 id="noSearchResults">',$txt['search_no_results'],'</h3><style type="text/css">#searchbar{
 
@@ -45,15 +45,8 @@ function template_results()
       }
     echo '</ul>';
 
-		echo '<div class="page buttons">
-  
-    <button class="button" onclick="window.location.href=\'', $context['links']['prev'] ,'\';" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
-  
-    <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'] ,' ', $txt['iOf'] ,' ', ($context['page_info']['num_pages']==0) ? '1' : $context['page_info']['num_pages'] ,'</button>
-  
-    <button class="button" onclick="window.location.href=\'', $context['links']['next'] ,'\';" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
-  
-    </div>';
+    require_once ($settings[theme_dir].'/ThemeControls.php');
+    template_control_paging();
 		
     }
 }

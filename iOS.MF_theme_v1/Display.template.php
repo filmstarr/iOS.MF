@@ -216,7 +216,7 @@ echo '</div>
   
   echo'</ul>';
 
-  require_once ($settings[theme_dir].'/GenericControls.template.php');
+  require_once ($settings[theme_dir].'/ThemeControls.php');
   template_control_paging();
 }
   

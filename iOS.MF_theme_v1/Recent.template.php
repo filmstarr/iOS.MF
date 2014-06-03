@@ -116,16 +116,8 @@ echo '</div>
     
   echo '</ul>';
 		
-  echo '<div class="page buttons">
-  
-  <button class="button" onclick="window.location.href=\'', $context['links']['prev'] ,'\';" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
-  
-  <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'] ,' ', $txt['iOf'] ,' ', ($context['page_info']['num_pages']==0) ? '1' : $context['page_info']['num_pages'] ,'</button>
-  
-  <button class="button" onclick="window.location.href=\'', $context['links']['next'] ,'\';" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
-  
-  </div>';
-		
+  require_once ($settings[theme_dir].'/ThemeControls.php');
+  template_control_paging();		
 }
 
 function template_unread()
@@ -211,12 +203,8 @@ function template_unread()
           ', $context['showing_all_topics'] ? $txt['msg_alert_none'] : $txt['unread_topics_visit_none'], '
         </div>';
 
-    echo'
-      <div class="page buttons">
-        <button class="button" onclick="window.location.href=\'', $context['links']['prev'] ,'\';" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
-        <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'] ,' ', $txt['iOf'] ,' ', ($context['page_info']['num_pages']==0) ? '1' : $context['page_info']['num_pages'] ,'</button>
-        <button class="button" onclick="window.location.href=\'', $context['links']['next'] ,'\';" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
-      </div>';
+  require_once ($settings[theme_dir].'/ThemeControls.php');
+  template_control_paging();
   
   echo '<div class="buttons">
     <a class="button recentPosts" href="', $scripturl, '?action=recent">Recent Posts</a>
