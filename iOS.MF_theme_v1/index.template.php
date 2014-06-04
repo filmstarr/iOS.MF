@@ -67,12 +67,6 @@ var loading = "', $txt['iLoading'],'...";
 ((!empty($_GET['topic'])) && ($_GET['topic'])) ? '
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/quote.js"></script>' : '';
 
-  if ($context['user']['is_guest'])
-  {
-    $options['collapse_header'] = !empty($_COOKIE['upshrink']);
-    $options['collapse_header_ic'] = !empty($_COOKIE['upshrinkIC']);
-  }
-
   echo $context['html_headers'];
 
   echo '
@@ -131,10 +125,11 @@ else
   echo'</h1>
    
   <a href="#" id="showhidesearch" onclick="if(document.getElementById(\'searchbar\').style.display==\'block\'){document.getElementById(\'searchbar\').style.display=\'none\';}else{document.getElementById(\'searchbar\').style.display=\'block\';document.searchform.search.focus();}" id="tabsearch"', $issearch ,'></a>    
+    <button id="showhidelogin" class="button">' , $context['user']['is_logged'] ? $txt['iLogout'] : $txt['login'] , '</button>
 
   </div>';
 
-	echo '
+  echo '
 
   <div id="searchbar" class="inputContainer">
 
@@ -142,12 +137,13 @@ else
 
   <input type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
   <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" onclick="this.style.opacity=0.3;if(document.searchform.search.value.length<3){alert(\'', $txt['iAlert'], '\');
-	document.searchform.search.focus();this.style.opacity=1.0;return false;}" />
+  document.searchform.search.focus();this.style.opacity=1.0;return false;}" />
     
   </form>
 
   </div>';
   
+  quick_login();
 }
 
 function template_body_below()
@@ -157,9 +153,9 @@ function template_body_below()
   //Subtle default mode button
 $backname = $backlink = '';
 if (!empty($modSettings['id_default_theme']))
-	$backlink = 'index.php?theme=' . $modSettings['id_default_theme'];
+  $backlink = 'index.php?theme=' . $modSettings['id_default_theme'];
 else
-	$backlink = 'index.php?theme='. $modSettings['theme_guests'];
+  $backlink = 'index.php?theme='. $modSettings['theme_guests'];
 $backname = 'Default Theme';
 echo '<a class="button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
@@ -188,18 +184,18 @@ echo '
 </div>
 ';
 }
-		
-		//Toolbar HTML
-		echo '<style> #copyright {margin-bottom: 47px;} </style>';
-		  echo '<div class="toolbar">
-		  <ul>
-		    <li><div onclick="window.location.href=\'',$scripturl,'\'" style="background: url('.$settings['theme_url'].'/images/toolbar/home.png) transparent center no-repeat;"></div></li>
-		    <li><div onclick="window.history.back();" style="background: url('.$settings['theme_url'].'/images/toolbar/back.png) transparent center no-repeat;"></div></li>
-		    <li><div onclick="location.reload();" style="background: url('.$settings['theme_url'].'/images/toolbar/refresh.png) transparent center no-repeat;"></div></li>
-		    <li><div onclick="window.history.forward();" style="background: url('.$settings['theme_url'].'/images/toolbar/forward.png) transparent center no-repeat;"></div></li>
-		    <li><div onclick="window.location.href=\'?action=unread;all\'" style="background: url('.$settings['theme_url'].'/images/toolbar/inbox.png) transparent center no-repeat;"></div></li>
-	  	</ul>
-		</div>';
+    
+    //Toolbar HTML
+    echo '<style> #copyright {margin-bottom: 47px;} </style>';
+      echo '<div class="toolbar">
+      <ul>
+        <li><div onclick="window.location.href=\'',$scripturl,'\'" style="background: url('.$settings['theme_url'].'/images/toolbar/home.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="window.history.back();" style="background: url('.$settings['theme_url'].'/images/toolbar/back.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="location.reload();" style="background: url('.$settings['theme_url'].'/images/toolbar/refresh.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="window.history.forward();" style="background: url('.$settings['theme_url'].'/images/toolbar/forward.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="window.location.href=\'?action=unread;all\'" style="background: url('.$settings['theme_url'].'/images/toolbar/inbox.png) transparent center no-repeat;"></div></li>
+      </ul>
+    </div>';
 }
 
 function template_html_below()
@@ -286,6 +282,68 @@ $ret = str_replace('>' . $urlname . '<', '>' . $chunked . '<', $ret);
 function template_button_strip()
 {
   return;
+}
+
+function quick_login()
+{    
+  global $context, $settings, $options, $txt, $scripturl, $modSettings;
+  
+  if ($context['user']['is_logged'])
+  {
+    echo '<script>';
+    echo 'var control = document.getElementById("showhidelogin");';
+    echo 'control.onclick = function() { go("logout;sesc=', $context['session_id'] ,'"); };';
+    echo '</script>';
+  }
+  else
+  {
+  
+    echo '<script>
+    var control = document.getElementById("showhidelogin");
+
+    var toggleQuickLogin = function() {
+      if ($("#quickLogin").is(":visible"))
+      {
+        $("#user ").blur();
+        $("#quickLogin").hide();
+        control.innerHTML = "'.$txt['login'].'";
+      }
+      else
+      {
+        $("#quickLogin").show();
+        $("#user ").blur();
+        $("#user ").focus();
+        control.innerHTML = "Close";
+      }
+    };
+
+    control.onclick = toggleQuickLogin;
+    </script>';
+
+    echo '<div id="quickLogin">  
+  <form action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
+
+<div class="noLeftPadding inputContainer padTop">';
+  echo'<span class="inputLabel">'. $txt['username'] .'</span>';
+  echo'<input id="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
+</div>
+<div class="noLeftPadding inputContainer padTop">';
+  echo'<span class="inputLabel">'. $txt['password'] .'</span>';
+  echo'<input type="password" tabindex="', $context['tabindex']++, '" name="passwrd" />
+</div>
+<div class="noLeftPadding inputContainer padTop">';
+  echo'<span class="inputLabel">'. $txt['iRemember'] .'</span>';
+  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" id="cookieneverexp">
+</div>
+    
+  <input type="hidden" name="hash_passwrd" value="" />
+  <div class="buttons" style="margin-top: -9px; padding-bottom: 5px;">
+    <button class="button twobuttons" type="submit">' . $txt['login'] . '</button>
+    <button class="button twobuttons" type="button" onclick="go(\'register\')">'. $txt['register'] .'</button>
+  </div>
+  </form>
+  </div>';
+  }
 }
 
 ?>

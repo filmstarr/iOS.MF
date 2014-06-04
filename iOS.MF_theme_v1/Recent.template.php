@@ -55,7 +55,7 @@ echo '</div>
     </div>
         <div class="message" onclick="window.location.href=\''. $message['href'] . '\';">
         <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
-    ', str_replace('/Smileys/default/','/Themes/iOS7_theme_v1/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['message'])));
+    ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['message'])));
 
     // Assuming there are attachments...
     if (!empty($message['attachment']))
@@ -114,22 +114,10 @@ echo '</div>
     echo '</li>';      
   }
     
-    
-    
-    
-    
   echo '</ul>';
 		
-  echo '<div class="page buttons">
-  
-  <button class="button" onclick="window.location.href=\'', $context['links']['prev'] ,'\';" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
-  
-  <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'] ,' ', $txt['iOf'] ,' ', ($context['page_info']['num_pages']==0) ? '1' : $context['page_info']['num_pages'] ,'</button>
-  
-  <button class="button" onclick="window.location.href=\'', $context['links']['next'] ,'\';" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
-  
-  </div>';
-		
+  require_once ($settings[theme_dir].'/ThemeControls.php');
+  template_control_paging($context['page_index']);
 }
 
 function template_unread()
@@ -215,12 +203,8 @@ function template_unread()
           ', $context['showing_all_topics'] ? $txt['msg_alert_none'] : $txt['unread_topics_visit_none'], '
         </div>';
 
-    echo'
-      <div class="page buttons">
-        <button class="button" onclick="window.location.href=\'', $context['links']['prev'] ,'\';" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
-        <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'] ,' ', $txt['iOf'] ,' ', ($context['page_info']['num_pages']==0) ? '1' : $context['page_info']['num_pages'] ,'</button>
-        <button class="button" onclick="window.location.href=\'', $context['links']['next'] ,'\';" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
-      </div>';
+  require_once ($settings[theme_dir].'/ThemeControls.php');
+  template_control_paging();
   
   echo '<div class="buttons">
     <a class="button recentPosts" href="', $scripturl, '?action=recent">Recent Posts</a>

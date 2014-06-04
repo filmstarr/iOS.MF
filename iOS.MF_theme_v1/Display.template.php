@@ -8,14 +8,17 @@ function template_main()
   $ignoredMsgs = array();
   $messageIDs = array();
   
-  quick_reply();
+  if ($context['can_reply'])
+  {
+    quick_reply();
+  }
     
   echo'  
     <div class="buttons">
 
-  <button', $context['user']['is_guest'] ? ' disabled' : '' , ' class="button twobuttons" id="quoting" onclick="quoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'].' '.$txt['iOff']:$txt['iQuoting'].' '.$txt['iOn'], '</button>
+  <button class="button twobuttons" id="quoting" onclick="quoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'].' '.$txt['iOff']:$txt['iQuoting'].' '.$txt['iOn'], '</button>
 
-  <button', $context['user']['is_guest'] ? ' disabled' : '' , ' class="button twobuttons" onclick="window.location.href=\''.$scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'].'\';">', $txt['reply'] ,'</button>'; echo'
+  <button class="button twobuttons" onclick="window.location.href=\''.$scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'].'\';">', $txt['reply'] ,'</button>'; echo'
     </div>';
   
   // Is this topic also a poll?
@@ -148,7 +151,7 @@ echo '</div>
         <div class="message"', (!isset($_COOKIE['disablequoting'])&&$context['can_reply']) ? '  onclick="window.location.href=\''. $scripturl. '?action=post;quote='. $message['id'].
      ';topic='. $context['current_topic'].
         '.'. $context['start']. ';num_replies='. $context['num_replies']. ';'. $context['session_var']. '='. $context['session_id']. '\'"':'','><span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
-    ', str_replace('/Smileys/default/','/Themes/iOS7_theme_v1/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['body'])));
+    ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['body'])));
 
     // Assuming there are attachments...
     if (!empty($message['attachment']))
@@ -208,28 +211,14 @@ echo '</div>
       </li>
     
     ';
-      
-      
-      
-      
     }
-
-
   }
   
   echo'</ul>';
- 
-  echo '<div class="page buttons">
-  
-  <button class="button" onclick="window.location.href=\'', $context['links']['prev'] ,'\';" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
-  
-  <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'] ,' ', $txt['iOf'] ,' ', ($context['page_info']['num_pages']==0) ? '1' : $context['page_info']['num_pages'] ,'</button>
-  
-  <button class="button" onclick="window.location.href=\'', $context['links']['next'] ,'\';" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
-  
-  </div>';
 
-}  
+  require_once ($settings[theme_dir].'/ThemeControls.php');
+  template_control_paging();
+}
   
 function quick_reply()
 {    
@@ -324,7 +313,7 @@ echo '</div>';
       <input type="hidden" name="goback" value="', $options['return_to_post'] ,'" />
     </form>';
     
-    echo '</div>';
+  echo '</div>';
 }
 
 ?>

@@ -13,11 +13,7 @@ function template_control_richedit($editor_id, $display_controls = 'all')
   if ($display_controls == 'all' || in_array('message', $display_controls))
   {
     echo '<textarea class="editor" name="', $editor_id, '" id="', $editor_id, '" rows="', $editor_context['rows'], '" cols="', $editor_context['columns'], '" tabindex="', $context['tabindex']++, '" style="width: 100%; height: 159px;', isset($context['post_error']['no_message']) || isset($context['post_error']['long_message']) ? 'border: 1px solid red;' : '', '">', $editor_context['value'], '</textarea>';
-    
-    
   }
-
-  
 }
 
 
