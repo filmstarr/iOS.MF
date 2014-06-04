@@ -117,7 +117,7 @@ echo '</div>
   echo '</ul>';
 		
   require_once ($settings[theme_dir].'/ThemeControls.php');
-  template_control_paging();		
+  template_control_paging($context['page_index']);
 }
 
 function template_unread()
