@@ -738,6 +738,11 @@ button[disabled] {
   padding: 6px 0px 6px 9px;
 }
 
+#loginErrors {
+  font-size: 14px;
+  padding: 0px 0px 6px 8px;
+}
+
 .notitle {
   margin-top: 9px;
 }
