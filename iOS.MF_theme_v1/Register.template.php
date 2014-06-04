@@ -8,28 +8,27 @@ function template_registration_agreement()
 	$agreement=explode('<br /><br />',$context['agreement']);
 	echo '
 		<form action="', $scripturl, '?action=register" method="post" accept-charset="', $context['character_set'], '" id="registration">
-			<h2>'.$txt['iAgreement'].'</h2>
-			<ul class="posts">
-	
-				<li>
-					<div class="last message" style="font-size:11px;">
-					',$agreement[0],' <a href="#" onclick="this.parentNode.innerHTML=\'', addslashes($context['agreement']) ,'\'; return false;">[', $txt['iMore'] ,'...]</a>
-					</div>
-				</li>
-			
-			</ul>
-			<div id="confirm_buttons" style="text-align: center;">';
+			<h2 style="margin-left: 9px;">'.$txt['iAgreement'].'</h2>
+			<div class="agreement">
+			',$agreement[0],' <a style="color: #007AFF;" href="#" onclick="this.parentNode.innerHTML=\'', addslashes($context['agreement']) ,'\'; return false;">[', $txt['iMore'] ,'...]</a>
+			</div>';
 
-	// Age restriction in effect?
+  echo '<div class="buttons">';
+  	// Age restriction in effect?
 	if ($context['show_coppa'])
+	{
 		echo '
-				<input id="regisbutt" type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" /><br /><br />
-				<input id="regisbutt" type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" />';		
+				<input class="button twobuttons" type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" />
+				<input class="button twobuttons" type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" />';		
+	}
 	else
+	{
 		echo '
-				<button style="width: 90%; height: 51px;" name="accept_agreement">'. $txt['agreement_agree'] .'</button>';
+				<button class="button" name="accept_agreement">'. $txt['agreement_agree'] .'</button>';
+	}
+  echo '</div>';
+
 	echo '
-			</div>
 			<input type="hidden" name="step" value="1" />
 		</form>';
 

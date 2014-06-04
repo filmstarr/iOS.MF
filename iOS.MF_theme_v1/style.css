@@ -740,7 +740,7 @@ button[disabled] {
 
 #loginErrors {
   font-size: 14px;
-  padding: 0px 0px 6px 8px;
+  padding: 0px 0px 6px 9px;
 }
 
 .notitle {
@@ -957,4 +957,10 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.agreement {
+  padding: 6px 4px 0px 9px;
+  font-size: 11px;
+  text-align: justify;
 }
