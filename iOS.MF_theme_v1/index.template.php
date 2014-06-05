@@ -105,12 +105,7 @@ else
 
   <h1 id="pageTitle">';
   
-  if((!empty($_GET['action']))&&($_GET['action']=='login'||$_GET['action']=='register'||$_GET['action']=='login2'||$_GET['action']=='register2'))
-    echo'
-    <div id="titleSwitcher">';
-  else
-    echo'
-    <div id="theTitle">', iPhoneTitle(), '</div>';  
+  echo'<div id="theTitle">', iPhoneTitle(), '</div>';  
   
   echo'</h1>
    
