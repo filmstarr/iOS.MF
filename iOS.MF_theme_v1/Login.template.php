@@ -6,9 +6,9 @@ function template_login()
 	global $context, $scripturl, $settings, $txt;
 
 	if (!empty($context['login_errors']))
-		echo '<div id="loginErrors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['login_errors']), '</div></div>';
+		echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['login_errors']), '</div></div>';
 	if (isset($context['description']))
-		echo '<div id="loginErrors"><div style="margin-top: 6px;">*', $context['description'], '</div></div>';
+		echo '<div class="errors"><div style="margin-top: 6px;">*', $context['description'], '</div></div>';
 
   echo '<div id="quickLogin" style="display: block;">
   <form action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
@@ -37,7 +37,7 @@ function template_login()
 
 function template_kick_guest(){
 global $txt;
-echo '<div id="loginErrors"><div style="margin-top: 6px;">*', empty($context['kick_message']) ? $txt['only_members_can_access'] : $context['kick_message'],'</div></div>';
+echo '<div class="errors"><div style="margin-top: 6px;">*', empty($context['kick_message']) ? $txt['only_members_can_access'] : $context['kick_message'],'</div></div>';
 template_login();
 }
 

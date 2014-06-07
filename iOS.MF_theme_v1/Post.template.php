@@ -18,7 +18,7 @@ function template_main()
         
 if(!empty($context['post_error']['messages']) && count($context['post_error']['messages']))    
 {
-  echo '<div id="errors"><div>*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
+  echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
     if(empty($context['subject'])) {
       echo '<style> #newTopic { padding-top: 9px; } </style>';        
     }

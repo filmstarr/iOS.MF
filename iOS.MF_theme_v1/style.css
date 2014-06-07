@@ -353,6 +353,9 @@ float: left;
 .inputContainer img {
   vertical-align: middle;
   margin-left: -4px;
+  width: 221px;
+  height: 34px;
+  border-radius: 5px;
 }
 
 .inputContainer .inputLabel {
@@ -733,12 +736,7 @@ button[disabled] {
 
 }
 
-#errors {
-  font-size: 14px;
-  padding: 6px 0px 6px 9px;
-}
-
-#loginErrors {
+.errors {
   font-size: 14px;
   padding: 0px 0px 6px 9px;
 }
@@ -963,4 +961,9 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   padding: 6px 4px 0px 9px;
   font-size: 11px;
   text-align: justify;
+}
+
+.header {
+  font-size: 14px;
+  padding: 6px 0px 6px 9px;
 }

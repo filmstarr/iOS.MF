@@ -116,114 +116,54 @@ function template_registration_form()
 
 	// Any errors?
 	if (!empty($context['registration_errors']))
-	{
-		foreach ($context['registration_errors'] as $error)
-				echo '
-			<h2>', $error, '</h2>';
-			
-	}
+		echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['registration_errors']), '</div></div>';
 
 	echo '
 <form action="', $scripturl, '?action=register2" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator" onsubmit="return verifyAgree();">';
 
-echo'	
-	
-	<h2></h2>
-	
-	<ul class="login" style="clear:both;">
-	
-		
-		<li>
-			<div class="field">
-				<div class="fieldname">'. $txt['username'] .'</div>
-				<div class="fieldinfo"><input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" /></div>
-			</div>
-		</li>
-		
-		<li>
-			<div class="last field">
-				<div class="fieldname">'. $txt['email'] .'</div>
-				<div class="fieldinfo"><input type="text" name="email" id="smf_autov_reserve1" size="30" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '" /></div>
-			</div>
-		</li>
-		
-	</ul>
-	
-	<h2>'. $txt['password'] .'</h2>
-		
-	<ul class="login">
+echo '<div class="header">User</div>';
 
-		<li>
-			<div class="field">
-				<div class="fieldname">'. $txt['iChoose'] .'</div>
-				<div class="fieldinfo"><input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" /></div>
-			</div>
-		</li>
-		
-		<li>
-			<div class="last field">
-				<div class="fieldname">'. $txt['iVerify'] .'</div>
-				<div class="fieldinfo"><input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" /></div>
-			</div>
-		</li>
-		
-	</ul>';
+echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+echo '<span class="inputLabel">'. $txt['username'] .'</span>';
+echo '<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" />';
+echo '</div>';
+
+echo '<div class="noLeftPadding inputContainer">';
+echo '<span class="inputLabel">'. $txt['email'] .'</span>';
+echo '<input type="text" name="email" id="smf_autov_reserve1" size="30" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '" />';
+echo '</div>';
+
+echo '<div class="header">'. $txt['password'] .'</div>';
+
+echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+echo '<span class="inputLabel">'. $txt['iChoose'] .'</span>';
+echo '<input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" />';
+echo '</div>';
+
+echo '<div class="noLeftPadding inputContainer">';
+echo '<span class="inputLabel">'. $txt['iVerify'] .'</span>';
+echo '<input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" />';
+echo '</div>';
 	
 if ($context['visual_verification']) {
-	echo'
-	<h2>'. $txt['iVerification'] .'</h2>
-	<ul class="login">
-	<li>';
-		if(!empty($modSettings['recaptcha_enabled']) && ($modSettings['recaptcha_enabled'] == 1) && !empty($modSettings['recaptcha_public_key']) && !empty($modSettings['recaptcha_private_key']))
-		{
-			echo'
-			<div id="verification_control">
-			<div id="recaptcha_widget" style="display: none;">
-				<script type="text/javascript">
-					var RecaptchaOptions = {
-						theme : \'custom\',
-						custom_theme_widget: \'recaptcha_widget\'
-					};
-				</script>
-				<div id="recaptcha_image"></div>
-				<span class="recaptcha_only_if_image">'.$txt['ireCAPTCHA1'].'<br /><br /></span>
-				<input id="recaptcha_response_field" name="recaptcha_response_field" type="text"><br /><br />
-				<a class="ottieni" href="javascript:Recaptcha.reload();">'.$txt['ireCAPTCHA2'].'</a>	
-				<script type="text/javascript" src="http://api.recaptcha.net/challenge?k='.$modSettings['recaptcha_public_key'].'"></script>
-				<noscript>
-				<iframe src="http://api.recaptcha.net/noscript?k='.$modSettings['recaptcha_public_key'].'" height="200" width="500" frameborder="0"></iframe><br />
-				<textarea name="recaptcha_challenge_field" rows="3" cols="40">
-				</textarea>
-				<input type="hidden" name="recaptcha_response_field" value="manual_challenge" />
-				</noscript>
-			</div>
-			</div>';
-		}
-		else {
-			echo '
-						<div class="verification field">
-				<div class="fieldname">'. $txt['iCode'] .'</div>
-				<div class="fieldinfo">', template_control_verification($context['visual_verification_id'], 'all'), '</div>
-			</div>
-		</li>	
-			
-		<li>
-			<div class="last field">
-				<div class="fieldname">'. $txt['iVerify'] .'</div>
-				<div class="fieldinfo"><input type="text" name="register_vv[code]" value="" size="30" tabindex="', $context['tabindex']++, '" />
-			</div>';
-		}
-	echo '	
-	</li>
-	</ul>';
+	echo'<div class="header">'. $txt['iVerification'] .'</div>';
+	echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+	echo '<span class="inputLabel">Code</span>';
+	echo template_control_verification($context['visual_verification_id'], 'all');
+	echo '</div>';
+	echo '<div class="noLeftPadding inputContainer">';
+	echo '<span class="inputLabel">Verify</span>';
+	echo '<input type="text" tabindex="', $context['tabindex']++, '" name="register_vv[code]" />';
+	echo '</div>';
 }
 
-	echo'<div class="child buttons">
-	
-	<button name="regSubmit">'. $txt['register'] .'</button>
-	<input type="hidden" name="step" value="2" />
-	</div></form>';
+  echo '<div class="child buttons">
+  
+  <button class="button" type="submit">', $txt['register'] ,'</button>
 
+  </div>';
+
+	echo'</form>';
 
 
 echo '
@@ -259,8 +199,12 @@ function template_after()
 	global $context, $settings, $options, $txt, $scripturl;
 
 	// Not much to see here, just a quick... "you're now registered!" or what have you.
-	echo '<h2>', $context['description'], '</h2>';
-	echo '<br /><div align="center"><button onclick="go(\'home\');">', $txt['iDone'], '</button></div>';
+	echo '<div class="header">', $context['description'], '</div>';
+  echo '<div class="child buttons">
+  
+  <button class="button" onclick="go(\'home\');">', $txt['iDone'], '</button>
+
+  </div>';
 }
 
 ?>
