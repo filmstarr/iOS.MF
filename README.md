@@ -37,6 +37,6 @@ This theme is based on the excellent SMF4iPhone by Fabius, butchs and FarFromPer
 
 Thanks to xKroniK13x for contributions and suggestions towards this theme.
 
-The theme uses the Adk Skype Emoticons to give crisp retina smileys (licence: http://creativecommons.org/licenses/by/3.0/) and the Simple Line Icons from Graphic Burger (http://graphicburger.com/simple-line-icons-set-vol-1/ see also vol-2, vol-3 and vol-4).
+The theme uses the Adk Skype Emoticons to give crisp retina smileys (licence: http://creativecommons.org/licenses/by/3.0/) and the Simple Line Icons set from Graphic Burger (http://graphicburger.com/simple-line-icons-set-vol-1/, see also vol-2, vol-3 and vol-4).
 
 Internally we use the jQuery, Hammer.js, Touchy and jQuery Autosize libraries.
