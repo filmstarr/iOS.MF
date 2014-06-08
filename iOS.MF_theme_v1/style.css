@@ -967,3 +967,13 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   font-size: 14px;
   padding: 6px 0px 6px 9px;
 }
+
+#smf_autov_username_img {
+  height: 14px;
+  width: 14px;
+  margin-top: -3px;
+}
+
+#smf_autov_username_div {
+  margin-left: -23px;
+}

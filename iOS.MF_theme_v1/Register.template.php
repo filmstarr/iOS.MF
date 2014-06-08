@@ -49,20 +49,7 @@ function template_registration_form()
 		{
 			alert("', $txt['register_passwords_differ_js'], '");
 			return false;
-		}';
-
-	// If they haven't checked the "I agree" box, tell them and don't submit.
-	if ($context['require_agreement'])
-		echo '
-
-		if (!document.forms.creator.regagree.checked)
-		{
-			alert("', $txt['register_agree'], '");
-			return false;
-		}';
-
-	// Otherwise, let it through.
-	echo '
+		}
 
 		return true;
 	}
@@ -102,15 +89,6 @@ function template_registration_form()
 		return true;
 	}';
 
-	if ($context['require_agreement'])
-		echo '
-	function checkAgree()
-	{
-		document.forms.creator.regSubmit.disabled =  (currentAuthMethod == "passwd" && (isEmptyText(document.forms.creator.smf_autov_pwmain) || isEmptyText(document.forms.creator.user) || isEmptyText(document.forms.creator.email))) || (currentAuthMethod == "openid" && isEmptyText(document.forms.creator.openid_url)) || !document.forms.creator.regagree.checked;
-		setTimeout("checkAgree();", 1000);
-	}
-	setTimeout("checkAgree();", 1000);';
-
 	echo '
 // ]]></script>';
 
@@ -126,6 +104,11 @@ echo '<div class="header">User</div>';
 echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
 echo '<span class="inputLabel">'. $txt['username'] .'</span>';
 echo '<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" />';
+echo '<span id="smf_autov_username_div" style="display: none;">
+        <a id="smf_autov_username_link" href="#">
+          <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.gif" alt="*" />
+        </a>
+      </span>';
 echo '</div>';
 
 echo '<div class="noLeftPadding inputContainer">';
@@ -159,7 +142,7 @@ if ($context['visual_verification']) {
 
   echo '<div class="child buttons">
   
-  <button class="button" type="submit">', $txt['register'] ,'</button>
+  <button name="regSubmit" class="button" type="submit">', $txt['register'] ,'</button>
 
   </div>';
 

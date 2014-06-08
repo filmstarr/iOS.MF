@@ -58,6 +58,8 @@ var loading = "', $txt['iLoading'],'...";
 
 </script>
 
+<script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js?fin20"></script>
+<script type="text/javascript" src="'. $settings['default_theme_url'] .'/scripts/captcha.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery-1.10.2.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery.autosize.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery.hammer.min.js"></script>
@@ -65,6 +67,17 @@ var loading = "', $txt['iLoading'],'...";
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/iphone.js"></script>',
 ((!empty($_GET['topic'])) && ($_GET['topic'])) ? '
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/quote.js"></script>' : '';
+
+echo '<script type="text/javascript">
+    var smf_theme_url = "', $settings['theme_url'], '";
+    var smf_default_theme_url = "', $settings['default_theme_url'], '";
+    var smf_images_url = "', $settings['images_url'], '";
+    var smf_scripturl = "', $scripturl, '";
+    var smf_iso_case_folding = ', $context['server']['iso_case_folding'] ? 'true' : 'false', ';
+    var smf_charset = "', $context['character_set'], '";
+    var ajax_notification_text = "', $txt['ajax_in_progress'], '";
+    var ajax_notification_cancel_text = "', $txt['modify_cancel'], '";
+</script>';
 
   echo '
 </head>
