@@ -41,7 +41,7 @@ function template_registration_form()
 
 	// Make sure they've agreed to the terms and conditions.
 	echo '
-<script language="JavaScript" type="text/javascript" src="', $settings['default_theme_url'], '/scripts/register.js"></script>
+<script language="JavaScript" type="text/javascript" src="', $settings['theme_url'], '/scripts/register.js"></script>
 <script language="JavaScript" type="text/javascript"><!-- // --><![CDATA[
 	function verifyAgree()
 	{
@@ -106,7 +106,7 @@ echo '<span class="inputLabel">'. $txt['username'] .'</span>';
 echo '<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" />';
 echo '<span id="smf_autov_username_div" style="display: none;">
         <a id="smf_autov_username_link" href="#">
-          <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.gif" alt="*" />
+          <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
         </a>
       </span>';
 echo '</div>';

@@ -123,7 +123,7 @@ else
   echo'</h1>
    
   <a href="#" id="showhidesearch" onclick="if(document.getElementById(\'searchbar\').style.display==\'block\'){document.getElementById(\'searchbar\').style.display=\'none\';}else{document.getElementById(\'searchbar\').style.display=\'block\';document.searchform.search.focus();}" id="tabsearch"', $issearch ,'></a>    
-    <button id="showhidelogin" class="button">' , $context['user']['is_logged'] ? $txt['iLogout'] : $txt['login'] , '</button>
+  <a href="#" id="showhidelogin" class="' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></a>
 
   </div>';
 
@@ -304,14 +304,14 @@ function quick_login()
       {
         $("#user ").blur();
         $("#quickLogin").hide();
-        control.innerHTML = "'.$txt['login'].'";
+        control.className = "loginIcon";
       }
       else
       {
         $("#quickLogin").show();
         $("#user ").blur();
         $("#user ").focus();
-        control.innerHTML = "Close";
+        control.className = "closeIcon";
       }
     };
 

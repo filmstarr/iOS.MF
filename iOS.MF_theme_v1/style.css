@@ -61,7 +61,7 @@ h1{
 #theTitle{
   height: 20px;
   margin-right: 24px;
-  margin-left: 48px;
+  margin-left: 24px;
   line-height: 20px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -758,24 +758,32 @@ button[disabled] {
   position: absolute;
   top: 10px;
   height: 24px;
-  border-radius: 5px;
+  width: 24px;
 }
 
 #showhidesearch{
   right: 8px;
-  width: 24px;
-  background: url(images/topBar/magnifier.png) no-repeat;
+  background: url(images/topBar/magnifier@2x.png) no-repeat;
+  background-size: 24px 24px !important;
 }
 
 #showhidelogin{
   left: 8px;
 }
 
-@media all and (-webkit-min-device-pixel-ratio: 1.5) {
-  #showhidesearch {
-    background: url(images/topBar/magnifier@2x.png) no-repeat;
+.loginIcon {
+    background: url(images/icons/login.png) no-repeat;
     background-size: 24px 24px !important;
-  }
+}
+
+.logoutIcon {
+    background: url(images/icons/logout.png) no-repeat;
+    background-size: 24px 24px !important;
+}
+
+.closeIcon {
+    background: url(images/icons/close.png) no-repeat;
+    background-size: 24px 24px !important;
 }
 
 hr{
