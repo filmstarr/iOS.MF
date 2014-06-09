@@ -123,4 +123,6 @@ $txt['new_button'] = 'New';
 $txt['ireCAPTCHA1'] = 'Enter the words above:';
 $txt['ireCAPTCHA2'] = 'Get another CAPTCHA';
 
+
+
 ?>

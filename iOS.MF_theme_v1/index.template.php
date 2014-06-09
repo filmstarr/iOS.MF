@@ -121,9 +121,27 @@ else
   echo'<div id="theTitle">', iPhoneTitle(), '</div>';  
   
   echo'</h1>
-   
-  <a href="#" id="showhidesearch" onclick="if(document.getElementById(\'searchbar\').style.display==\'block\'){document.getElementById(\'searchbar\').style.display=\'none\';}else{document.getElementById(\'searchbar\').style.display=\'block\';document.searchform.search.focus();}" id="tabsearch"', $issearch ,'></a>    
+
+  <a href="#" id="showhidesearch" class="magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></a>    
   <a href="#" id="showhidelogin" class="' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></a>
+
+  <script>
+    var searchControl = document.getElementById("showhidesearch");
+    var toggleSearch = function() {
+      if ($("#searchbar").is(":visible"))
+      {
+        $("#searchbar").hide();
+        searchControl.className = "magnifierIcon";
+      }
+      else
+      {
+        $("#searchbar").show();
+        searchControl.className = "closeIcon";
+        $("#searchText").focus();
+      }
+    };
+    searchControl.onclick = toggleSearch;
+  </script>
 
   </div>';
 
@@ -133,7 +151,7 @@ else
 
   <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="searchform">
 
-  <input type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
+  <input id="searchText" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
   <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" onclick="this.style.opacity=0.3;if(document.searchform.search.value.length<3){alert(\'', $txt['iAlert'], '\');
   document.searchform.search.focus();this.style.opacity=1.0;return false;}" />
     
@@ -187,11 +205,11 @@ echo '
     echo '<style> #copyright {margin-bottom: 47px;} </style>';
       echo '<div class="toolbar">
       <ul>
-        <li><div onclick="window.location.href=\'',$scripturl,'\'" style="background: url('.$settings['theme_url'].'/images/toolbar/home.png) transparent center no-repeat;"></div></li>
-        <li><div onclick="window.history.back();" style="background: url('.$settings['theme_url'].'/images/toolbar/back.png) transparent center no-repeat;"></div></li>
-        <li><div onclick="location.reload();" style="background: url('.$settings['theme_url'].'/images/toolbar/refresh.png) transparent center no-repeat;"></div></li>
-        <li><div onclick="window.history.forward();" style="background: url('.$settings['theme_url'].'/images/toolbar/forward.png) transparent center no-repeat;"></div></li>
-        <li><div onclick="window.location.href=\'?action=unread;all\'" style="background: url('.$settings['theme_url'].'/images/toolbar/inbox.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="window.location.href=\'',$scripturl,'\'" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=profile\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+        <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=pm\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+        <li><div onclick="window.location.href=\'?action=recent\'" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=unread;all\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
       </ul>
     </div>';
 }
@@ -302,15 +320,15 @@ function quick_login()
     var toggleQuickLogin = function() {
       if ($("#quickLogin").is(":visible"))
       {
-        $("#user ").blur();
+        $("#user").blur();
         $("#quickLogin").hide();
         control.className = "loginIcon";
       }
       else
       {
         $("#quickLogin").show();
-        $("#user ").blur();
-        $("#user ").focus();
+        $("#user").blur();
+        $("#user").focus();
         control.className = "closeIcon";
       }
     };

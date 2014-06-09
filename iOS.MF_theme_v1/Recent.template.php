@@ -205,10 +205,6 @@ function template_unread()
 
   require_once ($settings[theme_dir].'/ThemeControls.php');
   template_control_paging();
-  
-  echo '<div class="buttons">
-    <a class="button recentPosts" href="', $scripturl, '?action=recent">Recent Posts</a>
-  </div>';
 }
 
 ?>
