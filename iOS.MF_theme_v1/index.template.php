@@ -207,7 +207,10 @@ echo '
       <ul>
         <li><div onclick="window.location.href=\'',$scripturl,'\'" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
         <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=profile\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
-        <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=pm\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+        <li>
+          <div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=pm\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+          ', $context['user']['unread_messages'] > 0 ? '<div id="unreadPMCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
+        </li>
         <li><div onclick="window.location.href=\'?action=recent\'" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
         <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=unread;all\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
       </ul>

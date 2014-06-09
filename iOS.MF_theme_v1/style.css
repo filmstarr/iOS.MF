@@ -985,3 +985,16 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 #smf_autov_username_div {
   margin-left: -23px;
 }
+
+#unreadPMCount {
+  background-color: red;
+  border-radius: 7px;
+  width: 14px;
+  height: 14px;
+  color: white;
+  text-align: center;
+  font-size: 9px;
+  line-height: 14px;
+  margin-right: -35px;
+  margin-top: 4px;
+}
