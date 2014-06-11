@@ -123,7 +123,7 @@ echo '</div>
 function template_unread()
 {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
-    
+
   $topic_sticky_count = 0;
   foreach ($context['topics'] as $topic)
     {if($topic['is_sticky']){

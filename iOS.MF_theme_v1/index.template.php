@@ -202,6 +202,9 @@ echo '
 }
     
     //Toolbar HTML
+    require_once ($settings[theme_dir].'/ThemeFunctions.php');
+    $unreadPostCount = UnreadPostCount();
+
     echo '<style> #copyright {margin-bottom: 47px;} </style>';
       echo '<div class="toolbar">
       <ul>
@@ -209,10 +212,13 @@ echo '
         <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=profile\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
         <li>
           <div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=pm\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-          ', $context['user']['unread_messages'] > 0 ? '<div id="unreadPMCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
+          ', $context['user']['unread_messages'] > 0 ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
         </li>
         <li><div onclick="window.location.href=\'?action=recent\'" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
-        <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=unread;all\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+        <li>
+          <div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=unread;all\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+          ', $unreadPostCount > 0 ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
+        </li>
       </ul>
     </div>';
 }
