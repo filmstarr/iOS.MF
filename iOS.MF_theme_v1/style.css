@@ -989,7 +989,6 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 #unreadPMCount {
   background-color: red;
   border-radius: 7px;
-  width: 14px;
   height: 14px;
   color: white;
   text-align: center;
@@ -997,4 +996,7 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   line-height: 14px;
   margin-right: -35px;
   margin-top: 4px;
+  width: initial;
+  padding: 0px 4px 0px 4px;
+  min-width: 6px;
 }
