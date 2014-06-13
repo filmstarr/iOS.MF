@@ -200,3 +200,16 @@ $(window).on('beforeunload' , function() {
     $(this).className = '';
 });
 });
+
+// Hide toolbar when input is focused
+if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
+  $(document)
+  .on('focus', 'textarea,input,select', function(e) {
+    $('.toolbar').css('display', 'none');
+    $('#copyright').css('margin-bottom', '4px');
+  })
+  .on('blur', 'textarea,input,select', function(e) {
+    $('.toolbar').css('display', 'initial');
+    $('#copyright').css('margin-bottom', '47px');
+  });
+}

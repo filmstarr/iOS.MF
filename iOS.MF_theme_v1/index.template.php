@@ -97,7 +97,9 @@ function iPhoneTitle(){
   
   $title = str_replace('Set Search Parameters','Search',$title);
   
-    return $title;
+  $title = str_replace('Personal Messages Index','Personal Messages',$title);
+
+  return $title;
   
   }
 
@@ -122,8 +124,8 @@ else
   
   echo'</h1>
 
-  <a href="#" id="showhidesearch" class="magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></a>    
-  <a href="#" id="showhidelogin" class="' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></a>
+  <div id="showhidesearch" class="magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></div>    
+  <div id="showhidelogin" class="' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></div>
 
   <script>
     var searchControl = document.getElementById("showhidesearch");
@@ -212,12 +214,12 @@ echo '
         <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=profile\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
         <li>
           <div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=pm\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-          ', $context['user']['unread_messages'] > 0 ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
+          ', $context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
         </li>
         <li><div onclick="window.location.href=\'?action=recent\'" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
         <li>
           <div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=unread;all\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-          ', $unreadPostCount > 0 ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
+          ', $unreadPostCount > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
         </li>
       </ul>
     </div>';
