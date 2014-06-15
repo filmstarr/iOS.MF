@@ -215,7 +215,7 @@ if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
 }
 
 $.mobile.ignoreContentEnabled=true
-$.mobile.defaultPageTransition = 'slide';
+$.mobile.defaultPageTransition = 'none';
 
 $(function() {
   $("#toolbar").removeClass( "ui-footer" )

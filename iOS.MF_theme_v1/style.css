@@ -918,7 +918,7 @@ hr{
   display: inline-block;
 }
 
-.toolbar > ul > li > a {
+.toolbar > ul > li > div {
   float: right;
   width: 32px;
   height: 43px;

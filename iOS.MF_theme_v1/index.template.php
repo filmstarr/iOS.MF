@@ -208,23 +208,23 @@ echo '
 ';
 }
     echo '</div>';
-    
+
     //Toolbar HTML
     require_once ($settings[theme_dir].'/ThemeFunctions.php');
     $unreadPostCount = UnreadPostCount();
 
     echo '<style> #copyright {margin-bottom: 47px;} </style>';
-      echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance="true">
+      echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance=true>
       <ul>
-        <li><a href="',$scripturl,'" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></a></li>
-        <li><a ', $context['user']['is_logged'] ? 'href="?action=profile' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></a></li>
+        <li><div onclick="$.mobile.changePage(\'',$scripturl,'\')" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
+        <li><div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=profile\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
         <li>
-          <a ', $context['user']['is_logged'] ? 'href="?action=pm' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></a>
+          <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=pm\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
           ', $context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
         </li>
-        <li><a href="?action=recent" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></a></li>
+        <li><div onclick="$.mobile.changePage(\'?action=recent\')" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
         <li>
-          <a ', $context['user']['is_logged'] ? 'href="?action=unread;all' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></a>
+          <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=unread;all\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
           ', $unreadPostCount > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
         </li>
       </ul>
