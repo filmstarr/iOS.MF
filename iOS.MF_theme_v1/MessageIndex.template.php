@@ -6,7 +6,7 @@ function template_main()
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
 
   echo '<div class="child buttons" id="newtopic">
-    <button class="button" onclick="window.location.href=\'', $scripturl , '?action=post;board=' , $context['current_board'] , '.0  \';">', $txt['new_topic'], '</button>
+    <button class="button" onclick="$.mobile.changePage(\'', $scripturl , '?action=post;board=' , $context['current_board'] , '.0  \');">', $txt['new_topic'], '</button>
   </div>';
   
     //Display child boards
@@ -15,7 +15,7 @@ function template_main()
     echo '<ul class="content2">';
     foreach ($context['boards'] as $board)
     {
-      echo '<li onclick="this.className = \'clicked\'; window.location.href=\'' . $board['href'] .'\';">';
+      echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $board['href'] .'\');">';
       echo '<div class="sticky childBoard"></div>';
       echo '<div class="title', ($context['user']['is_logged'] && $board['new']) ? ' stickyShortTitle' : '' ,'">', $board['name'] ,'</div>';
       if ($context['user']['is_logged'] && $board['new']) {
@@ -46,7 +46,7 @@ function template_main()
   
   <ul class="content2">';
 
-        echo'<li onclick="this.className = \'clicked\'; window.location.href=\''. $topic['first_post']['href'] .'\';">';
+        echo'<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['first_post']['href'] .'\');">';
     echo '<div class="sticky"></div>
     <div class="title', ($topic['new']) ? ' stickyShortTitle' : '' ,'">', $topic['first_post']['subject'] ,'</div>';
     if ($topic['new']&&$context['user']['is_logged']) {
@@ -83,7 +83,7 @@ function template_main()
     
       echo'
   
-    <li onclick="this.className = \'clicked\'; window.location.href=\''. $topic['first_post']['href'] .'\'">';
+    <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['first_post']['href'] .'\')">';
     echo '<div class="title', ($topic['new']) ? ' shortTitle' : '' ,'">', $topic['first_post']['subject'] ,'</div>';
     if ($topic['new']&&$context['user']['is_logged']) {
       echo '<div class="new">'. $txt['new_button'] .'</div>';

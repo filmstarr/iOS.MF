@@ -29,7 +29,7 @@ function template_results()
         foreach ($topic['matches'] as $message)
         { $i++;
         
-        echo'<li onclick="this.className = \'clicked\'; window.location.href=\''. $topic['first_post']['href'] .'\';">';
+        echo'<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['first_post']['href'] .'\');">';
 		echo '<div class="title', ($topic['new']) ? ' shortTitle' : '' ,'">', $topic['first_post']['subject'] ,'</div>';
     if ($topic['new']&&$context['user']['is_logged']) {
       echo '<div class="new">'. $txt['new_button'] .'</div>';

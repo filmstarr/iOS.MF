@@ -17,19 +17,19 @@ function template_control_paging($pageControl = null)
     $(function(){
 
       Hammer($("#previousPage")).on("tap", function(event) {
-        window.location.href=\'', $context['links']['prev'] ,'\';
+        $.mobile.changePage(\'', $context['links']['prev'] ,'\');
       });
 
       Hammer($("#nextPage")).on("tap", function(event) {
-        window.location.href=\'', $context['links']['next'] ,'\';
+        $.mobile.changePage(\'', $context['links']['next'] ,'\');
       });
 
       Hammer($("#previousPage")).on("hold", function(event) {
-        window.location.href=\'', $context['links']['first'] ,'\';
+        $.mobile.changePage(\'', $context['links']['first'] ,'\');
       });
 
       Hammer($("#nextPage")).on("hold", function(event) {
-        window.location.href=\'', $context['links']['last'] ,'\';
+        $.mobile.changePage(\'', $context['links']['last'] ,'\');
       });
 
     });

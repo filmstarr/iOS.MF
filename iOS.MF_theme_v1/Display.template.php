@@ -18,7 +18,7 @@ function template_main()
 
   <button class="button twobuttons" id="quoting" onclick="quoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'].' '.$txt['iOff']:$txt['iQuoting'].' '.$txt['iOn'], '</button>
 
-  <button class="button twobuttons" onclick="window.location.href=\''.$scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'].'\';">', $txt['reply'] ,'</button>'; echo'
+  <button class="button twobuttons" onclick="$.mobile.changePage(\''.$scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'].'\');">', $txt['reply'] ,'</button>'; echo'
     </div>';
   
   // Is this topic also a poll?
@@ -137,7 +137,7 @@ function template_main()
                <a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><button class="button slimbutton" id="editdel"> ', $txt['remove'],' </button></a>';
 echo '</div>
   
-      <div class="posterinfo" onclick="window.location.href=\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\'"><span class="name">', $message['member']['name'] ,'</span>';
+      <div class="posterinfo" onclick="$.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
         if (empty($message['member']['avatar']['image'])) {
           echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #fff center no-repeat;"></div>';
@@ -148,9 +148,9 @@ echo '</div>
       echo '
     
     </div>
-        <div class="message"', (!isset($_COOKIE['disablequoting'])&&$context['can_reply']) ? '  onclick="window.location.href=\''. $scripturl. '?action=post;quote='. $message['id'].
+        <div class="message"', (!isset($_COOKIE['disablequoting'])&&$context['can_reply']) ? '  onclick="$.mobile.changePage(\''. $scripturl. '?action=post;quote='. $message['id'].
      ';topic='. $context['current_topic'].
-        '.'. $context['start']. ';num_replies='. $context['num_replies']. ';'. $context['session_var']. '='. $context['session_id']. '\'"':'','><span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
+        '.'. $context['start']. ';num_replies='. $context['num_replies']. ';'. $context['session_var']. '='. $context['session_id']. '\')"':'','><span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
     ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['body'])));
 
     // Assuming there are attachments...

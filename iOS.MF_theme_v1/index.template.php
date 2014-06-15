@@ -58,9 +58,14 @@ var loading = "', $txt['iLoading'],'...";
 
 </script>
 
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+
 <script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js?fin20"></script>
 <script type="text/javascript" src="'. $settings['default_theme_url'] .'/scripts/captcha.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery-1.10.2.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery.autosize.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery.hammer.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/touchy.js"></script>
@@ -81,7 +86,7 @@ echo '<script type="text/javascript">
 
   echo '
 </head>
-<body><div id="wrapper">';
+<body><div id="wrapper"><div data-enhance=false>';
 }
 
 function iPhoneTitle(){
@@ -202,23 +207,24 @@ echo '
 </div>
 ';
 }
+    echo '</div>';
     
     //Toolbar HTML
     require_once ($settings[theme_dir].'/ThemeFunctions.php');
     $unreadPostCount = UnreadPostCount();
 
     echo '<style> #copyright {margin-bottom: 47px;} </style>';
-      echo '<div class="toolbar">
+      echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance="true">
       <ul>
-        <li><div onclick="window.location.href=\'',$scripturl,'\'" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
-        <li><div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=profile\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+        <li><a href="',$scripturl,'" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></a></li>
+        <li><a ', $context['user']['is_logged'] ? 'href="?action=profile' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></a></li>
         <li>
-          <div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=pm\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+          <a ', $context['user']['is_logged'] ? 'href="?action=pm' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></a>
           ', $context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
         </li>
-        <li><div onclick="window.location.href=\'?action=recent\'" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
+        <li><a href="?action=recent" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></a></li>
         <li>
-          <div onclick="', $context['user']['is_logged'] ? 'window.location.href=\'?action=unread;all\'' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+          <a ', $context['user']['is_logged'] ? 'href="?action=unread;all' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></a>
           ', $unreadPostCount > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
         </li>
       </ul>

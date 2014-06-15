@@ -22,7 +22,11 @@ function quoting(){
     {
     Delete_Cookie('disablequoting', '/', '', '');
     document.getElementById('quoting').innerHTML = loading;
-    window.location.href='';
+    $.mobile.changePage(window.location.href, {
+            allowSamePageTransition: true,
+            transition: 'none',
+            reloadPage: true
+        });
     }
 
 }

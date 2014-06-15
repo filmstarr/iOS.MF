@@ -42,7 +42,7 @@ function template_main()
                <a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><button class="button slimbutton" id="editdel"> ', $txt['remove'],' </button></a>';
 echo '</div>
   
-      <div class="posterinfo" onclick="window.location.href=\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\'"><span class="name">', $message['poster']['name'] ,'</span>';
+      <div class="posterinfo" onclick="$.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\')"><span class="name">', $message['poster']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
         if (empty($message['poster']['avatar'])) {
           echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #fff center no-repeat;"></div>';
@@ -53,7 +53,7 @@ echo '</div>
       echo '
     
     </div>
-        <div class="message" onclick="window.location.href=\''. $message['href'] . '\';">
+        <div class="message" onclick="$.mobile.changePage(\''. $message['href'] . '\');">
         <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
     ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['message'])));
 
@@ -143,7 +143,7 @@ function template_unread()
 
         echo'
   
-    <li onclick="this.className = \'clicked\'; window.location.href=\''. $topic['new_href'] .'\'">';
+    <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['new_href'] .'\')>';
     echo '<div class="sticky"></div>';
     echo '<div class="title stickyShortTitle">', $topic['first_post']['subject'] ,'</div>';
     echo '<div class="new">'. $txt['new_button'] .'</div>';
@@ -179,7 +179,7 @@ function template_unread()
     
       echo'
   
-        <li onclick="this.className = \'clicked\'; window.location.href=\''. $topic['new_href'] .'\'">';
+        <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['new_href'] .'\')">';
     echo '<div class="title shortTitle">', $topic['first_post']['subject'] ,'</div>';
     echo '<div class="new">'. $txt['new_button'] .'</div>';
     echo '<div class="description">';

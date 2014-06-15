@@ -898,13 +898,14 @@ hr{
 }
 
 .toolbar {
-    position: fixed;
-    z-index: 100; 
-    bottom: 0; 
-    left: 0;
-    width: 100%;
-    background: #F0F0F4;
-    height: 43px;
+  position: fixed;
+  z-index: 100; 
+  bottom: 0; 
+  left: 0;
+  width: 100%;
+  background: #F0F0F4;
+  height: 43px;
+  border-width: 0 !important;
 }
 
 .toolbar > ul {
@@ -917,7 +918,7 @@ hr{
   display: inline-block;
 }
 
-.toolbar > ul > li > div {
+.toolbar > ul > li > a {
   float: right;
   width: 32px;
   height: 43px;
@@ -999,4 +1000,8 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   width: initial;
   padding: 0px 4px 0px 4px;
   min-width: 6px;
+}
+
+.ui-loader {
+  display: none !important;
 }

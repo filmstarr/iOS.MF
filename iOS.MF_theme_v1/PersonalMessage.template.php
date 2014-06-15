@@ -25,7 +25,7 @@ function template_folder()
     
     <li>
     
-    <div class="posterinfo" onclick="window.location.href=\'', $message['member']['href'] ,'\'">
+    <div class="posterinfo" onclick="$.mobile.changePage(\'', $message['member']['href'] ,'\')">
       <span class="name">', $message['member']['name'] ,'</span>';
       if (!$message['member']['avatar']['href']) {
         echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #fff center no-repeat !important;"></div>';
@@ -36,7 +36,7 @@ function template_folder()
       echo '
     </div>
     
-    <div class="last message" onclick="window.location.href=\'', $scripturl, '?action=pm;sa=send;f=inbox;pmsg=',$message['id'],';u=',$message['member']['id'],'\';"><span style="font-weight:bold;font-size:11px;">', $message['time'] ,'</span><br />
+    <div class="last message" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=inbox;pmsg=',$message['id'],';u=',$message['member']['id'],'\');"><span style="font-weight:bold;font-size:11px;">', $message['time'] ,'</span><br />
       ', short1($message['body']), '
     </div>
     

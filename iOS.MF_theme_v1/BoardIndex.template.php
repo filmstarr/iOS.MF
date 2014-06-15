@@ -15,7 +15,7 @@ function template_main()
       foreach ($category['boards'] as $board)
       {
         $i++;
-					echo '<li onclick="this.className = \'clicked\'; window.location.href=\''. $board['href'] .'\';">';
+					echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $board['href'] .'\');">';
         echo '<div class="title', ($context['user']['is_logged'] && $board['new']) ? ' shortTitle' : '' ,'">', $board['name'] ,'</div>';
 		  if ($context['user']['is_logged'] && $board['new']) {
           echo '<div class="new">'. $txt['new_button'] .'</div>';

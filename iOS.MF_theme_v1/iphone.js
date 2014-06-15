@@ -85,9 +85,9 @@ var elements = document.getElementsByTagName('li');
 function go(location){
   
   if (location=='home')
-    window.location.href='index.php';
+    $.mobile.changePage('index.php');
   else
-    window.location.href='index.php?action='+location;
+    $.mobile.changePage('index.php?action='+location);
 
 }
 
@@ -213,3 +213,10 @@ if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
     $('#copyright').css('margin-bottom', '47px');
   });
 }
+
+$.mobile.ignoreContentEnabled=true
+$.mobile.defaultPageTransition = 'slide';
+
+$(function() {
+  $("#toolbar").removeClass( "ui-footer" )
+});
