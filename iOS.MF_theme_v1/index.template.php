@@ -7,7 +7,6 @@ if (file_exists($linguaggio))
 else
   require($settings['theme_dir'].'/languages/iPhone.language.english.php');
 
-
 global $txt;
 
 function template_init()
@@ -31,7 +30,7 @@ function template_init()
 function template_html_above()
 {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
-
+  
   echo
 
 '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -82,6 +81,7 @@ echo '<script type="text/javascript">
     var smf_charset = "', $context['character_set'], '";
     var ajax_notification_text = "', $txt['ajax_in_progress'], '";
     var ajax_notification_cancel_text = "', $txt['modify_cancel'], '";
+    $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
 </script>';
 
   echo '

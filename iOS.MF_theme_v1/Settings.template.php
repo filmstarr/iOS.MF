@@ -47,18 +47,18 @@ function template_options()
       ),
       'default' => true,
     ),
-    array(
-      'id' => 'messages_per_page',
-      'label' => $txt['messages_per_page'],
-      'options' => array(
-        0 => $txt['per_page_default'],
-        5 => 5,
-        10 => 10,
-        25 => 25,
-        50 => 50,
-      ),
-      'default' => true,
+  array(
+    'id' => 'messages_per_page',
+    'label' => $txt['messages_per_page'],
+    'options' => array(
+      0 => $txt['per_page_default'],
+      5 => 5,
+      10 => 10,
+      25 => 25,
+      50 => 50,
     ),
+    'default' => true,
+  ),
   );
 }
 
@@ -67,6 +67,23 @@ function template_settings()
   global $context, $settings, $options, $scripturl, $txt;
 
   $context['theme_settings'] = array(
+    		array(
+			'id' => 'page_transition_animation',
+			'label' => 'Page transition animation',
+			'options' => array(
+				'none' => 'none',
+				'fade' => 'fade',
+				'pop' => 'pop',
+				'flip' => 'flip',
+				'turn' => 'turn',
+				'flow' => 'flow',
+				'slidefade' => 'slide-fade',
+				'slide' => 'slide',
+				'slideup' => 'slide up',
+				'slidedown' => 'slide down',
+			),
+			'type' => 'text',
+		),
   );
 }
 
