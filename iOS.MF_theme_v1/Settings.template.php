@@ -47,18 +47,18 @@ function template_options()
       ),
       'default' => true,
     ),
-  array(
-    'id' => 'messages_per_page',
-    'label' => $txt['messages_per_page'],
-    'options' => array(
-      0 => $txt['per_page_default'],
-      5 => 5,
-      10 => 10,
-      25 => 25,
-      50 => 50,
+    array(
+      'id' => 'messages_per_page',
+      'label' => $txt['messages_per_page'],
+      'options' => array(
+        0 => $txt['per_page_default'],
+        5 => 5,
+        10 => 10,
+        25 => 25,
+        50 => 50,
+      ),
+      'default' => true,
     ),
-    'default' => true,
-  ),
   );
 }
 

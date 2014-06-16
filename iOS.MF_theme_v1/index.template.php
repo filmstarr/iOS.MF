@@ -50,7 +50,6 @@ function template_html_above()
 <script type="text/javascript" src="'. $settings['default_theme_url'] .'/scripts/captcha.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.autosize.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.hammer.min.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/touchy.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/iphone.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/quote.js"></script>
 
@@ -101,7 +100,7 @@ global $txt, $_GET, $context, $modSettings, $settings, $user_info, $scripturl;
 
 echo '
 
-<div id="topbar">';
+<div id="topbar" data-role="header">';
 if((!empty($_GET['action'])) && (($_GET['action']=='login') || ($_GET['action']=='register'))) {
   $loginregister=' style="display:none;"';
   }
@@ -315,7 +314,6 @@ function quick_login()
   }
   else
   {
-  
     echo '<script>
     var control = document.getElementById("showhidelogin");
 

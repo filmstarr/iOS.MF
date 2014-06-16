@@ -224,7 +224,6 @@ $(function() {
 });
 
 $(document).one('pagehide', document, function(event, ui){
-console.log('1');
   $('[data-role="page"]').not(".ui-page-active").remove();
 });
 

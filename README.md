@@ -28,7 +28,7 @@ Swipe right to go forward.
 
 Press and hold the previous/next page buttons to go to first/last page respectively.
 
-Two finger tap inside topic to activate quick reply, alternatively tap on the topic title.
+Tap on the topic title to access quick reply..
 
 Credits
 ==============
@@ -39,4 +39,4 @@ Thanks to xKroniK13x for contributions and suggestions towards this theme.
 
 The theme uses the Adk Skype Emoticons to give crisp retina smileys (licence: http://creativecommons.org/licenses/by/3.0/) and the Simple Line Icons set from Graphic Burger (http://graphicburger.com/simple-line-icons-set-vol-1/, see also vol-2, vol-3 and vol-4).
 
-Internally we use the jQuery, Hammer.js, Touchy and jQuery Autosize libraries.
+Internally we use jQuery, jQuery Mobile, jQuery Autosize, Hammer.js and energize.js libraries.

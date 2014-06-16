@@ -230,8 +230,6 @@ function quick_reply()
       $("#message").autosize();
     });
 
-    var touchStart = Date.now();
-    var lastReplyToggle = Date.now();
     var toggleQuickReply = function() {
       if ($("#quickReply").is(":visible"))
       {
@@ -245,27 +243,11 @@ function quick_reply()
         $("#message ").focus();
       }
     };
-      
-    var toggleGestureFired = function() {
-      if (Date.now()-lastReplyToggle > 100 && Date.now() - touchStart < 100)
-      {
-        toggleQuickReply();
-        lastReplyToggle = Date.now();
-      }
-    };
-    
-    Touchy(window, {
-      two: function (hand, finger1, finger2) {
-
-        hand.on("start", function() {touchStart=Date.now();});
-        hand.on("end", toggleGestureFired);
-      }
-    });
 
     var title = document.getElementById("theTitle");
     title.onclick = toggleQuickReply;
     title.style.color = "#007AFF";
-      
+
     </script>';
     
     echo '<div id="quickReply">';
