@@ -40,48 +40,33 @@ function template_html_above()
 <title>', $context['page_title_html_safe'], '</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-<link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/style.css" type="text/css" />
-<script type="application/x-javascript">
 
-', (isset($_COOKIE['disablequoting'])) ? 'var aquoting = 1;
-
-' : 'var aquoting = 0;
-
-', 
-
-'
-var showchildboards = "', $txt['iShow'] ,' ', $txt['parent_boards'], '";
-var hidechildboards = "', $txt['iHide'] ,' ', $txt['parent_boards'], '";
-var quotingoff = "', $txt['iQuoting'],' ',$txt['iOff'], '";
-var loading = "', $txt['iLoading'],'...";
-
-</script>
-
-
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-
-
+<link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/style.css" type="text/css" />
+<link rel="stylesheet" href="'. $settings['theme_url'] .'/css/jquery.mobile.structure-1.4.2.min.css" />
+<script src="'. $settings['theme_url'] .'/scripts/jquery-2.1.1.min.js"></script>
+<script src="'. $settings['theme_url'] .'/scripts/jquery.mobile-1.4.2.min.js"></script>
 <script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js?fin20"></script>
 <script type="text/javascript" src="'. $settings['default_theme_url'] .'/scripts/captcha.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery.autosize.min.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/jquery.hammer.min.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/touchy.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/iphone.js"></script>',
-((!empty($_GET['topic'])) && ($_GET['topic'])) ? '
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/quote.js"></script>' : '';
+<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.autosize.min.js"></script>
+<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.hammer.min.js"></script>
+<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/touchy.js"></script>
+<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/iphone.js"></script>
+<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/quote.js"></script>
 
-echo '<script type="text/javascript">
-    var smf_theme_url = "', $settings['theme_url'], '";
-    var smf_default_theme_url = "', $settings['default_theme_url'], '";
-    var smf_images_url = "', $settings['images_url'], '";
-    var smf_scripturl = "', $scripturl, '";
-    var smf_iso_case_folding = ', $context['server']['iso_case_folding'] ? 'true' : 'false', ';
-    var smf_charset = "', $context['character_set'], '";
-    var ajax_notification_text = "', $txt['ajax_in_progress'], '";
-    var ajax_notification_cancel_text = "', $txt['modify_cancel'], '";
-    $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
+<script type="application/x-javascript">
+  ', (isset($_COOKIE['disablequoting'])) ? 'var aquoting = 1;' : 'var aquoting = 0;','
+  var showchildboards = "', $txt['iShow'] ,' ', $txt['parent_boards'], '";
+  var hidechildboards = "', $txt['iHide'] ,' ', $txt['parent_boards'], '";
+  var quotingoff = "', $txt['iQuoting'],' ',$txt['iOff'], '";
+  var loading = "', $txt['iLoading'],'...";    var smf_theme_url = "', $settings['theme_url'], '";
+  var smf_default_theme_url = "', $settings['default_theme_url'], '";
+  var smf_images_url = "', $settings['images_url'], '";
+  var smf_scripturl = "', $scripturl, '";
+  var smf_iso_case_folding = ', $context['server']['iso_case_folding'] ? 'true' : 'false', ';
+  var smf_charset = "', $context['character_set'], '";
+  var ajax_notification_text = "', $txt['ajax_in_progress'], '";
+  var ajax_notification_cancel_text = "', $txt['modify_cancel'], '";
+  $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
 </script>';
 
   echo '
@@ -213,22 +198,21 @@ echo '
     require_once ($settings[theme_dir].'/ThemeFunctions.php');
     $unreadPostCount = UnreadPostCount();
 
-    echo '<style> #copyright {margin-bottom: 47px;} </style>';
-      echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance=true>
-      <ul>
-        <li><div onclick="$.mobile.changePage(\'',$scripturl,'\')" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
-        <li><div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=profile\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
-        <li>
-          <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=pm\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-          ', $context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
-        </li>
-        <li><div onclick="$.mobile.changePage(\'?action=recent\')" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
-        <li>
-          <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=unread;all\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-          ', $unreadPostCount > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
-        </li>
-      </ul>
-    </div>';
+    echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance=true>
+    <ul>
+      <li><div onclick="$.mobile.changePage(\'',$scripturl,'\')" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
+      <li><div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=profile\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+      <li>
+        <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=pm\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+        ', $context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
+      </li>
+      <li><div onclick="$.mobile.changePage(\'?action=recent\')" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
+      <li>
+        <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=unread;all\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+        ', $unreadPostCount > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
+      </li>
+    </ul>
+  </div>';
 }
 
 function template_html_below()

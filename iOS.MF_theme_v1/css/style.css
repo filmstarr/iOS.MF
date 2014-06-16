@@ -312,7 +312,7 @@ body > #wrapper > .posts > li, body > #wrapper > .posts > div > li, body > #wrap
   height: 62px;
   width: 62px;
   border-radius: 31px;
-  background: url(images/noavatar.png) #fff center no-repeat;
+  background: url(../images/noavatar.png) #fff center no-repeat;
   float: left;
   margin-top: 3px;
   background-size: 62px 62px !important;
@@ -483,6 +483,7 @@ textarea{
   display: block;
   text-align:center;
   margin-top: 1px;
+  margin-bottom: 4px;
 }
 
 #copyright h4{
@@ -771,19 +772,19 @@ button[disabled] {
 }
 
 .magnifierIcon {
-    background: url(images/icons/magnifier.png) no-repeat;
+    background: url(../images/icons/magnifier.png) no-repeat;
 }
 
 .loginIcon {
-    background: url(images/icons/login.png) no-repeat;
+    background: url(../images/icons/login.png) no-repeat;
 }
 
 .logoutIcon {
-    background: url(images/icons/logout.png) no-repeat;
+    background: url(../images/icons/logout.png) no-repeat;
 }
 
 .closeIcon {
-    background: url(images/icons/close.png) no-repeat;
+    background: url(../images/icons/close.png) no-repeat;
 }
 
 hr{
