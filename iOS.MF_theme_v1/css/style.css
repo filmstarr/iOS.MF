@@ -655,7 +655,7 @@ button#readunread2{
 {
   clear: both;
   margin-top: 2px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 /* Poll results */
@@ -1005,4 +1005,10 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 
 .ui-loader {
   display: none !important;
+}
+
+.input_radio {
+  float: left;
+  margin-right: 6px;
+  margin-top: 1px;
 }

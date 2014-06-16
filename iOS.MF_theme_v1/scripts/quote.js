@@ -8,9 +8,9 @@ var elements = document.getElementsByTagName('div');
 }
 
 function quoting(){
-
+console.log(aquoting);
     if(aquoting==0){
-    aquoting = 1;    
+    aquoting = 1;
     // disable quoting
     Set_Cookie( 'disablequoting', '1', '', '/', '', '' );
     document.getElementById('quoting').innerHTML = quotingoff;
@@ -20,6 +20,7 @@ function quoting(){
     else
     // enable quoting
     {
+    aquoting = 0;
     Delete_Cookie('disablequoting', '/', '', '');
     document.getElementById('quoting').innerHTML = loading;
     $.mobile.changePage(window.location.href, {
