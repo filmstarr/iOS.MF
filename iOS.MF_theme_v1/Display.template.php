@@ -269,7 +269,7 @@ function quick_reply()
     </script>';
     
     echo '<div id="quickReply">';
-    echo '<form action="', $scripturl, '?action=post2;', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);saveEntities();" enctype="multipart/form-data" style="margin: 0;">';
+    echo '<form action="', $scripturl, '?action=post2;', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);" enctype="multipart/form-data" style="margin: 0;">';
 
     echo'
   <div id="postContainer" class="inputContainer" style="padding-bottom: 0;">

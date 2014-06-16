@@ -43,6 +43,7 @@ function template_html_above()
 
 <link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/style.css" type="text/css" />
 <link rel="stylesheet" href="'. $settings['theme_url'] .'/css/jquery.mobile.structure-1.4.2.min.css" />
+<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/energize-min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery-2.1.1.min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery.mobile-1.4.2.min.js"></script>
 <script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js?fin20"></script>
@@ -200,15 +201,15 @@ echo '
 
     echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance=true>
     <ul>
-      <li><div onclick="$.mobile.changePage(\'',$scripturl,'\')" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
-      <li><div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=profile\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+      <li><div onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'',$scripturl,'\')" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
+      <li><div onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
       <li>
-        <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=pm\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+        <div onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=pm\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
         ', $context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
       </li>
-      <li><div onclick="$.mobile.changePage(\'?action=recent\')" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
+      <li><div onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=recent\')" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
       <li>
-        <div onclick="', $context['user']['is_logged'] ? '$.mobile.changePage(\'?action=unread;all\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+        <div onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=unread;all\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
         ', $unreadPostCount > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
       </li>
     </ul>

@@ -214,8 +214,18 @@ if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
   });
 }
 
-$.mobile.ignoreContentEnabled=true
+$.mobile.ignoreContentEnabled=true;
+$( document ).bind( "mobileinit", function() {
+    $.mobile.buttonMarkup.hoverDelay = 5000
+});
 
 $(function() {
   $("#toolbar").removeClass( "ui-footer" )
 });
+
+$(document).one('pagehide', document, function(event, ui){
+console.log('1');
+  $('[data-role="page"]').not(".ui-page-active").remove();
+});
+
+
