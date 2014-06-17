@@ -67,7 +67,7 @@ function template_settings()
   global $context, $settings, $options, $scripturl, $txt;
 
   $context['theme_settings'] = array(
-    		array(
+    	array(
 			'id' => 'page_transition_animation',
 			'label' => 'Page transition animation',
 			'options' => array(
@@ -84,6 +84,10 @@ function template_settings()
 			),
 			'type' => 'text',
 		),
+    array(
+      'id' => 'disable_webkit_select',
+      'label' => 'Disable iOS touch selection',
+    ),
   );
 }
 

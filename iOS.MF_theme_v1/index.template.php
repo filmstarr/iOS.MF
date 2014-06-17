@@ -69,6 +69,16 @@ function template_html_above()
   $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
 </script>';
 
+if (isset($settings['disable_webkit_select']) && $settings['disable_webkit_select'])
+{
+  echo '
+    <style>
+      body {
+        -webkit-user-select: none;
+      }
+    </style>';
+}
+
   echo '
 </head>
 <body><div id="wrapper" data-role="page"><div data-enhance=false>';
@@ -144,8 +154,7 @@ else
   <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="searchform">
 
   <input id="searchText" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
-  <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" onclick="this.style.opacity=0.3;if(document.searchform.search.value.length<3){alert(\'', $txt['iAlert'], '\');
-  document.searchform.search.focus();this.style.opacity=1.0;return false;}" />
+  <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" onclick="if(document.searchform.search.value.length<3){alert(\'', $txt['iAlert'], '\');document.searchform.search.focus();return false;}" />
     
   </form>
 
