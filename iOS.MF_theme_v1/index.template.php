@@ -327,7 +327,6 @@ function quick_login()
       else
       {
         $("#quickLogin").show();
-        $("#user").blur();
         $("#user").focus();
         control.className = "closeIcon";
       }
