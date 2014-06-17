@@ -419,6 +419,7 @@ textarea{
 #wrapper{
 
   min-height: 400px;
+	padding-bottom: 0px !important;
 
 }
 
