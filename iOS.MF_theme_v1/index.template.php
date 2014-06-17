@@ -154,7 +154,7 @@ else
   <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="searchform">
 
   <input id="searchText" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
-  <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" onclick="if(document.searchform.search.value.length<3){alert(\'', $txt['iAlert'], '\');document.searchform.search.focus();return false;}" />
+  <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" />
     
   </form>
 
