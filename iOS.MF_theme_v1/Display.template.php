@@ -224,27 +224,27 @@ function quick_reply()
 {    
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
         
-    echo '<script>
+    echo '<script type="text/javascript">
 
     $(function(){
-      $("#message").autosize();
+      $(".editor").last().autosize();
     });
 
     var toggleQuickReply = function() {
       if ($("#quickReply").is(":visible"))
       {
-        $("#message ").blur();
+        $("#message").blur();
         $("#quickReply").hide();      
       }
       else
       {
         $("#quickReply").show();
-        $("#message ").blur();
-        $("#message ").focus();
+        $("#message").blur();
+        $("#message").focus();
       }
     };
 
-    var title = document.getElementById("theTitle");
+    var title = $(".theTitle").last().get(0);
     title.onclick = toggleQuickReply;
     title.style.color = "#007AFF";
 

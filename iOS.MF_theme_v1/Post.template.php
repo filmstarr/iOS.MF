@@ -7,10 +7,10 @@ function template_main()
 
   echo '<script>
       $(function(){
-        $("#message").autosize();
-        $("#theTitle").html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
-        $("#classic").hide();
-        $("#message").focus();
+        $(".editor").last().autosize();
+        $(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
+        $(".classic").last().hide();
+        $(".editor").last().focus();
       });
     </script>';
       

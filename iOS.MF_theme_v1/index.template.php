@@ -71,7 +71,7 @@ function template_html_above()
 
   echo '
 </head>
-<body><div id="wrapper"><div data-enhance=false>';
+<body><div id="wrapper" data-role="page"><div data-enhance=false>';
 }
 
 function iPhoneTitle(){
@@ -110,15 +110,15 @@ else
 
   <h1 id="pageTitle">';
   
-  echo'<div id="theTitle">', iPhoneTitle(), '</div>';  
+  echo'<div id="theTitle" class="theTitle">', iPhoneTitle(), '</div>';  
   
   echo'</h1>
 
-  <div id="showhidesearch" class="magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></div>    
-  <div id="showhidelogin" class="' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></div>
+  <div id="showhidesearch" class="showhidesearch magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></div>    
+  <div id="showhidelogin" class="showhidelogin ' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></div>
 
   <script>
-    var searchControl = document.getElementById("showhidesearch");
+    var searchControl = $(".showhidesearch").last().get(0);
     var toggleSearch = function() {
       if ($("#searchbar").is(":visible"))
       {
@@ -165,7 +165,7 @@ if (!empty($modSettings['id_default_theme']))
 else
   $backlink = 'index.php?theme='. $modSettings['theme_guests'];
 $backname = 'Default Theme';
-echo '<a class="button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
+echo '<a class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
     echo '<div id="copyright"><h4>', theme_copyright(), '</h4></div>';
   
@@ -308,14 +308,14 @@ function quick_login()
   if ($context['user']['is_logged'])
   {
     echo '<script>';
-    echo 'var control = document.getElementById("showhidelogin");';
+    echo 'var control = $(".showhidelogin").last().get(0);';
     echo 'control.onclick = function() { go("logout;sesc=', $context['session_id'] ,'"); };';
     echo '</script>';
   }
   else
   {
     echo '<script>
-    var control = document.getElementById("showhidelogin");
+    var control = $(".showhidelogin").last().get(0);
 
     var toggleQuickLogin = function() {
       if ($("#quickLogin").is(":visible"))

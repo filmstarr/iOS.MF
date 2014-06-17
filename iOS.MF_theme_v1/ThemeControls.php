@@ -16,19 +16,19 @@ function template_control_paging($pageControl = null)
 
     $(function(){
 
-      Hammer($("#previousPage")).on("tap", function(event) {
+      Hammer($(".previousPage").last()).on("tap", function(event) {
         $.mobile.changePage(\'', $context['links']['prev'] ,'\');
       });
 
-      Hammer($("#nextPage")).on("tap", function(event) {
+      Hammer($(".nextPage").last()).on("tap", function(event) {
         $.mobile.changePage(\'', $context['links']['next'] ,'\');
       });
 
-      Hammer($("#previousPage")).on("hold", function(event) {
+      Hammer($(".previousPage").last()).on("hold", function(event) {
         $.mobile.changePage(\'', $context['links']['first'] ,'\');
       });
 
-      Hammer($("#nextPage")).on("hold", function(event) {
+      Hammer($(".nextPage").last()).on("hold", function(event) {
         $.mobile.changePage(\'', $context['links']['last'] ,'\');
       });
 
@@ -39,11 +39,11 @@ function template_control_paging($pageControl = null)
 
   <div id="pageButtons" class="page buttons">
   
-  <button id="previousPage" class="button" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
+  <button id="previousPage" class="previousPage button" ', $context['page_info']['current_page']==1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
   
   <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'] ,' ', $txt['iOf'] ,' ', ($context['page_info']['num_pages']==0) ? '1' : $context['page_info']['num_pages'] ,'</button>
   
-  <button id="nextPage" class="button" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
+  <button id="nextPage" class="nextPage button" ', ($context['page_info']['current_page']==$context['page_info']['num_pages']||$context['page_info']['num_pages']==0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
   
   </div>';
 }
