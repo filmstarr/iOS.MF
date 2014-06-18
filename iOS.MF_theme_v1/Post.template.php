@@ -7,10 +7,9 @@ function template_main()
 
   echo '<script>
       $(function(){
-        $(".editor").last().autosize();
+        $(".editor").last().autosize().resize();
         $(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
         $(".classic").last().hide();
-        $(".editor").last().focus();
       });
     </script>';
       

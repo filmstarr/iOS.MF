@@ -226,5 +226,3 @@ $(function() {
 $(document).one('pagehide', document, function(event, ui){
   $('[data-role="page"]').not(".ui-page-active").remove();
 });
-
-
