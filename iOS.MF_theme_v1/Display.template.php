@@ -239,7 +239,6 @@ function quick_reply()
       else
       {
         $("#quickReply").show();
-        $("#message").blur();
         $("#message").focus();
       }
     };

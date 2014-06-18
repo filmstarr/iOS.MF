@@ -43,7 +43,7 @@ function template_html_above()
 
 <link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/style.css" type="text/css" />
 <link rel="stylesheet" href="'. $settings['theme_url'] .'/css/jquery.mobile.structure-1.4.2.min.css" />
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/energize-min.js"></script>
+<script src="'. $settings['theme_url'] .'/scripts/fastclick.min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery-2.1.1.min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery.mobile-1.4.2.min.js"></script>
 <script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js?fin20"></script>
@@ -67,6 +67,9 @@ function template_html_above()
   var ajax_notification_text = "', $txt['ajax_in_progress'], '";
   var ajax_notification_cancel_text = "', $txt['modify_cancel'], '";
   $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
+  $(function() {
+    FastClick.attach(document.body);
+  });
 </script>';
 
 if (isset($settings['disable_webkit_select']) && $settings['disable_webkit_select'])
