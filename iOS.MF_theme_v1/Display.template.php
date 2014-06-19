@@ -14,6 +14,11 @@ function template_main()
         type: "image",
         showCloseBtn: false,
       });
+
+      function handler(event) {
+        event.stopPropagation();
+      }
+      $("a").click(handler);
     });
   </script>';
 

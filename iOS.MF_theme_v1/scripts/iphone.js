@@ -183,16 +183,9 @@ function iswitch(id){
     }
 }
 
-Hammer($(document)).on("swiperight", function(event) {
-	if (Math.abs(event.gesture.angle) < 10) {
-		window.history.back();
-	}
-});
-
-Hammer($(document)).on("swipeleft", function(event) {
-	if (180 - Math.abs(event.gesture.angle) < 10) {
-	  window.history.forward();
-	}
+$(function(){
+  $(document).on("swiperight", function (event) { window.history.back(); } );
+  $(document).on("swipeleft", function (event) { window.history.forward(); } );
 });
 
 $(window).on('beforeunload' , function() {
@@ -215,7 +208,7 @@ if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
 }
 
 $.mobile.ignoreContentEnabled=true;
-$( document ).bind( "mobileinit", function() {
+$(document).bind("mobileinit", function() {
     $.mobile.buttonMarkup.hoverDelay = 5000
 });
 
