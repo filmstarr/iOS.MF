@@ -71,10 +71,6 @@ function template_html_above()
   $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
   $(function() {
     FastClick.attach(document.body);
-    $(".lightbox").magnificPopup({ 
-      type: "image",
-      showCloseBtn: false,
-    });
   });
 </script>';
 

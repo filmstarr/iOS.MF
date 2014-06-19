@@ -7,7 +7,20 @@ function template_main()
 
   $ignoredMsgs = array();
   $messageIDs = array();
-  
+
+  echo '<script>  
+    $(function() {
+      $(".lightbox-image").magnificPopup({ 
+        type: "image",
+        showCloseBtn: false,
+      });
+      $(".lightbox-ajax").magnificPopup({ 
+        type: "ajax",
+        showCloseBtn: false,
+      });
+    });
+  </script>';
+
   if ($context['can_reply'])
   {
     quick_reply();
@@ -188,7 +201,7 @@ echo '</div>
                     <img src="' . $attachment['href'] . ';image" alt="" width="' . $attachment['width'] . '" height="' . $attachment['height'] . '"/><br />';
         }
         echo '
-                    <img width="11px" height="11px" style="position:relative; top:-5px;" src="' . $settings['images_url'] . '/icons/files.png" align="middle" alt="*" />&nbsp;<a rel="external" class="lightbox" href="' . $attachment['href'] . '">' . $attachment['name'] . '</a> ';
+                    <img width="11px" height="11px" style="position:relative; top:-5px;" src="' . $settings['images_url'] . '/icons/files.png" align="middle" alt="*" />&nbsp;<a rel="external" ', ($attachment['is_image'] ? 'class="lightbox-image"' : 'class="lightbox-ajax"'), ' href="' . $attachment['href'] . '">' . $attachment['name'] . '</a> ';
 
         if (!$attachment['is_approved'] && $context['can_approve'])
           echo '
