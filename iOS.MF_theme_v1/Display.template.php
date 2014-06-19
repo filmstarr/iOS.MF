@@ -202,7 +202,7 @@ echo '</div>
                     <a href="', $attachment['href'], ';image" rel="external" class="lightbox-image" id="link_', $attachment['id'], '"><img src="' . $attachment['href'] . ';image" alt="" width="' . $attachment['width'] . '" height="' . $attachment['height'] . '"/></a><br />';
         }
         echo '
-                    <img width="11px" height="11px" style="position:relative; top:-5px;" src="' . $settings['images_url'] . '/icons/files.png" align="middle" alt="*" />&nbsp;<a rel="external" ', ($attachment['is_image'] ? 'class="lightbox-image"' : 'target="_blank"'), ' href="' . $attachment['href'] . '">' . $attachment['name'] . '</a> ';
+                    <img width="11px" height="11px" style="position:relative; top:-5px;" src="' . $settings['images_url'] . '/icons/files.png" align="middle" alt="*" />&nbsp;<a rel="external" ', ($attachment['is_image'] ? 'class="lightbox-image"' : 'target="_blank"'), ' href="' , $attachment['href'] , ($attachment['is_image'] ? '' : ';openInNewWindow'),  '">' . $attachment['name'] . '</a> ';
 
         if (!$attachment['is_approved'] && $context['can_approve'])
           echo '
