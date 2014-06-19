@@ -43,6 +43,7 @@ function template_html_above()
 
 <link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/style.css" type="text/css" />
 <link rel="stylesheet" href="'. $settings['theme_url'] .'/css/jquery.mobile.structure-1.4.2.min.css" />
+<link rel="stylesheet" href="'. $settings['theme_url'] .'/css/magnific-popup.css" />
 <script src="'. $settings['theme_url'] .'/scripts/fastclick.min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery-2.1.1.min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery.mobile-1.4.2.min.js"></script>
@@ -52,6 +53,7 @@ function template_html_above()
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.hammer.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/iphone.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/quote.js"></script>
+<script src="'. $settings['theme_url'] .'/scripts/jquery.magnific-popup.min.js"></script>
 
 <script type="application/x-javascript">
   ', (isset($_COOKIE['disablequoting'])) ? 'var aquoting = 1;' : 'var aquoting = 0;','
@@ -69,6 +71,10 @@ function template_html_above()
   $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
   $(function() {
     FastClick.attach(document.body);
+    $(".lightbox").magnificPopup({ 
+      type: "image",
+      showCloseBtn: false,
+    });
   });
 </script>';
 
