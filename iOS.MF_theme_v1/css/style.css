@@ -1004,8 +1004,9 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   min-width: 6px;
 }
 
-.ui-loader {
-  display: none !important;
+.ui-icon-loading {
+  background-size: 46px 46px !important;
+  background: url(../images/ajax-loader.gif) no-repeat;
 }
 
 .input_radio {
