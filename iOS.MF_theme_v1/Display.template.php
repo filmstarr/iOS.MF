@@ -21,8 +21,7 @@ function template_main()
       $("a").click(handler);
     });
 
-    $(document).off("pagechange");
-    $(document).on("pagechange", function() {
+    $(document).one("pagechange", function() {
       var query = location.search.substring(1);
       var elementID = query.substring(query.lastIndexOf(".") + 1).replace(/\W+/g," ");
       if (elementID && $("#"+ elementID).length) {
