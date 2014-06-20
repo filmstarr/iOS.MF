@@ -191,7 +191,7 @@ else
 //Special backlink for the MNF
 $backlink = 'index.php?fullsite';
 $backname = 'Default Theme';
-echo '<a class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
+echo '<a data-ajax="false" class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
     echo '<div id="copyright"><h4>', theme_copyright(), '</h4></div>';
   
