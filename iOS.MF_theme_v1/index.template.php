@@ -367,7 +367,7 @@ function quick_login()
   {
     echo '<script>';
     echo 'var control = $(".showhidelogin").last().get(0);';
-    echo 'control.onclick = function() { go("logout;sesc=', $context['session_id'] ,'"); };';
+    echo 'control.onclick = function() { window.location.href = "index.php?action=logout;sesc=', $context['session_id'] ,'"; };';
     echo '</script>';
   }
   else
