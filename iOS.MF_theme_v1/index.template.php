@@ -206,27 +206,60 @@ echo '
 </div>
 ';
 }
-    echo '</div>';
 
     //Toolbar HTML
     require_once ($settings[theme_dir].'/ThemeFunctions.php');
     $unreadPostCount = UnreadPostCount();
 
+    //Use javascript to set post count as the toolbar may not be reloaded each time; we need to do this within main page
+    echo '
+    <script>
+      $(document).off("pageload");
+      $(document).on("pageload", function()
+        {
+          var unreadPostCount = ' , $unreadPostCount , ';
+          var unreadMessageCount = ' , $context['user']['unread_messages'] , ';
+
+          var unreadPostCountElement = $(".unreadPosts").last();
+          var unreadMessageCountElement = $(".unreadMessages").last();
+
+          unreadPostCountElement.get()[0].innerHTML = unreadPostCount;
+          unreadMessageCountElement.get()[0].innerHTML = unreadMessageCount;
+
+          if (unreadPostCount != 0) {
+            unreadPostCountElement.show();
+          }
+          else {
+            unreadPostCountElement.hide();
+          }
+
+          if (unreadMessageCount != 0) {
+            unreadMessageCountElement.show();
+          }
+          else {
+            unreadMessageCountElement.hide();
+          }
+        });
+    </script>';
+
+    echo '</div>';
+
     echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance=true>
-    <ul>
-      <li><div onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'',$scripturl,'\')" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
-      <li><div onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
-      <li>
-        <div onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=pm\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-        ', $context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $context['user']['unread_messages'] . '</div>' : '' , '
-      </li>
-      <li><div onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=recent\')" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
-      <li>
-        <div onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=unread;all\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-        ', $unreadPostCount > 0 && $context['user']['is_logged'] ? '<div id="unreadCount">' . $unreadPostCount . '</div>' : '' , '
-      </li>
-    </ul>
-  </div>';
+      <ul>
+        <li><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'',$scripturl,'\')" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
+        <li><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
+        <li>
+          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=pm\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+          <div class="unreadCount unreadMessages"' , ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>'. $context['user']['unread_messages'] : ' style="display:none">') , '</div>
+        </li>
+        <li><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=recent\')" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
+        <li>
+          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=unread;all\')' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
+          <div class="unreadCount unreadPosts"' , ($unreadPostCount > 0 && $context['user']['is_logged'] ? '>'. $unreadPostCount : ' style="display:none">') , '</div>
+        </li>
+      </ul>
+    </div>';
+
 }
 
 function template_html_below()
