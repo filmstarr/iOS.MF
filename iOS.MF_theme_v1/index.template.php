@@ -189,7 +189,7 @@ if (!empty($modSettings['id_default_theme']))
 else
   $backlink = 'index.php?theme='. $modSettings['theme_guests'];
 $backname = 'Default Theme';
-echo '<a class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
+echo '<a data-ajax="false" class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
     echo '<div id="copyright"><h4>', theme_copyright(), '</h4></div>';
   
