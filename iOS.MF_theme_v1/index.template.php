@@ -84,6 +84,16 @@ if (isset($settings['disable_webkit_select']) && $settings['disable_webkit_selec
     </style>';
 }
 
+if (isset($settings['enable_transparent_toolbar']) && $settings['enable_transparent_toolbar'])
+{
+  echo '
+    <style>
+      .toolbar {
+        background: rgba(240,240,244,0.75) !important;
+      }
+    </style>';
+}
+
   echo '
 </head>
 <body><div id="wrapper" data-role="page"><div data-enhance=false>';

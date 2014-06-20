@@ -88,6 +88,10 @@ function template_settings()
       'id' => 'disable_webkit_select',
       'label' => 'Disable iOS touch selection',
     ),
+    array(
+      'id' => 'enable_transparent_toolbar',
+      'label' => 'Enable semi-transparent toolbar',
+    ),
   );
 }
 

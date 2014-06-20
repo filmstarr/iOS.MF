@@ -208,6 +208,8 @@ if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
 }
 
 $.mobile.ignoreContentEnabled=true;
+$.event.special.swipe.horizontalDistanceThreshold = 100;
+
 $(document).bind("mobileinit", function() {
     $.mobile.buttonMarkup.hoverDelay = 5000
 });
