@@ -224,8 +224,7 @@ echo '
     //Use javascript to set post count as the toolbar may not be reloaded each time; we need to do this within main page
     echo '
     <script>
-      $(document).off("pageload");
-      $(document).on("pageload", function()
+      $(document).one("pageload", function()
         {
           var unreadPostCount = ' , $unreadPostCount , ';
           var unreadMessageCount = ' , $context['user']['unread_messages'] , ';
