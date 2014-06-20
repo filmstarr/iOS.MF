@@ -11,7 +11,7 @@ function template_login()
 		echo '<div class="errors"><div style="margin-top: 6px;">*', $context['description'], '</div></div>';
 
   echo '<div id="quickLogin" style="display: block;">
-  <form action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
+  <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['username'] .'</span>';

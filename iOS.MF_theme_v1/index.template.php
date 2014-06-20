@@ -383,7 +383,7 @@ function quick_login()
     </script>';
 
     echo '<div id="quickLogin">  
-  <form action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
+  <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['username'] .'</span>';
