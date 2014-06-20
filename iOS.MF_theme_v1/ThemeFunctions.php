@@ -4,6 +4,11 @@ function UnreadPostCount()
 {
   global $context, $smcFunc, $modSettings;
 
+  if (!$context['user']['is_logged'])
+  {
+    return 0;
+  }
+
   // Don't bother to show deleted posts!
   $request = $smcFunc['db_query']('', '
     SELECT b.id_board
