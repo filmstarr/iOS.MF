@@ -1015,3 +1015,11 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   margin-right: 6px;
   margin-top: 1px;
 }
+
+.bbc_list {
+  padding-left: 98px;
+}
+
+.bbc_list > li {
+  list-style: inherit;
+}
