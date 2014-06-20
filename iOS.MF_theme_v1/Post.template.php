@@ -79,7 +79,7 @@ echo '</div>';
   
   echo '<div class="child buttons">
   
-  <button class="button" type="submit">', $txt['iPost'] ,'</button>
+  <button class="button" type="submit" onclick="$(\'.ui-loader\').last().show();">', $txt['iPost'] ,'</button>
 
   </div>';
 

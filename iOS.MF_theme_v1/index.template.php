@@ -189,7 +189,7 @@ if (!empty($modSettings['id_default_theme']))
 else
   $backlink = 'index.php?theme='. $modSettings['theme_guests'];
 $backname = 'Default Theme';
-echo '<a data-ajax="false" class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
+echo '<a data-ajax="false" onclick="$(\'.ui-loader\').last().show();" class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
     echo '<div id="copyright"><h4>', theme_copyright(), '</h4></div>';
   
@@ -365,7 +365,7 @@ function quick_login()
   {
     echo '<script>';
     echo 'var control = $(".showhidelogin").last().get(0);';
-    echo 'control.onclick = function() { window.location.href = "index.php?action=logout;sesc=', $context['session_id'] ,'"; };';
+    echo 'control.onclick = function() { $(".ui-loader").last().show(); window.location.href = "index.php?action=logout;sesc=', $context['session_id'] ,'"; };';
     echo '</script>';
   }
   else
@@ -409,7 +409,7 @@ function quick_login()
     
   <input type="hidden" name="hash_passwrd" value="" />
   <div class="buttons" style="margin-top: -9px; padding-bottom: 5px;">
-    <button class="button twobuttons" type="submit">' . $txt['login'] . '</button>
+    <button onclick="$(\'.ui-loader\').last().show();" class="button twobuttons" type="submit">' . $txt['login'] . '</button>
     <button class="button twobuttons" type="button" onclick="go(\'register\')">'. $txt['register'] .'</button>
   </div>
   </form>
