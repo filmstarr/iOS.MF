@@ -131,38 +131,27 @@ function template_unread()
     }}
   
   $i = 0;
-    if($topic_sticky_count)
+  if($topic_sticky_count)
+  {
+    echo'<ul class="content2 firstContent">';
     foreach ($context['topics'] as $topic)
-    {if($topic['is_sticky']){
-    
-    $i++;
-    
-    if ($i==1)echo'
-  
-      <ul class="content2 firstContent">';
-
-        echo'
-  
-    <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['new_href'] .'\')>';
-    echo '<div class="sticky"></div>';
-    echo '<div class="title stickyShortTitle">', $topic['first_post']['subject'] ,'</div>';
-    echo '<div class="new">'. $txt['new_button'] .'</div>';
-    
-    echo '<div class="description">';
-    echo '', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name']. ', '. iPhoneTime($topic['last_post']['timestamp']) , '</div>';
-    echo '</li>';
-    
-    
+    {
+      if($topic['is_sticky'])
+      {
+        $i++;         
+        echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['new_href'] .'\')">';
+        echo '<div class="sticky"></div>';
+        echo '<div class="title stickyShortTitle">', $topic['first_post']['subject'] ,'</div>';
+        echo '<div class="new">'. $txt['new_button'] .'</div>';
+        
+        echo '<div class="description">';
+        echo '', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name']. ', '. iPhoneTime($topic['last_post']['timestamp']) , '</div>';
+        echo '</li>';
+      }
     }
+    echo '</ul>';
+  }
 
-    }
-    if ($i==$topic_sticky_count)
-    echo
-    '
-  
-  </ul>
-  
-  ';    
   $somma = $i;  
   if(count($context['topics'])-$topic_sticky_count){
   echo'
@@ -189,13 +178,7 @@ function template_unread()
     
     }}
     $somma = count($somma + $i);
-  echo
-    '
-  
-  </ul>
-
-
-  ';  
+    echo '</ul>';
   }
   if ($somma==0)
     echo '
