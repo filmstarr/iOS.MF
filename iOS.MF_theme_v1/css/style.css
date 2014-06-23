@@ -866,7 +866,7 @@ hr{
 
 .sticky {
     display: inline-block;
-    background: #007AFF;
+    background: #FFCD00;
     width: 6px;
     height: 6px;
     border-radius: 3px;
@@ -875,7 +875,7 @@ hr{
 }
 
 .childBoard {
-  background: #FFCD00 !important;
+  background: #3D991F !important;
 }
 
 .smiley {
@@ -908,6 +908,7 @@ hr{
   background: #F0F0F4;
   height: 43px;
   border-width: 0 !important;
+  text-align: center;
 }
 
 .toolbar > ul {
@@ -916,15 +917,24 @@ hr{
 }
 
 .toolbar > ul > li {
-  width: 55px;
   display: inline-block;
 }
 
 .toolbar > ul > li > .toolbarIcon {
   float: right;
-  width: 32px;
+  width: 66px;
   height: 43px;
   background-size: 24px 24px !important;
+}
+
+.toolbar > ul > li:first-child > .toolbarIcon {
+  width: 49px;
+  background-position: left
+}
+
+.toolbar > ul > li:last-child > .toolbarIcon {
+  width: 49px;
+  background-position: right
 }
 
 a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic > input, div { -webkit-tap-highlight-color: rgba(0,0,0,0); }
@@ -1017,7 +1027,9 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 }
 
 .bbc_list {
-  padding-left: 98px;
+  padding-left: 8px;
+  display: table;
+  list-style-position: inside;
 }
 
 .bbc_list > li {
