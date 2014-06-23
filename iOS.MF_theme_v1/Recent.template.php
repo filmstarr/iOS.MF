@@ -45,7 +45,7 @@ echo '</div>
       <div class="posterinfo" onclick="$.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\')"><span class="name">', $message['poster']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
         if (empty($message['poster']['avatar'])) {
-          echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #fff center no-repeat;"></div>';
+          echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
         }
         else {
 						echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['poster']['avatar_href']).') #fff center no-repeat;"></div>';

@@ -28,7 +28,7 @@ function template_folder()
     <div class="posterinfo" onclick="$.mobile.changePage(\'', $message['member']['href'] ,'\')">
       <span class="name">', $message['member']['name'] ,'</span>';
       if (!$message['member']['avatar']['href']) {
-        echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #fff center no-repeat !important;"></div>';
+        echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat !important;"></div>';
       }
       else {
         echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat !important;"></div>';
