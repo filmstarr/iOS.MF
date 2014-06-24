@@ -1,10 +1,8 @@
 function removeOnClick(objClass){
-var elements = document.getElementsByTagName('div');
-  for (i=0; i<elements.length; i++){
-    if (elements[i].className==objClass){
-      elements[i].onclick=null;
-    }
-  }
+  $(objClass).each(function() {
+    $(this).off("click");
+    $(this).prop("onclick", null);
+  });
 }
 
 function quoting(){
@@ -13,8 +11,7 @@ function quoting(){
     // disable quoting
     Set_Cookie( 'disablequoting', '1', '', '/', '', '' );
     document.getElementById('quoting').innerHTML = quotingoff;
-    removeOnClick('message');
-    removeOnClick('last message');
+    removeOnClick('.message');
     }
     else
     // enable quoting
