@@ -18,7 +18,7 @@ $txt['iShow'] = 'Show'; //Childboards
 $txt['iHide'] = 'Hide'; //Childboards
 
 $txt['iShowUnread'] = 'Unread Topics';
-$txt['iMarkALLRead'] = 'Mark As Read';
+$txt['iMarkALLRead'] = 'Mark All As Read';
 
 /* Time, singular and plural */
 

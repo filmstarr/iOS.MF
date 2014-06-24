@@ -183,11 +183,15 @@ function template_unread()
   if ($somma==0)
     echo '
         <div id="unreadlink">
-          ', $context['showing_all_topics'] ? $txt['msg_alert_none'] : $txt['unread_topics_visit_none'], '
+          ', $txt['msg_alert_none'] , '
         </div>';
 
   require_once ($settings[theme_dir].'/ThemeControls.php');
   template_control_paging();
+
+  echo '<div class="buttons">
+    <a class="button markAllRead" href="', $scripturl . '?action=markasread;sa=all;' . $context['session_var'] . '=' . $context['session_id'] , '">' , $txt['iMarkALLRead'] , '</a>
+  </div>';
 }
 
 ?>
