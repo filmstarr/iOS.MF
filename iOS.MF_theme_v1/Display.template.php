@@ -18,7 +18,17 @@ function template_main()
       function handler(event) {
         event.stopPropagation();
       }
-      $("a").click(handler);
+      $("a").click(handler);';
+
+      if (!isset($_COOKIE['disablequoting'])&&$context['can_reply'])
+      {
+        echo'
+          $(".message").each(function() {
+            $(this).on("click", function() { $(this).parent().addClass("clicked"); });
+          });';
+      }
+
+    echo '
     });
 
     $(document).one("pagechange", function() {
@@ -146,7 +156,7 @@ function template_main()
     {
     $i++;
         
-  echo '<li onclick="this.className = \'clicked\';">
+  echo '<li>
    <a id="msg', $message['id'], '"></a>', $message['first_new'] ? '<a id="new"></a>' : '' , '   
    
   <div>';
@@ -160,7 +170,7 @@ function template_main()
                <a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><button class="button slimbutton" id="editdel"> ', $txt['remove'],' </button></a>';
 echo '</div>
   
-      <div class="posterinfo" onclick="$.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
+      <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
         if (empty($message['member']['avatar']['image'])) {
           echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
