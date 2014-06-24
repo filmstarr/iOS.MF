@@ -190,8 +190,8 @@ $(function(){
 
 $(window).on('beforeunload' , function() {
   $('.clicked').each(function() {
-    $(this).className = '';
-});
+    $(this).removeClass = 'clicked';
+  });
 });
 
 // Hide toolbar when input is focused
