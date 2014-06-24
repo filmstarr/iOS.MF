@@ -8,7 +8,6 @@ var elements = document.getElementsByTagName('div');
 }
 
 function quoting(){
-console.log(aquoting);
     if(aquoting==0){
     aquoting = 1;
     // disable quoting
