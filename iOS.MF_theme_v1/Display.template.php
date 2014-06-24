@@ -32,10 +32,14 @@ function template_main()
     });
 
     $(document).one("pagechange", function() {
-      var query = location.search.substring(1);
-      var elementID = query.substring(query.lastIndexOf(".") + 1).replace(/\W+/g," ");
-      if (elementID && $("#"+ elementID).length) {
-        $("#"+ elementID)[0].scrollIntoView(true);
+      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
+      if (elementMatch)
+      {
+        var elementId = elementMatch[0];
+        if (elementId && $("#"+ elementId).length)
+        {
+          $("#"+ elementId)[0].scrollIntoView(true);
+        }
       }
     });
 
