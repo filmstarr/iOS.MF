@@ -5,6 +5,8 @@ function template_main()
 {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
 
+  $showingAvatars = false;
+
   echo '
   <ul id="recent" class="content2 firstContent">';
 
@@ -43,15 +45,19 @@ function template_main()
 echo '</div>
   
       <div class="posterinfo" onclick="$.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\')"><span class="name">', $message['poster']['name'] ,'</span>';
-      if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
-        if (empty($message['poster']['avatar'])) {
-          echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
+      if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) {
+        if (array_key_exists('avatar',$message['poster'])) {
+          $showingAvatars = true;
+          if (empty($message['poster']['avatar'])) {
+            echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
+          }
+          else {
+  						echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['poster']['avatar_href']).') #fff center no-repeat;"></div>';
+          }
         }
-        else {
-						echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['poster']['avatar_href']).') #fff center no-repeat;"></div>';
-        }
+      }
+
       echo '
-    
     </div>
         <div class="message" onclick="$.mobile.changePage(\''. $message['href'] . '\');">
         <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
@@ -115,6 +121,10 @@ echo '</div>
   }
     
   echo '</ul>';
+
+  if (!$showingAvatars) {
+    echo '<style>.message { min-height: initial !important; }</style>';
+  }
 		
   require_once ($settings[theme_dir].'/ThemeControls.php');
   template_control_paging($context['page_index']);
