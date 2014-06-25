@@ -167,12 +167,12 @@ function template_main()
 // Can the user modify the contents of this post?
       if ($message['can_modify'])
          echo '
-                  <a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '"><button class="button slimbutton" id="editdel"> '. $txt['modify'].' </button></a>';         
+                  <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '\');"> '. $txt['modify'].' </button>';
    // How about... even... remove it entirely?!
       if ($message['can_remove'])
          echo '
-               <a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><button class="button slimbutton" id="editdel"> ', $txt['remove'],' </button></a>';
-echo '</div>
+              <button class="button slimbutton" id="editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>';
+    echo '</div>
   
       <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
