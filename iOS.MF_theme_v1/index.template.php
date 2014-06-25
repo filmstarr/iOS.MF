@@ -188,8 +188,7 @@ if (!empty($modSettings['id_default_theme']))
   $backlink = 'index.php?theme=' . $modSettings['id_default_theme'];
 else
   $backlink = 'index.php?theme='. $modSettings['theme_guests'];
-//Special backlink for the MNF
-$backlink = 'index.php?fullsite';
+
 $backname = 'Default Theme';
 echo '<a data-ajax="false" onclick="$(\'.ui-loader\').last().show();" class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
