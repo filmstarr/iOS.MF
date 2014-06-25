@@ -123,7 +123,10 @@ echo '</div>
   echo '</ul>';
 
   if (!$showingAvatars) {
-    echo '<style>.message { min-height: initial !important; }</style>';
+    echo '<style>
+      .message { min-height: initial !important; }
+      #avatar { display: none; }
+    </style>';
   }
 		
   require_once ($settings[theme_dir].'/ThemeControls.php');
