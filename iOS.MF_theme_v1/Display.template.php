@@ -36,9 +36,12 @@ function template_main()
       if (elementMatch)
       {
         var elementId = elementMatch[0];
-        if (elementId && $("#"+ elementId).length)
+        var state = window.history.state;
+        if (elementId && $("#"+ elementId).length && (!state.hasOwnProperty("preventNavigationToPost")))
         {
           $("#"+ elementId)[0].scrollIntoView(true);
+          state.preventNavigationToPost = true;
+          history.replaceState(state, "", document.URL);
         }
       }
     });
