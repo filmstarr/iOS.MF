@@ -96,7 +96,7 @@ if (isset($settings['enable_transparent_toolbar']) && $settings['enable_transpar
 
   echo '
 </head>
-<body><div id="wrapper" data-role="page"><div data-enhance=false>';
+<body><div id="wrapper" data-role="page"><div id="pageWrapper" data-enhance=false>';
 }
 
 function iPhoneTitle(){
