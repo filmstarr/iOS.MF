@@ -207,8 +207,9 @@ if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
   });
 }
 
-$.mobile.ignoreContentEnabled=true;
+$.mobile.ignoreContentEnabled = true;
 $.event.special.swipe.horizontalDistanceThreshold = 100;
+$.mobile.hideUrlBar = false;
 
 $(document).bind("mobileinit", function() {
     $.mobile.buttonMarkup.hoverDelay = 5000
