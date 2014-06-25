@@ -5,6 +5,14 @@ function template_main()
 {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
 
+  echo '<script>  
+    $(function() {
+      $(".message").each(function() {
+        $(this).on("click", function() { $(this).parent().addClass("clicked"); });
+      });
+    });
+  </script>';
+
   $showingAvatars = false;
 
   echo '
@@ -13,7 +21,7 @@ function template_main()
   foreach ($context['posts'] as $message)
   {
       
-  echo '<li onclick="this.className = \'clicked\';">
+  echo '<li>
   
           <div class="postDetails">', $message['counter'] . '. ' . $message['board']['link'] . ' / <a href="' , $scripturl , '?topic=',$message['topic'],'">' , $message['subject'] , '</a>
           </div>
@@ -44,7 +52,7 @@ function template_main()
                <a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><button class="button slimbutton" id="editdel"> ', $txt['remove'],' </button></a>';
 echo '</div>
   
-      <div class="posterinfo" onclick="$.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\')"><span class="name">', $message['poster']['name'] ,'</span>';
+      <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\')"><span class="name">', $message['poster']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) {
         if (array_key_exists('avatar',$message['poster'])) {
           $showingAvatars = true;
@@ -52,7 +60,7 @@ echo '</div>
             echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
           }
           else {
-  						echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['poster']['avatar_href']).') #fff center no-repeat;"></div>';
+              echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['poster']['avatar_href']).') #fff center no-repeat;"></div>';
           }
         }
       }
@@ -128,7 +136,7 @@ echo '</div>
       #avatar { display: none; }
     </style>';
   }
-		
+    
   require_once ($settings[theme_dir].'/ThemeControls.php');
   template_control_paging($context['page_index']);
 }
