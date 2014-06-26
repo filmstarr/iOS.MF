@@ -37,7 +37,6 @@ function template_main()
 
         jqElement.on("blur", function(e) {
           jqElement.attr("disabled", true);
-          console.log("disable textarea");
         });
       });
 
@@ -109,7 +108,7 @@ echo '</div>';
   
   echo '<div class="child buttons">
   
-  <button class="button" type="submit" onclick="$(\'.ui-loader\').last().show();">', $txt['iPost'] ,'</button>
+  <button class="button" type="submit" onclick="$(\'#', $context['post_box_name'], '\').blur(); $(\'#', $context['post_box_name'], '\').removeAttr(\'disabled\'); $(\'.ui-loader\').last().show();">', $txt['iPost'] ,'</button>
 
   </div>';
 
