@@ -590,6 +590,7 @@ a.navPages, .updownscrolling {
 }
 input#inputfile{
   font-size: 12px;
+  width: 170px;
 }
 
 button#readunread{
@@ -1016,7 +1017,8 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 }
 
 .ui-loader-default {
-  width: 3.0em; height: 3.0em;
+  width: 3.0em !important;
+  height: 3.0em !important;
 }
 
 .ui-icon-loading {
@@ -1038,4 +1040,10 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 
 .bbc_list > li {
   list-style: inherit;
+}
+
+.editor[disabled] {
+  color: black;
+  -webkit-text-fill-color: black;
+  -webkit-opacity: 1;
 }
