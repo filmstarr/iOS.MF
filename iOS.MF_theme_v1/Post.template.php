@@ -10,7 +10,37 @@ function template_main()
         $(".editor").last().autosize().resize();
         $(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
         $(".classic").last().hide();
+
+        //Deal with the race condition between iOS keyboard showing and the focus event firing
+        var jqElement = $("#', $context['post_box_name'], '");
+        jqElement.attr("disabled", true);
+
+        Hammer(jqElement.on("tap", function(event) {
+          if (event.target.id == "', $context['post_box_name'], '") {
+            if (!$(event.target).is(":focus")) {
+
+              // Hide toolbar
+              if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
+                $(".toolbar").css("display", "none");
+                $("#copyright").css("margin-bottom", "4px");
+              }
+
+              //Enable and focus textbox
+              $(event.target).removeAttr("disabled");
+              $(event.target).focus();
+
+              //Move caret to end
+              jqElement.get(0).setSelectionRange(jqElement.val().length, jqElement.val().length);
+            }
+          }
+        }));
+
+        jqElement.on("blur", function(e) {
+          jqElement.attr("disabled", true);
+          console.log("disable textarea");
+        });
       });
+
     </script>';
       
   echo '<form data-ajax="false" action="', $scripturl, '?action=', $context['destination'], ';', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="', ($context['becomes_approved'] ? '' : 'alert(\'' . $txt['js_post_will_require_approval'] . '\');'), 'submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
