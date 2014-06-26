@@ -31,7 +31,19 @@ function template_main()
     echo '
     });
 
-    $(document).one("pagechange", function() {
+    $(document).one("silentscroll", function() {
+      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
+      if (elementMatch)
+      {
+        var elementId = elementMatch[0];
+        if (elementId && $("#"+ elementId).length)
+        {
+          $("#"+ elementId)[0].scrollIntoView(true);
+        }
+      }
+    });
+
+    $(document).one("pagecontainertransition", function() {
       var elementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
       if (elementMatch)
       {
