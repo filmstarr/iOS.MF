@@ -211,7 +211,7 @@ $.mobile.ignoreContentEnabled = true;
 $.event.special.swipe.horizontalDistanceThreshold = 100;
 
 $(document).bind("mobileinit", function() {
-    $.mobile.buttonMarkup.hoverDelay = 5000
+    $.mobile.buttonMarkup.hoverDelay = 0;
 });
 
 $(function() {
