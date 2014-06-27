@@ -32,10 +32,10 @@ function template_main()
     });
 
     $(document).one("silentscroll", function() {
-      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
+      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)|([.]new)/);
       if (elementMatch)
       {
-        var elementId = elementMatch[0];
+        var elementId = elementMatch[0].replace(".","");
         if (elementId && $("#"+ elementId).length)
         {
           $("#"+ elementId)[0].scrollIntoView(true);
@@ -44,10 +44,10 @@ function template_main()
     });
 
     $(document).one("pagecontainertransition", function() {
-      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
+      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)|([.]new)/);
       if (elementMatch)
       {
-        var elementId = elementMatch[0];
+        var elementId = elementMatch[0].replace(".","");
         var state = window.history.state;
         if (elementId && $("#"+ elementId).length && (!state.hasOwnProperty("preventNavigationToPost")))
         {
@@ -303,7 +303,7 @@ function quick_reply()
     </script>';
     
     echo '<div id="quickReply">';
-    echo '<form action="', $scripturl, '?action=post2;', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
+    echo '<form action="', $scripturl, '?action=post2;', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '.new#new" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
 
     echo'
   <div id="postContainer" class="inputContainer" style="padding-bottom: 0;">
