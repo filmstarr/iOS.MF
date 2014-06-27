@@ -15,7 +15,7 @@ function template_main()
         var jqElement = $(".editor").last();
         jqElement.attr("disabled", true);
 
-        Hammer(jqElement.on("tap", function(event) {
+        jqElement.on("tap", function(event) {
           if (event.target.id == "', $context['post_box_name'], '") {
             if (!$(event.target).is(":focus")) {
 
@@ -33,7 +33,7 @@ function template_main()
               jqElement.get(0).setSelectionRange(jqElement.val().length, jqElement.val().length);
             }
           }
-        }));
+        });
 
         jqElement.on("blur", function(e) {
           jqElement.attr("disabled", true);

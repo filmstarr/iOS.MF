@@ -1046,4 +1046,5 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   color: black;
   -webkit-text-fill-color: black;
   -webkit-opacity: 1;
+  background-color: white;
 }
