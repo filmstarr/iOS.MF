@@ -32,7 +32,11 @@ function template_folder()
     });
   </script>';
 
-  echo '<ul class="content2 firstContent">';
+  echo '<div class="child buttons noLeftPadding">
+    <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'' , $scripturl , '?action=pm;sa=send\');">Compose Message</button>
+  </div>';
+
+  echo '<ul class="content2">';
 
     while ($message = $context['get_pmessage']('message'))
     {
