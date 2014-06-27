@@ -134,6 +134,7 @@ echo '</div>
     echo '<style>
       .message { min-height: initial !important; }
       #avatar { display: none; }
+      .message_time { margin-bottom: 5px !important; }
     </style>';
   }
     

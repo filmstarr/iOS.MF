@@ -260,7 +260,7 @@ echo '
         <li><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\', { reloadPage : true })' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
         <li>
           <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=pm\', { reloadPage : true })' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
-          <div class="unreadCount unreadMessages"' , ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>'. $context['user']['unread_messages'] : ' style="display:none">') , '</div>
+          <div class="unreadCount unreadMessages"' , ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>'. $context['user']['unread_messages'] : ' style="display:none;">') , '</div>
         </li>
         <li><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=recent\', { reloadPage : true })" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
         <li>

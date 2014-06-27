@@ -8,6 +8,15 @@ function template_main()
   $ignoredMsgs = array();
   $messageIDs = array();
 
+  if (empty($settings['show_user_images']) || !empty($options['show_no_avatars']))
+  {
+    echo '<style>
+      .message { min-height: initial !important; }
+      #avatar { display: none; }
+      .message_time { margin-bottom: 5px !important; }
+    </style>';
+  }
+
   echo '<script>  
     $(function() {
       $(".lightbox-image").magnificPopup({ 
