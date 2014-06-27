@@ -313,7 +313,7 @@ function quick_reply()
   </div>';
 
   // Guests have to put in their name and email...
-  if (isset($context['name']) && isset($context['email']))
+  if (!$context['user']['is_logged'] && isset($context['name']) && isset($context['email']))
   {
     echo '<div class="noLeftPadding inputContainer padTop">';
     echo '<span class="inputLabel">'. $txt['username'] .'</span>';
