@@ -233,6 +233,7 @@ body > #wrapper > .posts > li, body > #wrapper > .posts > div > li, body > #wrap
 
 .postDetails {
     padding-bottom: 4px;
+    font-style: italic;
 }
 
 #email a {
@@ -1014,6 +1015,10 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   padding: 0px 4px 0px 4px;
   min-width: 6px;
   float: right;
+}
+
+.unreadMessages {
+   margin-right: -52px !important;
 }
 
 .ui-loader-default {
