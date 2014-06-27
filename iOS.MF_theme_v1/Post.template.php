@@ -12,10 +12,10 @@ function template_main()
         $(".classic").last().hide();
 
         //Deal with the race condition between iOS keyboard showing and the focus event firing
-        var jqElement = $("#', $context['post_box_name'], '");
+        var jqElement = $(".editor").last();
         jqElement.attr("disabled", true);
 
-        Hammer(jqElement.on("tap", function(event) {
+        jqElement.on("tap", function(event) {
           if (event.target.id == "', $context['post_box_name'], '") {
             if (!$(event.target).is(":focus")) {
 
@@ -33,7 +33,7 @@ function template_main()
               jqElement.get(0).setSelectionRange(jqElement.val().length, jqElement.val().length);
             }
           }
-        }));
+        });
 
         jqElement.on("blur", function(e) {
           jqElement.attr("disabled", true);
@@ -108,7 +108,7 @@ echo '</div>';
   
   echo '<div class="child buttons">
   
-  <button class="button" type="submit" onclick="$(\'#', $context['post_box_name'], '\').blur(); $(\'#', $context['post_box_name'], '\').removeAttr(\'disabled\'); $(\'.ui-loader\').last().show();">', $txt['iPost'] ,'</button>
+  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').last().show();">', $txt['iPost'] ,'</button>
 
   </div>';
 
