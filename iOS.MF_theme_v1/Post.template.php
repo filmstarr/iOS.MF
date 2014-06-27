@@ -70,41 +70,66 @@ echo'
     </div>
   </div>';
 
-  echo '<div id="attachment_wrapper">';
-
-  // If this post already has attachments on it - give information about them.
-  if (!empty($context['current_attachments']))
+  if (!empty($context['current_attachments']) || $context['can_post_attachment'])
   {
-    echo '<input type="hidden" name="attach_del[]" value="0" />';
-    foreach ($context['current_attachments'] as $attachment)
-      echo '
-      <div class="attachment">
-        <input type="checkbox" id= "attachment_', $attachment['id'], '" name="attach_del[]" value="', $attachment['id'], '"', empty($attachment['unchecked']) ? ' checked="checked"' : '', ' class="input_check" /> ', $attachment['name'], (empty($attachment['approved']) ? ' (' . $txt['awaiting_approval'] . ')' : ''), '
-      </div>';
-  }
+    echo '<div id="attachment_wrapper">';
 
-  // Is the user allowed to post any additional ones? If so give them the boxes to do it!
-  if ($context['can_post_attachment'])
-  {
-    echo '<div style="position: relative;">';
-      echo '<input type="file" size="60" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
-      echo '<div id="inputbuttonbackground"><div id="inputbutton" class="needsclick" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
+    // If this post already has attachments on it - give information about them.
+    if (!empty($context['current_attachments']))
+    {
+      echo '<input type="hidden" name="attach_del[]" value="0" />';
+      foreach ($context['current_attachments'] as $attachment)
+        echo '
+        <div class="attachment">
+          <input type="checkbox" id= "attachment_', $attachment['id'], '" name="attach_del[]" value="', $attachment['id'], '"', empty($attachment['unchecked']) ? ' checked="checked"' : '', ' class="input_check" /> ', $attachment['name'], (empty($attachment['approved']) ? ' (' . $txt['awaiting_approval'] . ')' : ''), '
+        </div>';
+    }
+
+    // Is the user allowed to post any additional ones? If so give them the boxes to do it!
+    if ($context['can_post_attachment'])
+    {
+      echo '<div style="position: relative;">';
+        echo '<input type="file" size="60" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
+        echo '<div id="inputbuttonbackground"><div id="inputbutton" class="needsclick" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
+      echo '</div>';
+    }
+      
     echo '</div>';
   }
-    
-  echo '</div>';
 
-    if($context['require_verification'])
+  // Guests have to put in their name and email...
+  if (isset($context['name']) && isset($context['email']))
+  {
+    echo '<div class="noLeftPadding inputContainer">';
+    echo '<span class="inputLabel">'. $txt['username'] .'</span>';
+    echo '<input type="text" name="guestname" size="25" value="', $context['name'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
+    echo '<span id="smf_autov_username_div" style="display: none;">
+            <a id="smf_autov_username_link" href="#">
+              <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
+            </a>
+          </span>';
+    echo '</div>';
+
+    if (empty($modSettings['guest_post_no_email']))
     {
-echo '<div class="noLeftPadding inputContainer">';
-echo '<span class="inputLabel">Code</span>';
-echo template_control_verification($context['visual_verification_id'], 'all');
-echo '</div>';
-echo '<div class="noLeftPadding inputContainer">';
-echo '<span class="inputLabel">Verify</span>';
-echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
-echo '</div>';
+      echo '<div class="noLeftPadding inputContainer">';
+      echo '<span class="inputLabel">'. $txt['email'] .'</span>';
+      echo '<input type="text" name="email" size="25" value="', $context['email'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
+      echo '</div>';
     }
+  }
+
+  if($context['require_verification'])
+  {
+    echo '<div class="noLeftPadding inputContainer">';
+    echo '<span class="inputLabel">Code</span>';
+    echo template_control_verification($context['visual_verification_id'], 'all');
+    echo '</div>';
+    echo '<div class="noLeftPadding inputContainer">';
+    echo '<span class="inputLabel">Verify</span>';
+    echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
+    echo '</div>';
+  }
   
   echo '<div class="child buttons">
   
