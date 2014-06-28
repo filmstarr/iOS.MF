@@ -54,7 +54,7 @@ function template_main()
       var newElementMatch = location.hash.match(/([#]new)/);
       if (newElementMatch)
       {
-        var newElementId = newElementMatch[0].replace(".","").replace("#","");
+        var newElementId = newElementMatch[0].replace("#","");
         if (newElementId && $("#"+ newElementId).length)
         {
           $("#"+ newElementId)[0].scrollIntoView(true);
