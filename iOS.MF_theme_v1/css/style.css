@@ -338,7 +338,7 @@ float: left;
   font-size: 16px;
 }
 
-.inputContainer input[type="text"], .inputContainer input[type="password"] {
+.inputContainer input[type="text"], .inputContainer input[type="password"], .inputContainer select {
   height: 20px;
   font-size: 14px;
   border: 1px solid #E0E0E0;
@@ -349,6 +349,10 @@ float: left;
   background: white;
   width: 204px;
   -webkit-appearance:caret;
+}
+
+.inputContainer select {
+  height: 34px;
 }
 
 .inputContainer img {
