@@ -41,20 +41,20 @@ function template_main()
     });
 
     $(document).one("silentscroll", function() {
-      var msgElementMatch = location.search.substring(1).match(/(msg[0-9]*)|([.]new)/);
+      var msgElementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
       if (msgElementMatch)
       {
-        var msgElementId = msgElementMatch[0].replace(".","");
+        var msgElementId = msgElementMatch[0];
         if (msgElementId && $("#"+ msgElementId).length)
         {
           $("#"+ msgElementId)[0].scrollIntoView(true);
           return;
         }
       }
-      var newElementMatch = location.hash.match(/([#]new)/);
+      var newElementMatch = location.search.substring(1).match(/(new)/);
       if (newElementMatch)
       {
-        var newElementId = newElementMatch[0].replace("#","");
+        var newElementId = newElementMatch[0];
         if (newElementId && $("#"+ newElementId).length)
         {
           $("#"+ newElementId)[0].scrollIntoView(true);
@@ -64,10 +64,10 @@ function template_main()
     });
 
     $(document).one("pagecontainertransition", function() {
-      var msgElementMatch = location.search.substring(1).match(/(msg[0-9]*)|([.]new)/);
+      var msgElementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
       if (msgElementMatch)
       {
-        var msgElementId = msgElementMatch[0].replace(".","");
+        var msgElementId = msgElementMatch[0];
         var msgState = window.history.state;
         if (msgElementId && $("#"+ msgElementId).length && (!msgState.hasOwnProperty("preventNavigationToPost")))
         {
@@ -77,10 +77,10 @@ function template_main()
           return;
         }
       }
-      var newElementMatch = location.hash.match(/([#]new)/);
+      var newElementMatch = location.search.substring(1).match(/(new)/);
       if (newElementMatch)
       {
-        var newElementId = newElementMatch[0].replace("#","");
+        var newElementId = newElementMatch[0];
         var newState = window.history.state;
         if (newElementId && $("#"+ newElementId).length && (!newState.hasOwnProperty("preventNavigationToPost")))
         {
