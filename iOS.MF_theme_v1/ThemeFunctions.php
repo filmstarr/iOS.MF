@@ -83,4 +83,26 @@ function UnreadPostCount()
   return $result['unread_count'];
 }
 
+function UserList()
+{
+  global $context, $smcFunc;
+
+  if (!$context['user']['is_logged'])
+  {
+    return array();
+  }
+
+  $request = $smcFunc['db_query']('', '
+    SELECT member_name
+    FROM {db_prefix}members',
+    array()
+  );
+  $users = array();
+  while ($row = $smcFunc['db_fetch_assoc']($request))
+    $users[] = $row['member_name'];
+  $smcFunc['db_free_result']($request);
+
+  return $users;
+}
+
 ?>

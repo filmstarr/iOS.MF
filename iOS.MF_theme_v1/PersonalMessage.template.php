@@ -41,8 +41,10 @@ function template_folder()
     while ($message = $context['get_pmessage']('message'))
     {
       echo'
-        <li>
-          <div class="postDetails">', $message['subject'] ,'</div>
+        <li>';
+          // Comment out subject stuff
+          //echo '<div class="postDetails">' , $message['counter'] + 1 , '. ', $message['subject'] ,'</div>';
+          echo '
           <div>
             <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=', $message['member']['id'], '\');" >', $txt['reply'] ,'</button>
             <button class="button slimbutton" id="editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=pm;sa=pmactions;pm_actions[', $message['id'], ']=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>
@@ -83,119 +85,105 @@ function template_send()
   echo '<script>
       $(function(){
         $(".editor").last().autosize().resize();
-        $(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
         $(".classic").last().hide();
+        
+        // Comment out subject stuff
+        //$(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
 
         //Deal with the race condition between iOS keyboard showing and the focus event firing
-        var jqElement = $(".editor").last();
-        jqElement.attr("disabled", true);
+        if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
+          var jqElement = $(".editor").last();
+          jqElement.attr("disabled", true);
 
-        jqElement.on("tap", function(event) {
-          if (event.target.id == "', $context['post_box_name'], '") {
-            if (!$(event.target).is(":focus")) {
+          jqElement.on("tap", function(event) {
+            if (event.target.id == "', $context['post_box_name'], '") {
+              if (!$(event.target).is(":focus")) {
 
-              // Hide toolbar
-              if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
+                // Hide toolbar
                 $(".toolbar").css("display", "none");
                 $("#copyright").css("margin-bottom", "4px");
+
+                //Enable and focus textbox
+                $(event.target).removeAttr("disabled");
+                $(event.target).focus();
+
+                //Move caret to end
+                jqElement.get(0).setSelectionRange(jqElement.val().length, jqElement.val().length);
               }
-
-              //Enable and focus textbox
-              $(event.target).removeAttr("disabled");
-              $(event.target).focus();
-
-              //Move caret to end
-              jqElement.get(0).setSelectionRange(jqElement.val().length, jqElement.val().length);
             }
-          }
-        });
+          });
 
-        jqElement.on("blur", function(e) {
-          jqElement.attr("disabled", true);
-        });
+          jqElement.on("blur", function(e) {
+            jqElement.attr("disabled", true);
+          });
+        }
       });
 
     </script>';
 
-  if (!empty($context['post_error']['messages']))
+  echo '<form data-ajax="false" action="', $scripturl, '?action=pm;sa=send2" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" class="flow_hidden" onsubmit="submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'message\']);">';
+
+  if(!empty($context['post_error']['messages']) && count($context['post_error']['messages']))    
   {
-    echo '<br /><h4>', implode('<br /><br />', $context['post_error']['messages']), '</h4><br />';
+    echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
+    echo '<style> #newTopic { padding-top: 9px; } </style>';        
   }
 
+  // Comment out subject stuff and hide subject
+  // echo '<div id="newTopic" class="inputContainer">';
+  //   echo '<span class="inputLabel">Topic</span>';
+     echo '<input type="hidden" tabindex="', $context['tabindex']++, '" name="subject" value="Sent from iOS.MF" maxlength="50" />';
+  // echo '</div>';
 
-  echo '<form action="', $scripturl, '?action=pm;sa=send2" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'message\']);">';
-  
-  echo'  
-  <ul class="login">
-    <li>
-      <div class="field">
-        <div class="fieldname">'. $txt['iTo'] .'</div>
-        <div class="fieldinfo"><input type="text" name="to" id="to_control" value="', $context['to_value'], '" tabindex="', $context['tabindex']++, '" size="40" /></div>
-      </div>
-    </li>
-    <li>
-      <div class="', !$context['require_verification'] ? 'last ':'','field">
-        <div class="fieldname">'. $txt['iSubject'] .'</div>
-        <div class="fieldinfo"><input type="text" name="subject" value="', $context['subject'], '" tabindex="', $context['tabindex']++, '" size="40" maxlength="50" /></div>
-      </div>
-    </li>';
-    
-if($context['require_verification'])
-echo'
-    <li>
-      <div class="verification field">
-        <div class="fieldname">'. $txt['iCode'] .'</div>
-        <div class="fieldinfo">',template_control_verification($context['visual_verification_id'], 'all'),'</div>
-      </div>
-    </li>
-    
-    <li>
-      <div class="last field">
-        <div class="fieldname">'. $txt['iVerify'] .'</div>
-        <div class="fieldinfo"><input type="text" name="pm_vv[code]" value="" size="30" tabindex="5" />
-</div>
-      </div>
-    </li>  ';  
-    
-    
-    echo'
-    
-  </ul>
-      
-  <h4>'. $txt['iMessage'] .'</h4>
-  
-  <ul class="posts">
-  
-    <li>
-      <div class="last message">';
-      
-        echo template_control_richedit($context['post_box_name'], 'message');
-      
-      echo'</div>
-    </li>
-  
-  </ul>
+  echo '<div id="newTopic" class="inputContainer">';
+    echo '<span class="inputLabel">'. $txt['iTo'] .'</span>';
+    //Users drop down list
+    require_once ($settings[theme_dir].'/ThemeFunctions.php');
+    $users = UserList();
+    echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify">';
+    echo '<option></option>';
+    foreach ($users as $user) {
+      echo '<option ' . (strpos($context['to_value'], $user) ? 'selected' : '') . '>' . $user . '</option>';
+    }
+    echo '</select>';
+  echo '</div>';
 
+    
+  echo'
+    <div id="postContainer" class="inputContainer">
+      <div class="newPost">
+           ',template_control_richedit($context['post_box_name'], 'message'),'
+      </div>
+    </div>'; 
+
+  if($context['require_verification'])
+  {
+    echo '<div class="noLeftPadding inputContainer">';
+    echo '<span class="inputLabel">Code</span>';
+    echo template_control_verification($context['visual_verification_id'], 'all');
+    echo '</div>';
+    echo '<div class="noLeftPadding inputContainer">';
+    echo '<span class="inputLabel">Verify</span>';
+    echo '<input type="text" tabindex="', $context['tabindex']++, '" name="pm_vv[code]" />';
+    echo '</div>';
+  }
   
-  <div class="child buttons">
+  echo '<div class="child buttons">
   
-  <button type="submit">'. $txt['iSend'] .'</button>
-  
-  </div>
-  
+  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').last().show();">', $txt['iPost'] ,'</button>
+
+  </div>';
+
+  echo '
   <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
-            <input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
-            <input type="hidden" name="replied_to" value="', !empty($context['quoted_message']['id']) ? $context['quoted_message']['id'] : 0, '" />
-            <input type="hidden" name="pm_head" value="', !empty($context['quoted_message']['pm_head']) ? $context['quoted_message']['pm_head'] : 0, '" />
-            <input type="hidden" name="f" value="', isset($context['folder']) ? $context['folder'] : '', '" />
-            <input type="hidden" name="l" value="', isset($context['current_label_id']) ? $context['current_label_id'] : -1, '" />
+  <input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
+  <input type="hidden" name="replied_to" value="', !empty($context['quoted_message']['id']) ? $context['quoted_message']['id'] : 0, '" />
+  <input type="hidden" name="pm_head" value="', !empty($context['quoted_message']['pm_head']) ? $context['quoted_message']['pm_head'] : 0, '" />
+  <input type="hidden" name="f" value="', isset($context['folder']) ? $context['folder'] : '', '" />
+  <input type="hidden" name="l" value="', isset($context['current_label_id']) ? $context['current_label_id'] : -1, '" />
 
   </form>
 ';
-  
-          
-          
+
 }
-
-
 ?>
