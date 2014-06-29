@@ -67,7 +67,7 @@ echo '</div>
 
       echo '
     </div>
-        <div class="message" onclick="$.mobile.changePage(\''. $message['href'] . '\');">
+        <div class="message" onclick="$.mobile.changePage(\''. str_replace('#msg',';new#msg',$message['href']) . '\');">
         <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
     ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['message'])));
 
@@ -161,7 +161,7 @@ function template_unread()
       if($topic['is_sticky'])
       {
         $i++;         
-        echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['new_href'] .'\')">';
+        echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. str_replace('#new',';new#new',$topic['new_href']) .'\')">';
         echo '<div class="sticky"></div>';
         echo '<div class="title stickyShortTitle">', $topic['first_post']['subject'] ,'</div>';
         echo '<div class="new">'. $txt['new_button'] .'</div>';
@@ -190,7 +190,7 @@ function template_unread()
     
       echo'
   
-        <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['new_href'] .'\')">';
+        <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. str_replace('#new',';new#new',$topic['new_href']) .'\')">';
     echo '<div class="title shortTitle">', $topic['first_post']['subject'] ,'</div>';
     echo '<div class="new">'. $txt['new_button'] .'</div>';
     echo '<div class="description">';

@@ -41,28 +41,53 @@ function template_main()
     });
 
     $(document).one("silentscroll", function() {
-      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)|([.]new)/);
-      if (elementMatch)
+      var msgElementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
+      if (msgElementMatch)
       {
-        var elementId = elementMatch[0].replace(".","");
-        if (elementId && $("#"+ elementId).length)
+        var msgElementId = msgElementMatch[0];
+        if (msgElementId && $("#"+ msgElementId).length)
         {
-          $("#"+ elementId)[0].scrollIntoView(true);
+          $("#"+ msgElementId)[0].scrollIntoView(true);
+          return;
+        }
+      }
+      var newElementMatch = location.search.substring(1).match(/(new)/);
+      if (newElementMatch)
+      {
+        var newElementId = newElementMatch[0];
+        if (newElementId && $("#"+ newElementId).length)
+        {
+          $("#"+ newElementId)[0].scrollIntoView(true);
+          return;
         }
       }
     });
 
     $(document).one("pagecontainertransition", function() {
-      var elementMatch = location.search.substring(1).match(/(msg[0-9]*)|([.]new)/);
-      if (elementMatch)
+      var msgElementMatch = location.search.substring(1).match(/(msg[0-9]*)/);
+      if (msgElementMatch)
       {
-        var elementId = elementMatch[0].replace(".","");
-        var state = window.history.state;
-        if (elementId && $("#"+ elementId).length && (!state.hasOwnProperty("preventNavigationToPost")))
+        var msgElementId = msgElementMatch[0];
+        var msgState = window.history.state;
+        if (msgElementId && $("#"+ msgElementId).length && (!msgState.hasOwnProperty("preventNavigationToPost")))
         {
-          $("#"+ elementId)[0].scrollIntoView(true);
-          state.preventNavigationToPost = true;
-          history.replaceState(state, "", document.URL);
+          $("#"+ msgElementId)[0].scrollIntoView(true);
+          msgState.preventNavigationToPost = true;
+          history.replaceState(msgState, "", document.URL);
+          return;
+        }
+      }
+      var newElementMatch = location.search.substring(1).match(/(new)/);
+      if (newElementMatch)
+      {
+        var newElementId = newElementMatch[0];
+        var newState = window.history.state;
+        if (newElementId && $("#"+ newElementId).length && (!newState.hasOwnProperty("preventNavigationToPost")))
+        {
+          $("#"+ newElementId)[0].scrollIntoView(true);
+          newState.preventNavigationToPost = true;
+          history.replaceState(newState, "", document.URL);
+          return;
         }
       }
     });
