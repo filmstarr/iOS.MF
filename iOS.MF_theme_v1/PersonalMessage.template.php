@@ -91,9 +91,6 @@ function template_send()
         $(".editor").last().autosize().resize();
         $(".classic").last().hide();
         
-        // Comment out subject stuff
-        //$(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
-
         //Deal with the race condition between iOS keyboard showing and the focus event firing
         if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
           var jqElement = $(".editor").last();
@@ -136,7 +133,7 @@ function template_send()
   // Comment out subject stuff and hide subject
   // echo '<div id="newTopic" class="inputContainer">';
   //   echo '<span class="inputLabel">Topic</span>';
-     echo '<input type="hidden" tabindex="', $context['tabindex']++, '" name="subject" value="Sent from iOS.MF" maxlength="50" />';
+     echo '<input type="hidden" tabindex="', $context['tabindex']++, '" name="subject" value="' , (empty($context['subject']) || $context['subject'] == $txt['no_subject'] ? 'Sent from iOS.MF' : $context['subject']) , '" maxlength="50" />';
   // echo '</div>';
 
   echo '<div id="newTopic" class="inputContainer">';
