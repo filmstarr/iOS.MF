@@ -353,6 +353,7 @@ float: left;
 
 .inputContainer select {
   height: 34px;
+  width: 222px;
 }
 
 .inputContainer img {
