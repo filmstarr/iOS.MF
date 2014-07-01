@@ -18,7 +18,7 @@ function template_main()
       echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $board['href'] .'\');">';
       echo '<div class="sticky childBoard"></div>';
       echo '<div class="title', ($context['user']['is_logged'] && $board['new']) ? ' stickyShortTitle' : '' ,'">', $board['name'] ,'</div>';
-      if ($context['user']['is_logged'] && $board['new']) {
+      if ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) {
           echo '<div class="new">'. $txt['new_button'] .'</div>';
       }
       

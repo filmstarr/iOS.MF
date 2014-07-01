@@ -105,4 +105,57 @@ function UserList()
   return $users;
 }
 
+function NavigateToMessageScript()
+{
+  echo '
+  <script>
+
+    $(document).one("silentscroll", function() {
+      if (!navigateToElement(/(msg[0-9]*)/))
+      {
+        navigateToElement(/(new)/);
+      }
+    });
+
+    $(document).one("pagecontainertransition", function() {
+      if (!navigateToElementOnce(/(msg[0-9]*)/))
+      {
+        navigateToElementOnce(/(new)/);
+      }
+    });
+
+    var navigateToElement = function(regex) {
+      var elementMatch = location.search.substring(1).match(regex);
+      if (elementMatch)
+      {
+        var elementId = elementMatch[0];
+        if (elementId && $("#"+ elementId).length)
+        {
+          $("#"+ elementId)[0].scrollIntoView(true);
+          return true;
+        }
+      }
+      return false;
+    };
+
+    var navigateToElementOnce = function(regex) {
+      var elementMatch = location.search.substring(1).match(regex);
+      if (elementMatch)
+      {
+        var elementId = elementMatch[0];
+        var state = window.history.state;
+        if (elementId && $("#"+ elementId).length && (!state.hasOwnProperty("preventNavigationToPost")))
+        {
+          $("#"+ elementId)[0].scrollIntoView(true);
+          state.preventNavigationToPost = true;
+          history.replaceState(state, "", document.URL);
+          return true;
+        }
+      }
+      return false;
+    };
+
+  </script>';
+}
+
 ?>
