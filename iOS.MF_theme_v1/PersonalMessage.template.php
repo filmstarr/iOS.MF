@@ -134,11 +134,33 @@ function template_folder()
           <a id="msg', $message['id'], '"></a>';
           echo '
           <div>
-            <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=all\');" >', $txt['reply'] ,'</button>
+            <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=all\');" >', $txt['reply'] , ' ' , $txt['all'] ,'</button>
             <button class="button slimbutton" id="editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=pm;sa=pmactions;pm_actions[', $message['id'], ']=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>
-          </div>
+          </div>';
 
-          <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
+          // Show who the message was sent to.
+          echo '<div class="description" style="font-style: italic;"> ', $txt['sent_to'], ': ';
+          // People it was sent directly to....
+          if (!empty($message['recipients']['to']))
+          {
+            $first = true;
+            foreach ($message['recipients']['to'] as $recipient) {
+              preg_match('/\>(.*)\</', $recipient, $match);
+              if (count($match) >= 2) {
+                $recipient = $match[1];
+              }
+              echo ($first ? '' : ', ') . $recipient;
+              $first = false;
+            }
+          }
+          // Otherwise, we're just going to say "some people"...
+          elseif ($context['folder'] != 'sent')
+          {
+            echo '(', $txt['pm_undisclosed_recipients'], ')';
+          }
+          echo '</div>';
+
+          echo '<div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
           if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
             if (empty($message['member']['avatar']['image'])) {
               echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
