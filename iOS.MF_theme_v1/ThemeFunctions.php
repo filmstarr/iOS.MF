@@ -111,14 +111,14 @@ function NavigateToMessageScript()
   <script>
 
     $(document).one("silentscroll", function() {
-      if (!navigateToElement(/(msg[0-9]*)/))
+      if (!navigateToElement(/(msg\d+)/))
       {
         navigateToElement(/(new)/);
       }
     });
 
     $(document).one("pagecontainertransition", function() {
-      if (!navigateToElementOnce(/(msg[0-9]*)/))
+      if (!navigateToElementOnce(/(msg\d+)/))
       {
         navigateToElementOnce(/(new)/);
       }

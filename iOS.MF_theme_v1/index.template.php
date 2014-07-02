@@ -114,6 +114,8 @@ function iPhoneTitle(){
   
   $title = str_replace('Personal Messages Index','Personal Messages',$title);
 
+  $title = str_replace('Send message','Compose Message',$title);
+
   return $title;
   
   }

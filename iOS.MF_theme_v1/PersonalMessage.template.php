@@ -14,43 +14,127 @@ function template_folder()
 {
   global $context, $settings, $options, $scripturl, $modSettings, $txt;
 
-  if (empty($settings['show_user_images']) || !empty($options['show_no_avatars']))
+  $messageCount = 0;
+
+  if ($context['display_mode'] != 0 && strpos($_SERVER['REQUEST_URI'], 'pmsg') == false)
   {
-    echo '<style>
-      .message { min-height: initial !important; }
-      #avatar { display: none; }
-      .message_time { margin-bottom: 5px !important; }
-    </style>';
-  }
+    echo '<div class="child buttons noLeftPadding">
+      <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'' , $scripturl , '?action=pm;sa=send\');">Compose Message</button>
+    </div>';
 
-  echo '<script>  
-    $(function() {
-      function handler(event) {
-        event.stopPropagation();
+    while ($message = $context['get_pmessage']('subject'))
+    {
+      if ($messageCount == 0)
+      {
+        echo '<ul class="content2">';
       }
-      $("a").click(handler);
-    });
-  </script>';
 
-  require_once ($settings[theme_dir].'/ThemeFunctions.php');
-  NavigateToMessageScript();
+      echo '
+      <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $scripturl . '?action=pm;pmsg=' . $message['id'] . ';msg' . $message['id'] . '#msg' . $message['id'] .'\');">';
+        echo '<div class="title', ($message['is_unread'] ? ' shortTitle' : '') ,'">', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $message['subject']) : $message['subject']) ,'</div>';
+        if ($message['is_unread']) {
+          echo '<div class="new">'. $txt['new_button'] .'</div>';
+        }
 
-  echo '<div class="child buttons noLeftPadding">
-    <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'' , $scripturl , '?action=pm;sa=send\');">Compose Message</button>
-  </div>';
+        //Get a list of everyone in this message
+        $members = '';
+        $selfie = false;
 
-  echo '<ul class="content2">';
+        foreach (array_merge($message['recipients']['to'], array($message['member']['name'])) as $recipient)
+        {
+          preg_match('/\>(.*)\</', $recipient, $match);
+          if (count($match) >= 2) {
+            $recipient = $match[1];
+          }
+
+          if ($recipient != $context['user']['username']) {
+            $members = $member . $recipient . ', ';
+          }
+          else {
+            $selfie = true;
+          }
+        }
+        if ($members == '' && $selfie) {
+          $members = $context['user']['username'] . ', ';  
+        }
+
+        echo '<div class="description">', $members , $message['time']=='N/A' ? $txt['no'] . ' ' . $txt['topics'] : iPhoneTime($message['timestamp']) , '</div>
+      </li>';
+
+      $messageCount++;
+    }
+
+    if ($messageCount != 0)
+    {
+      echo '</ul>';
+    }
+
+    //We're not actually going to show any messages here, so let's set them back to unread.
+    $unreadNewPosts = array();
+    while ($message = $context['get_pmessage']('message'))
+    {
+      if ($message['is_unread'])
+      {
+        $unreadNewPosts[] = $message['id'];
+      }
+    }
+    if (count($unreadNewPosts) >= 1)
+    {
+      unmarkMessages($unreadNewPosts);
+    }
+
+    if ($messageCount==0)
+    echo '
+    <div id="unreadlink" style="padding-top: 0 !important;">
+      ', $txt['msg_alert_none'] , '
+    </div>';
+
+    require_once ($settings[theme_dir].'/ThemeControls.php');
+    template_control_paging();
+  }
+  else
+  {
+    if ($context['display_mode'] == 0)
+    {
+      echo '<div class="child buttons noLeftPadding">
+        <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'' , $scripturl , '?action=pm;sa=send\');">Send Message</button>
+      </div>';
+    }
+
+    $subject = "";
+    if (empty($settings['show_user_images']) || !empty($options['show_no_avatars']))
+    {
+      echo '<style>
+        .message { min-height: initial !important; }
+        #avatar { display: none; }
+        .message_time { margin-bottom: 5px !important; }
+      </style>';
+    }
+
+    echo '<script>  
+      $(function() {
+        function handler(event) {
+          event.stopPropagation();
+        }
+        $("a").click(handler);
+      });
+    </script>';
+
+    require_once ($settings[theme_dir].'/ThemeFunctions.php');
+    NavigateToMessageScript();
 
     while ($message = $context['get_pmessage']('message'))
     {
+      if ($messageCount == 0)
+      {
+        echo '<ul class="content2 ' , ($context['display_mode'] != 0 ? ' firstContent' : '')  , '">';
+      }
       echo'
         <li>
           <a id="msg', $message['id'], '"></a>';
-          // Comment out subject stuff
-          //echo '<div class="postDetails">' , $message['counter'] + 1 , '. ', $message['subject'] ,'</div>';
           echo '
           <div>
-            <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=', $message['member']['id'], '\');" >', $txt['reply'] ,'</button>
+            <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=all\');" >', $txt['reply'] ,'</button>
             <button class="button slimbutton" id="editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=pm;sa=pmactions;pm_actions[', $message['id'], ']=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>
           </div>
 
@@ -66,21 +150,39 @@ function template_folder()
         
           </div>
           
-
-          <div class="message" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=' . $message['member']['id'], '\');">
+          <div class="message" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=all\');">
             <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
           ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['body']))) ,'
           </div>
 
         </li>';
+
+        $subject = $message['subject'];
+        $messageCount++;
     }
 
-  echo '</ul>';
-    
-  require_once ($settings[theme_dir].'/ThemeControls.php');
-  template_control_paging();
-}
+    if ($messageCount != 0)
+    {
+      echo '</ul>';
+    }
 
+    if (strpos($_SERVER['REQUEST_URI'], 'pmsg') == true)
+    {
+      echo '
+      <script>
+        $(function(){
+          $(".theTitle").last().html("', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $subject) : $subject) ,'");
+        });
+      </script>';
+    }
+
+    if ($messageCount==0)
+    echo '
+    <div id="unreadlink" style="padding-top: 0 !important;">
+      ', $txt['msg_alert_none'] , '
+    </div>';
+  }
+}
 
 function template_send()
 {
@@ -130,26 +232,44 @@ function template_send()
     echo '<style> #newTopic { padding-top: 9px; } </style>';        
   }
 
-  // Comment out subject stuff and hide subject
-  // echo '<div id="newTopic" class="inputContainer">';
-  //   echo '<span class="inputLabel">Topic</span>';
-     echo '<input type="hidden" tabindex="', $context['tabindex']++, '" name="subject" value="' , (empty($context['subject']) || $context['subject'] == $txt['no_subject'] ? 'Sent from iOS.MF' : $context['subject']) , '" maxlength="50" />';
-  // echo '</div>';
+  if (empty($context['to_value']))
+  {
+    echo '<div id="newTopic" class="inputContainer">';
+      echo '<span class="inputLabel">'. $txt['iTo'] .'</span>';
+      //Users drop down list
+      require_once ($settings[theme_dir].'/ThemeFunctions.php');
+      $users = UserList();
+      echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify" style="padding-left: 4px;">';
+      echo '<option></option>';
+      foreach ($users as $user) {
+        echo '<option>' . $user . '</option>';
+      }
+      echo '</select>';
+    echo '</div>';
+  }
+  else
+  {
+    echo '<input type="hidden" name="to" value="' , $context['to_value'] , '" />';
+  }
 
-  echo '<div id="newTopic" class="inputContainer">';
-    echo '<span class="inputLabel">'. $txt['iTo'] .'</span>';
-    //Users drop down list
-    require_once ($settings[theme_dir].'/ThemeFunctions.php');
-    $users = UserList();
-    echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify">';
-    echo '<option></option>';
-    foreach ($users as $user) {
-      echo '<option ' . (strpos($context['to_value'], $user) ? 'selected' : '') . '>' . $user . '</option>';
-    }
-    echo '</select>';
-  echo '</div>';
+  if (empty($context['subject']) || $context['subject'] == $txt['no_subject'])
+  {
+    echo '<div id="newTopic" class="inputContainer">';
+      echo '<span class="inputLabel">Subject</span>';
+      echo '<input type="text" tabindex="', $context['tabindex']++, '" name="subject" value="" maxlength="50" />';
+    echo '</div>';
+  }
+  else
+  {
+    echo '<input type="hidden" name="subject" value="' , $context['subject'] , '" />';
+    echo '
+    <script>
+      $(function(){
+        $(".theTitle").last().html("', $context['subject'] ,'");
+      });
+    </script>';
+  }
 
-    
   echo'
     <div id="postContainer" class="inputContainer">
       <div class="newPost">
@@ -171,7 +291,7 @@ function template_send()
   
   echo '<div class="child buttons">
   
-  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').last().show();">', $txt['iPost'] ,'</button>
+  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').last().show(); if ($(\'input[name=subject]\').val() == \'\') { $(\'input[name=subject]\').val(\'Sent from iOS.MF\'); } ">', $txt['iSend'] ,'</button>
 
   </div>';
 
@@ -183,8 +303,76 @@ function template_send()
   <input type="hidden" name="f" value="', isset($context['folder']) ? $context['folder'] : '', '" />
   <input type="hidden" name="l" value="', isset($context['current_label_id']) ? $context['current_label_id'] : -1, '" />
 
-  </form>
-';
+  </form>';
+//  <input type="hidden" name="recipient_to[]" value="1">
 
 }
+
+// Mark personal messages unread.
+function unmarkMessages($personal_messages = null, $label = null, $owner = null)
+{
+  global $user_info, $context, $smcFunc;
+
+  if ($owner === null)
+    $owner = $user_info['id'];
+
+  $smcFunc['db_query']('', '
+    UPDATE {db_prefix}pm_recipients
+    SET is_read = 0
+    WHERE id_member = {int:id_member}
+      AND (is_read & 1 >= 1)' . ($label === null ? '' : '
+      AND FIND_IN_SET({string:label}, labels) != 0') . ($personal_messages !== null ? '
+      AND id_pm IN ({array_int:personal_messages})' : ''),
+    array(
+      'personal_messages' => $personal_messages,
+      'id_member' => $owner,
+      'label' => $label,
+    )
+  );
+
+  // If something wasn't marked as read, get the number of unread messages remaining.
+  if ($smcFunc['db_affected_rows']() > 0)
+  {
+    if ($owner == $user_info['id'])
+    {
+      foreach ($context['labels'] as $label)
+        $context['labels'][(int) $label['id']]['unread_messages'] = 0;
+    }
+
+    $result = $smcFunc['db_query']('', '
+      SELECT labels, COUNT(*) AS num
+      FROM {db_prefix}pm_recipients
+      WHERE id_member = {int:id_member}
+        AND NOT (is_read & 1 >= 1)
+        AND deleted = {int:is_not_deleted}
+      GROUP BY labels',
+      array(
+        'id_member' => $owner,
+        'is_not_deleted' => 0,
+      )
+    );
+    $total_unread = 0;
+    while ($row = $smcFunc['db_fetch_assoc']($result))
+    {
+      $total_unread += $row['num'];
+
+      if ($owner != $user_info['id'])
+        continue;
+
+      $this_labels = explode(',', $row['labels']);
+      foreach ($this_labels as $this_label)
+        $context['labels'][(int) $this_label]['unread_messages'] += $row['num'];
+    }
+    $smcFunc['db_free_result']($result);
+
+    // Need to store all this.
+    cache_put_data('labelCounts:' . $owner, $context['labels'], 720);
+    updateMemberData($owner, array('unread_messages' => $total_unread));
+
+    // If it was for the current member, reflect this in the $user_info array too.
+    if ($owner == $user_info['id'])
+      $context['user']['unread_messages'] = $user_info['unread_messages'] = $total_unread;
+  }
+}
+
 ?>
