@@ -139,7 +139,7 @@ function template_folder()
           </div>';
 
           // Show who the message was sent to.
-          echo '<div class="description" style="font-style: italic;"> ', $txt['sent_to'], ': ';
+          echo '<div class="description" style="font-style: italic; margin-bottom: -1px; margin-top: 2px;"> ', $txt['sent_to'], ': ';
           // People it was sent directly to....
           if (!empty($message['recipients']['to']))
           {
