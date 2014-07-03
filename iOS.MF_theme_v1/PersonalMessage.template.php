@@ -203,6 +203,12 @@ function template_folder()
     <div id="unreadlink" style="padding-top: 0 !important;">
       ', $txt['msg_alert_none'] , '
     </div>';
+
+    if ($context['display_mode'] == 0)
+    {
+      require_once ($settings[theme_dir].'/ThemeControls.php');
+      template_control_paging();
+    }
   }
 }
 
@@ -324,6 +330,7 @@ function template_send()
   <input type="hidden" name="pm_head" value="', !empty($context['quoted_message']['pm_head']) ? $context['quoted_message']['pm_head'] : 0, '" />
   <input type="hidden" name="f" value="', isset($context['folder']) ? $context['folder'] : '', '" />
   <input type="hidden" name="l" value="', isset($context['current_label_id']) ? $context['current_label_id'] : -1, '" />
+  <input type="hidden" name="outbox" value="', $context['copy_to_outbox'] ? '1' : '0', '" />
 
   </form>';
 //  <input type="hidden" name="recipient_to[]" value="1">
