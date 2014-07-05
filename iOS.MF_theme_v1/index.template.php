@@ -69,9 +69,23 @@ function template_html_above()
   var ajax_notification_text = "', $txt['ajax_in_progress'], '";
   var ajax_notification_cancel_text = "', $txt['modify_cancel'], '";
   $.mobile.defaultPageTransition = \'' , isset( $settings['page_transition_animation']) ?  $settings['page_transition_animation'] : 'none' , '\';
+
+  var setTopMargin = function() {
+    var topBar = $(".topbar").last();
+    if (topBar.css("position") == "fixed") {
+      var topBarHeight = topBar.height();
+      $(".marginTopContent").last().css("padding-top", topBarHeight);
+    }
+  }
+
   $(function() {
     FastClick.attach(document.body);
   });
+
+  $(document).on("pagecontainershow", function() {
+    setTopMargin();
+  });
+
 </script>';
 
 if (isset($settings['disable_webkit_select']) && $settings['disable_webkit_select'])
@@ -123,67 +137,72 @@ function iPhoneTitle(){
 function template_body_above()
 {
 
-global $txt, $_GET, $context, $modSettings, $settings, $user_info, $scripturl;
+  global $txt, $_GET, $context, $modSettings, $settings, $user_info, $scripturl;
 
-echo '
-
-<div id="topbar" data-role="header">';
-if((!empty($_GET['action'])) && (($_GET['action']=='login') || ($_GET['action']=='register'))) {
-  $loginregister=' style="display:none;"';
-  }
-else
-  $loginregister='';
-  echo'
-
-  <h1 id="pageTitle">';
-  
-  echo'<div id="theTitle" class="theTitle">', iPhoneTitle(), '</div>';  
-  
-  echo'</h1>
-
-  <div id="showhidesearch" class="showhidesearch magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></div>    
-  <div id="showhidelogin" class="showhidelogin ' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></div>
-
-  <script>
-    var searchControl = $(".showhidesearch").last().get(0);
-    var toggleSearch = function() {
-      if ($("#searchbar").is(":visible"))
-      {
-        $("#searchbar").hide();
-        searchControl.className = "magnifierIcon";
-      }
-      else
-      {
-        $("#searchbar").show();
-        searchControl.className = "closeIcon";
-        $("#searchText").focus();
-      }
-    };
-    searchControl.onclick = toggleSearch;
-  </script>
-
-  </div>';
-
+  //Add fixedTopBar to class of topbar to fix at the top. Mobile Safari doesn't like fixed items when the keyboard is showing at present though (iOS7).
+  //ToDo: When Safari can handle this better present this as a user option.
   echo '
+  <div class="topbar" id="topbar" data-role="header">';
+  if((!empty($_GET['action'])) && (($_GET['action']=='login') || ($_GET['action']=='register'))) {
+    $loginregister=' style="display:none;"';
+    }
+  else
+    $loginregister='';
+    echo'
 
-  <div id="searchbar" class="inputContainer">
-
-  <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="searchform">
-
-  <input id="searchText" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
-  <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" />
+    <h1 id="pageTitle">';
     
-  </form>
+    echo'<div id="theTitle" class="theTitle">', iPhoneTitle(), '</div>';  
+    
+    echo'</h1>
 
-  </div>';
-  
-  quick_login();
+    <div id="showhidesearch" class="showhidesearch magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></div>    
+    <div id="showhidelogin" class="showhidelogin ' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></div>
+
+    <script>
+      var searchControl = $(".showhidesearch").last().get(0);
+      var toggleSearch = function() {
+        if ($("#searchbar").is(":visible"))
+        {
+          $("#searchbar").hide();
+          searchControl.className = "magnifierIcon";
+        }
+        else
+        {
+          $("#searchbar").show();
+          searchControl.className = "closeIcon";
+          $("#searchText").focus();
+        }
+        setTopMargin();
+      };
+      searchControl.onclick = toggleSearch;
+    </script>';
+
+    echo '
+
+    <div id="searchbar" class="inputContainer">
+
+    <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="searchform">
+
+    <input id="searchText" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
+    <input type="submit" id="searchbutton" class="button inputbutton" value="'. $txt['search_button'] .'" />
+      
+    </form>
+    </div>';
+
+    quick_login();
+
+  echo '</div>';
+
+  echo '<div class="marginTopContent">';
 }
 
 function template_body_below()
 {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
-  
+
+  echo '<div>';
+
   //Subtle default mode button
 $backname = $backlink = '';
 if (!empty($modSettings['id_default_theme']))
@@ -195,30 +214,8 @@ $backname = 'Default Theme';
 echo '<a data-ajax="false" onclick="$(\'.ui-loader\').last().show();" class="classic button" id="classic" href="'. $backlink .'">', $backname ,'</a>';
 
     echo '<div id="copyright"><h4>', theme_copyright(), '</h4></div>';
-  
-if ($context['user']['is_logged']){
-
-  
-  $array = array('search', 'pm', 'profile');
-  $ishome = '';
-  $issearch = '';
-  $ispm = '';
-  $isprofile = '';
-  $home = true;
-  foreach ($array as $arr){
-    if ((!empty($_GET['action'])) && (strstr($_GET['action'],$arr))){
-      $var = 'is' . $arr; 
-      $$var = ' class="active"';
-      $home = false;
-      }
-    }
-  if ($home)
-    $ishome = ' class="active"';
       
-echo '
-</div>
-';
-}
+echo '</div>';
 
     //Toolbar HTML
     require_once ($settings[theme_dir].'/ThemeFunctions.php');
@@ -279,6 +276,7 @@ function template_html_below()
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
 
   echo '
+</div>
 </body>
 </html>';
 }
@@ -389,6 +387,7 @@ function quick_login()
         $("#user").focus();
         control.className = "closeIcon";
       }
+      setTopMargin();
     };
 
     control.onclick = toggleQuickLogin;

@@ -261,7 +261,7 @@ function quick_reply()
 {    
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
         
-    echo '<script type="text/javascript">
+    $quickReply = '<script type="text/javascript">
 
     $(function(){
       $(".editor").last().autosize();
@@ -278,6 +278,7 @@ function quick_reply()
         $("#quickReply").show();
         $("#message").focus();
       }
+      setTopMargin();
     };
 
     var title = $(".theTitle").last().get(0);
@@ -286,10 +287,10 @@ function quick_reply()
 
     </script>';
     
-    echo '<div id="quickReply">';
-    echo '<form action="', $scripturl, '?action=post2;', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '.new#new" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
+    $quickReply .= '<div id="quickReply">';
+    $quickReply .= '<form action="' . $scripturl . '?action=post2;' . (empty($context['current_board']) ? '' : 'board=') . $context['current_board'] . '.new#new" method="post" accept-charset="' . $context['character_set'] . '" name="postmodify" id="postmodify" onsubmit="submitonce(this);smc_saveEntities(\"postmodify\", [\"subject\", \"' . $context['post_box_name'] . '\", \"guestname\", \"evtitle\", \"question\"], \"options\");" enctype="multipart/form-data" style="margin: 0;">';
 
-    echo'
+    $quickReply .='
   <div id="postContainer" class="inputContainer" style="padding-bottom: 0;">
     <div class="newPost">
       <textarea class="editor" name="message" id="message" rows="1" cols="60" tabindex="2" style="width: 100%; height: 16px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
@@ -299,61 +300,67 @@ function quick_reply()
   // Guests have to put in their name and email...
   if (!$context['user']['is_logged'] && isset($context['name']) && isset($context['email']))
   {
-    echo '<div class="noLeftPadding inputContainer padTop">';
-    echo '<span class="inputLabel">'. $txt['username'] .'</span>';
-    echo '<input type="text" name="guestname" size="25" value="', $context['name'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
-    echo '<span id="smf_autov_username_div" style="display: none;">
+    $quickReply .= '<div class="noLeftPadding inputContainer padTop">';
+    $quickReply .= '<span class="inputLabel">'. $txt['username'] .'</span>';
+    $quickReply .= '<input type="text" name="guestname" size="25" value="' . $context['name'] . '" tabindex="' . $context['tabindex']++ . '" class="input_text" />';
+    $quickReply .= '<span id="smf_autov_username_div" style="display: none;">
             <a id="smf_autov_username_link" href="#">
-              <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
+              <img id="smf_autov_username_img" src="' . $settings['images_url'] . '/icons/field_check.png" alt="*" />
             </a>
           </span>';
-    echo '</div>';
+    $quickReply .= '</div>';
 
     if (empty($modSettings['guest_post_no_email']))
     {
-      echo '<div class="noLeftPadding inputContainer padTop">';
-      echo '<span class="inputLabel">'. $txt['email'] .'</span>';
-      echo '<input type="text" name="email" size="25" value="', $context['email'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
-      echo '</div>';
+      $quickReply .= '<div class="noLeftPadding inputContainer padTop">';
+      $quickReply .= '<span class="inputLabel">'. $txt['email'] .'</span>';
+      $quickReply .= '<input type="text" name="email" size="25" value="' . $context['email'] . '" tabindex="' . $context['tabindex']++ . '" class="input_text" />';
+      $quickReply .= '</div>';
     }
   }
 
   if($context['require_verification'])
     {
-      echo '<div class="noLeftPadding inputContainer padTop">';
-      echo '<span class="inputLabel">Code</span>';
-      echo template_control_verification($context['visual_verification_id'], 'all');
-      echo '</div>';
-      echo '<div class="noLeftPadding inputContainer padTop">';
-      echo '<span class="inputLabel">Verify</span>';
-      echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
-      echo '</div>';
+      $quickReply .= '<div class="noLeftPadding inputContainer padTop">';
+      $quickReply .= '<span class="inputLabel">Code</span>';
+      $quickReply .= template_control_verification($context['visual_verification_id'], 'all');
+      $quickReply .= '</div>';
+      $quickReply .= '<div class="noLeftPadding inputContainer padTop">';
+      $quickReply .= '<span class="inputLabel">Verify</span>';
+      $quickReply .= '<input type="text" tabindex="' . $context['tabindex']++ . '" name="post_vv[code]" />';
+      $quickReply .= '</div>';
   }
   
-  echo '<div class="child buttons">
+  $quickReply .= '<div class="child buttons">
   
-  <button class="button" type="submit">', $txt['iPost'] ,'</button>
+  <button class="button" type="submit">' . $txt['iPost'] . '</button>
 
   </div>';
   
   if (isset($context['num_replies']))
-    echo '<input type="hidden" name="num_replies" value="', $context['num_replies'], '" />';
+    $quickReply .= '<input type="hidden" name="num_replies" value="' . $context['num_replies'] . '" />';
 
   if(!empty($context['subject'] ))
   {
-    echo '<input type="hidden" name="subject" value="' . $context['subject'] . '" />';
+    $quickReply .= '<input type="hidden" name="subject" value="' . $context['subject'] . '" />';
   }
     
-  echo '
-      <input type="hidden" name="additional_options" value="', $context['show_additional_options'] ? 1 : 0, '" />
-      <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
-      <input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
-      <input type="hidden" name="topic" value="', $context['current_topic'], '" />
-      <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />    
-      <input type="hidden" name="goback" value="', $options['return_to_post'] ,'" />
+  $quickReply .= '
+      <input type="hidden" name="additional_options" value="' . ($context['show_additional_options'] ? 1 : 0) . '" />
+      <input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '" />
+      <input type="hidden" name="seqnum" value="' . $context['form_sequence_number'] . '" />
+      <input type="hidden" name="topic" value="' . $context['current_topic'] . '" />
+      <input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '" />    
+      <input type="hidden" name="goback" value="' . $options['return_to_post'] . '" />
     </form>';
     
-  echo '</div>';
+  $quickReply .= '</div>';
+
+  echo '<script>
+    $(function() {
+      $(".topbar").last().append(' , json_encode($quickReply) , ');
+    });
+  </script>';
 }
 
 ?>

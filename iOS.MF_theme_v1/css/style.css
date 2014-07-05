@@ -906,16 +906,23 @@ hr{
   display: inline-block;
 }
 
-.toolbar {
+.toolbar, .fixedTopBar {
   position: fixed;
   z-index: 100; 
-  bottom: 0; 
   left: 0;
   width: 100%;
   background: #F0F0F4;
-  height: 43px;
   border-width: 0 !important;
+}
+
+.toolbar {
+  height: 43px;
   text-align: center;
+  bottom: 0; 
+}
+
+.fixedTopBar {
+  top: 0; 
 }
 
 .toolbar > ul {
@@ -1056,5 +1063,9 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   color: black;
   -webkit-text-fill-color: black;
   -webkit-opacity: 1;
+  background-color: white;
+}
+
+.verification_image {
   background-color: white;
 }
