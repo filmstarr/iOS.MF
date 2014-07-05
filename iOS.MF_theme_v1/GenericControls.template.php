@@ -22,6 +22,8 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
 {
   global $context, $settings, $options, $txt, $modSettings;
 
+  $verification = "";
+
   $verify_context = &$context['controls']['verification'][$verify_id];
 
   // Keep track of where we are.
@@ -46,15 +48,15 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
     if ($i == 0 && $verify_context['show_visual'])
     {
       if ($context['use_graphic_library'])
-        echo '
-        <img height="30" src="', $verify_context['image_href'], '" alt="', $txt['visual_verification_description'], '" id="verification_image_', $verify_id, '" />';
+        $verification .= '
+        <img class="verification_image" height="30" src="' . $verify_context['image_href'] . '" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '" />';
       else
-        echo '
-        <img src="', $verify_context['image_href'], ';letter=1" alt="', $txt['visual_verification_description'], '" id="verification_image_', $verify_id, '_1" />
-        <img src="', $verify_context['image_href'], ';letter=2" alt="', $txt['visual_verification_description'], '" id="verification_image_', $verify_id, '_2" />
-        <img src="', $verify_context['image_href'], ';letter=3" alt="', $txt['visual_verification_description'], '" id="verification_image_', $verify_id, '_3" />
-        <img src="', $verify_context['image_href'], ';letter=4" alt="', $txt['visual_verification_description'], '" id="verification_image_', $verify_id, '_4" />
-        <img src="', $verify_context['image_href'], ';letter=5" alt="', $txt['visual_verification_description'], '" id="verification_image_', $verify_id, '_5" />';
+        $verification .= '
+        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=1" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_1" />
+        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=2" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_2" />
+        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=3" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_3" />
+        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=4" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_4" />
+        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=5" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_5" />';
       
     }
     else
@@ -62,10 +64,10 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
       // Where in the question array is this question?
       $qIndex = $verify_context['show_visual'] ? $i - 1 : $i;
 
-      echo '
+      $verification .= '
         <div class="smalltext">
-          ', $verify_context['questions'][$qIndex]['q'], ':<br />
-          <input type="text" name="', $verify_id, '_vv[q][', $verify_context['questions'][$qIndex]['id'], ']" size="30" value="', $verify_context['questions'][$qIndex]['a'], '" ', $verify_context['questions'][$qIndex]['is_error'] ? 'style="border: 1px red solid;"' : '', ' tabindex="', $context['tabindex']++, '" />
+          ' . $verify_context['questions'][$qIndex]['q'] . ':<br />
+          <input type="text" name="' . $verify_id . '_vv[q][' . $verify_context['questions'][$qIndex]['id'] . ']" size="30" value="' . $verify_context['questions'][$qIndex]['a'] . '" ' . ($verify_context['questions'][$qIndex]['is_error'] ? 'style="border: 1px red solid;"' : '') . ' tabindex="' . $context['tabindex']++ . '" />
         </div>';
     }
 
@@ -77,9 +79,7 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
   // Assume we found something, always,
   $verify_context['tracking']++;
 
-  // Tell something displaying piecemeal to keep going.
-  if ($display_type == 'single')
-    return true;
+  return $verification;
 }
 
 ?>
