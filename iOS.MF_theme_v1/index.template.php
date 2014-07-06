@@ -254,19 +254,17 @@ echo '</div>';
     echo '</div>';
 
     echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance=true>
-      <ul>
-        <li><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'',$scripturl,'\', { reloadPage : true })" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></li>
-        <li><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\', { reloadPage : true })' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></li>
-        <li>
+        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'',$scripturl,'\', { reloadPage : true })" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></div>
+        <div><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\', { reloadPage : true })' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></div>
+        <div>
           <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=pm\', { reloadPage : true })' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
           <div class="unreadCount unreadMessages"' , ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>'. $context['user']['unread_messages'] : ' style="display:none;">') , '</div>
-        </li>
-        <li><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=recent\', { reloadPage : true })" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></li>
-        <li>
+        </div>
+        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=recent\', { reloadPage : true })" style="background: url('.$settings['theme_url'].'/images/icons/inbox.png) transparent center no-repeat;"></div></div>
+        <div>
           <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=unread;all\', { reloadPage : true })' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div>
           <div class="unreadCount unreadPosts"' , ($unreadPostCount > 0 && $context['user']['is_logged'] ? '>'. $unreadPostCount : ' style="display:none">') , '</div>
-        </li>
-      </ul>
+        </div>
     </div>';
 
 }
