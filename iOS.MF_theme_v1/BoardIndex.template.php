@@ -16,7 +16,7 @@ function template_main()
       {
         $i++;
 					echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $board['href'] .'\');">';
-        echo '<div class="title', ($context['user']['is_logged'] && $board['new']) ? ' shortTitle' : '' ,'">', $board['name'] ,'</div>';
+        echo '<div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' shortTitle' : '' ,'">', $board['name'] ,'</div>';
 		  if ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) {
           echo '<div class="new">'. $txt['new_button'] .'</div>';
         }

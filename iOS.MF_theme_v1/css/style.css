@@ -347,13 +347,13 @@ float: left;
   padding-right: 8px;    
   border-radius: 5px;
   background: white;
-  width: 204px;
+  width: calc(100% - 107px);
   -webkit-appearance:caret;
 }
 
 .inputContainer select {
   height: 34px;
-  width: 222px;
+  width: calc(100% - 90px);
 }
 
 .inputContainer img {
@@ -574,7 +574,7 @@ textarea{
 .clicked {
   padding-left: 9px !important;
   margin-left: -9px  !important;
-  width: 320px !important;
+  width: calc(100% + 9px) !important;
   outline: 1px solid #E0E0E0;
   background: #E0E0E0;
 }
@@ -834,7 +834,7 @@ hr{
 
 .title {
   text-overflow: ellipsis;
-  max-width: 307px;
+  max-width: 301px;
   white-space: nowrap;
   overflow: hidden;
   font-size: 16px !important;
@@ -850,7 +850,7 @@ hr{
 }
 
 .stickyShortTitle {
-  max-width: 263px;
+  max-width: 262px;
 }
 
 .new {
@@ -917,7 +917,7 @@ hr{
 
 .toolbar {
   height: 43px;
-  text-align: center;
+  text-align: justify;
   bottom: 0; 
 }
 
@@ -925,30 +925,25 @@ hr{
   top: 0; 
 }
 
-.toolbar > ul {
-  list-style: none;    
+.toolbar {
   width: 100%;
 }
 
-.toolbar > ul > li {
+.toolbar > div {
   display: inline-block;
 }
 
-.toolbar > ul > li > .toolbarIcon {
+.toolbar > div > .toolbarIcon {
   float: right;
-  width: 66px;
+  width: 55px;
   height: 43px;
   background-size: 24px 24px !important;
 }
 
-.toolbar > ul > li:first-child > .toolbarIcon {
-  width: 49px;
-  background-position: left
-}
-
-.toolbar > ul > li:last-child > .toolbarIcon {
-  width: 49px;
-  background-position: right
+.toolbar:after {
+  content: '';
+  width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
+  display: inline-block;
 }
 
 a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic > input, div { -webkit-tap-highlight-color: rgba(0,0,0,0); }
@@ -958,12 +953,10 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
     background: #F0F0F4;
 }
 
-.toolbar > ul > li > div:active,
 .mieilink a:active,
 .message a:active,
 .button:active,
 
-.toolbar > ul > li > div:hover,
 .mieilink a:hover,
 .message a:hover,
 .button:hover,
@@ -1021,7 +1014,7 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   text-align: center;
   font-size: 9px;
   line-height: 14px;
-  margin-right: -43px;
+  margin-right: -46px;
   margin-top: 4px;
   width: initial;
   padding: 0px 4px 0px 4px;
@@ -1030,7 +1023,7 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 }
 
 .unreadMessages {
-   margin-right: -52px !important;
+   margin-right: -47px !important;
 }
 
 .ui-loader-default {
