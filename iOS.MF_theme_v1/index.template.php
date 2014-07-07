@@ -31,8 +31,8 @@ function template_html_above()
 {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
   
-  echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"', $context['right_to_left'] ? ' dir="rtl"' : '', '>
+  echo '<!DOCTYPE html>
+<html', $context['right_to_left'] ? ' dir="rtl"' : '', '>
 
 <head>
 <title>', $context['page_title_html_safe'], '</title>
@@ -151,11 +151,11 @@ function template_body_above()
     $loginregister='';
     echo'
 
-    <h1 id="pageTitle">';
+    <div id="pageTitle">';
     
     echo'<div id="theTitle" class="theTitle">', iPhoneTitle(), '</div>';  
     
-    echo'</h1>
+    echo'</div>
 
     <div id="showhidesearch" class="showhidesearch magnifierIcon" onclick="toggleSearch" ', $issearch ,'></div>    
     <div id="showhidelogin" class="showhidelogin ' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></div>

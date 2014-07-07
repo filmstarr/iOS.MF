@@ -107,7 +107,7 @@ function template_folder()
     {
       echo '<style type="text/css">
         .message { min-height: initial !important; }
-        #avatar { display: none; }
+        .avatar { display: none; }
         .message_time { margin-bottom: 5px !important; }
       </style>';
     }
@@ -164,10 +164,10 @@ function template_folder()
           echo '<div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
           if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
             if (empty($message['member']['avatar']['image'])) {
-              echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
+              echo '<div class="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
             }
             else {
-              echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
+              echo '<div class="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
             }
           echo '
         

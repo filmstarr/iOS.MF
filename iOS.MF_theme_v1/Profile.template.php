@@ -10,12 +10,12 @@ function template_summary()
   
   echo ($context['member']['avatar']['href']) ? '
   <style type="text/css">
-  #avatar{
+  .avatar{
     background: url('.str_replace(' ','%20', $context['member']['avatar']['href']).') #fff center no-repeat;}</style>' : '', '
 
   <div id="profileheader">
   
-    <div id="avatar"></div>
+    <div class="avatar"></div>
     
     <div id="username"><h3>', $context['member']['name'] ,'</h3><h4>', $context['member']['group'] ,'</h4></div>
   

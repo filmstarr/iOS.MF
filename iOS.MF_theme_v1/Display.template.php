@@ -12,7 +12,7 @@ function template_main()
   {
     echo '<style type="text/css">
       .message { min-height: initial !important; }
-      #avatar { display: none; }
+      .avatar { display: none; }
       .message_time { margin-bottom: 5px !important; }
     </style>';
   }
@@ -63,9 +63,9 @@ function template_main()
     echo '
       <div id="poll">
         <div class="cat_bar">
-          <h3 class="catbg">
+          <div class="catbg">
             <div class="sticky"></div>', $txt['poll'], '
-          </h3>
+          </div>
         </div>
         <div class="windowbg">
 
@@ -78,7 +78,7 @@ function template_main()
     if ($context['poll']['show_results'] || !$context['allow_vote'])
     {
       echo '
-          <dl class="options">';
+          <div class="options">';
 
       // Show each option with its corresponding percentage bar.
       foreach ($context['poll']['options'] as $option)
@@ -86,6 +86,7 @@ function template_main()
         if ($context['allow_poll_view'])
           echo '<div class="middletext', $option['voted_this'] ? ' voted' : '', '">' , $option['votes'], ' (', $option['percent'], '%) - ' , $option['option'], '</div>';
       }
+      echo '</div>';
     }
     // They are allowed to vote! Go to it!
     else
@@ -176,10 +177,10 @@ function template_main()
       <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
         if (empty($message['member']['avatar']['image'])) {
-          echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
+          echo '<div class="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
         }
         else {
-          echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
+          echo '<div class="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
         }
       echo '
     
