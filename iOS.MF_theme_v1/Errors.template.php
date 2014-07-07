@@ -11,7 +11,6 @@
 function template_fatal_error()
 {
 	global $context, $settings, $options, $txt;
-
 	
 	echo '<h2>', $context['error_title'], '</h2>';
 	

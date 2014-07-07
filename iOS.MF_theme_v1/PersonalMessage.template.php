@@ -80,7 +80,8 @@ function template_folder()
     }
     if (count($unreadNewPosts) >= 1)
     {
-      unmarkMessages($unreadNewPosts);
+      require_once ($settings[theme_dir].'/ThemeFunctions.php');
+      UnmarkMessages($unreadNewPosts);
     }
 
     if ($messageCount==0)
@@ -333,75 +334,7 @@ function template_send()
   <input type="hidden" name="outbox" value="', $context['copy_to_outbox'] ? '1' : '0', '" />
 
   </form>';
-//  <input type="hidden" name="recipient_to[]" value="1">
 
-}
-
-// Mark personal messages unread.
-function unmarkMessages($personal_messages = null, $label = null, $owner = null)
-{
-  global $user_info, $context, $smcFunc;
-
-  if ($owner === null)
-    $owner = $user_info['id'];
-
-  $smcFunc['db_query']('', '
-    UPDATE {db_prefix}pm_recipients
-    SET is_read = 0
-    WHERE id_member = {int:id_member}
-      AND (is_read & 1 >= 1)' . ($label === null ? '' : '
-      AND FIND_IN_SET({string:label}, labels) != 0') . ($personal_messages !== null ? '
-      AND id_pm IN ({array_int:personal_messages})' : ''),
-    array(
-      'personal_messages' => $personal_messages,
-      'id_member' => $owner,
-      'label' => $label,
-    )
-  );
-
-  // If something wasn't marked as read, get the number of unread messages remaining.
-  if ($smcFunc['db_affected_rows']() > 0)
-  {
-    if ($owner == $user_info['id'])
-    {
-      foreach ($context['labels'] as $label)
-        $context['labels'][(int) $label['id']]['unread_messages'] = 0;
-    }
-
-    $result = $smcFunc['db_query']('', '
-      SELECT labels, COUNT(*) AS num
-      FROM {db_prefix}pm_recipients
-      WHERE id_member = {int:id_member}
-        AND NOT (is_read & 1 >= 1)
-        AND deleted = {int:is_not_deleted}
-      GROUP BY labels',
-      array(
-        'id_member' => $owner,
-        'is_not_deleted' => 0,
-      )
-    );
-    $total_unread = 0;
-    while ($row = $smcFunc['db_fetch_assoc']($result))
-    {
-      $total_unread += $row['num'];
-
-      if ($owner != $user_info['id'])
-        continue;
-
-      $this_labels = explode(',', $row['labels']);
-      foreach ($this_labels as $this_label)
-        $context['labels'][(int) $this_label]['unread_messages'] += $row['num'];
-    }
-    $smcFunc['db_free_result']($result);
-
-    // Need to store all this.
-    cache_put_data('labelCounts:' . $owner, $context['labels'], 720);
-    updateMemberData($owner, array('unread_messages' => $total_unread));
-
-    // If it was for the current member, reflect this in the $user_info array too.
-    if ($owner == $user_info['id'])
-      $context['user']['unread_messages'] = $user_info['unread_messages'] = $total_unread;
-  }
 }
 
 ?>

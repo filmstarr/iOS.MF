@@ -16,7 +16,6 @@ function template_control_richedit($editor_id, $display_controls = 'all')
   }
 }
 
-
 // What's this, verification?!
 function template_control_verification($verify_id, $display_type = 'all', $reset = false)
 {

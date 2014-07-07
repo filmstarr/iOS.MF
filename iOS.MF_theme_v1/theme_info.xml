@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <theme-info xmlns="http://www.simplemachines.org/xml/theme-info" xmlns:smf="http://www.simplemachines.org/">
   <id>filmstarr:iOS.MF</id>
-  <version>2.0 RC4</version>
+  <version>1.0</version>
   <name>iOS.MF</name>
   <author name="filmstarr">filmstarr@hotmail.com</author>
+  <website>https://github.com/filmstarr/iOS.MF</website>
   <layers>html,body</layers>
   <templates>index</templates>
 </theme-info>

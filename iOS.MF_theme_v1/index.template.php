@@ -41,9 +41,10 @@ function template_html_above()
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
 
-<link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/style.css" type="text/css" />
+<link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/index.css" type="text/css" />
 <link rel="stylesheet" href="'. $settings['theme_url'] .'/css/jquery.mobile.structure-1.4.2.min.css" />
 <link rel="stylesheet" href="'. $settings['theme_url'] .'/css/magnific-popup.css" />
+', ($context['right_to_left'] ? '<link rel="stylesheet" type="text/css" href="'. $settings['theme_url']. '/css/rtl.css" />' : '') ,'
 <script src="'. $settings['theme_url'] .'/scripts/fastclick.min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery-2.1.1.min.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery.mobile-1.4.2.min.js"></script>
@@ -51,7 +52,7 @@ function template_html_above()
 <script type="text/javascript" src="'. $settings['default_theme_url'] .'/scripts/captcha.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.autosize.min.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.hammer.min.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/iphone.js"></script>
+<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/theme.js"></script>
 <script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/quote.js"></script>
 <script src="'. $settings['theme_url'] .'/scripts/jquery.magnific-popup.min.js"></script>
 
