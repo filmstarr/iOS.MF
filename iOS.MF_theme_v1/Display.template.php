@@ -10,14 +10,14 @@ function template_main()
 
   if (empty($settings['show_user_images']) || !empty($options['show_no_avatars']))
   {
-    echo '<style>
+    echo '<style type="text/css">
       .message { min-height: initial !important; }
       #avatar { display: none; }
       .message_time { margin-bottom: 5px !important; }
     </style>';
   }
 
-  echo '<script>  
+  echo '<script type="text/javascript">  
     $(function() {
       $(".lightbox-image").magnificPopup({ 
         type: "image",
@@ -356,7 +356,7 @@ function quick_reply()
     
   $quickReply .= '</div>';
 
-  echo '<script>
+  echo '<script type="text/javascript">
     $(function() {
       $(".topbar").last().append(' , json_encode($quickReply) , ');
     });

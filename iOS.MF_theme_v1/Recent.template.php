@@ -5,7 +5,7 @@ function template_main()
 {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
 
-  echo '<script>  
+  echo '<script type="text/javascript">  
     $(function() {
       $(".message").each(function() {
         $(this).on("click", function() { $(this).parent().addClass("clicked"); });
@@ -131,7 +131,7 @@ echo '</div>
   echo '</ul>';
 
   if (!$showingAvatars) {
-    echo '<style>
+    echo '<style type="text/css">
       .message { min-height: initial !important; }
       #avatar { display: none; }
       .message_time { margin-bottom: 5px !important; }

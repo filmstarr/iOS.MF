@@ -23,7 +23,7 @@ function template_login()
 </div>
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['iRemember'] .'</span>';
-  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" id="cookieneverexp">
+  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" id="cookieneverexp" />
 </div>
     
   <input type="hidden" name="hash_passwrd" value="" />

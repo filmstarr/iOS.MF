@@ -105,14 +105,14 @@ function template_folder()
     $subject = "";
     if (empty($settings['show_user_images']) || !empty($options['show_no_avatars']))
     {
-      echo '<style>
+      echo '<style type="text/css">
         .message { min-height: initial !important; }
         #avatar { display: none; }
         .message_time { margin-bottom: 5px !important; }
       </style>';
     }
 
-    echo '<script>  
+    echo '<script type="text/javascript">  
       $(function() {
         function handler(event) {
           event.stopPropagation();
@@ -192,7 +192,7 @@ function template_folder()
     if (strpos($_SERVER['REQUEST_URI'], 'pmsg') == true)
     {
       echo '
-      <script>
+      <script type="text/javascript">
         $(function(){
           $(".theTitle").last().html("', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $subject) : $subject) ,'");
         });
@@ -217,7 +217,7 @@ function template_send()
 {
   global $context, $settings, $options, $scripturl, $modSettings, $txt;
 
-  echo '<script>
+  echo '<script type="text/javascript">
       $(function(){
         $(".editor").last().autosize().resize();
         $(".classic").last().hide();
@@ -258,7 +258,7 @@ function template_send()
   if(!empty($context['post_error']['messages']) && count($context['post_error']['messages']))    
   {
     echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
-    echo '<style> #newTopic { padding-top: 9px; } </style>';        
+    echo '<style type="text/css"> #newTopic { padding-top: 9px; } </style>';        
   }
 
   if (empty($context['to_value']))
@@ -292,7 +292,7 @@ function template_send()
   {
     echo '<input type="hidden" name="subject" value="' , $context['subject'] , '" />';
     echo '
-    <script>
+    <script type="text/javascript">
       $(function(){
         $(".theTitle").last().html("', $context['subject'] ,'");
       });

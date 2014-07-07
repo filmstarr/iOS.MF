@@ -175,7 +175,7 @@ function UnmarkMessages($personal_messages = null, $label = null, $owner = null)
 function NavigateToMessageScript()
 {
   echo '
-  <script>
+  <script type="text/javascript">
 
     $(document).one("silentscroll", function() {
       if (!navigateToElement(/(msg\d+)/))
