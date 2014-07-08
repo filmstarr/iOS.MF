@@ -14,6 +14,24 @@ function template_main()
   </script>';
 
   $showingAvatars = false;
+  foreach ($context['posts'] as $message)
+  {
+    if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) {
+      if (array_key_exists('avatar',$message['poster'])) {
+        $showingAvatars = true;
+      }
+    }
+  }
+
+  if (!$showingAvatars)
+  {
+    echo '
+    <style type="text/css">
+      .message { min-height: initial !important; }
+      .avatar { display: none; }
+      .message_time { margin-bottom: 5px !important; }
+    </style>';
+  }
 
   echo '
   <ul id="recent" class="content2 firstContent">';
@@ -32,30 +50,21 @@ function template_main()
     {
       echo '
         <div class="quickbuttons_wrap">
-          <ul class="reset smalltext quickbuttons">
+          <div class="reset smalltext quickbuttons">
 
-            <a href="', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], ';quote=', $message['id'], '"><button class="button slimbutton" id="editdel">', $txt['quote'], '</button></a>
-            <a href="', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], '"><button class="button slimbutton" id="editdel">', $txt['reply'], '</button></a>
+            <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], ';quote=', $message['id'], '\');">', $txt['quote'], '</button>
+            <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], '\');">', $txt['reply'], '</button>
 
-          </ul>
+          </div>
         </div>';
     }
       
       
-// Can the user modify the contents of this post?
-      if ($message['can_modify'])
-         echo '
-                  <a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '"><button class="button slimbutton" id="editdel"> '. $txt['modify'].' </button></a>';         
-   // How about... even... remove it entirely?!
-      if ($message['can_remove'])
-         echo '
-               <a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><button class="button slimbutton" id="editdel"> ', $txt['remove'],' </button></a>';
-echo '</div>
+    echo '</div>
   
       <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\')"><span class="name">', $message['poster']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) {
         if (array_key_exists('avatar',$message['poster'])) {
-          $showingAvatars = true;
           if (empty($message['poster']['avatar'])) {
             echo '<div class="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
           }
@@ -130,14 +139,6 @@ echo '</div>
     
   echo '</ul>';
 
-  if (!$showingAvatars) {
-    echo '<style type="text/css">
-      .message { min-height: initial !important; }
-      .avatar { display: none; }
-      .message_time { margin-bottom: 5px !important; }
-    </style>';
-  }
-    
   require_once ($settings[theme_dir].'/ThemeControls.php');
   template_control_paging($context['page_index']);
 }

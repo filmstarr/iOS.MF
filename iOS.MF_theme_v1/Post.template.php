@@ -89,7 +89,7 @@ echo'
     if ($context['can_post_attachment'])
     {
       echo '<div style="position: relative;">';
-        echo '<input type="file" size="60" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
+        echo '<input type="file" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
         echo '<div id="inputbuttonbackground"><div id="inputbutton" class="needsclick" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
       echo '</div>';
     }

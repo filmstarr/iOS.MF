@@ -720,7 +720,7 @@ h3.catbg, .catbg
   padding-right: 5px;
 }
 
-#editdel {
+.editdel {
   margin-top: 2px;
   width: 46%;
   margin-left: 2.4%;
@@ -945,7 +945,7 @@ hr{
 
 a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic > input, div { -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
-#quickReply, #quickLogin {
+#quickReply, .quickLogin {
   display: none;
     background: #F0F0F4;
 }

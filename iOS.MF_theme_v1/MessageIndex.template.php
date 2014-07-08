@@ -35,74 +35,49 @@ function template_main()
     $topic_sticky_count++;
     }}
   
-  $i = 0;
-    if($topic_sticky_count)
+  if($topic_sticky_count)
+  {
+    echo'<ul class="content2">';
     foreach ($context['topics'] as $topic)
-    {if($topic['is_sticky']){
-    
-    $i++;
-    
-    if ($i==1)echo'
-  
-  <ul class="content2">';
-
+    {
+      if($topic['is_sticky'])
+      {
         echo'<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['first_post']['href'] .'\');">';
-    echo '<div class="sticky"></div>
-    <div class="title', ($topic['new']) ? ' stickyShortTitle' : '' ,'">', $topic['first_post']['subject'] ,'</div>';
-    if ($topic['new']&&$context['user']['is_logged']) {
-      echo '<div class="new">'. $txt['new_button'] .'</div>';
+        echo '<div class="sticky"></div>
+        <div class="title', ($topic['new']) ? ' stickyShortTitle' : '' ,'">', $topic['first_post']['subject'] ,'</div>';
+        if ($topic['new']&&$context['user']['is_logged']) {
+          echo '<div class="new">'. $txt['new_button'] .'</div>';
+        }
+        echo'<div class="description">';
+        echo '', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', '. iPhoneTime($topic['last_post']['timestamp']) , '</div>
+        </li>';
+      }
     }
-    echo'<div class="description">';
-    echo '', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', '. iPhoneTime($topic['last_post']['timestamp']) , '</div>
-    </li>';
-    
-    
-    }
-
-    }
-    if ($i==$topic_sticky_count)
-    echo
-    '
-  
-  </ul>
-  
-  ';    
+    echo '</ul>';
+  }   
   
   if(count($context['topics'])-$topic_sticky_count){
   echo'
   
   <ul class="content2">';
   
-  $i = 0;
-  
     foreach ($context['topics'] as $topic)
-    {if(!$topic['is_sticky']){
-    
-    $i++;
-    
-    
-      echo'
-  
-    <li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['first_post']['href'] .'\')">';
-    echo '<div class="title', ($topic['new']) ? ' shortTitle' : '' ,'">', $topic['first_post']['subject'] ,'</div>';
-    if ($topic['new']&&$context['user']['is_logged']) {
-      echo '<div class="new">'. $txt['new_button'] .'</div>';
+    {
+      if(!$topic['is_sticky']){
+      
+        echo'<li onclick="this.className = \'clicked\'; $.mobile.changePage(\''. $topic['first_post']['href'] .'\')">';
+        echo '<div class="title', ($topic['new']) ? ' shortTitle' : '' ,'">', $topic['first_post']['subject'] ,'</div>';
+        if ($topic['new']&&$context['user']['is_logged']) {
+          echo '<div class="new">'. $txt['new_button'] .'</div>';
+        }
+        echo '
+        <div class="description">';
+          echo '', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name']. ', '. iPhoneTime($topic['last_post']['timestamp']) , '</div>
+        </li>';
+      }
     }
-    echo '
-    <div class="description">';
-      echo '', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name']. ', '. iPhoneTime($topic['last_post']['timestamp']) , '</div>
-    </li>';
     
-    
-    }}
-    
-  echo
-    '
-  
-  </ul>
-
-
-  ';  
+    echo '</ul>';  
   }
   
   require_once ($settings[theme_dir].'/ThemeControls.php');
