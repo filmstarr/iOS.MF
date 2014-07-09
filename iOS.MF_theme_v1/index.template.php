@@ -40,7 +40,7 @@ function template_html_above() {
 <link type="text/css" rel="stylesheet" media="screen" href="', $settings['theme_url'], '/css/index.css" />
 <link type="text/css" rel="stylesheet" href="' . $settings['theme_url'] . '/css/jquery.mobile.structure-1.4.2.min.css" />
 <link type="text/css" rel="stylesheet" href="' . $settings['theme_url'] . '/css/magnific-popup.css" />
-', ($context['right_to_left'] ? '<link type="text/css" rel="stylesheet" href="' . $settings['theme_url'] . '/css/rtl.css" />' : ''), '
+', ($context['right_to_left'] ? '<link type="text/css" rel="stylesheet" href="' . $settings['default_theme_url'] . '/css/rtl.css" />' : ''), '
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/fastclick.min.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/jquery.mobile-1.4.2.min.js"></script>
