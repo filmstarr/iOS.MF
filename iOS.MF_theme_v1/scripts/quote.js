@@ -1,29 +1,26 @@
-function removeOnClick(objClass){
-  $(objClass).each(function() {
+function removeOnClick(objClass) {
+  $(objClass).each(function () {
     $(this).off("click");
     $(this).prop("onclick", null);
   });
 }
 
-function quoting(){
-    if(aquoting==0){
-    aquoting = 1;
+function quoting() {
+  if (aquoting == 0) {
     // disable quoting
-    Set_Cookie( 'disablequoting', '1', '', '/', '', '' );
+    aquoting = 1;
+    Set_Cookie('disablequoting', '1', '', '/', '', '');
     document.getElementById('quoting').innerHTML = quotingoff;
     removeOnClick('.message');
-    }
-    else
+  } else {
     // enable quoting
-    {
     aquoting = 0;
     Delete_Cookie('disablequoting', '/', '', '');
     document.getElementById('quoting').innerHTML = loading;
     $.mobile.changePage(window.location.href, {
-            allowSamePageTransition: true,
-            transition: 'none',
-            reloadPage: true
-        });
-    }
-
+      allowSamePageTransition: true,
+      transition: 'none',
+      reloadPage: true
+    });
+  }
 }
