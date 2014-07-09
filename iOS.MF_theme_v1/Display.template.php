@@ -10,14 +10,14 @@ function template_main()
 
   if (empty($settings['show_user_images']) || !empty($options['show_no_avatars']))
   {
-    echo '<style>
+    echo '<style type="text/css">
       .message { min-height: initial !important; }
-      #avatar { display: none; }
+      .avatar { display: none; }
       .message_time { margin-bottom: 5px !important; }
     </style>';
   }
 
-  echo '<script>  
+  echo '<script type="text/javascript">  
     $(function() {
       $(".lightbox-image").magnificPopup({ 
         type: "image",
@@ -63,9 +63,9 @@ function template_main()
     echo '
       <div id="poll">
         <div class="cat_bar">
-          <h3 class="catbg">
+          <div class="catbg">
             <div class="sticky"></div>', $txt['poll'], '
-          </h3>
+          </div>
         </div>
         <div class="windowbg">
 
@@ -78,7 +78,7 @@ function template_main()
     if ($context['poll']['show_results'] || !$context['allow_vote'])
     {
       echo '
-          <dl class="options">';
+          <div class="options">';
 
       // Show each option with its corresponding percentage bar.
       foreach ($context['poll']['options'] as $option)
@@ -86,6 +86,7 @@ function template_main()
         if ($context['allow_poll_view'])
           echo '<div class="middletext', $option['voted_this'] ? ' voted' : '', '">' , $option['votes'], ' (', $option['percent'], '%) - ' , $option['option'], '</div>';
       }
+      echo '</div>';
     }
     // They are allowed to vote! Go to it!
     else
@@ -166,20 +167,20 @@ function template_main()
 // Can the user modify the contents of this post?
       if ($message['can_modify'])
          echo '
-                  <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '\');"> '. $txt['modify'].' </button>';
+                  <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '\');"> '. $txt['modify'].' </button>';
    // How about... even... remove it entirely?!
       if ($message['can_remove'])
          echo '
-              <button class="button slimbutton" id="editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>';
+              <button class="button slimbutton editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>';
     echo '</div>
   
       <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
         if (empty($message['member']['avatar']['image'])) {
-          echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
+          echo '<div class="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
         }
         else {
-          echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
+          echo '<div class="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
         }
       echo '
     
@@ -356,7 +357,7 @@ function quick_reply()
     
   $quickReply .= '</div>';
 
-  echo '<script>
+  echo '<script type="text/javascript">
     $(function() {
       $(".topbar").last().append(' , json_encode($quickReply) , ');
     });

@@ -10,12 +10,12 @@ function template_login()
 	if (isset($context['description']))
 		echo '<div class="errors"><div style="margin-top: 6px;">*', $context['description'], '</div></div>';
 
-  echo '<div id="quickLogin" style="display: block;">
-  <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
+  echo '<div class="quickLogin" style="display: block;">
+  <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['username'] .'</span>';
-  echo'<input id="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
+  echo'<input class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
 </div>
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['password'] .'</span>';
@@ -23,7 +23,7 @@ function template_login()
 </div>
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['iRemember'] .'</span>';
-  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" id="cookieneverexp">
+  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
 </div>
     
   <input type="hidden" name="hash_passwrd" value="" />

@@ -8,14 +8,10 @@ function template_summary()
 {
   global $context, $settings, $options, $scripturl, $modSettings, $txt;
   
-  echo ($context['member']['avatar']['href']) ? '
-  <style type="text/css">
-  #avatar{
-    background: url('.str_replace(' ','%20', $context['member']['avatar']['href']).') #fff center no-repeat;}</style>' : '', '
-
-  <div id="profileheader">
+  echo 
+  '<div id="profileheader">
   
-    <div id="avatar"></div>
+    <div class="avatar"' , $context['member']['avatar']['href'] ? ' style="background: url('.str_replace(' ','%20', $context['member']['avatar']['href']).') #fff center no-repeat;"' : '' , '></div>
     
     <div id="username"><h3>', $context['member']['name'] ,'</h3><h4>', $context['member']['group'] ,'</h4></div>
   

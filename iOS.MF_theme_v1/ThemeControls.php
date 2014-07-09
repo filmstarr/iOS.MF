@@ -12,7 +12,7 @@ function template_control_paging($pageControl = null)
 
 	echo '
 
-  <script>
+  <script type="text/javascript">
 
     $(function(){
 

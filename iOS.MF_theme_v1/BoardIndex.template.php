@@ -31,7 +31,6 @@ function template_main()
   </ul>';
   }
 
-
   // "Users online" - in order of activity.
   echo '<div class="content2">';
 

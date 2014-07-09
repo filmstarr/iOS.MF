@@ -44,7 +44,7 @@ body a{
 
 }
 
-h1{
+h1, #pageTitle {
     margin: 0;
     padding: 12px;
     line-height: 20px;
@@ -68,7 +68,7 @@ h1{
   white-space: nowrap;
 }
 
-h2, h3{
+h2, h3, .catbg{
 
   font-size: 16px;
   margin-left: 16px;
@@ -76,7 +76,7 @@ h2, h3{
 
 }
 
-h3, h4{
+h3, h4, .catbg{
 
   margin-right: 24px;
   font-size:16px;
@@ -308,7 +308,7 @@ body > #wrapper > .posts > li, body > #wrapper > .posts > div > li, body > #wrap
   margin-left: 9px;
 }
     
-#avatar{
+.avatar{
 
   height: 62px;
   width: 62px;
@@ -656,9 +656,6 @@ button#readunread2{
 }
 
 /* Poll vote options */
-#poll_options ul.options
-{
-}
 #poll_options div.submitbutton
 {
   clear: both;
@@ -667,14 +664,14 @@ button#readunread2{
 }
 
 /* Poll results */
-#poll_options dl.options dt
+#poll_options div.options dt
 {
   float: left;
   margin: 0;
   clear: left;
 }
 
-#poll_options dl.options .voted
+#poll_options div.options .voted
 {
   font-weight: bold;
 }
@@ -687,7 +684,7 @@ div#pollmoderation
   overflow: auto;
 }
 
-h3.catbg
+h3.catbg, .catbg
 {
   margin-left: 0;
 }
@@ -723,7 +720,7 @@ h3.catbg
   padding-right: 5px;
 }
 
-#editdel {
+.editdel {
   margin-top: 2px;
   width: 46%;
   margin-left: 2.4%;
@@ -948,7 +945,7 @@ hr{
 
 a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic > input, div { -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
-#quickReply, #quickLogin {
+#quickReply, .quickLogin {
   display: none;
     background: #F0F0F4;
 }
@@ -956,15 +953,17 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 .mieilink a:active,
 .message a:active,
 .button:active,
+.postDetails a:active,
 
 .mieilink a:hover,
 .message a:hover,
 .button:hover,
+.postDetails a:hover,
 
 #email a:active,
 #showhidesearch:active,
 #showhidelogin:active,
-#inputbutton:active,
+#inputbutton:active
 {
   opacity: 0.3;
 }
@@ -982,7 +981,6 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
 }
 
 .agreement {

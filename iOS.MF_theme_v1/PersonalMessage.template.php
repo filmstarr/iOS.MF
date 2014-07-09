@@ -80,7 +80,8 @@ function template_folder()
     }
     if (count($unreadNewPosts) >= 1)
     {
-      unmarkMessages($unreadNewPosts);
+      require_once ($settings[theme_dir].'/ThemeFunctions.php');
+      UnmarkMessages($unreadNewPosts);
     }
 
     if ($messageCount==0)
@@ -104,14 +105,14 @@ function template_folder()
     $subject = "";
     if (empty($settings['show_user_images']) || !empty($options['show_no_avatars']))
     {
-      echo '<style>
+      echo '<style type="text/css">
         .message { min-height: initial !important; }
-        #avatar { display: none; }
+        .avatar { display: none; }
         .message_time { margin-bottom: 5px !important; }
       </style>';
     }
 
-    echo '<script>  
+    echo '<script type="text/javascript">  
       $(function() {
         function handler(event) {
           event.stopPropagation();
@@ -134,8 +135,8 @@ function template_folder()
           <a id="msg', $message['id'], '"></a>';
           echo '
           <div>
-            <button class="button slimbutton" id="editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=all\');" >', $txt['reply'] , ' ' , $txt['all'] ,'</button>
-            <button class="button slimbutton" id="editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=pm;sa=pmactions;pm_actions[', $message['id'], ']=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>
+            <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=all\');" >', $txt['reply'] , ' ' , $txt['all'] ,'</button>
+            <button class="button slimbutton editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=pm;sa=pmactions;pm_actions[', $message['id'], ']=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'],' </button>
           </div>';
 
           // Show who the message was sent to.
@@ -163,10 +164,10 @@ function template_folder()
           echo '<div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '' ,'\')"><span class="name">', $message['member']['name'] ,'</span>';
           if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']))
             if (empty($message['member']['avatar']['image'])) {
-              echo '<div id="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
+              echo '<div class="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
             }
             else {
-              echo '<div id="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
+              echo '<div class="avatar" style="background: url('.str_replace(' ','%20', $message['member']['avatar']['href']).') #fff center no-repeat;"></div>';
             }
           echo '
         
@@ -191,7 +192,7 @@ function template_folder()
     if (strpos($_SERVER['REQUEST_URI'], 'pmsg') == true)
     {
       echo '
-      <script>
+      <script type="text/javascript">
         $(function(){
           $(".theTitle").last().html("', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $subject) : $subject) ,'");
         });
@@ -216,7 +217,7 @@ function template_send()
 {
   global $context, $settings, $options, $scripturl, $modSettings, $txt;
 
-  echo '<script>
+  echo '<script type="text/javascript">
       $(function(){
         $(".editor").last().autosize().resize();
         $(".classic").last().hide();
@@ -257,7 +258,7 @@ function template_send()
   if(!empty($context['post_error']['messages']) && count($context['post_error']['messages']))    
   {
     echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
-    echo '<style> #newTopic { padding-top: 9px; } </style>';        
+    echo '<style type="text/css"> #newTopic { padding-top: 9px; } </style>';        
   }
 
   if (empty($context['to_value']))
@@ -291,7 +292,7 @@ function template_send()
   {
     echo '<input type="hidden" name="subject" value="' , $context['subject'] , '" />';
     echo '
-    <script>
+    <script type="text/javascript">
       $(function(){
         $(".theTitle").last().html("', $context['subject'] ,'");
       });
@@ -333,75 +334,7 @@ function template_send()
   <input type="hidden" name="outbox" value="', $context['copy_to_outbox'] ? '1' : '0', '" />
 
   </form>';
-//  <input type="hidden" name="recipient_to[]" value="1">
 
-}
-
-// Mark personal messages unread.
-function unmarkMessages($personal_messages = null, $label = null, $owner = null)
-{
-  global $user_info, $context, $smcFunc;
-
-  if ($owner === null)
-    $owner = $user_info['id'];
-
-  $smcFunc['db_query']('', '
-    UPDATE {db_prefix}pm_recipients
-    SET is_read = 0
-    WHERE id_member = {int:id_member}
-      AND (is_read & 1 >= 1)' . ($label === null ? '' : '
-      AND FIND_IN_SET({string:label}, labels) != 0') . ($personal_messages !== null ? '
-      AND id_pm IN ({array_int:personal_messages})' : ''),
-    array(
-      'personal_messages' => $personal_messages,
-      'id_member' => $owner,
-      'label' => $label,
-    )
-  );
-
-  // If something wasn't marked as read, get the number of unread messages remaining.
-  if ($smcFunc['db_affected_rows']() > 0)
-  {
-    if ($owner == $user_info['id'])
-    {
-      foreach ($context['labels'] as $label)
-        $context['labels'][(int) $label['id']]['unread_messages'] = 0;
-    }
-
-    $result = $smcFunc['db_query']('', '
-      SELECT labels, COUNT(*) AS num
-      FROM {db_prefix}pm_recipients
-      WHERE id_member = {int:id_member}
-        AND NOT (is_read & 1 >= 1)
-        AND deleted = {int:is_not_deleted}
-      GROUP BY labels',
-      array(
-        'id_member' => $owner,
-        'is_not_deleted' => 0,
-      )
-    );
-    $total_unread = 0;
-    while ($row = $smcFunc['db_fetch_assoc']($result))
-    {
-      $total_unread += $row['num'];
-
-      if ($owner != $user_info['id'])
-        continue;
-
-      $this_labels = explode(',', $row['labels']);
-      foreach ($this_labels as $this_label)
-        $context['labels'][(int) $this_label]['unread_messages'] += $row['num'];
-    }
-    $smcFunc['db_free_result']($result);
-
-    // Need to store all this.
-    cache_put_data('labelCounts:' . $owner, $context['labels'], 720);
-    updateMemberData($owner, array('unread_messages' => $total_unread));
-
-    // If it was for the current member, reflect this in the $user_info array too.
-    if ($owner == $user_info['id'])
-      $context['user']['unread_messages'] = $user_info['unread_messages'] = $total_unread;
-  }
 }
 
 ?>

@@ -31,31 +31,32 @@ function template_html_above()
 {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
   
-  echo
-
-'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml">
+  echo '<!DOCTYPE html>
+<html', $context['right_to_left'] ? ' dir="rtl"' : '', '>
 
 <head>
 <title>', $context['page_title_html_safe'], '</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=', $context['character_set'], '" />
+<meta name="description" content="', $context['page_title_html_safe'], '" />
+', !empty($context['meta_keywords']) ? '<meta name="keywords" content="' . $context['meta_keywords'] . '" />' : '', '
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
 
-<link rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/style.css" type="text/css" />
-<link rel="stylesheet" href="'. $settings['theme_url'] .'/css/jquery.mobile.structure-1.4.2.min.css" />
-<link rel="stylesheet" href="'. $settings['theme_url'] .'/css/magnific-popup.css" />
-<script src="'. $settings['theme_url'] .'/scripts/fastclick.min.js"></script>
-<script src="'. $settings['theme_url'] .'/scripts/jquery-2.1.1.min.js"></script>
-<script src="'. $settings['theme_url'] .'/scripts/jquery.mobile-1.4.2.min.js"></script>
+<link type="text/css" rel="stylesheet" media="screen" href="', $settings['theme_url'] ,'/css/index.css" />
+<link type="text/css" rel="stylesheet" href="'. $settings['theme_url'] .'/css/jquery.mobile.structure-1.4.2.min.css" />
+<link type="text/css" rel="stylesheet" href="'. $settings['theme_url'] .'/css/magnific-popup.css" />
+', ($context['right_to_left'] ? '<link type="text/css" rel="stylesheet" href="'. $settings['theme_url']. '/css/rtl.css" />' : '') ,'
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/fastclick.min.js"></script>
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/jquery.mobile-1.4.2.min.js"></script>
 <script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js?fin20"></script>
 <script type="text/javascript" src="'. $settings['default_theme_url'] .'/scripts/captcha.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.autosize.min.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/jquery.hammer.min.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/iphone.js"></script>
-<script type="application/x-javascript" src="'. $settings['theme_url'] .'/scripts/quote.js"></script>
-<script src="'. $settings['theme_url'] .'/scripts/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/jquery.autosize.min.js"></script>
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/jquery.hammer.min.js"></script>
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/theme.js"></script>
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/quote.js"></script>
+<script type="text/javascript" src="'. $settings['theme_url'] .'/scripts/jquery.magnific-popup.min.js"></script>
 
-<script type="application/x-javascript">
+<script type="text/javascript">
   ', (isset($_COOKIE['disablequoting'])) ? 'var aquoting = 1;' : 'var aquoting = 0;','
   var showchildboards = "', $txt['iShow'] ,' ', $txt['parent_boards'], '";
   var hidechildboards = "', $txt['iHide'] ,' ', $txt['parent_boards'], '";
@@ -91,7 +92,7 @@ function template_html_above()
 if (isset($settings['disable_webkit_select']) && $settings['disable_webkit_select'])
 {
   echo '
-    <style>
+    <style type="text/css">
       body {
         -webkit-user-select: none;
       }
@@ -101,7 +102,7 @@ if (isset($settings['disable_webkit_select']) && $settings['disable_webkit_selec
 if (isset($settings['enable_transparent_toolbar']) && $settings['enable_transparent_toolbar'])
 {
   echo '
-    <style>
+    <style type="text/css">
       .toolbar {
         background: rgba(240,240,244,0.75) !important;
       }
@@ -110,7 +111,7 @@ if (isset($settings['enable_transparent_toolbar']) && $settings['enable_transpar
 
   echo '
 </head>
-<body><div id="wrapper" data-role="page"><div data-enhance=false>';
+<body><div id="wrapper" data-role="page"><div data-enhance="false">';
 }
 
 function iPhoneTitle(){
@@ -150,16 +151,16 @@ function template_body_above()
     $loginregister='';
     echo'
 
-    <h1 id="pageTitle">';
+    <div id="pageTitle">';
     
     echo'<div id="theTitle" class="theTitle">', iPhoneTitle(), '</div>';  
     
-    echo'</h1>
+    echo'</div>
 
-    <div id="showhidesearch" class="showhidesearch magnifierIcon" onclick="toggleSearch" id="tabsearch"', $issearch ,'></div>    
+    <div id="showhidesearch" class="showhidesearch magnifierIcon" onclick="toggleSearch" ', $issearch ,'></div>    
     <div id="showhidelogin" class="showhidelogin ' , $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon' , '"></div>
 
-    <script>
+    <script type="text/javascript">
       var searchControl = $(".showhidesearch").last().get(0);
       var toggleSearch = function() {
         if ($("#searchbar").is(":visible"))
@@ -226,7 +227,7 @@ echo '</div>';
 
     //Use javascript to set post count as the toolbar may not be reloaded each time; we need to do this within main page
     echo '
-    <script>
+    <script type="text/javascript">
       $(document).one("pageload", function()
         {
           var unreadPostCount = ' , $unreadPostCount , ';
@@ -254,9 +255,10 @@ echo '</div>';
         });
     </script>';
 
-    echo '</div>';
+    echo '</div>
+    </div>';
 
-    echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance=true>
+    echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance="true">
         <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'',$scripturl,'\', { reloadPage : true })" style="background: url('.$settings['theme_url'].'/images/icons/home.png) transparent center no-repeat;"></div></div>
         <div><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\', { reloadPage : true })' : '' , '" style="background: url('.$settings['theme_url'].'/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;' , '"></div></div>
         <div>
@@ -365,14 +367,14 @@ function quick_login()
   
   if ($context['user']['is_logged'])
   {
-    echo '<script>';
+    echo '<script type="text/javascript">';
     echo 'var control = $(".showhidelogin").last().get(0);';
     echo 'control.onclick = function() { $(".ui-loader").last().show(); window.location.href = "index.php?action=logout;sesc=', $context['session_id'] ,'"; };';
     echo '</script>';
   }
   else
   {
-    echo '<script>
+    echo '<script type="text/javascript">
     var control = $(".showhidelogin").last().get(0);
 
     var toggleQuickLogin = function() {
@@ -394,12 +396,12 @@ function quick_login()
     control.onclick = toggleQuickLogin;
     </script>';
 
-    echo '<div id="quickLogin">  
-  <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" id="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
+    echo '<div id="quickLogin" class="quickLogin">
+  <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['username'] .'</span>';
-  echo'<input id="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
+  echo'<input id="user" class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
 </div>
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['password'] .'</span>';
@@ -407,7 +409,7 @@ function quick_login()
 </div>
 <div class="noLeftPadding inputContainer padTop">';
   echo'<span class="inputLabel">'. $txt['iRemember'] .'</span>';
-  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" id="cookieneverexp">
+  echo'<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
 </div>
     
   <input type="hidden" name="hash_passwrd" value="" />

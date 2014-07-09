@@ -5,7 +5,7 @@ function template_main()
 {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
 
-  echo '<script>
+  echo '<script type="text/javascript">
       $(function(){
         $(".editor").last().autosize().resize();
         $(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']),'");
@@ -48,10 +48,10 @@ if(!empty($context['post_error']['messages']) && count($context['post_error']['m
 {
   echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
     if(empty($context['subject'])) {
-      echo '<style> #newTopic { padding-top: 9px; } </style>';        
+      echo '<style type="text/css"> #newTopic { padding-top: 9px; } </style>';        
     }
     else {
-      echo '<style> #postContainer { padding-top: 9px; } </style>';        
+      echo '<style type="text/css"> #postContainer { padding-top: 9px; } </style>';        
     }
 }
     
@@ -89,7 +89,7 @@ echo'
     if ($context['can_post_attachment'])
     {
       echo '<div style="position: relative;">';
-        echo '<input type="file" size="60" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
+        echo '<input type="file" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
         echo '<div id="inputbuttonbackground"><div id="inputbutton" class="needsclick" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
       echo '</div>';
     }

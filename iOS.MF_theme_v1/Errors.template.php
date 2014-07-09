@@ -11,11 +11,10 @@
 function template_fatal_error()
 {
 	global $context, $settings, $options, $txt;
-
 	
 	echo '<h2>', $context['error_title'], '</h2>';
 	
-	echo '<h4 style="margin-left:16px;margin-right:16px;">', $context['error_message'], '</h3>';
+	echo '<h4 style="margin-left:16px;margin-right:16px;">', $context['error_message'], '</h4>';
 
 }
 
