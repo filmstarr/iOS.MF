@@ -123,7 +123,7 @@ function template_main() {
   
   echo '<div class="child buttons">
   
-  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').last().show();">', $txt['iPost'], '</button>
+  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').loader(\'show\');">', $txt['iPost'], '</button>
 
   </div>';
   

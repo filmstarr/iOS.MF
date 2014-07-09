@@ -201,12 +201,12 @@ function template_body_below() {
   
   echo '<script type="text/javascript">
     Hammer($(".classic").last()).on("tap", function(event) {
-      $(".ui-loader").last().show();
+      $(".ui-loader").loader("show");
       window.location.href = "', $backlink , '";
     });
 
     Hammer($(".classic").last()).on("hold", function(event) {
-      $(".ui-loader").last().show();
+      $(".ui-loader").loader("show");
       window.location.href = "index.php?theme=1";
     });
   </script>';
@@ -340,7 +340,7 @@ function quick_login() {
   if ($context['user']['is_logged']) {
     echo '<script type="text/javascript">';
     echo 'var control = $(".showhidelogin").last().get(0);';
-    echo 'control.onclick = function() { $(".ui-loader").last().show(); window.location.href = "index.php?action=logout;sesc=', $context['session_id'], '"; };';
+    echo 'control.onclick = function() { $(".ui-loader").loader("show"); window.location.href = "index.php?action=logout;sesc=', $context['session_id'], '"; };';
     echo '</script>';
   } else {
     echo '<script type="text/javascript">
@@ -383,7 +383,7 @@ function quick_login() {
     
   <input type="hidden" name="hash_passwrd" value="" />
   <div class="buttons" style="margin-top: -9px; padding-bottom: 5px;">
-    <button onclick="$(\'.ui-loader\').last().show();" class="button twobuttons" type="submit">' . $txt['login'] . '</button>
+    <button onclick="$(\'.ui-loader\').loader(\'show\');" class="button twobuttons" type="submit">' . $txt['login'] . '</button>
     <button class="button twobuttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>
   </div>
   </form>

@@ -26,7 +26,7 @@ function template_login() {
     
   <input type="hidden" name="hash_passwrd" value="" />
   <div class="buttons" style="margin-top: -9px; padding-bottom: 5px; margin-bottom: 6px;">
-    <button onclick="$(\'.ui-loader\').last().show();" class="button twobuttons" type="submit">' . $txt['login'] . '</button>
+    <button onclick="$(\'.ui-loader\').loader(\'show\');" class="button twobuttons" type="submit">' . $txt['login'] . '</button>
     <button class="button twobuttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>
   </div>
   </form>

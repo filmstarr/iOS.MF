@@ -287,7 +287,7 @@ function template_send() {
   
   echo '<div class="child buttons">
   
-  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').last().show(); if ($(\'input[name=subject]\').val() == \'\') { $(\'input[name=subject]\').val(\'Sent from iOS.MF\'); } ">', $txt['iSend'], '</button>
+  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').loader(\'show\'); if ($(\'input[name=subject]\').val() == \'\') { $(\'input[name=subject]\').val(\'Sent from iOS.MF\'); } ">', $txt['iSend'], '</button>
 
   </div>';
   
