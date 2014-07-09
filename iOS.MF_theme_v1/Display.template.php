@@ -283,7 +283,7 @@ function quick_reply()
     };
 
     var title = $(".theTitle").last().get(0);
-    title.onclick = toggleQuickReply;
+    title.onclick = function() { $(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0); toggleQuickReply();};
     title.style.color = "#007AFF";
 
     </script>';
