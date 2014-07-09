@@ -1,4 +1,9 @@
-function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
+/*
+* This is the register.js file from the SMF default theme. The only difference is that we use .png images instead of .gif images (line 263)
+*/
+
+function smfRegister(formID, passwordDifficultyLevel, regTextStrings)
+{
   this.addVerify = addVerificationField;
   this.autoSetup = autoSetup;
   this.refreshMainPassword = refreshMainPassword;
@@ -13,7 +18,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   autoSetup(formID);
 
   // This is a field which requires some form of verification check.
-  function addVerificationField(fieldType, fieldID) {
+  function addVerificationField(fieldType, fieldID)
+  {
     // Check the field exists.
     if (!document.getElementById(fieldID))
       return;
@@ -48,7 +54,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
     verificationFieldLength++;
 
     // Step to it!
-    if (eventHandler) {
+    if (eventHandler)
+    {
       createEventListener(inputHandle);
       inputHandle.addEventListener('keyup', eventHandler, false);
       eventHandler();
@@ -63,7 +70,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // A button to trigger a username search?
-  function addUsernameSearchTrigger(elementID) {
+  function addUsernameSearchTrigger(elementID)
+  {
     var buttonHandle = document.getElementById(elementID);
 
     // Attach the event to this element.
@@ -72,16 +80,19 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // This function will automatically pick up all the necessary verification fields and initialise their visual status.
-  function autoSetup(formID) {
+  function autoSetup(formID)
+  {
     if (!document.getElementById(formID))
       return false;
 
     var curElement, curType;
-    for (var i = 0, n = document.getElementById(formID).elements.length; i < n; i++) {
+    for (var i = 0, n = document.getElementById(formID).elements.length; i < n; i++)
+    {
       curElement = document.getElementById(formID).elements[i];
 
       // Does the ID contain the keyword 'autov'?
-      if (curElement.id.indexOf('autov') != -1 && (curElement.type == 'text' || curElement.type == 'password')) {
+      if (curElement.id.indexOf('autov') != -1 && (curElement.type == 'text' || curElement.type == 'password'))
+      {
         // This is probably it - but does it contain a field type?
         curType = 0;
         // Username can only be done with XML.
@@ -100,7 +111,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
           addVerificationField(curType, curElement.id);
 
         // If this is the username do we also have a button to find the user?
-        if (curType == 'username' && document.getElementById(curElement.id + '_link')) {
+        if (curType == 'username' && document.getElementById(curElement.id + '_link'))
+        {
           addUsernameSearchTrigger(curElement.id + '_link');
         }
       }
@@ -110,7 +122,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // What is the password state?
-  function refreshMainPassword(called_from_verify) {
+  function refreshMainPassword(called_from_verify)
+  {
     if (!verificationFields['pwmain'])
       return false;
 
@@ -122,19 +135,22 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
       stringIndex = 'password_short';
 
     // More than basic?
-    if (passwordLevel >= 1) {
+    if (passwordLevel >= 1)
+    {
       // If there is a username check it's not in the password!
       if (verificationFields['username'] && verificationFields['username'][1].value && curPass.indexOf(verificationFields['username'][1].value) != -1)
         stringIndex = 'password_reserved';
 
       // Any reserved fields?
-      for (var i in verificationFields) {
+      for (var i in verificationFields)
+      {
         if (verificationFields[i][4] == 'reserved' && verificationFields[i][1].value && curPass.indexOf(verificationFields[i][1].value) != -1)
           stringIndex = 'password_reserved';
       }
 
       // Finally - is it hard and as such requiring mixed cases and numbers?
-      if (passwordLevel > 1) {
+      if (passwordLevel > 1)
+      {
         if (curPass == curPass.toLowerCase())
           stringIndex = 'password_numbercase';
         if (!curPass.match(/(\D\d|\d\D)/))
@@ -158,7 +174,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // Check that the verification password matches the main one!
-  function refreshVerifyPassword() {
+  function refreshVerifyPassword()
+  {
     // Can't do anything without something to check again!
     if (!verificationFields['pwmain'])
       return false;
@@ -173,7 +190,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // If the username is changed just revert the status of whether it's valid!
-  function refreshUsername() {
+  function refreshUsername()
+  {
     if (!verificationFields['username'])
       return false;
 
@@ -191,12 +209,14 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // This is a pass through function that ensures we don't do any of the AJAX notification stuff.
-  function autoCheckUsername() {
+  function autoCheckUsername()
+  {
     checkUsername(true);
   }
 
   // Check whether the username exists?
-  function checkUsername(is_auto) {
+  function checkUsername(is_auto)
+  {
     if (!verificationFields['username'])
       return false;
 
@@ -216,7 +236,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // Callback for getting the username data.
-  function checkUsernameCallback(XMLDoc) {
+  function checkUsernameCallback(XMLDoc)
+  {
     if (XMLDoc.getElementsByTagName("username"))
       isValid = XMLDoc.getElementsByTagName("username")[0].getAttribute("valid");
     else
@@ -232,7 +253,8 @@ function smfRegister(formID, passwordDifficultyLevel, regTextStrings) {
   }
 
   // Set the image to be the correct type.
-  function setVerificationImage(imageHandle, imageIcon, alt) {
+  function setVerificationImage(imageHandle, imageIcon, alt)
+  {
     if (!imageHandle)
       return false;
     if (!alt)

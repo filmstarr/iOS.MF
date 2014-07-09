@@ -1,3 +1,10 @@
+/*
+* Main Javascript file containing iOS.MF specific functions
+*/
+
+
+/* Cookie management */
+
 function Set_Cookie(name, value, expires, path, domain, secure) {
   var today = new Date();
   today.setTime(today.getTime());
@@ -46,7 +53,6 @@ function Get_Cookie(check_name) {
   }
 }
 
-// this deletes the cookie when called
 function Delete_Cookie(name, path, domain) {
   if (Get_Cookie(name)) document.cookie = name + "=" +
     ((path) ? ";path=" + path : "") +
@@ -54,48 +60,10 @@ function Delete_Cookie(name, path, domain) {
     ";expires=Thu, 01-Jan-1970 00:00:01 GMT";
 }
 
-function hideClass(objClass) {
 
-  var elements = document.getElementsByTagName('li');
-  for (i = 0; i < elements.length; i++) {
-    if (elements[i].className == objClass) {
-      elements[i].style.display = "none"
-    }
-  }
-}
+/* Security and login */
 
-function showClass(objClass) {
-
-  var elements = document.getElementsByTagName('li');
-  for (i = 0; i < elements.length; i++) {
-    if (elements[i].className == objClass) {
-      elements[i].style.display = "block"
-    }
-  }
-}
-
-function go(location) {
-
-  if (location == 'home')
-    $.mobile.changePage('index.php');
-  else
-    $.mobile.changePage('index.php?action=' + location);
-
-}
-
-function toggle(cb, img) {
-
-  var checked = document.getElementById(cb).checked;
-
-  var src = document.getElementById(img).src;
-
-  if (!checked)
-    document.getElementById(img).src = src.replace('On', 'Off');
-  else
-    document.getElementById(img).src = src.replace('Off', 'On');
-
-}
-
+//Turn the users password into a hash for submission to the server
 function hashLoginPassword(doForm, cur_session_id) {
   // Compatibility.
   if (cur_session_id == null)
@@ -120,60 +88,35 @@ function hashLoginPassword(doForm, cur_session_id) {
     doForm.passwrd.value = doForm.passwrd.value.replace(/./g, "*");
 }
 
-function iswitch(id) {
 
-  if (id == 'switcher') {
-    document.getElementById(id).id = 'switcheralt';
+/* jQuery Mobile setup */
 
-    var x = document.getElementsByTagName('ul');
+//Initialise jQuery mobile settings
+$.mobile.ignoreContentEnabled = true;
+$.event.special.swipe.horizontalDistanceThreshold = 100;
 
-    for (var i = 0; i < x.length; i++) {
+//Remove some jQuery mobile CSS from the footer
+$(function () {
+  $("#toolbar").removeClass("ui-footer")
+});
 
-      if (x[i].id == 'contentrecent')
-        x[i].style.display = 'block';
-      if (x[i].id == 'contentboards')
-        x[i].style.display = 'none';
-    }
-    document.getElementById('childbuttondiv').style.display = 'none';
+//Remove the first page from the DOM when we navigate away to prevent caching. This allows us to update post and message counts.
+$(document).one('pagehide', document, function (event, ui) {
+  $('[data-role="page"]').not(".ui-page-active").remove();
+});
 
-    var x = document.getElementsByTagName('h2');
 
-    for (var i = 0; i < x.length; i++) {
+/* Website navigation */
 
-      if (x[i].id == 'contentrecenth2')
-        x[i].style.display = 'block';
-      if (x[i].id == 'contentboardsh2')
-        x[i].style.display = 'none';
-    }
-
-  } else {
-
-    document.getElementById(id).id = 'switcher';
-
-    var x = document.getElementsByTagName('ul');
-
-    for (var i = 0; i < x.length; i++) {
-
-      if (x[i].id == 'contentrecent')
-        x[i].style.display = 'none';
-      if (x[i].id == 'contentboards')
-        x[i].style.display = 'block';
-    }
-    document.getElementById('childbuttondiv').style.display = 'block';
-
-    var x = document.getElementsByTagName('h2');
-
-    for (var i = 0; i < x.length; i++) {
-
-      if (x[i].id == 'contentrecenth2')
-        x[i].style.display = 'none';
-      if (x[i].id == 'contentboardsh2')
-        x[i].style.display = 'block';
-    }
-
-  }
+//Navigate to a location via a jQuery Mobile AJAX request
+function go(location) {
+  if (location == 'home')
+    $.mobile.changePage('index.php', { reloadPage : true });
+  else
+    $.mobile.changePage('index.php?action=' + location, { reloadPage : true });
 }
 
+//Navigate forwards and backwards when the user swipes across the page
 $(function () {
   $(document).on("swiperight", function (event) {
     window.history.back();
@@ -183,13 +126,17 @@ $(function () {
   });
 });
 
+//Remove any clicked elements so that they display as usual if navigating backwards
 $(window).on('beforeunload', function () {
   $('.clicked').each(function () {
     $(this).removeClass = 'clicked';
   });
 });
 
-// Hide toolbar when input is focused
+
+/* Mobile specific methods */
+
+// Hide toolbar when input is focused. This is needed as the iPhone doesn't honour fixed elements when the keyboard is showing.
 if (/iPhone|iPod|Android|iPad/.test(window.navigator.platform)) {
   $(document)
     .on('focus', 'textarea,input,select', function (e) {
@@ -202,17 +149,38 @@ if (/iPhone|iPod|Android|iPad/.test(window.navigator.platform)) {
     });
 }
 
-$.mobile.ignoreContentEnabled = true;
-$.event.special.swipe.horizontalDistanceThreshold = 100;
 
-$(document).bind("mobileinit", function () {
-  $.mobile.buttonMarkup.hoverDelay = 0;
-});
+/* Enable or disable message quoting */
 
-$(function () {
-  $("#toolbar").removeClass("ui-footer")
-});
+function toggleQuoting() {
+  if (!disableQuoting) {
+    //Disable quoting
+    disableQuoting = true;
+    Set_Cookie('disablequoting', '1', '', '/', '', '');
+    document.getElementById('quoting').innerHTML = quotingoff;
 
-$(document).one('pagehide', document, function (event, ui) {
-  $('[data-role="page"]').not(".ui-page-active").remove();
-});
+    //Remove all onclick events from a class
+    $('.message').each(function () {
+      $(this).off("click");
+      $(this).prop("onclick", null);
+    });
+  } else {
+    //Enable quoting
+    disableQuoting = false;
+    Delete_Cookie('disablequoting', '/', '', '');
+    document.getElementById('quoting').innerHTML = loading;
+    $.mobile.changePage(window.location.href, {
+      allowSamePageTransition: true,
+      transition: 'none',
+      reloadPage: true
+    });
+  }
+}
+
+//Remove all onclick events from a class
+function removeOnClick(objClass) {
+  $(objClass).each(function () {
+    $(this).off("click");
+    $(this).prop("onclick", null);
+  });
+}

@@ -7,7 +7,7 @@ function template_registration_agreement() {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
   $agreement = explode('<br /><br />', $context['agreement']);
   echo '
-		<form action="', $scripturl, '?action=register" method="post" accept-charset="', $context['character_set'], '" id="registration">
+		<form data-ajax="false" action="', $scripturl, '?action=register" method="post" accept-charset="', $context['character_set'], '" id="registration">
 			<h2 style="margin-left: 9px;">' . $txt['iAgreement'] . '</h2>
 			<div class="agreement">
 			', $agreement[0], ' <a style="color: #007AFF;" href="#" onclick="this.parentNode.innerHTML=\'', addslashes($context['agreement']), '\'; return false;">[', $txt['iMore'], '...]</a>
@@ -37,7 +37,7 @@ function template_registration_form() {
   
   // Make sure they've agreed to the terms and conditions.
   echo '
-<script type="text/javascript" language="JavaScript" src="', $settings['theme_url'], '/scripts/register.js"></script>
+<script type="text/javascript" language="JavaScript" src="' . $settings['theme_url'] . '/scripts/register.js"></script>
 <script type="text/javascript" language="JavaScript"><!-- // --><![CDATA[
 	function verifyAgree()
 	{

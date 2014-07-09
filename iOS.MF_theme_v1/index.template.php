@@ -44,16 +44,15 @@ function template_html_above() {
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/fastclick.min.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/jquery.mobile-1.4.2.min.js"></script>
-<script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js?fin20"></script>
+<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/script.js?fin20"></script>
 <script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/captcha.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/jquery.autosize.min.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/jquery.hammer.min.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/theme.js"></script>
-<script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/quote.js"></script>
 <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/jquery.magnific-popup.min.js"></script>
 
 <script type="text/javascript">
-  ', (isset($_COOKIE['disablequoting'])) ? 'var aquoting = 1;' : 'var aquoting = 0;', '
+  var disableQuoting = ', (isset($_COOKIE['disablequoting'])) ? 'true' : 'false', ';
   var showchildboards = "', $txt['iShow'], ' ', $txt['parent_boards'], '";
   var hidechildboards = "', $txt['iHide'], ' ', $txt['parent_boards'], '";
   var quotingoff = "', $txt['iQuoting'], ' ', $txt['iOff'], '";
@@ -242,15 +241,15 @@ function template_body_below() {
     </div>';
   
   echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance="true">
-        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'', $scripturl, '\', { reloadPage : true })" style="background: url(' . $settings['theme_url'] . '/images/icons/home.png) transparent center no-repeat;"></div></div>
-        <div><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=profile\', { reloadPage : true })' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div></div>
+        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'home\');" style="background: url(' . $settings['theme_url'] . '/images/icons/home.png) transparent center no-repeat;"></div></div>
+        <div><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'profile\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div></div>
         <div>
-          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=pm\', { reloadPage : true })' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
+          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'pm\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
           <div class="unreadCount unreadMessages"', ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>' . $context['user']['unread_messages'] : ' style="display:none;">'), '</div>
         </div>
-        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=recent\', { reloadPage : true })" style="background: url(' . $settings['theme_url'] . '/images/icons/inbox.png) transparent center no-repeat;"></div></div>
+        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'recent\');" style="background: url(' . $settings['theme_url'] . '/images/icons/inbox.png) transparent center no-repeat;"></div></div>
         <div>
-          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);$.mobile.changePage(\'?action=unread;all\', { reloadPage : true })' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
+          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'unread;all\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
           <div class="unreadCount unreadPosts"', ($unreadPostCount > 0 && $context['user']['is_logged'] ? '>' . $unreadPostCount : ' style="display:none">'), '</div>
         </div>
     </div>';

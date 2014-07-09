@@ -46,7 +46,7 @@ function template_main() {
   echo '  
     <div class="buttons">
 
-  <button class="button twobuttons" id="quoting" onclick="quoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'] . ' ' . $txt['iOff'] : $txt['iQuoting'] . ' ' . $txt['iOn'], '</button>
+  <button class="button twobuttons" id="quoting" onclick="toggleQuoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'] . ' ' . $txt['iOff'] : $txt['iQuoting'] . ' ' . $txt['iOn'], '</button>
 
   <button class="button twobuttons" onclick="$.mobile.changePage(\'' . $scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'] . '\');">', $txt['reply'], '</button>';
   echo '
