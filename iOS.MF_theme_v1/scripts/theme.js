@@ -126,13 +126,6 @@ $(function () {
   });
 });
 
-//Remove any clicked elements so that they display as usual if navigating backwards
-$(window).on('beforeunload', function () {
-  $('.clicked').each(function () {
-    $(this).removeClass = 'clicked';
-  });
-});
-
 
 /* Mobile specific methods */
 
