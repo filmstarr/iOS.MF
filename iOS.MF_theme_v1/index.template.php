@@ -197,8 +197,20 @@ function template_body_below() {
   else $backlink = 'index.php?theme=' . $modSettings['theme_guests'];
   
   $backname = 'Default Theme';
-  echo '<a data-ajax="false" onclick="$(\'.ui-loader\').last().show();" class="classic button" id="classic" href="' . $backlink . '">', $backname, '</a>';
+  echo '<button data-ajax="false" class="classic button" id="classic">', $backname, '</div>';
   
+  echo '<script type="text/javascript">
+    Hammer($(".classic").last()).on("tap", function(event) {
+      $(".ui-loader").last().show();
+      window.location.href = "', $backlink , '";
+    });
+
+    Hammer($(".classic").last()).on("hold", function(event) {
+      $(".ui-loader").last().show();
+      window.location.href = "index.php?theme=1";
+    });
+  </script>';
+
   echo '<div id="copyright"><h4>', theme_copyright(), '</h4></div>';
   
   echo '</div>';
