@@ -1,3 +1,7 @@
+/*
+* This is the register.js file from the SMF default theme. The only difference is that we use .png images instead of .gif images (line 263)
+*/
+
 function smfRegister(formID, passwordDifficultyLevel, regTextStrings)
 {
   this.addVerify = addVerificationField;

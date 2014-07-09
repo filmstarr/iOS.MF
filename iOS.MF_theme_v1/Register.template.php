@@ -1,47 +1,43 @@
 <?php
+
 // Version: 2.0 RC4; Register
 
 // Before showing users a registration form, show them the registration agreement.
-function template_registration_agreement()
-{
-	global $context, $settings, $options, $scripturl, $txt, $modSettings;
-	$agreement=explode('<br /><br />',$context['agreement']);
-	echo '
-		<form action="', $scripturl, '?action=register" method="post" accept-charset="', $context['character_set'], '" id="registration">
-			<h2 style="margin-left: 9px;">'.$txt['iAgreement'].'</h2>
+function template_registration_agreement() {
+  global $context, $settings, $options, $scripturl, $txt, $modSettings;
+  $agreement = explode('<br /><br />', $context['agreement']);
+  echo '
+		<form data-ajax="false" action="', $scripturl, '?action=register" method="post" accept-charset="', $context['character_set'], '" id="registration">
+			<h2 style="margin-left: 9px;">' . $txt['iAgreement'] . '</h2>
 			<div class="agreement">
-			',$agreement[0],' <a style="color: #007AFF;" href="#" onclick="this.parentNode.innerHTML=\'', addslashes($context['agreement']) ,'\'; return false;">[', $txt['iMore'] ,'...]</a>
+			', $agreement[0], ' <a style="color: #007AFF;" href="#" onclick="this.parentNode.innerHTML=\'', addslashes($context['agreement']), '\'; return false;">[', $txt['iMore'], '...]</a>
 			</div>';
-
+  
   echo '<div class="buttons">';
-  	// Age restriction in effect?
-	if ($context['show_coppa'])
-	{
-		echo '
+  
+  // Age restriction in effect?
+  if ($context['show_coppa']) {
+    echo '
 				<input class="button twobuttons" type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" />
-				<input class="button twobuttons" type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" />';		
-	}
-	else
-	{
-		echo '
-				<button class="button" name="accept_agreement">'. $txt['agreement_agree'] .'</button>';
-	}
+				<input class="button twobuttons" type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" />';
+  } else {
+    echo '
+				<button class="button" name="accept_agreement">' . $txt['agreement_agree'] . '</button>';
+  }
   echo '</div>';
-
-	echo '
+  
+  echo '
 			<input type="hidden" name="step" value="1" />
 		</form>';
-
 }
 
 // Before registering - get their information.
-function template_registration_form()
-{
-	global $context, $settings, $options, $scripturl, $txt, $modSettings;
-
-	// Make sure they've agreed to the terms and conditions.
-	echo '
-<script type="text/javascript" language="JavaScript" src="', $settings['theme_url'], '/scripts/register.js"></script>
+function template_registration_form() {
+  global $context, $settings, $options, $scripturl, $txt, $modSettings;
+  
+  // Make sure they've agreed to the terms and conditions.
+  echo '
+<script type="text/javascript" language="JavaScript" src="' . $settings['theme_url'] . '/scripts/register.js"></script>
 <script type="text/javascript" language="JavaScript"><!-- // --><![CDATA[
 	function verifyAgree()
 	{
@@ -88,76 +84,73 @@ function template_registration_form()
 
 		return true;
 	}';
-
-	echo '
+  
+  echo '
 // ]]></script>';
-
-	// Any errors?
-	if (!empty($context['registration_errors']))
-		echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['registration_errors']), '</div></div>';
-
-	echo '
+  
+  // Any errors?
+  if (!empty($context['registration_errors'])) echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['registration_errors']), '</div></div>';
+  
+  echo '
 <form action="', $scripturl, '?action=register2" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator" onsubmit="return verifyAgree();">';
-
-echo '<div class="header">User</div>';
-
-echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
-echo '<span class="inputLabel">'. $txt['username'] .'</span>';
-echo '<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" />';
-echo '<span id="smf_autov_username_div" style="display: none;">
+  
+  echo '<div class="header">User</div>';
+  
+  echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+  echo '<span class="inputLabel">' . $txt['username'] . '</span>';
+  echo '<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" />';
+  echo '<span id="smf_autov_username_div" style="display: none;">
         <a id="smf_autov_username_link" href="#">
           <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
         </a>
       </span>';
-echo '</div>';
-
-echo '<div class="noLeftPadding inputContainer">';
-echo '<span class="inputLabel">'. $txt['email'] .'</span>';
-echo '<input type="text" name="email" id="smf_autov_reserve1" size="30" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '" />';
-echo '</div>';
-
-echo '<div class="header">'. $txt['password'] .'</div>';
-
-echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
-echo '<span class="inputLabel">'. $txt['iChoose'] .'</span>';
-echo '<input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" />';
-echo '</div>';
-
-echo '<div class="noLeftPadding inputContainer">';
-echo '<span class="inputLabel">'. $txt['iVerify'] .'</span>';
-echo '<input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" />';
-echo '</div>';
-	
-if ($context['visual_verification']) {
-	echo'<div class="header">'. $txt['iVerification'] .'</div>';
-	echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
-	echo '<span class="inputLabel">Code</span>';
-	echo template_control_verification($context['visual_verification_id'], 'all');
-	echo '</div>';
-	echo '<div class="noLeftPadding inputContainer">';
-	echo '<span class="inputLabel">Verify</span>';
-	echo '<input type="text" tabindex="', $context['tabindex']++, '" name="register_vv[code]" />';
-	echo '</div>';
-}
-
+  echo '</div>';
+  
+  echo '<div class="noLeftPadding inputContainer">';
+  echo '<span class="inputLabel">' . $txt['email'] . '</span>';
+  echo '<input type="text" name="email" id="smf_autov_reserve1" size="30" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '" />';
+  echo '</div>';
+  
+  echo '<div class="header">' . $txt['password'] . '</div>';
+  
+  echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+  echo '<span class="inputLabel">' . $txt['iChoose'] . '</span>';
+  echo '<input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" />';
+  echo '</div>';
+  
+  echo '<div class="noLeftPadding inputContainer">';
+  echo '<span class="inputLabel">' . $txt['iVerify'] . '</span>';
+  echo '<input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" />';
+  echo '</div>';
+  
+  if ($context['visual_verification']) {
+    echo '<div class="header">' . $txt['iVerification'] . '</div>';
+    echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+    echo '<span class="inputLabel">Code</span>';
+    echo template_control_verification($context['visual_verification_id'], 'all');
+    echo '</div>';
+    echo '<div class="noLeftPadding inputContainer">';
+    echo '<span class="inputLabel">Verify</span>';
+    echo '<input type="text" tabindex="', $context['tabindex']++, '" name="register_vv[code]" />';
+    echo '</div>';
+  }
+  
   echo '<div class="child buttons">
   
-  <button name="regSubmit" class="button" type="submit">', $txt['register'] ,'</button>
+  <button name="regSubmit" class="button" type="submit">', $txt['register'], '</button>
 
   </div>';
-
-	echo'</form>';
-
-
-echo '
+  
+  echo '</form>';
+  
+  echo '
 
 <script type="text/javascript" language="JavaScript"><!-- // --><![CDATA[';
-
-	// Uncheck the agreement thing....
-	
-
-	// Clever registration stuff...
-	echo '
+  
+  // Uncheck the agreement thing....
+  
+  // Clever registration stuff...
+  echo '
 	var regTextStrings = {
 		"username_valid": "', $txt['registration_username_available'], '",
 		"username_invalid": "', $txt['registration_username_unavailable'], '",
@@ -171,23 +164,21 @@ echo '
 	var verificationHandle = new smfRegister("creator", ', empty($modSettings['password_strength']) ? 0 : $modSettings['password_strength'], ', regTextStrings);
 	// Update the authentication status.
 	updateAuthMethod();';
-
-echo '
+  
+  echo '
 // ]]></script>';
 }
 
 // After registration... all done ;).
-function template_after()
-{
-	global $context, $settings, $options, $txt, $scripturl;
-
-	// Not much to see here, just a quick... "you're now registered!" or what have you.
-	echo '<div class="header">', $context['description'], '</div>';
+function template_after() {
+  global $context, $settings, $options, $txt, $scripturl;
+  
+  // Not much to see here, just a quick... "you're now registered!" or what have you.
+  echo '<div class="header">', $context['description'], '</div>';
   echo '<div class="child buttons">
   
   <button class="button" onclick="go(\'home\');">', $txt['iDone'], '</button>
 
   </div>';
 }
-
 ?>
