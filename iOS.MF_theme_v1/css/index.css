@@ -953,15 +953,17 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
 .mieilink a:active,
 .message a:active,
 .button:active,
+.postDetails a:active,
 
 .mieilink a:hover,
 .message a:hover,
 .button:hover,
+.postDetails a:hover,
 
 #email a:active,
 #showhidesearch:active,
 #showhidelogin:active,
-#inputbutton:active,
+#inputbutton:active
 {
   opacity: 0.3;
 }
@@ -979,7 +981,6 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
 }
 
 .agreement {

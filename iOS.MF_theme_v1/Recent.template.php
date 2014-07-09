@@ -23,16 +23,6 @@ function template_main()
     }
   }
 
-  if (!$showingAvatars)
-  {
-    echo '
-    <style type="text/css">
-      .message { min-height: initial !important; }
-      .avatar { display: none; }
-      .message_time { margin-bottom: 5px !important; }
-    </style>';
-  }
-
   echo '
   <ul id="recent" class="content2 firstContent">';
 
@@ -63,7 +53,7 @@ function template_main()
     echo '</div>
   
       <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '' ,'\')"><span class="name">', $message['poster']['name'] ,'</span>';
-      if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) {
+      if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']) && $showingAvatars) {
         if (array_key_exists('avatar',$message['poster'])) {
           if (empty($message['poster']['avatar'])) {
             echo '<div class="avatar" style="background: url('.$settings['theme_url'].'/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
@@ -76,8 +66,8 @@ function template_main()
 
       echo '
     </div>
-        <div class="message" onclick="$.mobile.changePage(\''. str_replace('#msg',';new#msg',$message['href']) . '\');">
-        <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong','span',$message['time']) ,'</span><br />
+        <div class="message" onclick="$.mobile.changePage(\''. str_replace('#msg',';new#msg',$message['href']) . '\');" ' , ($showingAvatars ? '' : 'style="min-height: initial !important;"') , '>
+        <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;' , ($showingAvatars ? 'margin-bottom:3px;' : 'margin-bottom: 5px;') , '">', str_replace('strong','span',$message['time']) ,'</span><br />
     ', str_replace(rtrim($scripturl,'/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/',str_replace('<strong>Today</strong>','Today',short1($message['message'])));
 
     // Assuming there are attachments...
