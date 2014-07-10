@@ -959,6 +959,23 @@ a:link, #inputbutton, .button, .clicked, #searchform > input, .editor, #newTopic
   text-align: justify;
 }
 
+.readme {
+  font-size: 11px;
+  text-align: justify;
+  list-style: disc outside none; 
+  padding-left: 28px;
+}
+
+.readme > li {
+  padding: 6px 4px 0px 0px;
+}
+
+.readme > li:before {
+   content: "-";
+   left: 15px;
+   position: absolute;
+}
+
 .header {
   font-size: 14px;
   padding: 6px 0px 6px 9px;
