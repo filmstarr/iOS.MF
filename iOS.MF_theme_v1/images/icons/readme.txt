@@ -6,6 +6,6 @@
 * http://graphicburger.com/simple-line-icons-set-vol-4/
 */
 
-
-
 Licence: http://graphicburger.com/license/
+
+All icons generated from the Graphic Burger Simple Line Icon set.
