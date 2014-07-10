@@ -8,7 +8,7 @@ function template_registration_agreement() {
   $agreement = explode('<br /><br />', $context['agreement']);
   echo '
 		<form data-ajax="false" action="', $scripturl, '?action=register" method="post" accept-charset="', $context['character_set'], '" id="registration">
-			<h2 style="margin-left: 9px;">' . $txt['iAgreement'] . '</h2>
+			<h2>' . $txt['iAgreement'] . '</h2>
 			<div class="agreement">
 			', $agreement[0], ' <a style="color: #007AFF;" href="#" onclick="this.parentNode.innerHTML=\'', addslashes($context['agreement']), '\'; return false;">[', $txt['iMore'], '...]</a>
 			</div>';
