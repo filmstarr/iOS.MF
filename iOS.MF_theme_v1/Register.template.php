@@ -18,8 +18,8 @@ function template_registration_agreement() {
   // Age restriction in effect?
   if ($context['show_coppa']) {
     echo '
-				<input class="button twobuttons" type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" />
-				<input class="button twobuttons" type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" />';
+				<input class="button two-buttons" type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" />
+				<input class="button two-buttons" type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" />';
   } else {
     echo '
 				<button class="button" name="accept_agreement">' . $txt['agreement_agree'] . '</button>';
@@ -96,7 +96,7 @@ function template_registration_form() {
   
   echo '<div class="header">User</div>';
   
-  echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+  echo '<div class="no-left-padding inputContainer" style="padding-top: 13px;">';
   echo '<span class="inputLabel">' . $txt['username'] . '</span>';
   echo '<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" />';
   echo '<span id="smf_autov_username_div" style="display: none;">
@@ -106,30 +106,30 @@ function template_registration_form() {
       </span>';
   echo '</div>';
   
-  echo '<div class="noLeftPadding inputContainer">';
+  echo '<div class="no-left-padding inputContainer">';
   echo '<span class="inputLabel">' . $txt['email'] . '</span>';
   echo '<input type="text" name="email" id="smf_autov_reserve1" size="30" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '" />';
   echo '</div>';
   
   echo '<div class="header">' . $txt['password'] . '</div>';
   
-  echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+  echo '<div class="no-left-padding inputContainer" style="padding-top: 13px;">';
   echo '<span class="inputLabel">' . $txt['iChoose'] . '</span>';
   echo '<input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" />';
   echo '</div>';
   
-  echo '<div class="noLeftPadding inputContainer">';
+  echo '<div class="no-left-padding inputContainer">';
   echo '<span class="inputLabel">' . $txt['iVerify'] . '</span>';
   echo '<input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" />';
   echo '</div>';
   
   if ($context['visual_verification']) {
     echo '<div class="header">' . $txt['iVerification'] . '</div>';
-    echo '<div class="noLeftPadding inputContainer" style="padding-top: 13px;">';
+    echo '<div class="no-left-padding inputContainer" style="padding-top: 13px;">';
     echo '<span class="inputLabel">Code</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
-    echo '<div class="noLeftPadding inputContainer">';
+    echo '<div class="no-left-padding inputContainer">';
     echo '<span class="inputLabel">Verify</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="register_vv[code]" />';
     echo '</div>';

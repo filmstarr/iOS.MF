@@ -23,13 +23,13 @@ function template_main() {
   }
   
   echo '
-  <ul id="recent" class="content2 firstContent">';
+  <ul id="recent" class="content-list first-content">';
   
   foreach ($context['posts'] as $message) {
     
     echo '<li>
   
-          <div class="postDetails">', $message['counter'] . '. ' . $message['board']['link'] . ' / <a href="', $scripturl, '?topic=', $message['topic'], '">', $message['subject'], '</a>
+          <div class="post-details">', $message['counter'] . '. ' . $message['board']['link'] . ' / <a href="', $scripturl, '?topic=', $message['topic'], '">', $message['subject'], '</a>
           </div>
   
   <div>';
@@ -39,8 +39,8 @@ function template_main() {
         <div class="quickbuttons_wrap">
           <div class="reset smalltext quickbuttons">
 
-            <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], ';quote=', $message['id'], '\');">', $txt['quote'], '</button>
-            <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], '\');">', $txt['reply'], '</button>
+            <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], ';quote=', $message['id'], '\');">', $txt['quote'], '</button>
+            <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], '\');">', $txt['reply'], '</button>
 
           </div>
         </div>';
@@ -62,7 +62,7 @@ function template_main() {
     echo '
     </div>
         <div class="message" onclick="$.mobile.changePage(\'' . str_replace('#msg', ';new#msg', $message['href']) . '\');" ', ($showingAvatars ? '' : 'style="min-height: initial !important;"'), '>
-        <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;', ($showingAvatars ? 'margin-bottom:3px;' : 'margin-bottom: 5px;'), '">', str_replace('strong', 'span', $message['time']), '</span><br />
+        <span class="message-time" style="font-style: italic;font-size:11px;display:inline-block;', ($showingAvatars ? 'margin-bottom:3px;' : 'margin-bottom: 5px;'), '">', str_replace('strong', 'span', $message['time']), '</span><br />
     ', str_replace(rtrim($scripturl, '/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/', str_replace('<strong>Today</strong>', 'Today', short1($message['message'])));
     
     // Assuming there are attachments...
@@ -132,13 +132,13 @@ function template_unread() {
   
   $i = 0;
   if ($topic_sticky_count) {
-    echo '<ul class="content2 firstContent">';
+    echo '<ul class="content-list first-content">';
     foreach ($context['topics'] as $topic) {
       if ($topic['is_sticky']) {
         $i++;
         echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . str_replace('#new', ';new#new', $topic['new_href']) . '\')">';
         echo '<div class="sticky"></div>';
-        echo '<div class="title stickyShortTitle">', $topic['first_post']['subject'], '</div>';
+        echo '<div class="title sticky-short-title">', $topic['first_post']['subject'], '</div>';
         echo '<div class="new">' . $txt['new_button'] . '</div>';
         
         echo '<div class="description">';
@@ -153,7 +153,7 @@ function template_unread() {
   if (count($context['topics']) - $topic_sticky_count) {
     echo '
   
-  <ul class="content2', (!$topic_sticky_count ? ' firstContent' : ''), '">';
+  <ul class="content-list', (!$topic_sticky_count ? ' first-content' : ''), '">';
     
     $i = 0;
     
@@ -165,7 +165,7 @@ function template_unread() {
         echo '
   
         <li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . str_replace('#new', ';new#new', $topic['new_href']) . '\')">';
-        echo '<div class="title shortTitle">', $topic['first_post']['subject'], '</div>';
+        echo '<div class="title short-title">', $topic['first_post']['subject'], '</div>';
         echo '<div class="new">' . $txt['new_button'] . '</div>';
         echo '<div class="description">';
         echo '', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . iPhoneTime($topic['last_post']['timestamp']), '</div>';
@@ -176,7 +176,7 @@ function template_unread() {
     echo '</ul>';
   }
   if ($somma == 0) echo '
-        <div id="unreadlink">
+        <div id="unread-link">
           ', $txt['msg_alert_none'], '
         </div>';
   

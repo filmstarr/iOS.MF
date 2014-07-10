@@ -18,7 +18,7 @@ function template_results() {
     $i = 0;
     
     echo '
-       <ul class="content2 firstContent">';
+       <ul class="content-list first-content">';
     
     while ($topic = $context['get_topics']()) {
       
@@ -26,7 +26,7 @@ function template_results() {
         $i++;
         
         echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $topic['first_post']['href'] . '\');">';
-        echo '<div class="title', ($topic['new']) ? ' shortTitle' : '', '">', $topic['first_post']['subject'], '</div>';
+        echo '<div class="title', ($topic['new']) ? ' short-title' : '', '">', $topic['first_post']['subject'], '</div>';
         if ($topic['new'] && $context['user']['is_logged']) {
           echo '<div class="new">' . $txt['new_button'] . '</div>';
         }

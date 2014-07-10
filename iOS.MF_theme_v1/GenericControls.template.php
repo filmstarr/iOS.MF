@@ -40,13 +40,13 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
     // Do the actual stuff - image first?
     if ($i == 0 && $verify_context['show_visual']) {
       if ($context['use_graphic_library']) $verification.= '
-        <img class="verification_image" height="30" src="' . $verify_context['image_href'] . '" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '" />';
+        <img class="verification-image" height="30" src="' . $verify_context['image_href'] . '" alt="' . $txt['visual_verification_description'] . '" id="verification-image_' . $verify_id . '" />';
       else $verification.= '
-        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=1" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_1" />
-        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=2" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_2" />
-        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=3" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_3" />
-        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=4" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_4" />
-        <img class="verification_image" src="' . $verify_context['image_href'] . ';letter=5" alt="' . $txt['visual_verification_description'] . '" id="verification_image_' . $verify_id . '_5" />';
+        <img class="verification-image" src="' . $verify_context['image_href'] . ';letter=1" alt="' . $txt['visual_verification_description'] . '" id="verification-image_' . $verify_id . '_1" />
+        <img class="verification-image" src="' . $verify_context['image_href'] . ';letter=2" alt="' . $txt['visual_verification_description'] . '" id="verification-image_' . $verify_id . '_2" />
+        <img class="verification-image" src="' . $verify_context['image_href'] . ';letter=3" alt="' . $txt['visual_verification_description'] . '" id="verification-image_' . $verify_id . '_3" />
+        <img class="verification-image" src="' . $verify_context['image_href'] . ';letter=4" alt="' . $txt['visual_verification_description'] . '" id="verification-image_' . $verify_id . '_4" />
+        <img class="verification-image" src="' . $verify_context['image_href'] . ';letter=5" alt="' . $txt['visual_verification_description'] . '" id="verification-image_' . $verify_id . '_5" />';
     } else {
       
       // Where in the question array is this question?

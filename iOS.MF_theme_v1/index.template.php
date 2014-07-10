@@ -139,17 +139,17 @@ function template_body_above() {
   } else $loginregister = '';
   echo '
 
-    <div id="pageTitle">';
+    <div id="page-title">';
   
-  echo '<div id="theTitle" class="theTitle">', iPhoneTitle(), '</div>';
+  echo '<div id="the-title" class="the-title">', iPhoneTitle(), '</div>';
   
   echo '</div>
 
-    <div id="showhidesearch" class="showhidesearch magnifierIcon" onclick="toggleSearch" ', $issearch, '></div>    
-    <div id="showhidelogin" class="showhidelogin ', $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon', '"></div>
+    <div id="show-hide-search" class="show-hide-search magnifierIcon" onclick="toggleSearch" ', $issearch, '></div>    
+    <div id="show-hide-login" class="show-hide-login ', $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon', '"></div>
 
     <script type="text/javascript">
-      var searchControl = $(".showhidesearch").last().get(0);
+      var searchControl = $(".show-hide-search").last().get(0);
       var toggleSearch = function() {
         if ($("#searchbar").is(":visible"))
         {
@@ -171,10 +171,10 @@ function template_body_above() {
 
     <div id="searchbar" class="inputContainer">
 
-    <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="searchform">
+    <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="search-form">
 
     <input id="searchText" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
-    <input type="submit" id="searchbutton" class="button inputbutton" value="' . $txt['search_button'] . '" />
+    <input type="submit" id="searchbutton" class="button input-button" value="' . $txt['search_button'] . '" />
       
     </form>
     </div>';
@@ -355,12 +355,12 @@ function quick_login() {
   
   if ($context['user']['is_logged']) {
     echo '<script type="text/javascript">';
-    echo 'var control = $(".showhidelogin").last().get(0);';
+    echo 'var control = $(".show-hide-login").last().get(0);';
     echo 'control.onclick = function() { $(".ui-loader").loader("show"); window.location.href = "index.php?action=logout;sesc=', $context['session_id'], '"; };';
     echo '</script>';
   } else {
     echo '<script type="text/javascript">
-    var control = $(".showhidelogin").last().get(0);
+    var control = $(".show-hide-login").last().get(0);
 
     var toggleQuickLogin = function() {
       if ($("#quickLogin").is(":visible"))
@@ -384,23 +384,23 @@ function quick_login() {
     echo '<div id="quickLogin" class="quickLogin">
   <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
-<div class="noLeftPadding inputContainer padTop">';
+<div class="no-left-padding inputContainer pad-top">';
     echo '<span class="inputLabel">' . $txt['username'] . '</span>';
     echo '<input id="user" class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
 </div>
-<div class="noLeftPadding inputContainer padTop">';
+<div class="no-left-padding inputContainer pad-top">';
     echo '<span class="inputLabel">' . $txt['password'] . '</span>';
     echo '<input type="password" tabindex="', $context['tabindex']++, '" name="passwrd" />
 </div>
-<div class="noLeftPadding inputContainer padTop">';
+<div class="no-left-padding inputContainer pad-top">';
     echo '<span class="inputLabel">' . $txt['iRemember'] . '</span>';
     echo '<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
 </div>
     
   <input type="hidden" name="hash_passwrd" value="" />
   <div class="buttons" style="margin-top: -9px; padding-bottom: 5px;">
-    <button onclick="$(\'.ui-loader\').loader(\'show\');" class="button twobuttons" type="submit">' . $txt['login'] . '</button>
-    <button class="button twobuttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>
+    <button onclick="$(\'.ui-loader\').loader(\'show\');" class="button two-buttons" type="submit">' . $txt['login'] . '</button>
+    <button class="button two-buttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>
   </div>
   </form>
   </div>';

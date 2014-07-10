@@ -14,18 +14,18 @@ function template_folder() {
   $messageCount = 0;
   
   if ($context['display_mode'] != 0 && strpos($_SERVER['REQUEST_URI'], 'pmsg') == false) {
-    echo '<div class="child buttons noLeftPadding">
+    echo '<div class="child buttons no-left-padding">
       <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send\');">Compose Message</button>
     </div>';
     
     while ($message = $context['get_pmessage']('subject')) {
       if ($messageCount == 0) {
-        echo '<ul class="content2">';
+        echo '<ul class="content-list">';
       }
       
       echo '
       <li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $scripturl . '?action=pm;pmsg=' . $message['id'] . ';msg' . $message['id'] . '#msg' . $message['id'] . '\');">';
-      echo '<div class="title', ($message['is_unread'] ? ' shortTitle' : ''), '">', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $message['subject']) : $message['subject']), '</div>';
+      echo '<div class="title', ($message['is_unread'] ? ' short-title' : ''), '">', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $message['subject']) : $message['subject']), '</div>';
       if ($message['is_unread']) {
         echo '<div class="new">' . $txt['new_button'] . '</div>';
       }
@@ -73,7 +73,7 @@ function template_folder() {
     }
     
     if ($messageCount == 0) echo '
-    <div id="unreadlink" style="padding-top: 0 !important;">
+    <div id="unread-link" style="padding-top: 0 !important;">
       ', $txt['msg_alert_none'], '
     </div>';
     
@@ -81,7 +81,7 @@ function template_folder() {
     template_control_paging();
   } else {
     if ($context['display_mode'] == 0) {
-      echo '<div class="child buttons noLeftPadding">
+      echo '<div class="child buttons no-left-padding">
         <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send\');">Send Message</button>
       </div>';
     }
@@ -91,7 +91,7 @@ function template_folder() {
       echo '<style type="text/css">
         .message { min-height: initial !important; }
         .avatar { display: none; }
-        .message_time { margin-bottom: 5px !important; }
+        .message-time { margin-bottom: 5px !important; }
       </style>';
     }
     
@@ -109,15 +109,15 @@ function template_folder() {
     
     while ($message = $context['get_pmessage']('message')) {
       if ($messageCount == 0) {
-        echo '<ul class="content2 ', ($context['display_mode'] != 0 ? ' firstContent' : ''), '">';
+        echo '<ul class="content-list ', ($context['display_mode'] != 0 ? ' first-content' : ''), '">';
       }
       echo '
         <li>
           <a id="msg', $message['id'], '"></a>';
       echo '
           <div>
-            <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != - 1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=all\');" >', $txt['reply'], ' ', $txt['all'], '</button>
-            <button class="button slimbutton editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=pm;sa=pmactions;pm_actions[', $message['id'], ']=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != - 1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'], ' </button>
+            <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != - 1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=all\');" >', $txt['reply'], ' ', $txt['all'], '</button>
+            <button class="button slim-button edit-delete" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=pm;sa=pmactions;pm_actions[', $message['id'], ']=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != - 1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'], ' </button>
           </div>';
       
       // Show who the message was sent to.
@@ -153,7 +153,7 @@ function template_folder() {
           </div>
           
           <div class="message" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != - 1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=all\');">
-            <span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong', 'span', $message['time']), '</span><br />
+            <span class="message-time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong', 'span', $message['time']), '</span><br />
           ', str_replace(rtrim($scripturl, '/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/', str_replace('<strong>Today</strong>', 'Today', short1($message['body']))), '
           </div>
 
@@ -171,13 +171,13 @@ function template_folder() {
       echo '
       <script type="text/javascript">
         $(function(){
-          $(".theTitle").last().html("', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $subject) : $subject), '");
+          $(".the-title").last().html("', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $subject) : $subject), '");
         });
       </script>';
     }
     
     if ($messageCount == 0) echo '
-    <div id="unreadlink" style="padding-top: 0 !important;">
+    <div id="unread-link" style="padding-top: 0 !important;">
       ', $txt['msg_alert_none'], '
     </div>';
     
@@ -231,11 +231,11 @@ function template_send() {
   
   if (!empty($context['post_error']['messages']) && count($context['post_error']['messages'])) {
     echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
-    echo '<style type="text/css"> #newTopic { padding-top: 9px; } </style>';
+    echo '<style type="text/css"> #new-topic { padding-top: 9px; } </style>';
   }
   
   if (empty($context['to_value'])) {
-    echo '<div id="newTopic" class="inputContainer">';
+    echo '<div id="new-topic" class="inputContainer">';
     echo '<span class="inputLabel">' . $txt['iTo'] . '</span>';
     
     //Users drop down list
@@ -253,7 +253,7 @@ function template_send() {
   }
   
   if (empty($context['subject']) || $context['subject'] == $txt['no_subject']) {
-    echo '<div id="newTopic" class="inputContainer">';
+    echo '<div id="new-topic" class="inputContainer">';
     echo '<span class="inputLabel">Subject</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="subject" value="" maxlength="50" />';
     echo '</div>';
@@ -262,24 +262,24 @@ function template_send() {
     echo '
     <script type="text/javascript">
       $(function(){
-        $(".theTitle").last().html("', $context['subject'], '");
+        $(".the-title").last().html("', $context['subject'], '");
       });
     </script>';
   }
   
   echo '
     <div id="postContainer" class="inputContainer">
-      <div class="newPost">
+      <div class="new-post">
            ', template_control_richedit($context['post_box_name'], 'message'), '
       </div>
     </div>';
   
   if ($context['require_verification']) {
-    echo '<div class="noLeftPadding inputContainer">';
+    echo '<div class="no-left-padding inputContainer">';
     echo '<span class="inputLabel">Code</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
-    echo '<div class="noLeftPadding inputContainer">';
+    echo '<div class="no-left-padding inputContainer">';
     echo '<span class="inputLabel">Verify</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="pm_vv[code]" />';
     echo '</div>';

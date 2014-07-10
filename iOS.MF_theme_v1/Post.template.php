@@ -8,7 +8,7 @@ function template_main() {
   echo '<script type="text/javascript">
       $(function(){
         $(".editor").last().autosize().resize();
-        $(".theTitle").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']), '");
+        $(".the-title").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']), '");
         $(".classic").last().hide();
 
         //Deal with the race condition between iOS keyboard showing and the focus event firing
@@ -47,14 +47,14 @@ function template_main() {
   if (!empty($context['post_error']['messages']) && count($context['post_error']['messages'])) {
     echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
     if (empty($context['subject'])) {
-      echo '<style type="text/css"> #newTopic { padding-top: 9px; } </style>';
+      echo '<style type="text/css"> #new-topic { padding-top: 9px; } </style>';
     } else {
       echo '<style type="text/css"> #postContainer { padding-top: 9px; } </style>';
     }
   }
   
   if (empty($context['subject'])) {
-    echo '<div id="newTopic" class="inputContainer">';
+    echo '<div id="new-topic" class="inputContainer">';
     echo '<span class="inputLabel">Topic</span>';
     echo '<input type="text" tabindex="1" name="subject" value="' . $context['subject'] . '" />';
     echo '</div>';
@@ -62,7 +62,7 @@ function template_main() {
   
   echo '
   <div id="postContainer" class="inputContainer">
-    <div class="newPost">
+    <div class="new-post">
          ', template_control_richedit($context['post_box_name'], 'message'), '
     </div>
   </div>';
@@ -83,7 +83,7 @@ function template_main() {
     if ($context['can_post_attachment']) {
       echo '<div style="position: relative;">';
       echo '<input type="file" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
-      echo '<div id="inputbuttonbackground"><div id="inputbutton" class="needsclick" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
+      echo '<div id="input-button-background"><div id="input-button" class="needsclick" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
       echo '</div>';
     }
     
@@ -92,7 +92,7 @@ function template_main() {
   
   // Guests have to put in their name and email...
   if (isset($context['name']) && isset($context['email'])) {
-    echo '<div class="noLeftPadding inputContainer">';
+    echo '<div class="no-left-padding inputContainer">';
     echo '<span class="inputLabel">' . $txt['username'] . '</span>';
     echo '<input type="text" name="guestname" size="25" value="', $context['name'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
     echo '<span id="smf_autov_username_div" style="display: none;">
@@ -103,7 +103,7 @@ function template_main() {
     echo '</div>';
     
     if (empty($modSettings['guest_post_no_email'])) {
-      echo '<div class="noLeftPadding inputContainer">';
+      echo '<div class="no-left-padding inputContainer">';
       echo '<span class="inputLabel">' . $txt['email'] . '</span>';
       echo '<input type="text" name="email" size="25" value="', $context['email'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
       echo '</div>';
@@ -111,11 +111,11 @@ function template_main() {
   }
   
   if ($context['require_verification']) {
-    echo '<div class="noLeftPadding inputContainer">';
+    echo '<div class="no-left-padding inputContainer">';
     echo '<span class="inputLabel">Code</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
-    echo '<div class="noLeftPadding inputContainer">';
+    echo '<div class="no-left-padding inputContainer">';
     echo '<span class="inputLabel">Verify</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
     echo '</div>';

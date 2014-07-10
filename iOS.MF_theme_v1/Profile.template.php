@@ -114,7 +114,7 @@ function template_edit_options()
   echo '
   <script type="text/javascript">
     $(function(){
-      $(".theTitle").last().html("iOS.MF");
+      $(".the-title").last().html("iOS.MF");
     });
   </script>';
 

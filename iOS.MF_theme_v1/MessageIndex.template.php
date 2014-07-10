@@ -5,17 +5,17 @@
 function template_main() {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
   
-  echo '<div class="child buttons" id="newtopic">
+  echo '<div class="child buttons" id="new-topic">
     <button class="button" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;board=', $context['current_board'], '.0  \');">', $txt['new_topic'], '</button>
   </div>';
   
   //Display child boards
   if (!empty($context['boards']) && (!empty($options['show_children']) || $context['start'] == 0)) {
-    echo '<ul class="content2">';
+    echo '<ul class="content-list">';
     foreach ($context['boards'] as $board) {
       echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $board['href'] . '\');">';
-      echo '<div class="sticky childBoard"></div>';
-      echo '<div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' stickyShortTitle' : '', '">', $board['name'], '</div>';
+      echo '<div class="sticky child-board"></div>';
+      echo '<div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' sticky-short-title' : '', '">', $board['name'], '</div>';
       if ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) {
         echo '<div class="new">' . $txt['new_button'] . '</div>';
       }
@@ -33,12 +33,12 @@ function template_main() {
   }
   
   if ($topic_sticky_count) {
-    echo '<ul class="content2">';
+    echo '<ul class="content-list">';
     foreach ($context['topics'] as $topic) {
       if ($topic['is_sticky']) {
         echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $topic['first_post']['href'] . '\');">';
         echo '<div class="sticky"></div>
-        <div class="title', ($topic['new']) ? ' stickyShortTitle' : '', '">', $topic['first_post']['subject'], '</div>';
+        <div class="title', ($topic['new']) ? ' sticky-short-title' : '', '">', $topic['first_post']['subject'], '</div>';
         if ($topic['new'] && $context['user']['is_logged']) {
           echo '<div class="new">' . $txt['new_button'] . '</div>';
         }
@@ -53,13 +53,13 @@ function template_main() {
   if (count($context['topics']) - $topic_sticky_count) {
     echo '
   
-  <ul class="content2">';
+  <ul class="content-list">';
     
     foreach ($context['topics'] as $topic) {
       if (!$topic['is_sticky']) {
         
         echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $topic['first_post']['href'] . '\')">';
-        echo '<div class="title', ($topic['new']) ? ' shortTitle' : '', '">', $topic['first_post']['subject'], '</div>';
+        echo '<div class="title', ($topic['new']) ? ' short-title' : '', '">', $topic['first_post']['subject'], '</div>';
         if ($topic['new'] && $context['user']['is_logged']) {
           echo '<div class="new">' . $txt['new_button'] . '</div>';
         }

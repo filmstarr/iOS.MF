@@ -9,7 +9,7 @@ function template_main() {
     echo '<style type="text/css">
       .message { min-height: initial !important; }
       .avatar { display: none; }
-      .message_time { margin-bottom: 5px !important; }
+      .message-time { margin-bottom: 5px !important; }
     </style>';
   }
   
@@ -46,9 +46,9 @@ function template_main() {
   echo '  
     <div class="buttons">
 
-  <button class="button twobuttons" id="quoting" onclick="toggleQuoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'] . ' ' . $txt['iOff'] : $txt['iQuoting'] . ' ' . $txt['iOn'], '</button>
+  <button class="button two-buttons" id="quoting" onclick="toggleQuoting();">', (isset($_COOKIE['disablequoting'])) ? $txt['iQuoting'] . ' ' . $txt['iOff'] : $txt['iQuoting'] . ' ' . $txt['iOn'], '</button>
 
-  <button class="button twobuttons" onclick="$.mobile.changePage(\'' . $scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'] . '\');">', $txt['reply'], '</button>';
+  <button class="button two-buttons" onclick="$.mobile.changePage(\'' . $scripturl . '?action=post;topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'] . '\');">', $txt['reply'], '</button>';
   echo '
     </div>';
   
@@ -75,7 +75,7 @@ function template_main() {
       
       // Show each option with its corresponding percentage bar.
       foreach ($context['poll']['options'] as $option) {
-        if ($context['allow_poll_view']) echo '<div class="middletext', $option['voted_this'] ? ' voted' : '', '">', $option['votes'], ' (', $option['percent'], '%) - ', $option['option'], '</div>';
+        if ($context['allow_poll_view']) echo '<div class="middle-text', $option['voted_this'] ? ' voted' : '', '">', $option['votes'], ' (', $option['percent'], '%) - ', $option['option'], '</div>';
       }
       echo '</div>';
     }
@@ -94,12 +94,12 @@ function template_main() {
       
       // Show each option with its button - a radio likely.
       foreach ($context['poll']['options'] as $option) echo '
-                <li class="middletext">', $option['vote_button'], ' <label for="', $option['id'], '">', $option['option'], '</label></li>';
+                <li class="middle-text">', $option['vote_button'], ' <label for="', $option['id'], '">', $option['option'], '</label></li>';
       
       echo '
               </ul>
               <div class="submitbutton">
-                <input class="button slimbutton" type="submit" value="', $txt['poll_vote'], '" />
+                <input class="button slim-button" type="submit" value="', $txt['poll_vote'], '" />
                 <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
               </div>
             </form>';
@@ -128,7 +128,7 @@ function template_main() {
   //echo '<a id="msg', $context['first_message'], '"></a>', $context['first_new_message'] ? '<a id="new"></a>' : '';
   echo $context['first_new_message'] ? '<a id="new"></a>' : '';
   
-  echo '<ul class="content2">';
+  echo '<ul class="content-list">';
   
   $i = 0;
   
@@ -146,11 +146,11 @@ function template_main() {
       
       // Can the user modify the contents of this post?
       if ($message['can_modify']) echo '
-                  <button class="button slimbutton editdel" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '\');"> ' . $txt['modify'] . ' </button>';
+                  <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '\');"> ' . $txt['modify'] . ' </button>';
       
       // How about... even... remove it entirely?!
       if ($message['can_remove']) echo '
-              <button class="button slimbutton editdel" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'], ' </button>';
+              <button class="button slim-button edit-delete" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'], ' </button>';
       echo '</div>
   
       <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '', '\')"><span class="name">', $message['member']['name'], '</span>';
@@ -162,7 +162,7 @@ function template_main() {
       echo '
     
     </div>
-        <div class="message"', (!isset($_COOKIE['disablequoting']) && $context['can_reply']) ? '  onclick="$.mobile.changePage(\'' . $scripturl . '?action=post;quote=' . $message['id'] . ';topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '\')"' : '', '><span class="message_time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong', 'span', $message['time']), '</span><br />
+        <div class="message"', (!isset($_COOKIE['disablequoting']) && $context['can_reply']) ? '  onclick="$.mobile.changePage(\'' . $scripturl . '?action=post;quote=' . $message['id'] . ';topic=' . $context['current_topic'] . '.' . $context['start'] . ';num_replies=' . $context['num_replies'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '\')"' : '', '><span class="message-time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong', 'span', $message['time']), '</span><br />
     ', str_replace(rtrim($scripturl, '/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/', str_replace('<strong>Today</strong>', 'Today', short1($message['body'])));
       
       // Assuming there are attachments...
@@ -248,7 +248,7 @@ function quick_reply() {
       setTopMargin();
     };
 
-    var title = $(".theTitle").last().get(0);
+    var title = $(".the-title").last().get(0);
     title.onclick = function() { $(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0); toggleQuickReply();};
     title.style.color = "#007AFF";
 
@@ -259,14 +259,14 @@ function quick_reply() {
   
   $quickReply.= '
   <div id="postContainer" class="inputContainer" style="padding-bottom: 0;">
-    <div class="newPost">
+    <div class="new-post">
       <textarea class="editor" name="message" id="message" rows="1" cols="60" tabindex="2" style="width: 100%; height: 16px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
     </div>
   </div>';
   
   // Guests have to put in their name and email...
   if (!$context['user']['is_logged'] && isset($context['name']) && isset($context['email'])) {
-    $quickReply.= '<div class="noLeftPadding inputContainer padTop">';
+    $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
     $quickReply.= '<span class="inputLabel">' . $txt['username'] . '</span>';
     $quickReply.= '<input type="text" name="guestname" size="25" value="' . $context['name'] . '" tabindex="' . $context['tabindex']++ . '" class="input_text" />';
     $quickReply.= '<span id="smf_autov_username_div" style="display: none;">
@@ -277,7 +277,7 @@ function quick_reply() {
     $quickReply.= '</div>';
     
     if (empty($modSettings['guest_post_no_email'])) {
-      $quickReply.= '<div class="noLeftPadding inputContainer padTop">';
+      $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
       $quickReply.= '<span class="inputLabel">' . $txt['email'] . '</span>';
       $quickReply.= '<input type="text" name="email" size="25" value="' . $context['email'] . '" tabindex="' . $context['tabindex']++ . '" class="input_text" />';
       $quickReply.= '</div>';
@@ -285,11 +285,11 @@ function quick_reply() {
   }
   
   if ($context['require_verification']) {
-    $quickReply.= '<div class="noLeftPadding inputContainer padTop">';
+    $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
     $quickReply.= '<span class="inputLabel">Code</span>';
     $quickReply.= template_control_verification($context['visual_verification_id'], 'all');
     $quickReply.= '</div>';
-    $quickReply.= '<div class="noLeftPadding inputContainer padTop">';
+    $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
     $quickReply.= '<span class="inputLabel">Verify</span>';
     $quickReply.= '<input type="text" tabindex="' . $context['tabindex']++ . '" name="post_vv[code]" />';
     $quickReply.= '</div>';

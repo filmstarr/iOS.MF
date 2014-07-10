@@ -6,13 +6,13 @@ function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
   $firstContent = true;
   foreach ($context['categories'] as $category) {
-    echo '<ul class="content2', $firstContent ? ' firstContent">' : '">';
+    echo '<ul class="content-list', $firstContent ? ' first-content">' : '">';
     $firstContent = false;
     $i = 0;
     foreach ($category['boards'] as $board) {
       $i++;
       echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $board['href'] . '\');">';
-      echo '<div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' shortTitle' : '', '">', $board['name'], '</div>';
+      echo '<div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' short-title' : '', '">', $board['name'], '</div>';
       if ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) {
         echo '<div class="new">' . $txt['new_button'] . '</div>';
       }
@@ -28,7 +28,7 @@ function template_main() {
   
   // "Users online" - in order of activity.
   
-  echo '<div class="content2">';
+  echo '<div class="content-list">';
   
   // Assuming there ARE users online... each user in users_online has an id, username, name, group, href, and link.
   
