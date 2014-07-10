@@ -192,9 +192,18 @@ function template_body_below() {
   echo '<div>';
   
   //Subtle default mode button
-  $backname = $backlink = '';
-  if (!empty($modSettings['id_default_theme'])) $backlink = 'index.php?theme=' . $modSettings['id_default_theme'];
-  else $backlink = 'index.php?theme=' . $modSettings['theme_guests'];
+  $themeNumber = '1';
+  if (!empty($modSettings['id_default_theme'])) $themeNumber = $modSettings['id_default_theme'];
+  else $themeNumber = $modSettings['theme_guests'];
+
+  $currentUrl = getUrl();
+  $backlink = "index.php?theme=" . $themeNumber . ";";
+  if (strpos($currentUrl,'index.php') !== false) {
+    $backlink = $currentUrl;
+    $backlink .= strpos($backlink,'?') == false ? '?' : (substr($backlink, -1) !== ';' ? ';' : '');
+    $backlink .= strpos($backlink,'theme=') == false ? 'theme=' . $themeNumber . ';' : '';
+    $backlink = preg_replace("/theme=\d+/", "theme=" . $themeNumber, $backlink);
+  }
   
   $backname = 'Default Theme';
   echo '<button data-ajax="false" class="classic button" id="classic">', $backname, '</div>';
@@ -207,7 +216,7 @@ function template_body_below() {
 
     Hammer($(".classic").last()).on("hold", function(event) {
       $(".ui-loader").loader("show");
-      window.location.href = "index.php?theme=1";
+      window.location.href = "', preg_replace("/theme=\d+/", "theme=1", $backlink) , '";
     });
   </script>';
 
@@ -279,6 +288,13 @@ function template_html_below() {
 function theme_linktree() {
   
   return false;
+}
+
+function getUrl() {
+  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
+  $url .= ( $_SERVER["SERVER_PORT"] !== "80") ? ":".$_SERVER["SERVER_PORT"] : "";
+  $url .= $_SERVER["REQUEST_URI"];
+  return $url;
 }
 
 function iPhoneTime($time) {
