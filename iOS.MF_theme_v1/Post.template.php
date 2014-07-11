@@ -49,26 +49,26 @@ function template_main() {
     if (empty($context['subject'])) {
       echo '<style type="text/css"> #new-topic { padding-top: 9px; } </style>';
     } else {
-      echo '<style type="text/css"> #postContainer { padding-top: 9px; } </style>';
+      echo '<style type="text/css"> #post-container { padding-top: 9px; } </style>';
     }
   }
   
   if (empty($context['subject'])) {
-    echo '<div id="new-topic" class="inputContainer">';
-    echo '<span class="inputLabel">Topic</span>';
+    echo '<div id="new-topic" class="input-container">';
+    echo '<span class="input-label">Topic</span>';
     echo '<input type="text" tabindex="1" name="subject" value="' . $context['subject'] . '" />';
     echo '</div>';
   }
   
   echo '
-  <div id="postContainer" class="inputContainer">
+  <div id="post-container" class="input-container">
     <div class="new-post">
          ', template_control_richedit($context['post_box_name'], 'message'), '
     </div>
   </div>';
   
   if (!empty($context['current_attachments']) || $context['can_post_attachment']) {
-    echo '<div id="attachment_wrapper">';
+    echo '<div id="attachment-wrapper">';
     
     // If this post already has attachments on it - give information about them.
     if (!empty($context['current_attachments'])) {
@@ -82,8 +82,8 @@ function template_main() {
     // Is the user allowed to post any additional ones? If so give them the boxes to do it!
     if ($context['can_post_attachment']) {
       echo '<div style="position: relative;">';
-      echo '<input type="file" name="attachment[]" id="inputfile" style="padding-left: 5px;" />';
-      echo '<div id="input-button-background"><div id="input-button" class="needsclick" onclick="document.getElementById(\'inputfile\').click();this.blur();">Choose File</div></div>';
+      echo '<input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" />';
+      echo '<div id="input-button-background"><div id="input-button" class="needsclick" onclick="document.getElementById(\'input-file\').click();this.blur();">Choose File</div></div>';
       echo '</div>';
     }
     
@@ -92,31 +92,31 @@ function template_main() {
   
   // Guests have to put in their name and email...
   if (isset($context['name']) && isset($context['email'])) {
-    echo '<div class="no-left-padding inputContainer">';
-    echo '<span class="inputLabel">' . $txt['username'] . '</span>';
+    echo '<div class="no-left-padding input-container">';
+    echo '<span class="input-label">' . $txt['username'] . '</span>';
     echo '<input type="text" name="guestname" size="25" value="', $context['name'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
-    echo '<span id="smf_autov_username_div" style="display: none;">
+    echo '<span id="smf-autov-username-div" style="display: none;">
             <a id="smf_autov_username_link" href="#">
-              <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
+              <img id="smf-autov-username-img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
             </a>
           </span>';
     echo '</div>';
     
     if (empty($modSettings['guest_post_no_email'])) {
-      echo '<div class="no-left-padding inputContainer">';
-      echo '<span class="inputLabel">' . $txt['email'] . '</span>';
+      echo '<div class="no-left-padding input-container">';
+      echo '<span class="input-label">' . $txt['email'] . '</span>';
       echo '<input type="text" name="email" size="25" value="', $context['email'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
       echo '</div>';
     }
   }
   
   if ($context['require_verification']) {
-    echo '<div class="no-left-padding inputContainer">';
-    echo '<span class="inputLabel">Code</span>';
+    echo '<div class="no-left-padding input-container">';
+    echo '<span class="input-label">Code</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
-    echo '<div class="no-left-padding inputContainer">';
-    echo '<span class="inputLabel">Verify</span>';
+    echo '<div class="no-left-padding input-container">';
+    echo '<span class="input-label">Verify</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
     echo '</div>';
   }

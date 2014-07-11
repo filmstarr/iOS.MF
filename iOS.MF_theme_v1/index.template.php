@@ -31,6 +31,7 @@ function template_html_above() {
 <html', $context['right_to_left'] ? ' dir="rtl"' : '', '>
 
 <head>
+
 <title>', $context['page_title_html_safe'], '</title>
 <meta http-equiv="Content-Type" content="text/html; charset=', $context['character_set'], '" />
 <meta name="description" content="', $context['page_title_html_safe'], '" />
@@ -130,7 +131,7 @@ function template_body_above() {
   
   global $txt, $_GET, $context, $modSettings, $settings, $user_info, $scripturl;
   
-  //Add fixedTopBar to class of topbar to fix at the top. Mobile Safari doesn't like fixed items when the keyboard is showing at present though (iOS7).
+  //Add fixed-top-bar to class of topbar to fix at the top. Mobile Safari doesn't like fixed items when the keyboard is showing at present though (iOS7).
   //ToDo: When Safari can handle this better present this as a user option.
   echo '
   <div class="topbar" id="topbar" data-role="header">';
@@ -145,8 +146,8 @@ function template_body_above() {
   
   echo '</div>
 
-    <div id="show-hide-search" class="show-hide-search magnifierIcon" onclick="toggleSearch" ', $issearch, '></div>    
-    <div id="show-hide-login" class="show-hide-login ', $context['user']['is_logged'] ? 'logoutIcon' : 'loginIcon', '"></div>
+    <div id="show-hide-search" class="show-hide-search magnifier-icon" onclick="toggleSearch" ', $issearch, '></div>    
+    <div id="show-hide-login" class="show-hide-login ', $context['user']['is_logged'] ? 'logout-icon' : 'login-icon', '"></div>
 
     <script type="text/javascript">
       var searchControl = $(".show-hide-search").last().get(0);
@@ -154,12 +155,12 @@ function template_body_above() {
         if ($("#searchbar").is(":visible"))
         {
           $("#searchbar").hide();
-          searchControl.className = "magnifierIcon";
+          searchControl.className = "magnifier-icon";
         }
         else
         {
           $("#searchbar").show();
-          searchControl.className = "closeIcon";
+          searchControl.className = "close-icon";
           $("#searchText").focus();
         }
         setTopMargin();
@@ -169,7 +170,7 @@ function template_body_above() {
   
   echo '
 
-    <div id="searchbar" class="inputContainer">
+    <div id="searchbar" class="input-container">
 
     <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="search-form">
 
@@ -195,31 +196,31 @@ function template_body_below() {
   $themeNumber = '1';
   if (!empty($modSettings['id_default_theme'])) $themeNumber = $modSettings['id_default_theme'];
   else $themeNumber = $modSettings['theme_guests'];
-
+  
   $currentUrl = getUrl();
   $backlink = "index.php?theme=" . $themeNumber . ";";
-  if (strpos($currentUrl,'index.php') !== false) {
+  if (strpos($currentUrl, 'index.php') !== false) {
     $backlink = $currentUrl;
-    $backlink .= strpos($backlink,'?') == false ? '?' : (substr($backlink, -1) !== ';' ? ';' : '');
-    $backlink .= strpos($backlink,'theme=') == false ? 'theme=' . $themeNumber . ';' : '';
+    $backlink.= strpos($backlink, '?') == false ? '?' : (substr($backlink, -1) !== ';' ? ';' : '');
+    $backlink.= strpos($backlink, 'theme=') == false ? 'theme=' . $themeNumber . ';' : '';
     $backlink = preg_replace("/theme=\d+/", "theme=" . $themeNumber, $backlink);
   }
   
   $backname = 'Default Theme';
-  echo '<button data-ajax="false" class="classic button" id="classic">', $backname, '</div>';
+  echo '<button data-ajax="false" class="classic button" id="classic">', $backname, '</button>';
   
   echo '<script type="text/javascript">
     Hammer($(".classic").last()).on("tap", function(event) {
       $(".ui-loader").loader("show");
-      window.location.href = "', $backlink , '";
+      window.location.href = "', $backlink, '";
     });
 
     Hammer($(".classic").last()).on("hold", function(event) {
       $(".ui-loader").loader("show");
-      window.location.href = "', preg_replace("/theme=\d+/", "theme=1", $backlink) , '";
+      window.location.href = "', preg_replace("/theme=\d+/", "theme=1", $backlink), '";
     });
   </script>';
-
+  
   echo '<div id="copyright"><h4>', theme_copyright(), '</h4></div>';
   
   echo '</div>';
@@ -237,7 +238,7 @@ function template_body_below() {
           var unreadMessageCount = ', $context['user']['unread_messages'], ';
 
           var unreadPostCountElement = $(".unreadPosts").last();
-          var unreadMessageCountElement = $(".unreadMessages").last();
+          var unreadMessageCountElement = $(".unread-messages").last();
 
           unreadPostCountElement.get()[0].innerHTML = unreadPostCount;
           unreadMessageCountElement.get()[0].innerHTML = unreadMessageCount;
@@ -262,16 +263,16 @@ function template_body_below() {
     </div>';
   
   echo '<div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance="true">
-        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'home\');" style="background: url(' . $settings['theme_url'] . '/images/icons/home.png) transparent center no-repeat;"></div></div>
-        <div><div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'profile\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div></div>
+        <div><div class="toolbar-icon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'home\');" style="background: url(' . $settings['theme_url'] . '/images/icons/home.png) transparent center no-repeat;"></div></div>
+        <div><div class="toolbar-icon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'profile\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/person.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div></div>
         <div>
-          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'pm\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
-          <div class="unreadCount unreadMessages"', ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>' . $context['user']['unread_messages'] : ' style="display:none;">'), '</div>
+          <div class="toolbar-icon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'pm\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
+          <div class="unread-count unread-messages"', ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>' . $context['user']['unread_messages'] : ' style="display:none;">'), '</div>
         </div>
-        <div><div class="toolbarIcon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'recent\');" style="background: url(' . $settings['theme_url'] . '/images/icons/inbox.png) transparent center no-repeat;"></div></div>
+        <div><div class="toolbar-icon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'recent\');" style="background: url(' . $settings['theme_url'] . '/images/icons/inbox.png) transparent center no-repeat;"></div></div>
         <div>
-          <div class="toolbarIcon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'unread;all\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
-          <div class="unreadCount unreadPosts"', ($unreadPostCount > 0 && $context['user']['is_logged'] ? '>' . $unreadPostCount : ' style="display:none">'), '</div>
+          <div class="toolbar-icon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'unread;all\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
+          <div class="unread-count unreadPosts"', ($unreadPostCount > 0 && $context['user']['is_logged'] ? '>' . $unreadPostCount : ' style="display:none">'), '</div>
         </div>
     </div>';
 }
@@ -291,9 +292,9 @@ function theme_linktree() {
 }
 
 function getUrl() {
-  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
-  $url .= ( $_SERVER["SERVER_PORT"] !== "80") ? ":".$_SERVER["SERVER_PORT"] : "";
-  $url .= $_SERVER["REQUEST_URI"];
+  $url = @($_SERVER["HTTPS"] != 'on') ? 'http://' . $_SERVER["SERVER_NAME"] : 'https://' . $_SERVER["SERVER_NAME"];
+  $url.= ($_SERVER["SERVER_PORT"] !== "80") ? ":" . $_SERVER["SERVER_PORT"] : "";
+  $url.= $_SERVER["REQUEST_URI"];
   return $url;
 }
 
@@ -363,17 +364,17 @@ function quick_login() {
     var control = $(".show-hide-login").last().get(0);
 
     var toggleQuickLogin = function() {
-      if ($("#quickLogin").is(":visible"))
+      if ($("#quick-login").is(":visible"))
       {
         $("#user").blur();
-        $("#quickLogin").hide();
-        control.className = "loginIcon";
+        $("#quick-login").hide();
+        control.className = "login-icon";
       }
       else
       {
-        $("#quickLogin").show();
+        $("#quick-login").show();
         $("#user").focus();
-        control.className = "closeIcon";
+        control.className = "close-icon";
       }
       setTopMargin();
     };
@@ -381,19 +382,19 @@ function quick_login() {
     control.onclick = toggleQuickLogin;
     </script>';
     
-    echo '<div id="quickLogin" class="quickLogin">
+    echo '<div id="quick-login" class="quick-login">
   <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
-<div class="no-left-padding inputContainer pad-top">';
-    echo '<span class="inputLabel">' . $txt['username'] . '</span>';
+<div class="no-left-padding input-container pad-top">';
+    echo '<span class="input-label">' . $txt['username'] . '</span>';
     echo '<input id="user" class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
 </div>
-<div class="no-left-padding inputContainer pad-top">';
-    echo '<span class="inputLabel">' . $txt['password'] . '</span>';
+<div class="no-left-padding input-container pad-top">';
+    echo '<span class="input-label">' . $txt['password'] . '</span>';
     echo '<input type="password" tabindex="', $context['tabindex']++, '" name="passwrd" />
 </div>
-<div class="no-left-padding inputContainer pad-top">';
-    echo '<span class="inputLabel">' . $txt['iRemember'] . '</span>';
+<div class="no-left-padding input-container pad-top">';
+    echo '<span class="input-label">' . $txt['iRemember'] . '</span>';
     echo '<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
 </div>
     

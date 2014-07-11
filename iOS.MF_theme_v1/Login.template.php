@@ -8,19 +8,19 @@ function template_login() {
   if (!empty($context['login_errors'])) echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['login_errors']), '</div></div>';
   if (isset($context['description'])) echo '<div class="errors"><div style="margin-top: 6px;">*', $context['description'], '</div></div>';
   
-  echo '<div class="quickLogin" style="display: block;">
+  echo '<div class="quick-login" style="display: block;">
   <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
-<div class="no-left-padding inputContainer pad-top">';
-  echo '<span class="inputLabel">' . $txt['username'] . '</span>';
+<div class="no-left-padding input-container pad-top">';
+  echo '<span class="input-label">' . $txt['username'] . '</span>';
   echo '<input class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
 </div>
-<div class="no-left-padding inputContainer pad-top">';
-  echo '<span class="inputLabel">' . $txt['password'] . '</span>';
+<div class="no-left-padding input-container pad-top">';
+  echo '<span class="input-label">' . $txt['password'] . '</span>';
   echo '<input type="password" tabindex="', $context['tabindex']++, '" name="passwrd" />
 </div>
-<div class="no-left-padding inputContainer pad-top">';
-  echo '<span class="inputLabel">' . $txt['iRemember'] . '</span>';
+<div class="no-left-padding input-container pad-top">';
+  echo '<span class="input-label">' . $txt['iRemember'] . '</span>';
   echo '<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
 </div>
     

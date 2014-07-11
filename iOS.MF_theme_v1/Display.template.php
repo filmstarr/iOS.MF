@@ -63,8 +63,8 @@ function template_main() {
         </div>
         <div class="windowbg">
 
-          <div id="poll_options">
-            <div id="pollquestion">
+          <div id="poll-options">
+            <div id="poll-question">
               ', $context['poll']['question'], '
             </div>';
     
@@ -98,7 +98,7 @@ function template_main() {
       
       echo '
               </ul>
-              <div class="submitbutton">
+              <div class="submit-button">
                 <input class="button slim-button" type="submit" value="', $txt['poll_vote'], '" />
                 <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
               </div>
@@ -114,10 +114,10 @@ function template_main() {
 
         </div>
       </div>
-      <div id="pollmoderation">';
+      <div id="poll-moderation">';
     
     // Build the poll moderation button array.
-    $poll_buttons = array('vote' => array('test' => 'allow_return_vote', 'text' => 'poll_return_vote', 'image' => 'poll_options.gif', 'lang' => true, 'url' => $scripturl . '?topic=' . $context['current_topic'] . '.' . $context['start']), 'results' => array('test' => 'show_view_results_button', 'text' => 'poll_results', 'image' => 'poll_results.gif', 'lang' => true, 'url' => $scripturl . '?topic=' . $context['current_topic'] . '.' . $context['start'] . ';viewresults'), 'change_vote' => array('test' => 'allow_change_vote', 'text' => 'poll_change_vote', 'image' => 'poll_change_vote.gif', 'lang' => true, 'url' => $scripturl . '?action=vote;topic=' . $context['current_topic'] . '.' . $context['start'] . ';poll=' . $context['poll']['id'] . ';' . $context['session_var'] . '=' . $context['session_id']), 'lock' => array('test' => 'allow_lock_poll', 'text' => (!$context['poll']['is_locked'] ? 'poll_lock' : 'poll_unlock'), 'image' => 'poll_lock.gif', 'lang' => true, 'url' => $scripturl . '?action=lockvoting;topic=' . $context['current_topic'] . '.' . $context['start'] . ';' . $context['session_var'] . '=' . $context['session_id']), 'edit' => array('test' => 'allow_edit_poll', 'text' => 'poll_edit', 'image' => 'poll_edit.gif', 'lang' => true, 'url' => $scripturl . '?action=editpoll;topic=' . $context['current_topic'] . '.' . $context['start']), 'remove_poll' => array('test' => 'can_remove_poll', 'text' => 'poll_remove', 'image' => 'admin_remove_poll.gif', 'lang' => true, 'custom' => 'onclick="return confirm(\'' . $txt['poll_remove_warn'] . '\');"', 'url' => $scripturl . '?action=removepoll;topic=' . $context['current_topic'] . '.' . $context['start'] . ';' . $context['session_var'] . '=' . $context['session_id']),);
+    $poll_buttons = array('vote' => array('test' => 'allow_return_vote', 'text' => 'poll_return_vote', 'image' => 'poll-options.gif', 'lang' => true, 'url' => $scripturl . '?topic=' . $context['current_topic'] . '.' . $context['start']), 'results' => array('test' => 'show_view_results_button', 'text' => 'poll_results', 'image' => 'poll_results.gif', 'lang' => true, 'url' => $scripturl . '?topic=' . $context['current_topic'] . '.' . $context['start'] . ';viewresults'), 'change_vote' => array('test' => 'allow_change_vote', 'text' => 'poll_change_vote', 'image' => 'poll_change_vote.gif', 'lang' => true, 'url' => $scripturl . '?action=vote;topic=' . $context['current_topic'] . '.' . $context['start'] . ';poll=' . $context['poll']['id'] . ';' . $context['session_var'] . '=' . $context['session_id']), 'lock' => array('test' => 'allow_lock_poll', 'text' => (!$context['poll']['is_locked'] ? 'poll_lock' : 'poll_unlock'), 'image' => 'poll_lock.gif', 'lang' => true, 'url' => $scripturl . '?action=lockvoting;topic=' . $context['current_topic'] . '.' . $context['start'] . ';' . $context['session_var'] . '=' . $context['session_id']), 'edit' => array('test' => 'allow_edit_poll', 'text' => 'poll_edit', 'image' => 'poll_edit.gif', 'lang' => true, 'url' => $scripturl . '?action=editpoll;topic=' . $context['current_topic'] . '.' . $context['start']), 'remove_poll' => array('test' => 'can_remove_poll', 'text' => 'poll_remove', 'image' => 'admin_remove_poll.gif', 'lang' => true, 'custom' => 'onclick="return confirm(\'' . $txt['poll_remove_warn'] . '\');"', 'url' => $scripturl . '?action=removepoll;topic=' . $context['current_topic'] . '.' . $context['start'] . ';' . $context['session_var'] . '=' . $context['session_id']),);
     
     template_button_strip($poll_buttons);
     
@@ -153,7 +153,7 @@ function template_main() {
               <button class="button slim-button edit-delete" onclick="if (confirm(\'', $txt['remove_message'], '?\')) { $.mobile.changePage(\'', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '\'); }"> ', $txt['remove'], ' </button>';
       echo '</div>
   
-      <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '', '\')"><span class="name">', $message['member']['name'], '</span>';
+      <div class="poster-info" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '', '\')"><span class="name">', $message['member']['name'], '</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) if (empty($message['member']['avatar']['image'])) {
         echo '<div class="avatar" style="background: url(' . $settings['theme_url'] . '/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
       } else {
@@ -235,14 +235,14 @@ function quick_reply() {
     });
 
     var toggleQuickReply = function() {
-      if ($("#quickReply").is(":visible"))
+      if ($("#quick-reply").is(":visible"))
       {
         $("#message").blur();
-        $("#quickReply").hide();      
+        $("#quick-reply").hide();      
       }
       else
       {
-        $("#quickReply").show();
+        $("#quick-reply").show();
         $("#message").focus();
       }
       setTopMargin();
@@ -252,13 +252,18 @@ function quick_reply() {
     title.onclick = function() { $(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0); toggleQuickReply();};
     title.style.color = "#007AFF";
 
+    var submitForm = function() {
+      submitonce(this);
+      smc_saveEntities("postmodify", ["subject", "' . $context['post_box_name'] . '", "guestname", "evtitle", "question"], "options");
+    };
+
     </script>';
   
-  $quickReply.= '<div id="quickReply">';
-  $quickReply.= '<form action="' . $scripturl . '?action=post2;' . (empty($context['current_board']) ? '' : 'board=') . $context['current_board'] . '.new#new" method="post" accept-charset="' . $context['character_set'] . '" name="postmodify" id="postmodify" onsubmit="submitonce(this);smc_saveEntities(\"postmodify\", [\"subject\", \"' . $context['post_box_name'] . '\", \"guestname\", \"evtitle\", \"question\"], \"options\");" enctype="multipart/form-data" style="margin: 0;">';
+  $quickReply.= '<div id="quick-reply">';
+  $quickReply.= '<form action="' . $scripturl . '?action=post2;' . (empty($context['current_board']) ? '' : 'board=') . $context['current_board'] . '.new#new" method="post" accept-charset="' . $context['character_set'] . '" name="postmodify" id="postmodify" onsubmit="submitForm();" enctype="multipart/form-data" style="margin: 0;">';
   
   $quickReply.= '
-  <div id="postContainer" class="inputContainer" style="padding-bottom: 0;">
+  <div id="post-container" class="input-container" style="padding-bottom: 0;">
     <div class="new-post">
       <textarea class="editor" name="message" id="message" rows="1" cols="60" tabindex="2" style="width: 100%; height: 16px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
     </div>
@@ -266,31 +271,31 @@ function quick_reply() {
   
   // Guests have to put in their name and email...
   if (!$context['user']['is_logged'] && isset($context['name']) && isset($context['email'])) {
-    $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
-    $quickReply.= '<span class="inputLabel">' . $txt['username'] . '</span>';
+    $quickReply.= '<div class="no-left-padding input-container pad-top">';
+    $quickReply.= '<span class="input-label">' . $txt['username'] . '</span>';
     $quickReply.= '<input type="text" name="guestname" size="25" value="' . $context['name'] . '" tabindex="' . $context['tabindex']++ . '" class="input_text" />';
-    $quickReply.= '<span id="smf_autov_username_div" style="display: none;">
+    $quickReply.= '<span id="smf-autov-username-div" style="display: none;">
             <a id="smf_autov_username_link" href="#">
-              <img id="smf_autov_username_img" src="' . $settings['images_url'] . '/icons/field_check.png" alt="*" />
+              <img id="smf-autov-username-img" src="' . $settings['images_url'] . '/icons/field_check.png" alt="*" />
             </a>
           </span>';
     $quickReply.= '</div>';
     
     if (empty($modSettings['guest_post_no_email'])) {
-      $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
-      $quickReply.= '<span class="inputLabel">' . $txt['email'] . '</span>';
+      $quickReply.= '<div class="no-left-padding input-container pad-top">';
+      $quickReply.= '<span class="input-label">' . $txt['email'] . '</span>';
       $quickReply.= '<input type="text" name="email" size="25" value="' . $context['email'] . '" tabindex="' . $context['tabindex']++ . '" class="input_text" />';
       $quickReply.= '</div>';
     }
   }
   
   if ($context['require_verification']) {
-    $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
-    $quickReply.= '<span class="inputLabel">Code</span>';
+    $quickReply.= '<div class="no-left-padding input-container pad-top">';
+    $quickReply.= '<span class="input-label">Code</span>';
     $quickReply.= template_control_verification($context['visual_verification_id'], 'all');
     $quickReply.= '</div>';
-    $quickReply.= '<div class="no-left-padding inputContainer pad-top">';
-    $quickReply.= '<span class="inputLabel">Verify</span>';
+    $quickReply.= '<div class="no-left-padding input-container pad-top">';
+    $quickReply.= '<span class="input-label">Verify</span>';
     $quickReply.= '<input type="text" tabindex="' . $context['tabindex']++ . '" name="post_vv[code]" />';
     $quickReply.= '</div>';
   }

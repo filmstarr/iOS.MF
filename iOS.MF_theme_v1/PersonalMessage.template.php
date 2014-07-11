@@ -142,7 +142,7 @@ function template_folder() {
       }
       echo '</div>';
       
-      echo '<div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '', '\')"><span class="name">', $message['member']['name'], '</span>';
+      echo '<div class="poster-info" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '', '\')"><span class="name">', $message['member']['name'], '</span>';
       if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) if (empty($message['member']['avatar']['image'])) {
         echo '<div class="avatar" style="background: url(' . $settings['theme_url'] . '/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
       } else {
@@ -235,8 +235,8 @@ function template_send() {
   }
   
   if (empty($context['to_value'])) {
-    echo '<div id="new-topic" class="inputContainer">';
-    echo '<span class="inputLabel">' . $txt['iTo'] . '</span>';
+    echo '<div id="new-topic" class="input-container">';
+    echo '<span class="input-label">' . $txt['iTo'] . '</span>';
     
     //Users drop down list
     require_once ($settings[theme_dir] . '/ThemeFunctions.php');
@@ -253,8 +253,8 @@ function template_send() {
   }
   
   if (empty($context['subject']) || $context['subject'] == $txt['no_subject']) {
-    echo '<div id="new-topic" class="inputContainer">';
-    echo '<span class="inputLabel">Subject</span>';
+    echo '<div id="new-topic" class="input-container">';
+    echo '<span class="input-label">Subject</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="subject" value="" maxlength="50" />';
     echo '</div>';
   } else {
@@ -268,19 +268,19 @@ function template_send() {
   }
   
   echo '
-    <div id="postContainer" class="inputContainer">
+    <div id="post-container" class="input-container">
       <div class="new-post">
            ', template_control_richedit($context['post_box_name'], 'message'), '
       </div>
     </div>';
   
   if ($context['require_verification']) {
-    echo '<div class="no-left-padding inputContainer">';
-    echo '<span class="inputLabel">Code</span>';
+    echo '<div class="no-left-padding input-container">';
+    echo '<span class="input-label">Code</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
-    echo '<div class="no-left-padding inputContainer">';
-    echo '<span class="inputLabel">Verify</span>';
+    echo '<div class="no-left-padding input-container">';
+    echo '<span class="input-label">Verify</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="pm_vv[code]" />';
     echo '</div>';
   }

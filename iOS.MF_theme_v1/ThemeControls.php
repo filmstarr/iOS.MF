@@ -14,19 +14,19 @@ function template_control_paging($pageControl = null) {
 
     $(function(){
 
-      Hammer($(".previousPage").last()).on("tap", function(event) {
+      Hammer($(".previous-page").last()).on("tap", function(event) {
         $.mobile.changePage(\'', $context['links']['prev'], '\');
       });
 
-      Hammer($(".nextPage").last()).on("tap", function(event) {
+      Hammer($(".next-page").last()).on("tap", function(event) {
         $.mobile.changePage(\'', $context['links']['next'], '\');
       });
 
-      Hammer($(".previousPage").last()).on("hold", function(event) {
+      Hammer($(".previous-page").last()).on("hold", function(event) {
         $.mobile.changePage(\'', $context['links']['first'], '\');
       });
 
-      Hammer($(".nextPage").last()).on("hold", function(event) {
+      Hammer($(".next-page").last()).on("hold", function(event) {
         $.mobile.changePage(\'', $context['links']['last'], '\');
       });
 
@@ -35,13 +35,13 @@ function template_control_paging($pageControl = null) {
   </script>
 
 
-  <div id="pageButtons" class="page buttons">
+  <div id="page-buttons" class="page buttons">
   
-  <button id="previousPage" class="previousPage button" ', $context['page_info']['current_page'] == 1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
+  <button id="previous-page" class="previous-page button" ', $context['page_info']['current_page'] == 1 ? 'disabled="disabled"' : '', '>', $txt['iPrev'], '</button>
   
-  <button id="pagecount">', $txt['iPage'], ' ', $context['page_info']['current_page'], ' ', $txt['iOf'], ' ', ($context['page_info']['num_pages'] == 0) ? '1' : $context['page_info']['num_pages'], '</button>
+  <button id="page-count">', $txt['iPage'], ' ', $context['page_info']['current_page'], ' ', $txt['iOf'], ' ', ($context['page_info']['num_pages'] == 0) ? '1' : $context['page_info']['num_pages'], '</button>
   
-  <button id="nextPage" class="nextPage button" ', ($context['page_info']['current_page'] == $context['page_info']['num_pages'] || $context['page_info']['num_pages'] == 0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
+  <button id="next-page" class="next-page button" ', ($context['page_info']['current_page'] == $context['page_info']['num_pages'] || $context['page_info']['num_pages'] == 0) ? 'disabled="disabled"' : '', '>', $txt['iNext'], '</button>
   
   </div>';
 }

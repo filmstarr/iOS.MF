@@ -9,7 +9,7 @@ function template_results() {
   global $context, $settings, $options, $txt, $scripturl;
   
   if (empty($context['topics'])) {
-    echo '<h3 id="noSearchResults">', $txt['search_no_results'], '</h3><style type="text/css">#searchbar{
+    echo '<h3 id="no-search-results">', $txt['search_no_results'], '</h3><style type="text/css">#searchbar{
 
   display: block;
 

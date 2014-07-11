@@ -96,41 +96,41 @@ function template_registration_form() {
   
   echo '<div class="header">User</div>';
   
-  echo '<div class="no-left-padding inputContainer" style="padding-top: 13px;">';
-  echo '<span class="inputLabel">' . $txt['username'] . '</span>';
+  echo '<div class="no-left-padding input-container" style="padding-top: 13px;">';
+  echo '<span class="input-label">' . $txt['username'] . '</span>';
   echo '<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" />';
-  echo '<span id="smf_autov_username_div" style="display: none;">
+  echo '<span id="smf-autov-username-div" style="display: none;">
         <a id="smf_autov_username_link" href="#">
-          <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
+          <img id="smf-autov-username-img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
         </a>
       </span>';
   echo '</div>';
   
-  echo '<div class="no-left-padding inputContainer">';
-  echo '<span class="inputLabel">' . $txt['email'] . '</span>';
+  echo '<div class="no-left-padding input-container">';
+  echo '<span class="input-label">' . $txt['email'] . '</span>';
   echo '<input type="text" name="email" id="smf_autov_reserve1" size="30" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '" />';
   echo '</div>';
   
   echo '<div class="header">' . $txt['password'] . '</div>';
   
-  echo '<div class="no-left-padding inputContainer" style="padding-top: 13px;">';
-  echo '<span class="inputLabel">' . $txt['iChoose'] . '</span>';
+  echo '<div class="no-left-padding input-container" style="padding-top: 13px;">';
+  echo '<span class="input-label">' . $txt['iChoose'] . '</span>';
   echo '<input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" />';
   echo '</div>';
   
-  echo '<div class="no-left-padding inputContainer">';
-  echo '<span class="inputLabel">' . $txt['iVerify'] . '</span>';
+  echo '<div class="no-left-padding input-container">';
+  echo '<span class="input-label">' . $txt['iVerify'] . '</span>';
   echo '<input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" />';
   echo '</div>';
   
   if ($context['visual_verification']) {
     echo '<div class="header">' . $txt['iVerification'] . '</div>';
-    echo '<div class="no-left-padding inputContainer" style="padding-top: 13px;">';
-    echo '<span class="inputLabel">Code</span>';
+    echo '<div class="no-left-padding input-container" style="padding-top: 13px;">';
+    echo '<span class="input-label">Code</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
-    echo '<div class="no-left-padding inputContainer">';
-    echo '<span class="inputLabel">Verify</span>';
+    echo '<div class="no-left-padding input-container">';
+    echo '<span class="input-label">Verify</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="register_vv[code]" />';
     echo '</div>';
   }

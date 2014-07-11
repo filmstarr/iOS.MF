@@ -48,7 +48,7 @@ function template_main() {
     
     echo '</div>
   
-      <div class="posterinfo" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '', '\')"><span class="name">', $message['poster']['name'], '</span>';
+      <div class="poster-info" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '', '\')"><span class="name">', $message['poster']['name'], '</span>';
     if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']) && $showingAvatars) {
       if (array_key_exists('avatar', $message['poster'])) {
         if (empty($message['poster']['avatar'])) {
@@ -184,7 +184,7 @@ function template_unread() {
   template_control_paging();
   
   echo '<div class="buttons">
-    <a class="button markAllRead" href="', $scripturl . '?action=markasread;sa=all;' . $context['session_var'] . '=' . $context['session_id'], '">', $txt['iMarkALLRead'], '</a>
+    <a class="button market-all-read" href="', $scripturl . '?action=markasread;sa=all;' . $context['session_var'] . '=' . $context['session_id'], '">', $txt['iMarkALLRead'], '</a>
   </div>';
 }
 ?>
