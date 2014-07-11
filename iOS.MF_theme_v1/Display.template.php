@@ -125,7 +125,6 @@ function template_main() {
       </div>';
   }
   
-  //echo '<a id="msg', $context['first_message'], '"></a>', $context['first_new_message'] ? '<a id="new"></a>' : '';
   echo $context['first_new_message'] ? '<a id="new"></a>' : '';
   
   echo '<ul class="content-list">';
@@ -140,7 +139,7 @@ function template_main() {
       $i++;
       
       echo '<li>
-   <a id="msg', $message['id'], '"></a>', $message['first_new'] ? '<a id="new"></a>' : '', '   
+   <a id="msg', $message['id'], '"></a>', $message['first_new'] && !$context['first_new_message'] ? '<a id="new"></a>' : '', '   
    
   <div>';
       
