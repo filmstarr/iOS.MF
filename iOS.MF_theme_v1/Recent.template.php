@@ -36,13 +36,11 @@ function template_main() {
     
     if ($message['can_reply']) {
       echo '
-        <div class="quickbuttons_wrap">
-          <div class="reset smalltext quickbuttons">
+        <div class="reset smalltext quickbuttons">
 
-            <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], ';quote=', $message['id'], '\');">', $txt['quote'], '</button>
-            <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], '\');">', $txt['reply'], '</button>
+          <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], ';quote=', $message['id'], '\');">', $txt['quote'], '</button>
+          <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], '\');">', $txt['reply'], '</button>
 
-          </div>
         </div>';
     }
     

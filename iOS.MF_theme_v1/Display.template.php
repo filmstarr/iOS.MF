@@ -56,7 +56,7 @@ function template_main() {
   if ($context['is_poll']) {
     echo '
       <div id="poll">
-        <div class="cat_bar">
+        <div>
           <div class="catbg">
             <div class="sticky"></div>', $txt['poll'], '
           </div>
@@ -251,6 +251,7 @@ function quick_reply() {
     var title = $(".the-title").last().get(0);
     title.onclick = function() { $(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0); toggleQuickReply();};
     title.style.color = "#007AFF";
+    $(".the-title").addClass("quick-reply-title");
 
     var submitForm = function() {
       submitonce(this);
@@ -274,9 +275,9 @@ function quick_reply() {
     $quickReply.= '<div class="no-left-padding input-container pad-top">';
     $quickReply.= '<span class="input-label">' . $txt['username'] . '</span>';
     $quickReply.= '<input type="text" name="guestname" size="25" value="' . $context['name'] . '" tabindex="' . $context['tabindex']++ . '" class="input_text" />';
-    $quickReply.= '<span id="smf-autov-username-div" style="display: none;">
+    $quickReply.= '<span id="smf_autov_username_div" style="display: none;">
             <a id="smf_autov_username_link" href="#">
-              <img id="smf-autov-username-img" src="' . $settings['images_url'] . '/icons/field_check.png" alt="*" />
+              <img id="smf_autov_username_img" src="' . $settings['images_url'] . '/icons/field_check.png" alt="*" />
             </a>
           </span>';
     $quickReply.= '</div>';

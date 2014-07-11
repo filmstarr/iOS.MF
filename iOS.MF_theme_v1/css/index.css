@@ -295,6 +295,14 @@ h4 {
   max-width: 262px;
 }
 
+.the-title a {
+  color: #000000;
+}
+
+.quick-reply-title a {
+  color: #007AFF;
+}
+
 
 /* Our generic list of content: boards, topics, messages, unread posts, recent posts, personal messages etc. */
 
@@ -540,7 +548,7 @@ input#input-file {
 
 /* Search */
 
-#searchbar {
+#search-bar {
   display: none;
   padding-right: 0px;
   padding-bottom: 11px;
@@ -887,13 +895,13 @@ div#poll-moderation {
 
 /* Captcha verification */
 
-#smf-autov-username-img {
+#smf_autov_username_img {
   height: 14px;
   width: 14px;
   margin-top: -3px;
 }
 
-#smf-autov-username-div {
+#smf_autov_username_div {
   margin-left: -23px;
 }
 

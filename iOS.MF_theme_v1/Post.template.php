@@ -95,9 +95,9 @@ function template_main() {
     echo '<div class="no-left-padding input-container">';
     echo '<span class="input-label">' . $txt['username'] . '</span>';
     echo '<input type="text" name="guestname" size="25" value="', $context['name'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
-    echo '<span id="smf-autov-username-div" style="display: none;">
+    echo '<span id="smf_autov_username_div" style="display: none;">
             <a id="smf_autov_username_link" href="#">
-              <img id="smf-autov-username-img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
+              <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
             </a>
           </span>';
     echo '</div>';

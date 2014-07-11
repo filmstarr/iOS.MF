@@ -71,7 +71,7 @@ function template_html_above() {
     var topBar = $(".topbar").last();
     if (topBar.css("position") == "fixed") {
       var topBarHeight = topBar.height();
-      $(".marginTopContent").last().css("padding-top", topBarHeight);
+      $(".margin-top-content").last().css("padding-top", topBarHeight);
     }
   }
 
@@ -152,16 +152,16 @@ function template_body_above() {
     <script type="text/javascript">
       var searchControl = $(".show-hide-search").last().get(0);
       var toggleSearch = function() {
-        if ($("#searchbar").is(":visible"))
+        if ($("#search-bar").is(":visible"))
         {
-          $("#searchbar").hide();
+          $("#search-bar").hide();
           searchControl.className = "magnifier-icon";
         }
         else
         {
-          $("#searchbar").show();
+          $("#search-bar").show();
           searchControl.className = "close-icon";
-          $("#searchText").focus();
+          $("#search-text").focus();
         }
         setTopMargin();
       };
@@ -170,12 +170,12 @@ function template_body_above() {
   
   echo '
 
-    <div id="searchbar" class="input-container">
+    <div id="search-bar" class="input-container">
 
     <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="search-form">
 
-    <input id="searchText" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
-    <input type="submit" id="searchbutton" class="button input-button" value="' . $txt['search_button'] . '" />
+    <input id="search-text" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
+    <input type="submit" class="button input-button" value="' . $txt['search_button'] . '" />
       
     </form>
     </div>';
@@ -184,7 +184,7 @@ function template_body_above() {
   
   echo '</div>';
   
-  echo '<div class="marginTopContent">';
+  echo '<div class="margin-top-content">';
 }
 
 function template_body_below() {
