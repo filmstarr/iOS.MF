@@ -1,8 +1,7 @@
 <?php
 
-/*
-* 
-*/
+
+/* */
 
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
