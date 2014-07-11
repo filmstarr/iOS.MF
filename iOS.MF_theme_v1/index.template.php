@@ -227,7 +227,7 @@ function template_body_below() {
   
   //Toolbar HTML
   require_once ($settings[theme_dir] . '/ThemeFunctions.php');
-  $unreadPostCount = UnreadPostCount();
+  $unreadPostCount = unread_post_count();
   
   //Use javascript to set post count as the toolbar may not be reloaded each time; we need to do this within main page
   echo '

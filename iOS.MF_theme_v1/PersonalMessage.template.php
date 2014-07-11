@@ -69,7 +69,7 @@ function template_folder() {
     }
     if (count($unreadNewPosts) >= 1) {
       require_once ($settings[theme_dir] . '/ThemeFunctions.php');
-      UnmarkMessages($unreadNewPosts);
+      mark_messages_unread($unreadNewPosts);
     }
     
     if ($messageCount == 0) echo '
@@ -105,7 +105,7 @@ function template_folder() {
     </script>';
     
     require_once ($settings[theme_dir] . '/ThemeFunctions.php');
-    NavigateToMessageScript();
+    navigate_to_message_script();
     
     while ($message = $context['get_pmessage']('message')) {
       if ($messageCount == 0) {
@@ -240,7 +240,7 @@ function template_send() {
     
     //Users drop down list
     require_once ($settings[theme_dir] . '/ThemeFunctions.php');
-    $users = UserList();
+    $users = user_list();
     echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify" style="padding-left: 4px;">';
     echo '<option></option>';
     foreach ($users as $user) {
