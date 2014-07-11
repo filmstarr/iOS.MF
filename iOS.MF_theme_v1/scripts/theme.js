@@ -94,6 +94,7 @@ function hashLoginPassword(doForm, cur_session_id) {
 //Initialise jQuery mobile settings
 $.mobile.ignoreContentEnabled = true;
 $.event.special.swipe.horizontalDistanceThreshold = 100;
+$.mobile.hideUrlBar = false;
 
 //Remove some jQuery mobile CSS from the footer
 $(function () {
