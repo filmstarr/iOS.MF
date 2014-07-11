@@ -2,9 +2,9 @@
 
 // Version: 2.0 RC4; Index
 
-$linguaggio = $settings['theme_dir'] . '/languages/iPhone.language.' . $context['user']['language'] . '.php';
-if (file_exists($linguaggio)) require ($settings['theme_dir'] . '/languages/iPhone.language.' . $context['user']['language'] . '.php');
-else require ($settings['theme_dir'] . '/languages/iPhone.language.english.php');
+$linguaggio = $settings['theme_dir'] . '/languages/ThemeStrings.language.' . $context['user']['language'] . '.php';
+if (file_exists($linguaggio)) require ($settings['theme_dir'] . '/languages/ThemeStrings.language.' . $context['user']['language'] . '.php');
+else require ($settings['theme_dir'] . '/languages/ThemeStrings.language.english.php');
 
 global $txt;
 
