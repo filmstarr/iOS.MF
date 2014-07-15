@@ -127,7 +127,7 @@ $(function () {
   });
 });
 
-//Hide the loader when leaving page in case it has been shown manually
+//Hide the loader when navigating back in case it has been shown manually
 window.addEventListener("popstate", function() { $(".ui-loader").loader("hide"); });
 
 

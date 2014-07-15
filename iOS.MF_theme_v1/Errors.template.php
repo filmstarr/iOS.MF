@@ -12,6 +12,7 @@
 function template_fatal_error() {
   global $context, $settings, $options, $txt;
   
-  echo '<h2 style="margin-bottom: 4px;">', $context['error_message'] , '</h2>';
+	echo '<div class="errors"><div style="margin-top: 6px;">*', $context['error_message'] , '</div></div>';
+
 }
 ?>

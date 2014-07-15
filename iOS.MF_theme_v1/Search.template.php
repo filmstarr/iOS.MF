@@ -3,17 +3,36 @@
 // Version: 2.0 RC4; Search
 
 function template_main() {
+
+  echo '
+    <script type="text/javascript">
+      $(document).one("pagecontainershow", function() {
+        $("#search-bar").show();
+        $(".show-hide-search").last().get(0).className = "close-icon";
+      });
+    </script>';
+
+  if (!empty($context['search_errors'])) {
+    echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['search_errors']['messages']), '</div></div>';
+  } else {
+    echo '<div style="height:3px;"></div>';
+  }
+
 }
 
 function template_results() {
   global $context, $settings, $options, $txt, $scripturl;
-  
+
+    echo '
+      <script type="text/javascript">
+        $(document).one("pagecontainershow", function() {
+          $("#search-bar").show();
+          $(".show-hide-search").last().get(0).className = "close-icon";
+        });
+      </script>';
+
   if (empty($context['topics'])) {
-    echo '<h3 id="no-search-results">', $txt['search_no_results'], '</h3><style type="text/css">#search-bar{
-
-  display: block;
-
-}</style>';
+    echo '<div class="errors"><div style="margin-top: 6px;">*', $txt['search_no_results'] , '</div></div>';
   } else {
     $i = 0;
     
