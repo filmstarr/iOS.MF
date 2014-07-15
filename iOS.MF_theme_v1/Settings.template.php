@@ -1,7 +1,9 @@
 <?php
 
+/*
+* Options and settings arrays for use configuring the theme
+*/
 
-/* Options and settings arrays for use configuring the theme */
 
 function template_options()
 {

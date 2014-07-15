@@ -154,7 +154,7 @@ function toggleQuoting() {
     //Disable quoting
     disableQuoting = true;
     Set_Cookie('disablequoting', '1', '', '/', '', '');
-    document.getElementById('quoting').innerHTML = quotingoff;
+    document.getElementById('quoting').innerHTML = quotingOff;
 
     //Remove all onclick events from a class
     $('.message').each(function () {

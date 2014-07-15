@@ -1,7 +1,9 @@
 <?php
 
+/*
+* User profile templates. We won't provide the ability to edit the users profile here, users should go to a different theme to do this
+*/
 
-/* User profile templates. We won't provide the ability to edit the users profile here, users should go to a different theme to do this */
 
 function template_profile_above() {
 }

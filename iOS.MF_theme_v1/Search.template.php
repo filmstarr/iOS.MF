@@ -1,7 +1,11 @@
 <?php
 
+/*
+* Search templates
+*/
 
-/* Search templates */
+
+require_once ($settings[theme_dir] . '/ThemeControls.php');
 
 function template_main() {
 
@@ -58,7 +62,6 @@ function template_results() {
     }
     echo '</ul>';
     
-    require_once ($settings[theme_dir] . '/ThemeControls.php');
     template_control_paging($context['page_index']);
   }
 }

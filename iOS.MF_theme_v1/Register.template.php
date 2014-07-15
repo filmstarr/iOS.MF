@@ -1,7 +1,9 @@
 <?php
 
+/*
+* Templates for new user registration
+*/
 
-/* Templates for new user registration */
 
 // Before showing users a registration form, show them the registration agreement.
 function template_registration_agreement() {

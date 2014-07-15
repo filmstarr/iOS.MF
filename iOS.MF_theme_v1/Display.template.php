@@ -1,14 +1,16 @@
 <?php
 
+/*
+* View messages and polls within a topic
+*/
 
-/* View messages and polls within a topic */
+
+require_once ($settings[theme_dir] . '/ThemeControls.php');
+require_once ($settings[theme_dir] . '/ThemeFunctions.php');
 
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
-  
-  require_once ($settings[theme_dir] . '/ThemeControls.php');
-  require_once ($settings[theme_dir] . '/ThemeFunctions.php');
-  
+    
   //Message CSS for when we aren't showing any avatars
   if (empty($settings['show_user_images']) || !empty($options['show_no_avatars'])) {
     echo '
@@ -53,9 +55,9 @@ function template_main() {
   //If a certain message is requested in the URL then navigate to it (jQuery Mobile doesn't seem to honour the fragment identifier)
   navigate_to_message_script();
   
-  //Add quick reply functionality. This needs to be in the header bar for when we can make it fixed
+  //Add quick reply functionality. This is added to the header bar
   if ($context['can_reply']) {
-    add_quick_reply_to_title();
+    template_control_quick_reply();
   }
   
   //Quoting and reply buttons
@@ -85,7 +87,7 @@ function template_main() {
       echo '
             <div class="options">';
       
-      //Show each option with its corresponding percentage bar.
+      //Show each option with its corresponding percentage
       foreach ($context['poll']['options'] as $option) {
         if ($context['allow_poll_view']) {
           echo '
@@ -101,7 +103,7 @@ function template_main() {
       echo '
             <form action="', $scripturl, '?action=vote;topic=', $context['current_topic'], '.', $context['start'], ';poll=', $context['poll']['id'], '" method="post" accept-charset="', $context['character_set'], '">';
       
-      //Show a warning if they are allowed more than one option.
+      //Show a warning if they are allowed more than one option
       if ($context['poll']['allowed_warning']) {
         echo '
               <p class="poll-message">', $context['poll']['allowed_warning'], '
@@ -111,7 +113,7 @@ function template_main() {
       echo '
               <div class="options">';
       
-      //Show each option with its button - a radio likely.
+      //Show each option with its button - a radio likely
       foreach ($context['poll']['options'] as $option) {
         echo '
                 <div class="middle-text">', $option['vote_button'], ' <label for="', $option['id'], '">', $option['option'], '</label></div>';

@@ -1,7 +1,9 @@
 <?php
 
+/*
+* View all the different forum boards grouped by category (this is the top level home view)
+*/
 
-/* View all the different forum boards grouped by category (this is the top level home view) */
 
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;

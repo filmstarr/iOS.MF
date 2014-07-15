@@ -1,7 +1,12 @@
 <?php
 
+/*
+* Deal with the viewing and sending of persanal messages
+*/
 
-/* Deal with the viewing and sending of persanal messages */
+
+require_once ($settings[theme_dir] . '/ThemeControls.php');
+require_once ($settings[theme_dir] . '/ThemeFunctions.php');
 
 function template_pm_above() {
 }
@@ -69,7 +74,6 @@ function template_folder() {
       }
     }
     if (count($unreadNewPosts) >= 1) {
-      require_once ($settings[theme_dir] . '/ThemeFunctions.php');
       mark_messages_unread($unreadNewPosts);
     }
     
@@ -78,7 +82,6 @@ function template_folder() {
       ', $txt['msg_alert_none'], '
     </div>';
     
-    require_once ($settings[theme_dir] . '/ThemeControls.php');
     template_control_paging();
   } else {
     if ($context['display_mode'] == 0) {
@@ -105,7 +108,6 @@ function template_folder() {
       });
     </script>';
     
-    require_once ($settings[theme_dir] . '/ThemeFunctions.php');
     navigate_to_message_script();
     
     while ($message = $context['get_pmessage']('message')) {
@@ -183,7 +185,6 @@ function template_folder() {
     </div>';
     
     if ($context['display_mode'] == 0) {
-      require_once ($settings[theme_dir] . '/ThemeControls.php');
       template_control_paging();
     }
   }
@@ -240,7 +241,6 @@ function template_send() {
     echo '<span class="input-label">' . $txt['iTo'] . '</span>';
     
     //Users drop down list
-    require_once ($settings[theme_dir] . '/ThemeFunctions.php');
     $users = user_list();
     echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify" style="padding-left: 4px;">';
     echo '<option></option>';
@@ -271,7 +271,7 @@ function template_send() {
   echo '
     <div id="post-container" class="input-container">
       <div class="new-post">
-           ', template_control_richedit($context['post_box_name'], 'message'), '
+           ', template_control_richedit($context['post_box_name']), '
       </div>
     </div>';
   

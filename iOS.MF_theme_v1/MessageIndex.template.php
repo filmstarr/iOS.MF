@@ -1,7 +1,11 @@
 <?php
 
+/*
+* View all the topics and child boards within a board
+*/
 
-/* View all the topics and child boards within a board */
+
+require_once ($settings[theme_dir] . '/ThemeControls.php');
 
 function template_main() {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
@@ -74,7 +78,6 @@ function template_main() {
     echo '</ul>';
   }
   
-  require_once ($settings[theme_dir] . '/ThemeControls.php');
   template_control_paging();
 }
 ?>

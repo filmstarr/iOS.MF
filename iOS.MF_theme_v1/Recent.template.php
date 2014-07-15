@@ -1,7 +1,11 @@
 <?php
 
+/*
+* Recent posts and unread posts
+*/
 
-/* Recent posts and unread posts */
+
+require_once ($settings[theme_dir] . '/ThemeControls.php');
 
 //Recent posts
 function template_main() {
@@ -116,7 +120,6 @@ function template_main() {
   
   echo '</ul>';
   
-  require_once ($settings[theme_dir] . '/ThemeControls.php');
   template_control_paging($context['page_index']);
 }
 
@@ -181,7 +184,6 @@ function template_unread() {
           ', $txt['msg_alert_none'], '
         </div>';
   
-  require_once ($settings[theme_dir] . '/ThemeControls.php');
   template_control_paging();
   
   echo '<div class="buttons">

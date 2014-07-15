@@ -1,7 +1,9 @@
 <?php
 
+/*
+* Post a new topic on the forum or a reply to an existing topic
+*/
 
-/* Post a new topic on the forum or a reply to an existing topic */
 
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
@@ -64,7 +66,7 @@ function template_main() {
   echo '
   <div id="post-container" class="input-container">
     <div class="new-post">
-         ', template_control_richedit($context['post_box_name'], 'message'), '
+         ', template_control_richedit($context['post_box_name']), '
     </div>
   </div>';
   
