@@ -1,7 +1,7 @@
 <?php
 
 
-/* View all the different forum boards (this is the top level home view). */
+/* View all the different forum boards grouped by category (this is the top level home view) */
 
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
@@ -9,28 +9,38 @@ function template_main() {
   //Loop through all the categories
   $firstContent = true;
   foreach ($context['categories'] as $category) {
-    echo '<ul class="content-list', $firstContent ? ' first-content">' : '">';
+    echo '
+      <ul class="content-list', $firstContent ? ' first-content">' : '">';
     $firstContent = false;
 
-    //Loop through each categorie's boards and output a list item
+    //Loop through each categorie's boards and output a list item for each board
     foreach ($category['boards'] as $board) {
-      echo '<li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $board['href'] . '\');">';
-      echo '<div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' short-title' : '', '">', $board['name'], '</div>';
+      echo '
+        <li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $board['href'] . '\');">';
+      echo '
+          <div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' short-title' : '', '">', $board['name'], '</div>';
       if ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) {
-        echo '<div class="new">' . $txt['new_button'] . '</div>';
+        echo '
+          <div class="new">' . $txt['new_button'] . '</div>';
       }
-      echo '<div class="description">', $board['last_post']['member']['name'], ', ', $board['last_post']['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : iPhoneTime($board['last_post']['timestamp']), '</div>';
-      echo '</li>';
+      echo '
+          <div class="description">', $board['last_post']['member']['name'], ', ', $board['last_post']['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : iPhoneTime($board['last_post']['timestamp']), '</div>';
+      echo '
+        </li>';
     }
     
-    echo '</ul>';
+    echo '
+      </ul>';
   }
   
-  //List the users online in order of activity.
+  //List the online users in order of activity.
   if (!empty($context['users_online'])) {
-    echo '<div class="content-list">';
-    echo '<span class="mieilink">', implode(', ', $context['list_users_online']) , '</span>';
-    echo '</div>';
+    echo '
+      <div class="content-list">';
+    echo '
+        <span class="mieilink">', implode(', ', $context['list_users_online']) , '</span>';
+    echo '
+      </div>';
   }
 }
 ?>

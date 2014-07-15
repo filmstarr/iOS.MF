@@ -1,7 +1,9 @@
 <?php
 
-// Version: 2.0 RC4; Recent
 
+/* Recent posts and unread posts */
+
+//Recent posts
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
   
@@ -36,7 +38,7 @@ function template_main() {
     
     if ($message['can_reply']) {
       echo '
-        <div class="reset smalltext quickbuttons">
+        <div class="smalltext quickbuttons">
 
           <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], ';quote=', $message['id'], '\');">', $txt['quote'], '</button>
           <button class="button slim-button edit-delete" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;topic=', $message['topic'], '.', $message['start'], '\');">', $txt['reply'], '</button>
@@ -118,6 +120,7 @@ function template_main() {
   template_control_paging($context['page_index']);
 }
 
+//Unread posts
 function template_unread() {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
   

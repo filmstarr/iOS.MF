@@ -1,5 +1,8 @@
 <?php
 
+
+/* Control template specific to the theme */
+
 //Generate a paging control
 function template_control_paging($pageControl = null) {
   global $context, $txt;

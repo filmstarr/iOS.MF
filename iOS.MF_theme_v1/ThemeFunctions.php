@@ -1,4 +1,12 @@
 <?php
+
+
+/*
+* Functions for use within the theme.
+* This contains some functions which access and modify the database where we want to do something slightly different to the default behaviour or need some extra data.
+*/
+
+
 function unread_post_count() {
   global $context, $smcFunc, $modSettings;
   

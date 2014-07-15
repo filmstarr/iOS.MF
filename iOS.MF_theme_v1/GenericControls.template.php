@@ -1,7 +1,9 @@
 <?php
 
-// Version: 2.0 RC4; GenericControls
 
+/* Generic controls template */
+
+//
 function template_control_richedit($editor_id, $display_controls = 'all') {
   global $context, $settings, $options, $txt, $modSettings, $scripturl;
   
@@ -68,4 +70,5 @@ function template_control_verification($verify_id, $display_type = 'all', $reset
   
   return $verification;
 }
+
 ?>

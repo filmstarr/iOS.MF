@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC3; GenericMenu
+
+/* Templates for various menus throughout the theme. We're not going to use this within the theme though. */
 
 function template_generic_menu_sidebar_above() {
 }

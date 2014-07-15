@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC4; Search
+
+/* Search templates */
 
 function template_main() {
 

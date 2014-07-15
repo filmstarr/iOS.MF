@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC4; PersonalMessage
+
+/* Deal with the viewing and sending of persanal messages */
 
 function template_pm_above() {
 }

@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC4; Login
+
+/* Handle logging into the forum. We will also use a quick login form located within the main index.template.php file */
 
 function template_login() {
   global $context, $scripturl, $settings, $txt;

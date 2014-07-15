@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC4; Profile
+
+/* User profile templates. We won't provide the ability to edit the users profile here, users should go to a different theme to do this */
 
 function template_profile_above() {
 }

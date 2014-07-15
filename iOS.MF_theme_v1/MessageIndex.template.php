@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC4; MessageIndex
+
+/* View all the topics and child boards within a board */
 
 function template_main() {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;

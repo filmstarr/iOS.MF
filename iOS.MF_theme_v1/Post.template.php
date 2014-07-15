@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC4; Post
+
+/* Post a new topic on the forum or a reply to an existing topic */
 
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
@@ -75,7 +76,7 @@ function template_main() {
       echo '<input type="hidden" name="attach_del[]" value="0" />';
       foreach ($context['current_attachments'] as $attachment) echo '
         <div class="attachment">
-          <input type="checkbox" id= "attachment_', $attachment['id'], '" name="attach_del[]" value="', $attachment['id'], '"', empty($attachment['unchecked']) ? ' checked="checked"' : '', ' class="input_check" /> ', $attachment['name'], (empty($attachment['approved']) ? ' (' . $txt['awaiting_approval'] . ')' : ''), '
+          <input type="checkbox" id="attachment_', $attachment['id'], '" name="attach_del[]" value="', $attachment['id'], '"', empty($attachment['unchecked']) ? ' checked="checked"' : '', ' /> ', $attachment['name'], (empty($attachment['approved']) ? ' (' . $txt['awaiting_approval'] . ')' : ''), '
         </div>';
     }
     

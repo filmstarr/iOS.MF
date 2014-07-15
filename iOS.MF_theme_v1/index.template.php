@@ -1,6 +1,7 @@
 <?php
 
-// Version: 2.0 RC4; Index
+
+/* The index template, used to generate headers, footers, toolbars and general content that will appear on every theme page */
 
 $linguaggio = $settings['theme_dir'] . '/languages/ThemeStrings.language.' . $context['user']['language'] . '.php';
 if (file_exists($linguaggio)) require ($settings['theme_dir'] . '/languages/ThemeStrings.language.' . $context['user']['language'] . '.php');
