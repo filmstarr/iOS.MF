@@ -8,111 +8,105 @@
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
   
-  echo '<script type="text/javascript">
+  //Set the page title
+  echo '
+    <script type="text/javascript">
       $(function(){
-        $(".editor").last().autosize().resize();
         $(".the-title").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']), '");
-        $(".classic").last().hide();
-
-        //Deal with the race condition between iOS keyboard showing and the focus event firing
-        if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
-          var jqElement = $(".editor").last();
-          jqElement.attr("disabled", true);
-
-          jqElement.on("tap", function(event) {
-            if (event.target.id == "', $context['post_box_name'], '") {
-              if (!$(event.target).is(":focus")) {
-
-                // Hide toolbar
-                $(".toolbar").css("display", "none");
-                $("#copyright").css("margin-bottom", "4px");
-
-                //Enable and focus textbox
-                $(event.target).removeAttr("disabled");
-                $(event.target).focus();
-
-                //Move caret to end
-                jqElement.get(0).setSelectionRange(jqElement.val().length, jqElement.val().length);
-              }
-            }
-          });
-
-          jqElement.on("blur", function(e) {
-            jqElement.attr("disabled", true);
-          });
-        }
       });
-
     </script>';
+
+  //Hide the toolbar when showing the keyboard on a mobile device
+  script_hide_toolbar();
+
+  echo '
+    <form data-ajax="false" action="', $scripturl, '?action=', $context['destination'], ';', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="', ($context['becomes_approved'] ? '' : 'alert(\'' . $txt['js_post_will_require_approval'] . '\');'), 'submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
   
-  echo '<form data-ajax="false" action="', $scripturl, '?action=', $context['destination'], ';', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="', ($context['becomes_approved'] ? '' : 'alert(\'' . $txt['js_post_will_require_approval'] . '\');'), 'submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
-  
+  //Show any errors
   if (!empty($context['post_error']['messages']) && count($context['post_error']['messages'])) {
-    echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
+    echo '
+      <div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
     if (empty($context['subject'])) {
-      echo '<style type="text/css"> #new-topic { padding-top: 9px; } </style>';
+      echo '
+      <style type="text/css"> #new-topic { padding-top: 9px; } </style>';
     } else {
-      echo '<style type="text/css"> #post-container { padding-top: 9px; } </style>';
+      echo '
+      <style type="text/css"> #post-container { padding-top: 9px; } </style>';
     }
   }
   
+  //What's the subject of this new topic?
   if (empty($context['subject'])) {
-    echo '<div id="new-topic" class="input-container">';
-    echo '<span class="input-label">Topic</span>';
-    echo '<input type="text" tabindex="1" name="subject" value="' . $context['subject'] . '" />';
-    echo '</div>';
+    echo '
+      <div id="new-topic" class="input-container">
+        <span class="input-label">Topic</span>';
+    echo '<input type="text" tabindex="1" name="subject" value="' . $context['subject'] . '" />
+      </div>';
   }
   
+  //This is the container for our message
   echo '
-  <div id="post-container" class="input-container">
-    <div class="new-post">
-         ', template_control_richedit($context['post_box_name']), '
-    </div>
-  </div>';
+      <div id="post-container" class="input-container">
+        <div class="new-post">
+          ', template_control_richedit($context['post_box_name']), '
+        </div>
+      </div>';
   
+  //Attachments
   if (!empty($context['current_attachments']) || $context['can_post_attachment']) {
-    echo '<div id="attachment-wrapper">';
+    echo '
+      <div id="attachment-wrapper">';
     
-    // If this post already has attachments on it - give information about them.
+    //Existing attachments
     if (!empty($context['current_attachments'])) {
-      echo '<input type="hidden" name="attach_del[]" value="0" />';
-      foreach ($context['current_attachments'] as $attachment) echo '
+      echo '
+        <input type="hidden" name="attach_del[]" value="0" />';
+      foreach ($context['current_attachments'] as $attachment) {
+        echo '
         <div class="attachment">
           <input type="checkbox" id="attachment_', $attachment['id'], '" name="attach_del[]" value="', $attachment['id'], '"', empty($attachment['unchecked']) ? ' checked="checked"' : '', ' /> ', $attachment['name'], (empty($attachment['approved']) ? ' (' . $txt['awaiting_approval'] . ')' : ''), '
         </div>';
+      }
     }
     
-    // Is the user allowed to post any additional ones? If so give them the boxes to do it!
+    //Additional attachments
     if ($context['can_post_attachment']) {
-      echo '<div style="position: relative;">';
-      echo '<input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" />';
-      echo '<div id="input-button-background"><div id="input-button" class="needsclick" onclick="document.getElementById(\'input-file\').click();this.blur();">Choose File</div></div>';
-      echo '</div>';
+      echo '
+        <div style="position: relative;">
+          <input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" />
+          <div id="input-button-background">
+            <div id="input-button" class="needsclick" onclick="document.getElementById(\'input-file\').click();this.blur();">Choose File</div>
+          </div>
+        </div>';
     }
     
-    echo '</div>';
+    echo '
+      </div>';
   }
   
-  // Guests have to put in their name and email...
+  //Guests have to put in their name and email...
   if (isset($context['name']) && isset($context['email'])) {
-    echo '<div class="no-left-padding input-container">';
-    echo '<span class="input-label">' . $txt['username'] . '</span>';
-    echo '<input type="text" name="guestname" size="25" value="', $context['name'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
-    echo '<span id="smf_autov_username_div" style="display: none;">
-            <a id="smf_autov_username_link" href="#">
-              <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
-            </a>
-          </span>';
-    echo '</div>';
+    echo '
+      <div class="no-left-padding input-container">
+        <span class="input-label">' . $txt['username'] . '</span>';
+    echo '<input type="text" name="guestname" size="25" value="', $context['name'], '" tabindex="', $context['tabindex']++, '" class="input_text" />
+        <span id="smf_autov_username_div" style="display: none;">
+          <a id="smf_autov_username_link" href="#">
+            <img id="smf_autov_username_img" src="', $settings['images_url'], '/icons/field_check.png" alt="*" />
+          </a>
+        </span>
+      </div>';
     
     if (empty($modSettings['guest_post_no_email'])) {
-      echo '<div class="no-left-padding input-container">';
-      echo '<span class="input-label">' . $txt['email'] . '</span>';
-      echo '<input type="text" name="email" size="25" value="', $context['email'], '" tabindex="', $context['tabindex']++, '" class="input_text" />';
-      echo '</div>';
+      echo '
+      <div class="no-left-padding input-container">
+        <span class="input-label">' . $txt['email'] . '</span>';
+      echo '<input type="text" name="email" size="25" value="', $context['email'], '" tabindex="', $context['tabindex']++, '" class="input_text" />
+      </div>';
     }
   }
   
+  //Verification control
   if ($context['require_verification']) {
     echo '<div class="no-left-padding input-container">';
     echo '<span class="input-label">Code</span>';
@@ -124,18 +118,21 @@ function template_main() {
     echo '</div>';
   }
   
-  echo '<div class="child buttons">
-  
-  <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').loader(\'show\');">', $txt['iPost'], '</button>
+  //Submit button
+  echo '
+      <div class="child buttons">
+        <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').loader(\'show\');">', $txt['iPost'], '</button>
+      </div>';
 
-  </div>';
-  
-  if (isset($context['num_replies'])) echo '<input type="hidden" name="num_replies" value="', $context['num_replies'], '" />';
-  
-  if (!empty($context['subject'])) {
-    echo '<input type="hidden" name="subject" value="' . $context['subject'] . '" />';
+  //Other inputs  
+  if (isset($context['num_replies'])) {
+    echo '
+      <input type="hidden" name="num_replies" value="', $context['num_replies'], '" />';
   }
-  
+  if (!empty($context['subject'])) {
+    echo '
+      <input type="hidden" name="subject" value="' . $context['subject'] . '" />';
+  }
   echo '
       <input type="hidden" name="additional_options" value="', $context['show_additional_options'] ? 1 : 0, '" />
       <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />

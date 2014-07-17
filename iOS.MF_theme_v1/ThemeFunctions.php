@@ -147,7 +147,7 @@ function iPhoneTitle() {
   return $title;
 }
 
-function navigate_to_message_script() {
+function script_navigate_to_message() {
   echo '
   <script type="text/javascript">
 
@@ -197,6 +197,46 @@ function navigate_to_message_script() {
     };
 
   </script>';
+}
+
+function script_hide_toolbar() {
+  global $context;
+  
+  echo '<script type="text/javascript">
+      $(function(){
+        $(".editor").last().autosize().resize();
+        $(".classic").last().hide();
+        
+        //Deal with the race condition between iOS keyboard showing and the focus event firing
+        if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
+          var jqElement = $(".editor").last();
+          jqElement.attr("disabled", true);
+
+          jqElement.on("tap", function(event) {
+            if (event.target.id == "', $context['post_box_name'], '") {
+              if (!$(event.target).is(":focus")) {
+
+                // Hide toolbar
+                $(".toolbar").css("display", "none");
+                $("#copyright").css("margin-bottom", "4px");
+
+                //Enable and focus textbox
+                $(event.target).removeAttr("disabled");
+                $(event.target).focus();
+
+                //Move caret to end
+                jqElement.get(0).setSelectionRange(jqElement.val().length, jqElement.val().length);
+              }
+            }
+          });
+
+          jqElement.on("blur", function(e) {
+            jqElement.attr("disabled", true);
+          });
+        }
+      });
+
+    </script>';  
 }
 
 function get_current_url() {

@@ -53,7 +53,7 @@ function template_main() {
     </script>';
   
   //If a certain message is requested in the URL then navigate to it (jQuery Mobile doesn't seem to honour the fragment identifier)
-  navigate_to_message_script();
+  script_navigate_to_message();
   
   //Add quick reply functionality. This is added to the header bar
   if ($context['can_reply']) {

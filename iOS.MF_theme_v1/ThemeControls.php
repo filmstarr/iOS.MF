@@ -39,7 +39,18 @@ function template_control_quick_login() {
     control.onclick = toggleQuickLogin;
     </script>';
     
-    echo '<div id="quick-login" class="quick-login">
+    echo '<div id="quick-login" class="quick-login">';
+
+    template_control_login_form();
+
+  echo '</div>';
+  }
+}
+
+function template_control_login_form() {
+  global $context, $settings, $options, $txt, $scripturl, $modSettings;
+
+  echo '
   <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
 
 <div class="no-left-padding input-container pad-top">';
@@ -61,8 +72,7 @@ function template_control_quick_login() {
     <button class="button two-buttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>
   </div>
   </form>
-  </div>';
-  }
+  ';
 }
 
 //Add a quick search control where this method is called

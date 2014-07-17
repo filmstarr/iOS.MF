@@ -4,6 +4,7 @@
 * The index template, used to generate headers, footers, toolbars and general content that will appear on every theme page
 */
 
+
 require_once ($settings[theme_dir] . '/ThemeControls.php');
 require_once ($settings[theme_dir] . '/ThemeFunctions.php');
 
@@ -158,31 +159,29 @@ function template_body_below() {
   } else {
     $themeNumber = $modSettings['theme_guests'];
   }
-  
   $currentUrl = get_current_url();
-  $backlink = "index.php?theme=" . $themeNumber . ";";
+  $backLink = "index.php?theme=" . $themeNumber . ";";
   if (strpos($currentUrl, 'index.php') !== false) {
-    $backlink = $currentUrl;
-    $backlink.= strpos($backlink, '?') == false ? '?' : (substr($backlink, -1) !== ';' ? ';' : '');
-    $backlink.= strpos($backlink, 'theme=') == false ? 'theme=' . $themeNumber . ';' : '';
-    $backlink = preg_replace("/theme=\d+/", "theme=" . $themeNumber, $backlink);
+    $backLink = $currentUrl;
+    $backLink.= strpos($backLink, '?') == false ? '?' : (substr($backLink, -1) !== ';' ? ';' : '');
+    $backLink.= strpos($backLink, 'theme=') == false ? 'theme=' . $themeNumber . ';' : '';
+    $backLink = preg_replace("/theme=\d+/", "theme=" . $themeNumber, $backLink);
   }
-  
-  $backname = 'Default Theme';
+  $backName = 'Default Theme';
   echo '
-        <button data-ajax="false" class="classic button" id="classic">', $backname, '</button>';
+        <button data-ajax="false" class="classic button" id="classic">', $backName, '</button>';
   
   //Tap the default button to go to the forum default theme, hold the default button to go to the SMF default theme
   echo '
         <script type="text/javascript">
           Hammer($(".classic").last()).on("tap", function(event) {
             $(".ui-loader").loader("show");
-            window.location.href = "', $backlink, '";
+            window.location.href = "', $backLink, '";
           });
 
           Hammer($(".classic").last()).on("hold", function(event) {
             $(".ui-loader").loader("show");
-            window.location.href = "', preg_replace("/theme=\d+/", "theme=1", $backlink), '";
+            window.location.href = "', preg_replace("/theme=\d+/", "theme=1", $backLink), '";
           });
         </script>';
   
