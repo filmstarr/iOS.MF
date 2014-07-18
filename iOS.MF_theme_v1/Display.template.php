@@ -196,7 +196,7 @@ function template_main() {
 
       //The message body, replace smilies with retina smilies included in the theme and remove bold from "Today"
       echo
-        str_replace(rtrim($scripturl, '/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/', str_replace('<strong>Today</strong>', 'Today', short1($message['body'])));
+        parse_message($message['body']);
       
       //Attachments
       if (!empty($message['attachment'])) {

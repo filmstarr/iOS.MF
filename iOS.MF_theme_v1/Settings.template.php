@@ -87,6 +87,14 @@ function template_settings()
       'id' => 'enable_transparent_toolbar',
       'label' => 'Enable semi-transparent toolbar',
     ),
+    array(
+      'id' => 'disable_personal_message_count',
+      'label' => 'Disable the count of unread personal messages',
+    ),
+    array(
+      'id' => 'disable_unread_topic_count',
+      'label' => 'Disable the count of unread topics',
+    ),
   );
 }
 

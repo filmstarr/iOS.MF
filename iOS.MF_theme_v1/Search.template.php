@@ -65,7 +65,7 @@ function template_results() {
         <div class="new">' . $txt['new_button'] . '</div>';
         }
         echo '
-        <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . iPhoneTime($topic['last_post']['timestamp']), '</div>
+        <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
       </li>';
       }
     }

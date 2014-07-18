@@ -30,7 +30,7 @@ function template_main() {
           <div class="new">' . $txt['new_button'] . '</div>';
       }
       echo '
-          <div class="description">', $board['last_post']['member']['name'], ', ', $board['last_post']['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : iPhoneTime($board['last_post']['timestamp']), '</div>
+          <div class="description">', $board['last_post']['member']['name'], ', ', $board['last_post']['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : parse_time($board['last_post']['timestamp']), '</div>
         </li>';
     }
     echo '
@@ -63,7 +63,7 @@ function template_main() {
           <div class="new">' . $txt['new_button'] . '</div>';
         }
         echo '
-          <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . iPhoneTime($topic['last_post']['timestamp']), '</div>
+          <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
         </li>';
       }
     }
@@ -85,7 +85,7 @@ function template_main() {
           <div class="new">' . $txt['new_button'] . '</div>';
         }
         echo '
-          <div class="description">' , ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . iPhoneTime($topic['last_post']['timestamp']), '</div>
+          <div class="description">' , ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
         </li>';
       }
     }

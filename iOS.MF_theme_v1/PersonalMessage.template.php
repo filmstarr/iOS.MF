@@ -65,7 +65,7 @@ function template_folder() {
         $members = $context['user']['username'] . ', ';
       }
       echo '
-            <div class="description">', $members, $message['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : iPhoneTime($message['timestamp']), '</div>
+            <div class="description">', $members, $message['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : parse_time($message['timestamp']), '</div>
           </li>';
       
       $messageCount++;
@@ -167,7 +167,6 @@ function template_folder() {
           $first = false;
         }
       }
-      
       // Otherwise, we're just going to say "some people"...
       elseif ($context['folder'] != 'sent') {
         echo '(', $txt['pm_undisclosed_recipients'], ')';
@@ -193,7 +192,7 @@ function template_folder() {
       echo '
             <div class="message" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != - 1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=all\');">
               <span class="message-time" style="font-style: italic;font-size:11px;display:inline-block;margin-bottom:3px;">', str_replace('strong', 'span', $message['time']), '</span><br />
-              ', str_replace(rtrim($scripturl, '/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/', str_replace('<strong>Today</strong>', 'Today', short1($message['body']))), '
+              ', parse_message($message['body']), '
             </div>
         </li>';
       

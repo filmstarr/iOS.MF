@@ -135,7 +135,7 @@ function template_body_above() {
           <div class="topbar" id="topbar" data-role="header">
 
             <div id="page-title">
-              <div id="the-title" class="the-title">', iPhoneTitle(), '</div>
+              <div id="the-title" class="the-title">', parse_title(), '</div>
             </div>';
   
   template_control_quick_login();
@@ -192,26 +192,32 @@ function template_body_below() {
         </div>';
   
   //Fixed toolbar at the bottom of the page
-  $unreadPostCount = unread_post_count();
+
+  //Have we been asked not to show either of the unread counts?
+  $disable_personal_message_count = (isset($settings['disable_personal_message_count']) && $settings['disable_personal_message_count']);
+  $disable_unread_topic_count = (isset($settings['disable_unread_topic_count']) && $settings['disable_unread_topic_count']);
+
+  //Find the number of unread topics
+  $unreadTopicCount = $disable_unread_topic_count ? 0 : unread_topic_count();
   
   //Use javascript to set post count as the toolbar isn't reloaded each time; we need to do this within main page content
   echo '
         <script type="text/javascript">
           $(document).one("pageload", function() {
-            var unreadPostCount = ', $unreadPostCount, ';
+            var unreadTopicCount = ', $unreadTopicCount, ';
             var unreadMessageCount = ', $context['user']['unread_messages'], ';
 
-            var unreadPostCountElement = $(".unreadPosts").last();
+            var unreadTopicCountElement = $(".unreadPosts").last();
             var unreadMessageCountElement = $(".unread-messages").last();
 
-            unreadPostCountElement.get()[0].innerHTML = unreadPostCount;
+            unreadTopicCountElement.get()[0].innerHTML = unreadTopicCount;
             unreadMessageCountElement.get()[0].innerHTML = unreadMessageCount;
 
-            if (unreadPostCount != 0) {
-              unreadPostCountElement.show();
+            if (unreadTopicCount != 0) {
+              unreadTopicCountElement.show();
             }
             else {
-              unreadPostCountElement.hide();
+              unreadTopicCountElement.hide();
             }
 
             if (unreadMessageCount != 0) {
@@ -226,7 +232,7 @@ function template_body_below() {
   echo '
       </div>
     </div>';
-  
+
   echo '
     <div id="toolbar" class="toolbar" data-role="footer" data-id="footer" data-position="fixed" data-tap-toggle="false" data-enhance="true">
       <div>
@@ -237,14 +243,14 @@ function template_body_below() {
       </div>
       <div>
         <div class="toolbar-icon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'pm\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/messages.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
-        <div class="unread-count unread-messages"', ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] ? '>' . $context['user']['unread_messages'] : ' style="display:none;">'), '</div>
+        <div class="unread-count unread-messages"', ($context['user']['unread_messages'] > 0 && $context['user']['is_logged'] && !$disable_personal_message_count ? '>' . $context['user']['unread_messages'] : ' style="display:none;">'), '</div>
       </div>
       <div>
         <div class="toolbar-icon" onclick="$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'recent\');" style="background: url(' . $settings['theme_url'] . '/images/icons/inbox.png) transparent center no-repeat;"></div>
       </div>
       <div>
         <div class="toolbar-icon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'unread;all\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
-        <div class="unread-count unreadPosts"', ($unreadPostCount > 0 && $context['user']['is_logged'] ? '>' . $unreadPostCount : ' style="display:none">'), '</div>
+        <div class="unread-count unreadPosts"', ($unreadTopicCount > 0 && $context['user']['is_logged'] && !$disable_unread_topic_count ? '>' . $unreadTopicCount : ' style="display:none">'), '</div>
       </div>
     </div>';
 }

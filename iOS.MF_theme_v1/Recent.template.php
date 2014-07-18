@@ -6,6 +6,7 @@
 
 
 require_once ($settings[theme_dir] . '/ThemeControls.php');
+require_once ($settings[theme_dir] . '/ThemeFunctions.php');
 
 //Recent posts
 function template_main() {
@@ -75,7 +76,7 @@ function template_main() {
     echo '
           <div class="message" onclick="$.mobile.changePage(\'' . str_replace('#msg', ';new#msg', $message['href']) . '\');" ', ($showingAvatars ? '' : 'style="min-height: initial !important;"'), '>
             <span class="message-time" style="font-style: italic;font-size:11px;display:inline-block;', ($showingAvatars ? 'margin-bottom:3px;' : 'margin-bottom: 5px;'), '">', str_replace('strong', 'span', $message['time']), '</span><br />
-            ', str_replace(rtrim($scripturl, '/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/', str_replace('<strong>Today</strong>', 'Today', short1($message['message'])));
+            ', parse_message($message['message']);
     
     //Show any attachments
     if (!empty($message['attachment'])) {
@@ -174,7 +175,7 @@ function template_unread() {
           <div class="sticky"></div>
           <div class="title sticky-short-title">', $topic['first_post']['subject'], '</div>
           <div class="new">' . $txt['new_button'] . '</div>
-          <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . iPhoneTime($topic['last_post']['timestamp']), '</div>
+          <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
         </li>';
       }
     }
@@ -192,7 +193,7 @@ function template_unread() {
         <li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . str_replace('#new', ';new#new', $topic['new_href']) . '\')">
           <div class="title short-title">', $topic['first_post']['subject'], '</div>
           <div class="new">' . $txt['new_button'] . '</div>
-          <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . iPhoneTime($topic['last_post']['timestamp']), '</div>
+          <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
         </li>';
       }
     }
