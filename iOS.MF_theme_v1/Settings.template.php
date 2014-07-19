@@ -95,6 +95,10 @@ function template_settings()
       'id' => 'disable_unread_topic_count',
       'label' => 'Disable the count of unread topics',
     ),
+    array(
+      'id' => 'replace_PM_ddl_with_text_input',
+      'label' => 'Replace user drop down list with a simple text input when composing a personal message',
+    ),
   );
 }
 

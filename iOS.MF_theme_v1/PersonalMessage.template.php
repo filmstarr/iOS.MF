@@ -239,38 +239,53 @@ function template_send() {
   echo '
     <form data-ajax="false" action="', $scripturl, '?action=pm;sa=send2" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" class="flow_hidden" onsubmit="submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'message\']);">';
   
-  //Show any errors
+  //Show any errors and also show who we're trying to send the message to in case there was a problem with that
   if (!empty($context['post_error']['messages']) && count($context['post_error']['messages'])) {
     echo '
       <div class="errors">
         <div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div>
       </div>
       <style type="text/css"> #new-topic { padding-top: 9px; } </style>';
+
+    echo '
+      <div id="new-topic" class="input-container">
+        <span class="input-label">' . $txt['iTo'] . '</span>';
+    echo
+       '<input type="text" tabindex="', $context['tabindex']++, '" name="to" value="', $context['to_value'], '" maxlength="50" />';
+    echo '
+      </div>';        
   }
-  
-  //If we're not replying to a message then show a drop down list of all the users. For simplicity we can only send new messags to one person
-  if (empty($context['to_value'])) {
-    echo '
-      <div id="new-topic" class="input-container">';
-    
-    //Users drop down list
-    $users = user_list();
-    echo '<span class="input-label">' . $txt['iTo'] . '</span>';
-    echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify" style="padding-left: 4px;">';
-    echo '
-          <option></option>';
-    foreach ($users as $user) {
+  //There are no errors so we can just show the usual "to" user selection controls
+  else {
+    //If we're not replying to a message then we need to know who to send it to
+    if (empty($context['to_value'])) {
       echo '
-          <option>' . $user . '</option>';
+        <div id="new-topic" class="input-container">
+          <span class="input-label">' . $txt['iTo'] . '</span>';
+
+      //The user drop down list has been disabled so we'll just show a simple text input
+      if (isset($settings['replace_PM_ddl_with_text_input']) && $settings['replace_PM_ddl_with_text_input']) {
+        echo '<input type="text" tabindex="', $context['tabindex']++, '" name="to" value="" maxlength="50" />';
+      }
+      //Show a drop down list of all the users. For simplicity we can only send new messags to one person
+      else {
+        $users = user_list();
+        echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify" style="padding-left: 4px;">';
+        echo '<option></option>';
+        foreach ($users as $user) {
+          echo '<option>' . $user . '</option>';
+        }
+        echo '</select>';
+      }
+
+      echo '
+        </div>';
+
+    } else {
+      //Otherwise we're replying to someone so we'll keep this hidden
+      echo '
+        <input type="hidden" name="to" value="', $context['to_value'], '" />';
     }
-    echo '
-        </select>';
-    echo '
-      </div>';
-  } else {
-    //Otherwise we're replying to someone
-    echo '
-      <input type="hidden" name="to" value="', $context['to_value'], '" />';
   }
   
   //What's the subject of this message?
