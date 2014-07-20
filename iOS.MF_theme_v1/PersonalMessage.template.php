@@ -29,7 +29,7 @@ function template_folder() {
     //Compose new message button
     echo '
         <div class="child buttons no-left-padding">
-          <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send\');">Compose Message</button>
+          <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send\');">' . $txt['iComposeMessage'] . '</button>
         </div>';
 
     //Output a list of the message folders    
@@ -105,7 +105,7 @@ function template_folder() {
     if ($context['display_mode'] == 0) {
       echo '
         <div class="child buttons no-left-padding">
-          <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send\');">Compose Message</button>
+          <button class="button" style="width: 150px;" onclick="$.mobile.changePage(\'', $scripturl, '?action=pm;sa=send\');">' . $txt['iComposeMessage'] . '</button>
         </div>';
     }
 
@@ -273,7 +273,7 @@ function template_send() {
       //Show a drop down list of all the users
       else {
         $users = user_list();
-        echo '<select class="user-list" tabindex="', $context['tabindex']++, '" style="padding-left: 4px;" onchange="if (this.selectedIndex) {addToUser();}">';
+        echo '<select class="user-list" tabindex="', $context['tabindex']++, '" style="padding-left: 4px;" onchange="if (this.selectedIndex) { addToUser(); }">';
         echo '<option></option>';
         foreach ($users as $user) {
           echo '<option>' . $user . '</option>';
@@ -377,11 +377,11 @@ function template_send() {
   //Verification control
   if ($context['require_verification']) {
     echo '<div class="no-left-padding input-container">';
-    echo '<span class="input-label">Code</span>';
+    echo '<span class="input-label">' . $txt['iCode'] . '</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
     echo '<div class="no-left-padding input-container">';
-    echo '<span class="input-label">Verify</span>';
+    echo '<span class="input-label">' . $txt['iVerify'] . '</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="pm_vv[code]" />';
     echo '</div>';
   }
@@ -389,7 +389,7 @@ function template_send() {
   //Submit button and other inputs
   echo '
     <div class="child buttons">
-      <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').loader(\'show\'); if ($(\'input[name=subject]\').val() == \'\') { $(\'input[name=subject]\').val(\'Sent from iOS.MF\'); } ">', $txt['iSend'], '</button>
+      <button class="button" type="submit" onclick="$(\'.editor\').last().blur(); $(\'.editor\').last().removeAttr(\'disabled\'); $(\'.ui-loader\').loader(\'show\'); if ($(\'input[name=subject]\').val() == \'\') { $(\'input[name=subject]\').val(\'' . $txt['iSentFrom'] . ' iOS.MF\'); } ">', $txt['iSend'], '</button>
     </div>
     <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
     <input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />

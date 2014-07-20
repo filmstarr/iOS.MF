@@ -152,18 +152,18 @@ function mark_messages_unread($personal_messages = null, $label = null, $owner =
 
 //Make some adjustments to the forum title
 function parse_title() {
-  global $context;
+  global $context, $txt;
   
   $title = str_replace($context['forum_name_html_safe'] . ' - ', '', $context['page_title_html_safe']);
   
-  if ($title == 'Index') {
+  if ($title == $txt['iIndex']) {
     $title = $context['forum_name_html_safe'];
   }
   
-  $title = str_replace('View the profile of ', '', $title);
-  $title = str_replace('Set Search Parameters', 'Search', $title);
-  $title = str_replace('Personal Messages Index', 'Personal Messages', $title);
-  $title = str_replace('Send message', 'Compose Message', $title);
+  $title = str_replace($txt['profile_of'] . ' ', '', $title);
+  $title = str_replace($txt['iSearchParameters'], $txt['search'], $title);
+  $title = str_replace($txt['iPMIndex'], $txt['personal_messages'], $title);
+  $title = str_replace($txt['iSendMessage'], $txt['iComposeMessage'], $title);
   
   return $title;
 }
@@ -324,7 +324,7 @@ function parse_message($message) {
   $message = str_replace(rtrim($scripturl, '/index.php') . '/Smileys/default/', $settings['theme_url'] . '/images/SkypeEmoticons/', $message);
 
   //Unbold "Today" text in quotes
-  $message = str_replace('<strong>Today</strong>', 'Today', $message);
+  $message = str_replace('<strong>' . $txt['iToday'] . '</strong>', $txt['iToday'], $message);
   return ($message);
 }
 

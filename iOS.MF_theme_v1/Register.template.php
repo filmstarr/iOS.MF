@@ -140,11 +140,11 @@ function template_registration_form() {
   if ($context['visual_verification']) {
     echo '<div class="header">' . $txt['iVerification'] . '</div>';
     echo '<div class="no-left-padding input-container" style="padding-top: 13px;">';
-    echo '<span class="input-label">Code</span>';
+    echo '<span class="input-label">' . $txt['iCode'] . '</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
     echo '<div class="no-left-padding input-container">';
-    echo '<span class="input-label">Verify</span>';
+    echo '<span class="input-label">' . $txt['iVerify'] . '</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="register_vv[code]" />';
     echo '</div>';
   }

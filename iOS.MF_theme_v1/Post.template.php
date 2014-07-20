@@ -39,7 +39,7 @@ function template_main() {
   if (empty($context['subject'])) {
     echo '
       <div id="new-topic" class="input-container">
-        <span class="input-label">Topic</span>';
+        <span class="input-label">' . $txt['topic'] . '</span>';
     echo '<input type="text" tabindex="1" name="subject" value="' . $context['subject'] . '" />
       </div>';
   }
@@ -75,7 +75,7 @@ function template_main() {
         <div style="position: relative;">
           <input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" />
           <div id="input-button-background">
-            <div id="input-button" class="needsclick" onclick="document.getElementById(\'input-file\').click();this.blur();">Choose File</div>
+            <div id="input-button" class="needsclick" onclick="document.getElementById(\'input-file\').click();this.blur();">' . $txt['iChooseFile'] . '</div>
           </div>
         </div>';
     }
@@ -109,11 +109,11 @@ function template_main() {
   //Verification control
   if ($context['require_verification']) {
     echo '<div class="no-left-padding input-container">';
-    echo '<span class="input-label">Code</span>';
+    echo '<span class="input-label">' . $txt['iCode'] . '</span>';
     echo template_control_verification($context['visual_verification_id'], 'all');
     echo '</div>';
     echo '<div class="no-left-padding input-container">';
-    echo '<span class="input-label">Verify</span>';
+    echo '<span class="input-label">' . $txt['iVerify'] . '</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="post_vv[code]" />';
     echo '</div>';
   }

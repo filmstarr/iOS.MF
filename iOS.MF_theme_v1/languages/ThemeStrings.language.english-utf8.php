@@ -115,6 +115,7 @@ $txt['i13yo'] = 'I am at least 13 years old';
 $txt['agree'] = 'I Agree';
 
 /* Buttons */
+
 $txt['search_button'] = 'Search';
 $txt['new_button'] = 'New';
 
@@ -124,5 +125,45 @@ $txt['ireCAPTCHA1'] = 'Enter the words above:';
 $txt['ireCAPTCHA2'] = 'Get another CAPTCHA';
 
 
+$txt['iToday'] = 'Today';
+$txt['iChooseFile'] = 'Choose File';
+$txt['iDefaultTheme'] = 'Default Theme';
+$txt['iSentFrom'] = 'Sent from';
+$txt['iComposeMessage'] = 'Compose Message';
+$txt['iIndex'] = 'Index';
+
+$txt['iSearchParameters'] = 'Set Search Parameters';
+$txt['iPMIndex'] = 'Personal Messages Index';
+$txt['iSendMessage'] = 'Send message';
+
+$txt['iThemeInfo'] = '
+<h2>Welcome to iOS.MF</h2>
+    <ul class="readme">
+      <li>
+        An iOS optimised theme for iPhone, iPad and iPod Touch.
+      </li>
+      <li>
+        Please use the forum default theme for full access to settings and further functionality.
+      </li>
+    </ul>
+
+    <h2>Gestures and Navigation</h2>
+    <ul class="readme" style="margin-bottom: 4px;">
+      <li>
+        Swipe left to go back.
+      </li>
+      <li>
+        Swipe right to go forward.
+      </li>
+      <li>
+        Press and hold the previous/next page buttons to go to first/last page respectively.
+      </li>
+      <li>
+        Tap on the topic title to access quick reply.
+      </li>
+      <li>
+        Tap the default theme button below to go to the forum default theme. Press and hold the default theme button to go to the SMF default theme.
+      </li>
+    </ul>';
 
 ?>

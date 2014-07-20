@@ -169,7 +169,7 @@ function template_body_below() {
     $backLink.= strpos($backLink, 'theme=') == false ? 'theme=' . $themeNumber . ';' : '';
     $backLink = preg_replace("/theme=\d+/", "theme=" . $themeNumber, $backLink);
   }
-  $backName = 'Default Theme';
+  $backName = $txt['iDefaultTheme'];
   echo '
         <button data-ajax="false" class="classic button" id="classic">', $backName, '</button>';
   

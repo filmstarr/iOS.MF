@@ -100,6 +100,8 @@ function template_summary() {
 // Template for editing profile options. We're not going to show that though, let's just give a little info on this theme instead
 function template_edit_options()
 {
+  global $txt;
+
   //Set the title
   echo '
     <script type="text/javascript">
@@ -109,34 +111,6 @@ function template_edit_options()
     </script>';
 
   //Show some theme information
-  echo '
-    <h2>Welcome to iOS.MF</h2>
-    <ul class="readme">
-      <li>
-        An iOS optimised theme for iPhone, iPad and iPod Touch.
-      </li>
-      <li>
-        Please use the forum default theme for full access to settings and further functionality.
-      </li>
-    </ul>
-
-    <h2>Gestures and Navigation</h2>
-    <ul class="readme" style="margin-bottom: 4px;">
-      <li>
-        Swipe left to go back.
-      </li>
-      <li>
-        Swipe right to go forward.
-      </li>
-      <li>
-        Press and hold the previous/next page buttons to go to first/last page respectively.
-      </li>
-      <li>
-        Tap on the topic title to access quick reply.
-      </li>
-      <li>
-        Tap the default theme button below to go to the forum default theme. Press and hold the default theme button to go to the SMF default theme.
-      </li>
-    </ul>';
+  echo $txt['iThemeInfo'];
 }
 ?>

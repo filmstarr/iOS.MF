@@ -195,11 +195,11 @@ function template_control_quick_reply() {
   //Verification control
   if ($context['require_verification']) {
     $quickReply.= '<div class="no-left-padding input-container pad-top">';
-    $quickReply.= '<span class="input-label">Code</span>';
+    $quickReply.= '<span class="input-label">' . $txt['iCode'] . '</span>';
     $quickReply.= template_control_verification($context['visual_verification_id'], 'all');
     $quickReply.= '</div>';
     $quickReply.= '<div class="no-left-padding input-container pad-top">';
-    $quickReply.= '<span class="input-label">Verify</span>';
+    $quickReply.= '<span class="input-label">' . $txt['iVerify'] . '</span>';
     $quickReply.= '<input type="text" tabindex="' . $context['tabindex']++ . '" name="post_vv[code]" />';
     $quickReply.= '</div>';
   }

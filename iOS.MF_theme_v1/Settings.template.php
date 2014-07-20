@@ -81,23 +81,23 @@ function template_settings()
 		),
     array(
       'id' => 'disable_webkit_select',
-      'label' => 'Disable iOS touch selection',
+      'label' => $txt['disable_webkit_select'],
     ),
     array(
       'id' => 'enable_transparent_toolbar',
-      'label' => 'Enable semi-transparent toolbar',
+      'label' => $txt['enable_transparent_toolbar'],
     ),
     array(
       'id' => 'disable_personal_message_count',
-      'label' => 'Disable the count of unread personal messages',
+      'label' => $txt['disable_personal_message_count'],
     ),
     array(
       'id' => 'disable_unread_topic_count',
-      'label' => 'Disable the count of unread topics',
+      'label' => $txt['disable_unread_topic_count'],
     ),
     array(
       'id' => 'replace_PM_ddl_with_text_input',
-      'label' => 'Replace user drop down list with a simple text input when composing a personal message',
+      'label' => $txt['replace_PM_ddl_with_text_input'],
     ),
   );
 }
