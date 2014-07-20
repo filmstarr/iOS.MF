@@ -267,15 +267,69 @@ function template_send() {
       if (isset($settings['replace_PM_ddl_with_text_input']) && $settings['replace_PM_ddl_with_text_input']) {
         echo '<input type="text" tabindex="', $context['tabindex']++, '" name="to" value="" maxlength="50" />';
       }
-      //Show a drop down list of all the users. For simplicity we can only send new messags to one person
+      //Show a drop down list of all the users and an add user button so we can add multiple users to the message
       else {
         $users = user_list();
-        echo '<select name="to" tabindex="', $context['tabindex']++, '" form="postmodify" style="padding-left: 4px;">';
+        echo '<select class="user-list" tabindex="', $context['tabindex']++, '" style="padding-left: 4px;" onchange="if (this.selectedIndex) {addToUser();}">';
         echo '<option></option>';
         foreach ($users as $user) {
           echo '<option>' . $user . '</option>';
         }
         echo '</select>';
+
+        //Javascript functions to add a new user to the to list and update the form input
+        echo '
+          <script type="text/javascript">
+            var addToUser = function() {
+              var user = $(".user-list").last().find(":selected");
+              var userSpan = \'<span onclick="removeToUser(this);">\' + user.text() + \'</span>\';
+              var toUserList = $(".to-user-list").last();
+              if (toUserList.html().indexOf(userSpan) == -1) {
+                toUserList.append(userSpan);
+              }
+
+              setToUserString();
+              
+              toUserList.addClass("small-pad-top");
+              
+              user.remove();
+            };
+
+            var removeToUser = function(element) {
+              element.remove();
+
+              var toUserList = $(".to-user-list").last();
+              if (toUserList.html() == "") {
+                toUserList.removeClass("small-pad-top");
+              }
+
+              setToUserString();
+
+              var userList = $(".user-list").last();
+              userList.append("<option>" + element.innerHTML + "</option>");
+
+              var selectList = userList.children();
+              selectList.sort(function(a,b){
+                return a.value.localeCompare(b.value);
+              });
+              userList.html(selectList);
+            };
+
+            var setToUserString = function() {
+              var toUserList = $(".to-user-list").last();
+              var userString = "";
+              toUserList.children().each(
+                function() {
+                  userString += this.innerHTML + ","
+                }
+              );
+              document.getElementsByName("to")[0].value = userString;
+            };
+          </script>';
+
+        echo '
+          <div class="to-user-list"></div>
+          <input type="hidden" name="to" value="', $context['to_value'], '" />';
       }
 
       echo '

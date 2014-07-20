@@ -137,6 +137,10 @@ hr {
   padding-bottom: 0px !important;
 }
 
+.small-pad-top {
+  padding-top: 1px;
+}
+
 .new {
   top: -1px;
   position: relative;
@@ -509,6 +513,19 @@ button[disabled] {
 input#input-file {
   font-size: 12px;
   width: 170px;
+}
+
+.to-user-list {
+  padding-left: 90px;
+}
+
+.to-user-list > span {
+  font-size: 12px;
+  background-size: 12px 12px !important;
+  background: url(../images/icons/field_invalid.png) no-repeat right;
+  padding-right: 16px;
+  margin-right: 6px;
+  display: inline-block;
 }
 
 
