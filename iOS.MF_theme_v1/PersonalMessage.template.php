@@ -400,4 +400,5 @@ function template_send() {
     <input type="hidden" name="outbox" value="', $context['copy_to_outbox'] ? '1' : '0', '" />
   </form>';
 }
+
 ?>

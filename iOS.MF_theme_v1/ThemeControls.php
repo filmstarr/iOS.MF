@@ -320,4 +320,5 @@ function parse_page_control($pageIndex) {
     'last' => $url . (($lastPage - 1) * $pageSize),);
   $context['page_info'] = array('current_page' => $currentPage, 'num_pages' => $lastPage,);
 }
+
 ?>

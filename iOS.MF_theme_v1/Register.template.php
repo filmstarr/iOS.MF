@@ -187,4 +187,5 @@ function template_after() {
       <button class="button" onclick="go(\'home\');">', $txt['iDone'], '</button>
     </div>';
 }
+
 ?>

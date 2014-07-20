@@ -113,4 +113,5 @@ function template_edit_options()
   //Show some theme information
   echo $txt['iThemeInfo'];
 }
+
 ?>

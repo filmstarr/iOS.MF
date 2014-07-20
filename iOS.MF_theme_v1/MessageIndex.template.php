@@ -96,4 +96,5 @@ function template_main() {
   //Paging control
   template_control_paging();
 }
+
 ?>

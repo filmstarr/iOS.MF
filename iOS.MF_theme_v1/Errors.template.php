@@ -9,6 +9,6 @@ function template_fatal_error() {
   global $context;
   
 	echo '<div class="errors"><div style="margin-top: 6px;">*', $context['error_message'] , '</div></div>';
-
 }
+
 ?>

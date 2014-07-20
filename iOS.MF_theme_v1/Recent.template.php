@@ -218,4 +218,5 @@ function template_unread() {
         <a class="button market-all-read" href="', $scripturl . '?action=markasread;sa=all;' . $context['session_var'] . '=' . $context['session_id'], '">', $txt['iMarkALLRead'], '</a>
       </div>';
 }
+
 ?>

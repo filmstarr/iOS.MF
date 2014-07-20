@@ -76,4 +76,5 @@ function template_results() {
     template_control_paging($context['page_index']);
   }
 }
+
 ?>

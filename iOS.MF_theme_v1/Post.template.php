@@ -142,4 +142,5 @@ function template_main() {
       <input type="hidden" name="goback" value="', $options['return_to_post'], '" />
     </form>';
 }
+
 ?>

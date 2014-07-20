@@ -44,4 +44,5 @@ function template_kick_guest() {
   //Show the login form in case they already are or want to register  
   template_login();
 }
+
 ?>

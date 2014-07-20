@@ -275,4 +275,5 @@ function template_main() {
   //Finally, show our paging buttons at the bottom of the page  
   template_control_paging();
 }
+
 ?>
