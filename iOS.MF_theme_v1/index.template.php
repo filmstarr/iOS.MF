@@ -25,7 +25,9 @@ function template_init() {
   $settings['disable_sp'] = true;
   
   //Disable TinyPortal
-  if (function_exists('tp_hidebars')) tp_hidebars();
+  if (function_exists('tp_hidebars')) {
+    tp_hidebars();
+  }
   
   //Disable PortaMX
   $_SESSION['pmx_paneloff'] = array('head', 'top', 'left', 'right', 'bottom', 'foot', 'front', 'pages' => 'Pages');
