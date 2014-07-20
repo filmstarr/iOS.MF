@@ -239,14 +239,17 @@ function template_send() {
   echo '
     <form data-ajax="false" action="', $scripturl, '?action=pm;sa=send2" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" class="flow_hidden" onsubmit="submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'message\']);">';
   
-  //Show any errors and also show who we're trying to send the message to in case there was a problem with that
+  //Show any errors
   if (!empty($context['post_error']['messages']) && count($context['post_error']['messages'])) {
     echo '
       <div class="errors">
         <div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div>
       </div>
       <style type="text/css"> #new-topic { padding-top: 9px; } </style>';
+  }
 
+  //If there were errors (excuding no recipients selected) then show who we're trying to send the message to as a text box in case there was a problem with that
+  if (!empty($context['post_error']['messages']) && count($context['post_error']['messages']) && !empty($context['to_value'])) {
     echo '
       <div id="new-topic" class="input-container">
         <span class="input-label">' . $txt['iTo'] . '</span>';
@@ -255,7 +258,7 @@ function template_send() {
     echo '
       </div>';        
   }
-  //There are no errors so we can just show the usual "to" user selection controls
+  //There are no errors so we can just show the usual recipient selection controls
   else {
     //If we're sending a new message then we need to know who to send it to
     if (empty($context['to_value'])) {
@@ -267,7 +270,7 @@ function template_send() {
       if (isset($settings['replace_PM_ddl_with_text_input']) && $settings['replace_PM_ddl_with_text_input']) {
         echo '<input type="text" tabindex="', $context['tabindex']++, '" name="to" value="" maxlength="50" />';
       }
-      //Show a drop down list of all the users and an add user button so we can add multiple users to the message
+      //Show a drop down list of all the users
       else {
         $users = user_list();
         echo '<select class="user-list" tabindex="', $context['tabindex']++, '" style="padding-left: 4px;" onchange="if (this.selectedIndex) {addToUser();}">';
@@ -277,7 +280,7 @@ function template_send() {
         }
         echo '</select>';
 
-        //Javascript functions to add a new user to the to list and update the form input
+        //Javascript functions to add a new user to the recipient list and update the form input
         echo '
           <script type="text/javascript">
             var addToUser = function() {
