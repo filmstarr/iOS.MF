@@ -257,7 +257,7 @@ function template_send() {
   }
   //There are no errors so we can just show the usual "to" user selection controls
   else {
-    //If we're not replying to a message then we need to know who to send it to
+    //If we're sending a new message then we need to know who to send it to
     if (empty($context['to_value'])) {
       echo '
         <div id="new-topic" class="input-container">
