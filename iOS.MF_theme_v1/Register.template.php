@@ -43,8 +43,8 @@ function template_registration_form() {
   
   //Make sure they've agreed to the terms and conditions
   echo '
-    <script type="text/javascript" language="JavaScript" src="' . $settings['theme_url'] . '/scripts/register.js"></script>
-    <script type="text/javascript" language="JavaScript"><!-- // --><![CDATA[
+    <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/register.js"></script>
+    <script type="text/javascript"><!-- // --><![CDATA[
     	function verifyAgree()
     	{
     		if (currentAuthMethod == \'passwd\' && document.forms.creator.smf_autov_pwmain.value != document.forms.creator.smf_autov_pwverify.value)
@@ -160,7 +160,7 @@ function template_registration_form() {
   
   //Clever registration stuff
   echo '
-    <script type="text/javascript" language="JavaScript"><!-- // --><![CDATA[
+    <script type="text/javascript"><!-- // --><![CDATA[
     	var regTextStrings = {
     		"username_valid": "', $txt['registration_username_available'], '",
     		"username_invalid": "', $txt['registration_username_unavailable'], '",
