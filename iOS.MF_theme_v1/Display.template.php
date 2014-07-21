@@ -202,8 +202,8 @@ function template_main() {
       if (!empty($message['attachment'])) {
         echo '
           <hr>
-            <div id="msg_', $message['id'], '_footer" class="attachments smalltext">
-              <div style="overflow: ', $context['browser']['is_firefox'] ? 'visible' : 'auto', ';">';
+          <div id="msg_', $message['id'], '_footer" class="attachments smalltext">
+            <div style="overflow: ', $context['browser']['is_firefox'] ? 'visible' : 'auto', ';">';
         
         //Loop through and show attachments
         $last_approved_state = 1;
@@ -213,55 +213,54 @@ function template_main() {
           if ($attachment['is_approved'] != $last_approved_state) {
             $last_approved_state = 0;
             echo '
-                <fieldset>
-                  <legend>', $txt['attach_awaiting_approve'];
+              <fieldset>
+                <legend>', $txt['attach_awaiting_approve'];
             
             if ($context['can_approve']) {
               echo '&nbsp;[<a href="', $scripturl, '?action=attachapprove;sa=all;mid=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['approve_all'], '</a>]';
             }
             
             echo '
-                  </legend>';
+                </legend>';
           }
 
           //Show a thumbnail if it's an image and we have one available          
           if ($attachment['is_image']) {
             if ($attachment['thumbnail']['has_thumb']) {
               echo '
-                  <a href="', $attachment['href'], ';image" rel="external" class="lightbox-image" id="link_', $attachment['id'], '"><img src="', $attachment['thumbnail']['href'], '" alt="" id="thumb_', $attachment['id'], '" /></a><br />';
+                <a href="', $attachment['href'], ';image" rel="external" class="lightbox-image" id="link_', $attachment['id'], '"><img src="', $attachment['thumbnail']['href'], '" alt="" id="thumb_', $attachment['id'], '" /></a><br />';
             }
             else {
               echo '
-                  <a href="', $attachment['href'], ';image" rel="external" class="lightbox-image" id="link_', $attachment['id'], '"><img src="' . $attachment['href'] . ';image" alt="" width="' . $attachment['width'] . '" height="' . $attachment['height'] . '"/></a><br />';
+                <a href="', $attachment['href'], ';image" rel="external" class="lightbox-image" id="link_', $attachment['id'], '"><img src="' . $attachment['href'] . ';image" alt="" width="' . $attachment['width'] . '" height="' . $attachment['height'] . '"/></a><br />';
             }
           }
 
           //The link to the attachment          
           echo '
-                  <img width="11px" height="11px" style="position:relative; top:-5px;" src="' . $settings['images_url'] . '/icons/files.png" align="middle" alt="*" />&nbsp;
-                  <a rel="external" ', ($attachment['is_image'] ? 'class="lightbox-image"' : 'target="_blank"'), ' href="', $attachment['href'], ($attachment['is_image'] ? '' : ';openFileInNewWindow=' . urlencode($attachment['name'])), '">' . $attachment['name'] . '</a>';
+                <img width="11" height="11" style="position:relative; top: 1px; padding-right: 2px;" src="' . $settings['images_url'] . '/icons/files.png" alt="*" />
+                <a rel="external" ', ($attachment['is_image'] ? 'class="lightbox-image"' : 'target="_blank"'), ' href="', $attachment['href'], ($attachment['is_image'] ? '' : ';openFileInNewWindow=' . urlencode($attachment['name'])), '">' . $attachment['name'] . '</a>';
           
           //Approve the attachment?
           if (!$attachment['is_approved'] && $context['can_approve']) {
             echo '
-                  [<a href="', $scripturl, '?action=attachapprove;sa=approve;aid=', $attachment['id'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['approve'], '</a>]&nbsp;|&nbsp;[<a href="', $scripturl, '?action=attachapprove;sa=reject;aid=', $attachment['id'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['delete'], '</a>]';
+                [<a href="', $scripturl, '?action=attachapprove;sa=approve;aid=', $attachment['id'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['approve'], '</a>]&nbsp;|&nbsp;[<a href="', $scripturl, '?action=attachapprove;sa=reject;aid=', $attachment['id'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['delete'], '</a>]';
           }
 
           //Some details about the attachment
           echo '
-                  <br />(', $attachment['size'], ($attachment['is_image'] ? ', ' . $attachment['real_width'] . 'x' . $attachment['real_height'] . ' - ' . $txt['attach_viewed'] : ' - ' . $txt['attach_downloaded']) . ' ' . $attachment['downloads'] . ' ' . $txt['attach_times'] . '.)<br />';
+                <br />(', $attachment['size'], ($attachment['is_image'] ? ', ' . $attachment['real_width'] . 'x' . $attachment['real_height'] . ' - ' . $txt['attach_viewed'] : ' - ' . $txt['attach_downloaded']) . ' ' . $attachment['downloads'] . ' ' . $txt['attach_times'] . '.)<br />';
         }
         
         //If we had unapproved attachments clean up.
         if ($last_approved_state == 0) {
           echo '
-                </fieldset>';
+              </fieldset>';
         }
         
         echo '
-              </div>
             </div>
-          </hr>';
+          </div>';
       }
       echo '
         </div>
