@@ -1,24 +1,16 @@
 <?php
-// Version: 2.0 RC4; iPhone.language
 
-$txt['iClassic'] = 'Classic Theme'; //Label for the button which switches to full desktop theme
-$txt['iMenu'] = 'Menu';
-$txt['iBack'] = 'Back';
-$txt['iTopics'] = 'Topics';
+/*
+* English language strings for use across the theme
+*/
+
+
 $txt['iLoading'] = 'Loading';
 
 /* Board Index */
 
-$txt['iBoards'] = 'Boards';
-$txt['iLatestPosts'] = 'Latest Posts';
 
-$txt['iPosted'] = 'Posted'; //Example: *Posted* x minutes ago;
-
-$txt['iShow'] = 'Show'; //Childboards
-$txt['iHide'] = 'Hide'; //Childboards
-
-$txt['iShowUnread'] = 'Unread Topics';
-$txt['iMarkALLRead'] = 'Mark All As Read';
+$txt['iMarkAllRead'] = 'Mark All As Read';
 
 /* Time, singular and plural */
 
@@ -36,15 +28,6 @@ $txt['iDayAgo'] = 'day ago';
 $txt['iWeekAgo'] = 'week ago';
 $txt['iMonthAgo'] = 'month ago';
 
-$txt['iBy'] = 'by';
-
-/* Tab Bar */
-
-$txt['iHome'] = 'Home';
-$txt['iSearch'] = 'Search';
-$txt['iMessages'] = 'Messages'; 
-$txt['iProfile'] = 'Profile';
-$txt['iLogout'] = 'Logout';
 
 /* Topic display */
 
@@ -66,7 +49,6 @@ $txt['iSubject'] = 'Subject';
 $txt['iCode'] = 'Code'; //Verification code
 $txt['iVerify'] = 'Verify'; //Field to fill in with verifcation code
 
-$txt['iMessage'] = 'Message'; //The heading of the message field when posting or sending a PM
 $txt['iPost'] = 'Post'; //The submit button
 
 /* PM */
@@ -87,42 +69,29 @@ $txt['iAge'] = 'age';
 $txt['iLocation'] = 'location';
 
 $txt['iLastActive'] = 'last active';
-$txt['iIP'] = 'ip';
-$txt['iHostname'] = 'hostname';
 $txt['iLocalTime'] = 'local time';
 
-$txt['iSendPM'] = 'Send PM';
-$txt['iSendEmail'] = 'Send Email';
 
 /* Search */
 
-$txt['iAlert'] = 'Please enter a word of at least 3 letters to search';
+$txt['iSearchAlert'] = 'Please enter a word of at least 3 letters to search';
 
 /* Login */
 
 $txt['iRemember'] = 'Remember';
-$txt['iSubmit'] = 'Submit';
 
 /* Register */
 
 $txt['iChoose'] = 'Choose';
-$txt['iRegisterVerify'] = 'Verify';
 $txt['iVerification'] = 'Verification';
 $txt['iAgreement'] = 'Registration Agreement';
 $txt['iMore'] = 'more'; //example: more...
 $txt['iDone'] = 'Done';
-$txt['i13yo'] = 'I am at least 13 years old';
-$txt['agree'] = 'I Agree';
 
 /* Buttons */
 
-$txt['search_button'] = 'Search';
-$txt['new_button'] = 'New';
-
-/* reCAPTCHA */
-
-$txt['ireCAPTCHA1'] = 'Enter the words above:';
-$txt['ireCAPTCHA2'] = 'Get another CAPTCHA';
+$txt['iSearch'] = 'Search';
+$txt['iNew'] = 'New';
 
 
 $txt['iToday'] = 'Today';
@@ -133,7 +102,7 @@ $txt['iComposeMessage'] = 'Compose Message';
 $txt['iIndex'] = 'Index';
 
 $txt['iSearchParameters'] = 'Set Search Parameters';
-$txt['iPMIndex'] = 'Personal Messages Index';
+$txt['iPersonalMessagesIndex'] = 'Personal Messages Index';
 $txt['iSendMessage'] = 'Send message';
 
 $txt['iThemeInfo'] = '

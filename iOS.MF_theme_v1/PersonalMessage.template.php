@@ -43,7 +43,7 @@ function template_folder() {
             <div class="title', ($message['is_unread'] ? ' short-title' : ''), '">', ($context['display_mode'] == 2 ? preg_replace('/\bRe: /', '', $message['subject']) : $message['subject']), '</div>';
       if ($message['is_unread']) {
         echo '
-            <div class="new">' . $txt['new_button'] . '</div>';
+            <div class="new">' . $txt['iNew'] . '</div>';
       }
       
       //Output a list of everyone in the last message and when it was posted

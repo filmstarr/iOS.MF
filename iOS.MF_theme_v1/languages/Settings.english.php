@@ -1,7 +1,7 @@
 <?php
 
 /*
-* English language string arrays for use in settings pages
+* English language strings for use in the settings pages
 */
 
 

@@ -115,7 +115,7 @@ function template_control_quick_search() {
     <div id="search-bar" class="input-container">
       <form action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '" name="searchform" id="search-form">
         <input id="search-text" type="text" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', !empty($context['search_string_limit']) ? ' maxlength="' . $context['search_string_limit'] . '"' : '', ' tabindex="', $context['tabindex']++, '" />
-        <input type="submit" class="button input-button" value="' . $txt['search_button'] . '" onclick="if(document.searchform.search.value.length<3){alert(\'', $txt['iAlert'], '\');return false;}" />
+        <input type="submit" class="button input-button" value="' . $txt['iSearch'] . '" onclick="if(document.searchform.search.value.length<3){alert(\'', $txt['iSearchAlert'], '\');return false;}" />
       </form>
     </div>';
 }

@@ -23,7 +23,7 @@ function template_main() {
           <div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' short-title' : '', '">', $board['name'], '</div>';
       if ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) {
         echo '
-          <div class="new">' . $txt['new_button'] . '</div>';
+          <div class="new">' . $txt['iNew'] . '</div>';
       }
       echo '
           <div class="description">', $board['last_post']['member']['name'], ', ', $board['last_post']['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : parse_time($board['last_post']['timestamp']), '</div>';

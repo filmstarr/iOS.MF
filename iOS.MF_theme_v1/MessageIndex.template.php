@@ -27,7 +27,7 @@ function template_main() {
           <div class="title', ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) ? ' sticky-short-title' : '', '">', $board['name'], '</div>';
       if ($context['user']['is_logged'] && ($board['new'] || $board['children_new'])) {
         echo '
-          <div class="new">' . $txt['new_button'] . '</div>';
+          <div class="new">' . $txt['iNew'] . '</div>';
       }
       echo '
           <div class="description">', $board['last_post']['member']['name'], ', ', $board['last_post']['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : parse_time($board['last_post']['timestamp']), '</div>
@@ -60,7 +60,7 @@ function template_main() {
           <div class="title', ($topic['new']) ? ' sticky-short-title' : '', '">', $topic['first_post']['subject'], '</div>';
         if ($topic['new'] && $context['user']['is_logged']) {
           echo '
-          <div class="new">' . $txt['new_button'] . '</div>';
+          <div class="new">' . $txt['iNew'] . '</div>';
         }
         echo '
           <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
@@ -82,7 +82,7 @@ function template_main() {
           <div class="title', ($topic['new']) ? ' short-title' : '', '">', $topic['first_post']['subject'], '</div>';
         if ($topic['new'] && $context['user']['is_logged']) {
           echo '
-          <div class="new">' . $txt['new_button'] . '</div>';
+          <div class="new">' . $txt['iNew'] . '</div>';
         }
         echo '
           <div class="description">' , ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>

@@ -174,7 +174,7 @@ function template_unread() {
         <li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . str_replace('#new', ';new#new', $topic['new_href']) . '\')">
           <div class="sticky"></div>
           <div class="title sticky-short-title">', $topic['first_post']['subject'], '</div>
-          <div class="new">' . $txt['new_button'] . '</div>
+          <div class="new">' . $txt['iNew'] . '</div>
           <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
         </li>';
       }
@@ -192,7 +192,7 @@ function template_unread() {
         echo '
         <li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . str_replace('#new', ';new#new', $topic['new_href']) . '\')">
           <div class="title short-title">', $topic['first_post']['subject'], '</div>
-          <div class="new">' . $txt['new_button'] . '</div>
+          <div class="new">' . $txt['iNew'] . '</div>
           <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>
         </li>';
       }
@@ -215,7 +215,7 @@ function template_unread() {
   //Mark all unread posts as read
   echo '
       <div class="buttons">
-        <a class="button market-all-read" href="', $scripturl . '?action=markasread;sa=all;' . $context['session_var'] . '=' . $context['session_id'], '">', $txt['iMarkALLRead'], '</a>
+        <a class="button market-all-read" href="', $scripturl . '?action=markasread;sa=all;' . $context['session_var'] . '=' . $context['session_id'], '">', $txt['iMarkAllRead'], '</a>
       </div>';
 }
 

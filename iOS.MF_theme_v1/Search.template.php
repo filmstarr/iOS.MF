@@ -62,7 +62,7 @@ function template_results() {
         <div class="title', ($topic['new']) ? ' short-title' : '', '">', $topic['first_post']['subject'], '</div>';
         if ($topic['new'] && $context['user']['is_logged']) {
           echo '
-        <div class="new">' . $txt['new_button'] . '</div>';
+        <div class="new">' . $txt['iNew'] . '</div>';
         }
         echo '
         <div class="description">', ($topic['is_locked']) ? $txt['locked_topic'] : $topic['last_post']['member']['name'] . ', ' . parse_time($topic['last_post']['timestamp']), '</div>

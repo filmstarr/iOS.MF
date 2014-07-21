@@ -162,7 +162,7 @@ function parse_title() {
   
   $title = str_replace($txt['profile_of'] . ' ', '', $title);
   $title = str_replace($txt['iSearchParameters'], $txt['search'], $title);
-  $title = str_replace($txt['iPMIndex'], $txt['personal_messages'], $title);
+  $title = str_replace($txt['iPersonalMessagesIndex'], $txt['personal_messages'], $title);
   $title = str_replace($txt['iSendMessage'], $txt['iComposeMessage'], $title);
   
   return $title;
