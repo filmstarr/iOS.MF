@@ -45,6 +45,7 @@ $txt['iDefaultTheme'] = 'Default Theme';
 $txt['iRemember'] = 'Remember';
 
 //Personal message template
+$txt['iSelectUsers'] = 'Select users';
 $txt['iSentFrom'] = 'Sent from';
 $txt['iTo'] = 'To';
 $txt['iSend'] = 'Send';

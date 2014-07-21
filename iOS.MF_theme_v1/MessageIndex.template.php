@@ -12,7 +12,7 @@ function template_main() {
   
   //New topic button
   echo '
-      <div class="child buttons" id="new-topic">
+      <div class="child buttons no-left-padding">
         <button class="button" onclick="$.mobile.changePage(\'', $scripturl, '?action=post;board=', $context['current_board'], '.0  \');">', $txt['new_topic'], '</button>
       </div>';
   

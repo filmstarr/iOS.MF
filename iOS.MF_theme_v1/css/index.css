@@ -209,7 +209,7 @@ hr {
 
 /* Tap highlight */
 
-a:link, #input-button, .button, .clicked, #search-form > input, .editor, #new-topic > input, div {
+a:link, #input-button, .button, .clicked, #search-form > input, .editor, .no-left-padding > input, div {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -457,7 +457,7 @@ button[disabled] {
   color: #aaa;
 }
 
-#new-topic {
+.no-left-padding {
   padding-left: 0px !important;
 }
 

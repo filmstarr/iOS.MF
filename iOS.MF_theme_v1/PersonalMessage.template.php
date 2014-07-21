@@ -245,13 +245,13 @@ function template_send() {
       <div class="errors">
         <div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div>
       </div>
-      <style type="text/css"> #new-topic { padding-top: 9px; } </style>';
+      <style type="text/css"> .no-left-padding { padding-top: 9px; } </style>';
   }
 
   //If there were errors (excuding no recipients selected) then show who we're trying to send the message to as a text box in case there was a problem with that
   if (!empty($context['post_error']['messages']) && count($context['post_error']['messages']) && !empty($context['to_value'])) {
     echo '
-      <div id="new-topic" class="input-container">
+      <div class="input-container no-left-padding">
         <span class="input-label">' . $txt['iTo'] . '</span>';
     echo
        '<input type="text" tabindex="', $context['tabindex']++, '" name="to" value="', $context['to_value'], '" maxlength="50" />';
@@ -263,7 +263,7 @@ function template_send() {
     //If we're sending a new message then we need to know who to send it to
     if (empty($context['to_value'])) {
       echo '
-        <div id="new-topic" class="input-container">
+        <div class="input-container no-left-padding">
           <span class="input-label">' . $txt['iTo'] . '</span>';
 
       //The user drop down list has been disabled so we'll just show a simple text input
@@ -273,8 +273,8 @@ function template_send() {
       //Show a drop down list of all the users
       else {
         $users = user_list();
-        echo '<select class="user-list" tabindex="', $context['tabindex']++, '" style="padding-left: 4px;" onchange="if (this.selectedIndex) { addToUser(); }">';
-        echo '<option></option>';
+        echo '<select class="user-list" tabindex="', $context['tabindex']++, '" style="padding-left: 4px; color: #777;" onchange="if (this.selectedIndex) { addToUser(); }">';
+        echo '<option style="color: #777;">' . $txt['iSelectUsers'] . '...</option>';
         foreach ($users as $user) {
           echo '<option>' . $user . '</option>';
         }
@@ -348,7 +348,7 @@ function template_send() {
   //What's the subject of this message?
   if (empty($context['subject']) || $context['subject'] == $txt['no_subject']) {
     echo '
-      <div id="new-topic" class="input-container">';
+      <div class="input-container no-left-padding">';
     echo '
         <span class="input-label">Subject</span>';
     echo '<input type="text" tabindex="', $context['tabindex']++, '" name="subject" value="" maxlength="50" />';

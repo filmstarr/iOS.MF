@@ -28,7 +28,7 @@ function template_main() {
       <div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['post_error']['messages']), '</div></div>';
     if (empty($context['subject'])) {
       echo '
-      <style type="text/css"> #new-topic { padding-top: 9px; } </style>';
+      <style type="text/css"> .no-left-padding { padding-top: 9px; } </style>';
     } else {
       echo '
       <style type="text/css"> #post-container { padding-top: 9px; } </style>';
@@ -38,7 +38,7 @@ function template_main() {
   //What's the subject of this new topic?
   if (empty($context['subject'])) {
     echo '
-      <div id="new-topic" class="input-container">
+      <div class="input-container no-left-padding">
         <span class="input-label">' . $txt['topic'] . '</span>';
     echo '<input type="text" tabindex="1" name="subject" value="' . $context['subject'] . '" />
       </div>';
