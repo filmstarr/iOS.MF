@@ -29,14 +29,14 @@ function template_control_quick_login() {
       var toggleQuickLogin = function() {
         if ($("#quick-login").is(":visible"))
         {
-          $("#user").blur();
+          $(".user").first().blur();
           $("#quick-login").hide();
           control.className = "login-icon";
         }
         else
         {
           $("#quick-login").show();
-          $("#user").focus();
+          $(".user").first().focus();
           control.className = "close-icon";
         }
         setTopMargin();
@@ -63,7 +63,7 @@ function template_control_login_form() {
     <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
       <div class="no-left-padding input-container pad-top">';
   echo '<span class="input-label">' . $txt['username'] . '</span>';
-  echo '<input id="user" class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
+  echo '<input class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
       </div>
       <div class="no-left-padding input-container pad-top">';
   echo '<span class="input-label">' . $txt['password'] . '</span>';
