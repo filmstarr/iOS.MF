@@ -87,7 +87,7 @@ function template_summary() {
       <li>
         <div class="field">
         <div class="field-name">' . $txt['iRegistered'] . '</div>
-        <div class="field-info">', $context['member']['registered'], ' </div>
+        <div class="field-info">', str_replace('strong', 'span', $context['member']['registered']), ' </div>
         </div>
       </li>
       <li>
