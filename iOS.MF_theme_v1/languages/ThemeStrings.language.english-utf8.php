@@ -5,15 +5,13 @@
 */
 
 
-$txt['iLoading'] = 'Loading';
-
-/* Board Index */
-
-
-$txt['iMarkAllRead'] = 'Mark All As Read';
-
-/* Time, singular and plural */
-
+//Time since post or message
+$txt['iSecondAgo'] = 'second ago';
+$txt['iMinuteAgo'] = 'minute ago';
+$txt['iHourAgo'] = 'hour ago';
+$txt['iDayAgo'] = 'day ago';
+$txt['iWeekAgo'] = 'week ago';
+$txt['iMonthAgo'] = 'month ago';
 $txt['iSecondsAgo'] = 'seconds ago';
 $txt['iMinutesAgo'] = 'minutes ago';
 $txt['iHoursAgo'] = 'hours ago';
@@ -21,92 +19,83 @@ $txt['iDaysAgo'] = 'days ago';
 $txt['iWeeksAgo'] = 'weeks ago';
 $txt['iMonthsAgo'] = 'months ago';
 
-$txt['iSecondAgo'] = 'second ago';
-$txt['iMinuteAgo'] = 'minute ago';
-$txt['iHourAgo'] = 'hour ago';
-$txt['iDayAgo'] = 'day ago';
-$txt['iWeekAgo'] = 'week ago';
-$txt['iMonthAgo'] = 'month ago';
+//Buttons used across the theme
+$txt['iSearch'] = 'Search';
+$txt['iNew'] = 'New';
+$txt['iSubject'] = 'Subject';
+$txt['iPost'] = 'Post';
 
+//Verification
+$txt['iVerification'] = 'Verification';
+$txt['iCode'] = 'Code';
+$txt['iVerify'] = 'Verify';
 
-/* Topic display */
-
+//Display template
 $txt['iQuoting'] = 'Quoting';
 $txt['iOn'] = 'On';
 $txt['iOff'] = 'Off';
+$txt['iLoading'] = 'Loading';
 $txt['iAttachments'] = 'Attachments';
+$txt['iToday'] = 'Today';
 
-/* Pages */
+//Index template
+$txt['iDefaultTheme'] = 'Default Theme';
 
-$txt['iPage'] = 'Page';
-$txt['iOf'] = 'of'; //for example: page 1 *of* 2.
-$txt['iPrev'] = 'Prev'; //short for "previous"
-$txt['iNext'] = 'Next';
+//Login template
+$txt['iRemember'] = 'Remember';
 
-/* Posting */
+//Personal message template
+$txt['iSentFrom'] = 'Sent from';
+$txt['iTo'] = 'To';
+$txt['iSend'] = 'Send';
 
-$txt['iSubject'] = 'Subject';
-$txt['iCode'] = 'Code'; //Verification code
-$txt['iVerify'] = 'Verify'; //Field to fill in with verifcation code
+//Post template
+$txt['iChooseFile'] = 'Choose File';
 
-$txt['iPost'] = 'Post'; //The submit button
-
-/* PM */
-
-$txt['iTo'] = 'To'; //Name for the "To: " field
-$txt['iSend'] = 'Send'; //The submit button
-
-/* Profile */
-
-$txt['iPosts'] = 'posts'; //kept lowercase as in the iPhone Contacts application. Try to kep these short.
+//Profile template
+$txt['iPosts'] = 'posts';
 $txt['iEmail'] = 'email';
 $txt['iRegistered'] = 'registered';
-$txt['iTitle'] = 'title'; //Custom title
-$txt['iText'] = 'text'; //Personal text
+$txt['iTitle'] = 'title';
+$txt['iText'] = 'text';
 $txt['iKarma'] = 'karma';
 $txt['iGender'] = 'gender';
 $txt['iAge'] = 'age';
 $txt['iLocation'] = 'location';
-
 $txt['iLastActive'] = 'last active';
 $txt['iLocalTime'] = 'local time';
 
+//Recent template
+//Unread topics
+$txt['iMarkAllRead'] = 'Mark All As Read';
 
-/* Search */
-
-$txt['iSearchAlert'] = 'Please enter a word of at least 3 letters to search';
-
-/* Login */
-
-$txt['iRemember'] = 'Remember';
-
-/* Register */
-
+//Register template
 $txt['iChoose'] = 'Choose';
-$txt['iVerification'] = 'Verification';
 $txt['iAgreement'] = 'Registration Agreement';
-$txt['iMore'] = 'more'; //example: more...
+$txt['iMore'] = 'more';
 $txt['iDone'] = 'Done';
 
-/* Buttons */
+//Search template
+$txt['iSearchAlert'] = 'Please enter a word of at least 3 letters to search';
 
-$txt['iSearch'] = 'Search';
-$txt['iNew'] = 'New';
+//Theme controls
+//Paging control
+$txt['iPage'] = 'Page';
+$txt['iOf'] = 'of';
+$txt['iPrev'] = 'Prev';
+$txt['iNext'] = 'Next';
 
-
-$txt['iToday'] = 'Today';
-$txt['iChooseFile'] = 'Choose File';
-$txt['iDefaultTheme'] = 'Default Theme';
-$txt['iSentFrom'] = 'Sent from';
-$txt['iComposeMessage'] = 'Compose Message';
+//Theme functions
+//Title replacement
 $txt['iIndex'] = 'Index';
-
 $txt['iSearchParameters'] = 'Set Search Parameters';
 $txt['iPersonalMessagesIndex'] = 'Personal Messages Index';
 $txt['iSendMessage'] = 'Send message';
+$txt['iComposeMessage'] = 'Compose Message';
 
+//Theme information
 $txt['iThemeInfo'] = '
-<h2>Welcome to iOS.MF</h2>
+    <h2>Welcome to iOS.MF</h2>
     <ul class="readme">
       <li>
         An iOS optimised theme for iPhone, iPad and iPod Touch.
