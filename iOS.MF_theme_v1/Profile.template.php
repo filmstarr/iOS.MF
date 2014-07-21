@@ -19,7 +19,14 @@ function template_summary() {
   echo '
     <div id="profile-header">
       <div class="avatar"', $context['member']['avatar']['href'] ? ' style="background: url(' . str_replace(' ', '%20', $context['member']['avatar']['href']) . ') #fff center no-repeat;"' : '', '></div>
-      <div id="username"><h3>', $context['member']['name'], '</h3><h4>', $context['member']['group'], '</h4></div>
+      <div id="username">
+        <h3>', $context['member']['name'], '</h3>';
+  if (!empty($context['member']['group'])) {
+    echo '
+        <h4>', $context['member']['group'], '</h4>';
+  }
+  echo '
+      </div>
     </div>
   
     <ul class="profile">
