@@ -174,6 +174,7 @@ function template_body_below() {
         <button data-ajax="false" class="classic button" id="classic">', $backName, '</button>';
   
   //Special MNF backlink parameter
+  $backLink = preg_replace("/mobisite;/", '', $backLink);
   $backLink .= 'fullsite;';
 
   //Tap the default button to go to the forum default theme, hold the default button to go to the SMF default theme
