@@ -220,6 +220,7 @@ function template_control_quick_reply() {
        <input type="hidden" name="subject" value="' . $context['subject'] . '" />';
   }
   $quickReply.= '
+        <input type="hidden" name="attach_del[]" value="0" />
         <input type="hidden" name="additional_options" value="' . ($context['show_additional_options'] ? 1 : 0) . '" />
         <input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '" />
         <input type="hidden" name="seqnum" value="' . $context['form_sequence_number'] . '" />

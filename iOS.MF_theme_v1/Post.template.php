@@ -55,7 +55,7 @@ function template_main() {
   //Attachments
   if (!empty($context['current_attachments']) || $context['can_post_attachment']) {
     echo '
-      <div id="attachment-wrapper">';
+      <div id="postAttachment" class="attachment-wrapper">';
     
     //Existing attachments
     if (!empty($context['current_attachments'])) {
