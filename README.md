@@ -19,7 +19,7 @@ Install the theme by uploading the iOS.MF_theme_v1.zip file through the SMF Admi
 
 It is recommended that you use this theme with the "Show most recent posts at the top" option on.
 
-Gestures
+Gestures and Navigation
 ==============
 
 Swipe left to go back.
@@ -29,6 +29,8 @@ Swipe right to go forward.
 Press and hold the previous/next page buttons to go to first/last page respectively.
 
 Tap on the topic title to access quick reply..
+
+Tap the default theme button to go to the forum default theme. Press and hold the default theme button to go to the SMF default theme.
 
 Credits
 ==============

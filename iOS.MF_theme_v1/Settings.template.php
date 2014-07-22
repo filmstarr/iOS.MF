@@ -1,14 +1,9 @@
 <?php
-/**
- * Simple Machines Forum (SMF)
- *
- * @package SMF
- * @author Simple Machines
- * @copyright 2011 Simple Machines
- * @license http://www.simplemachines.org/about/smf/license.php BSD
- *
- * @version 2.0
- */
+
+/*
+* Options and settings arrays for use configuring the theme
+*/
+
 
 function template_options()
 {
@@ -86,11 +81,23 @@ function template_settings()
 		),
     array(
       'id' => 'disable_webkit_select',
-      'label' => 'Disable iOS touch selection',
+      'label' => $txt['disable_webkit_select'],
     ),
     array(
       'id' => 'enable_transparent_toolbar',
-      'label' => 'Enable semi-transparent toolbar',
+      'label' => $txt['enable_transparent_toolbar'],
+    ),
+    array(
+      'id' => 'disable_personal_message_count',
+      'label' => $txt['disable_personal_message_count'],
+    ),
+    array(
+      'id' => 'disable_unread_topic_count',
+      'label' => $txt['disable_unread_topic_count'],
+    ),
+    array(
+      'id' => 'replace_PM_ddl_with_text_input',
+      'label' => $txt['replace_PM_ddl_with_text_input'],
     ),
   );
 }

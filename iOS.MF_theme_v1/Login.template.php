@@ -1,41 +1,48 @@
 <?php
 
-// Version: 2.0 RC4; Login
+/*
+* Handle logging into the forum. We will also use a quick login form within the main index.template.php file
+*/
+
+
+require_once ($settings[theme_dir] . '/ThemeControls.php');
 
 function template_login() {
   global $context, $scripturl, $settings, $txt;
   
-  if (!empty($context['login_errors'])) echo '<div class="errors"><div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['login_errors']), '</div></div>';
-  if (isset($context['description'])) echo '<div class="errors"><div style="margin-top: 6px;">*', $context['description'], '</div></div>';
+  //Display any errors or messages
+  if (!empty($context['login_errors'])) {
+    echo '
+      <div class="errors">
+        <div style="margin-top: 6px;">*', implode('</div><div style="margin-top: 6px;">*', $context['login_errors']), '</div>
+      </div>';
+  }
+  if (isset($context['description'])) {
+    echo '
+      <div class="errors">
+        <div style="margin-top: 6px;">*', $context['description'], '</div>
+      </div>';
+  }
   
-  echo '<div class="quickLogin" style="display: block;">
-  <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
-
-<div class="noLeftPadding inputContainer padTop">';
-  echo '<span class="inputLabel">' . $txt['username'] . '</span>';
-  echo '<input class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
-</div>
-<div class="noLeftPadding inputContainer padTop">';
-  echo '<span class="inputLabel">' . $txt['password'] . '</span>';
-  echo '<input type="password" tabindex="', $context['tabindex']++, '" name="passwrd" />
-</div>
-<div class="noLeftPadding inputContainer padTop">';
-  echo '<span class="inputLabel">' . $txt['iRemember'] . '</span>';
-  echo '<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
-</div>
-    
-  <input type="hidden" name="hash_passwrd" value="" />
-  <div class="buttons" style="margin-top: -9px; padding-bottom: 5px; margin-bottom: 6px;">
-    <button onclick="$(\'.ui-loader\').last().show();" class="button twobuttons" type="submit">' . $txt['login'] . '</button>
-    <button class="button twobuttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>
-  </div>
-  </form>
-  </div>';
+  //Show our login form
+  echo '
+      <div class="quick-login" style="display: block;">';
+  template_control_login_form();
+  echo '
+      </div>';
 }
 
 function template_kick_guest() {
   global $txt;
-  echo '<div class="errors"><div style="margin-top: 6px;">*', empty($context['kick_message']) ? $txt['only_members_can_access'] : $context['kick_message'], '</div></div>';
+
+  //Only members can view this section
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', empty($context['kick_message']) ? $txt['only_members_can_access'] : $context['kick_message'], '</div>
+    </div>';
+
+  //Show the login form in case they already are or want to register  
   template_login();
 }
+
 ?>

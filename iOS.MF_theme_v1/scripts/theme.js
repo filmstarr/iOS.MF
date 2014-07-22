@@ -5,7 +5,7 @@
 
 /* Cookie management */
 
-function Set_Cookie(name, value, expires, path, domain, secure) {
+function setCookie(name, value, expires, path, domain, secure) {
   var today = new Date();
   today.setTime(today.getTime());
 
@@ -21,7 +21,7 @@ function Set_Cookie(name, value, expires, path, domain, secure) {
     ((secure) ? ";secure" : "");
 }
 
-function Get_Cookie(check_name) {
+function getCookie(check_name) {
   var a_all_cookies = document.cookie.split(';');
   var a_temp_cookie = '';
   var cookie_name = '';
@@ -53,8 +53,8 @@ function Get_Cookie(check_name) {
   }
 }
 
-function Delete_Cookie(name, path, domain) {
-  if (Get_Cookie(name)) document.cookie = name + "=" +
+function deleteCookie(name, path, domain) {
+  if (getCookie(name)) document.cookie = name + "=" +
     ((path) ? ";path=" + path : "") +
     ((domain) ? ";domain=" + domain : "") +
     ";expires=Thu, 01-Jan-1970 00:00:01 GMT";
@@ -126,12 +126,8 @@ $(function () {
   });
 });
 
-//Remove any clicked elements so that they display as usual if navigating backwards
-$(window).on('beforeunload', function () {
-  $('.clicked').each(function () {
-    $(this).removeClass = 'clicked';
-  });
-});
+//Hide the loader when navigating back in case it has been shown manually
+window.addEventListener("popstate", function() { $(".ui-loader").loader("hide"); });
 
 
 /* Mobile specific methods */
@@ -156,8 +152,8 @@ function toggleQuoting() {
   if (!disableQuoting) {
     //Disable quoting
     disableQuoting = true;
-    Set_Cookie('disablequoting', '1', '', '/', '', '');
-    document.getElementById('quoting').innerHTML = quotingoff;
+    setCookie('disablequoting', '1', '', '/', '', '');
+    document.getElementById('quoting').innerHTML = quotingOff;
 
     //Remove all onclick events from a class
     $('.message').each(function () {
@@ -167,7 +163,7 @@ function toggleQuoting() {
   } else {
     //Enable quoting
     disableQuoting = false;
-    Delete_Cookie('disablequoting', '/', '', '');
+    deleteCookie('disablequoting', '/', '', '');
     document.getElementById('quoting').innerHTML = loading;
     $.mobile.changePage(window.location.href, {
       allowSamePageTransition: true,
