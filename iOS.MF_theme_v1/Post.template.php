@@ -8,11 +8,13 @@
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
   
-  //Set the page title
+  //Set the page title, initialise editor autosizing and hide the default theme button
   echo '
     <script type="text/javascript">
       $(function(){
         $(".the-title").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']), '");
+        $(".editor").last().autosize().resize();
+        $(".classic").last().hide();
       });
     </script>';
 

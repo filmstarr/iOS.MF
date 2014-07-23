@@ -231,9 +231,7 @@ function script_hide_toolbar() {
   
   echo '<script type="text/javascript">
       $(function(){
-        $(".editor").last().autosize().resize();
-        $(".classic").last().hide();
-        
+
         //Deal with the race condition between iOS keyboard showing and the focus event firing
         if(/iPhone|iPod|Android|iPad/.test(window.navigator.platform)){
           var jqElement = $(".editor").last();
@@ -262,6 +260,7 @@ function script_hide_toolbar() {
           });
         }
       });
+
     </script>';  
 }
 
