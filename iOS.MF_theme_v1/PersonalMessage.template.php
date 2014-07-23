@@ -233,6 +233,15 @@ function template_folder() {
 function template_send() {
   global $context, $settings, $options, $scripturl, $modSettings, $txt;
   
+  //Initialise editor autosizing and hide the default theme button
+  echo '
+    <script type="text/javascript">
+      $(function(){
+        $(".editor").last().autosize().resize();
+        $(".classic").last().hide();
+      });
+    </script>';
+
   //Hide the toolbar when showing the keyboard on a mobile device
   script_hide_toolbar();
   

@@ -135,14 +135,25 @@ window.addEventListener("popstate", function() { $(".ui-loader").loader("hide");
 // Hide toolbar when input is focused. This is needed as the iPhone doesn't honour fixed elements when the keyboard is showing.
 if (/iPhone|iPod|Android|iPad/.test(window.navigator.platform)) {
   $(document)
-    .on('focus', 'textarea,input,select', function (e) {
+    .on('focus', 'textarea,input,select,#input-button', function (e) {
       $('.toolbar').css('display', 'none');
       $('#copyright').css('margin-bottom', '4px');
     })
     .on('blur', 'textarea,input,select', function (e) {
-      $('.toolbar').css('display', 'initial');
-      $('#copyright').css('margin-bottom', '47px');
+      setTimeout(function()
+      {
+        var activeElementTag = document.activeElement.tagName.toLowerCase();
+        var activeElementId = document.activeElement.id;
+        if (!$(document.activeElement).is('textarea,input,select,#input-button')) {
+          showToolbar();
+        }
+      }, 1);
     });
+}
+
+function showToolbar() {
+  $('.toolbar').css('display', 'initial');
+  $('#copyright').css('margin-bottom', '47px');  
 }
 
 

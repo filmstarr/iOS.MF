@@ -127,6 +127,10 @@ hr {
   padding: 0px 0px 6px 9px;
 }
 
+.errors a {
+  color: #007AFF !important;
+}
+
 .middle-text {
   padding-top: 2px;
   padding-bottom: 2px;
@@ -729,7 +733,7 @@ input#input-file {
   border-radius: 3px;
 }
 
-#attachment-wrapper {
+.attachment-wrapper {
   padding: 0px 9px 9px 9px;
   background: #F0F0F4;
 }

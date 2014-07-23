@@ -8,11 +8,13 @@
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
   
-  //Set the page title
+  //Set the page title, initialise editor autosizing and hide the default theme button
   echo '
     <script type="text/javascript">
       $(function(){
         $(".the-title").last().html("', (empty($context['subject']) ? 'New Topic' : $context['subject']), '");
+        $(".editor").last().autosize().resize();
+        $(".classic").last().hide();
       });
     </script>';
 
@@ -55,7 +57,7 @@ function template_main() {
   //Attachments
   if (!empty($context['current_attachments']) || $context['can_post_attachment']) {
     echo '
-      <div id="attachment-wrapper">';
+      <div id="postAttachment" class="attachment-wrapper">';
     
     //Existing attachments
     if (!empty($context['current_attachments'])) {
@@ -73,9 +75,9 @@ function template_main() {
     if ($context['can_post_attachment']) {
       echo '
         <div style="position: relative;">
-          <input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" />
+          <input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" onclick="setTimeout(function() { showToolbar(); }, 10);" />
           <div id="input-button-background">
-            <div id="input-button" class="needsclick" onclick="document.getElementById(\'input-file\').click();this.blur();">' . $txt['iChooseFile'] . '</div>
+            <button id="input-button" type="button" class="needsclick button" style="height: 19px;" onclick="document.getElementById(\'input-file\').click();this.blur();">' . $txt['iChooseFile'] . '</button>
           </div>
         </div>';
     }
