@@ -39,6 +39,6 @@ This theme is based on the excellent SMF4iPhone by Fabius, butchs and FarFromPer
 
 Thanks to xKroniK13x for contributions and suggestions towards this theme.
 
-The theme uses the Adk Skype Emoticons to give crisp retina smileys (licence: http://creativecommons.org/licenses/by/3.0/) and the Simple Line Icons set from Graphic Burger (http://graphicburger.com/simple-line-icons-set-vol-1/, see also vol-2, vol-3 and vol-4).
+The theme uses the Adk Skype Emoticons to give crisp retina smileys (licence: http://creativecommons.org/licenses/by/3.0/), the Simple Line Icons set from Graphic Burger (http://graphicburger.com/simple-line-icons-set-vol-1/, see also vol-2, vol-3 and vol-4) and Infinite Loop (Gif) by Rob Nichols (https://dribbble.com/shots/1372400-Infinite-Loop-Gif?list=buckets&offset=7).
 
 Internally we use jQuery, jQuery Mobile, jQuery Autosize, jQuery Magnific Popup, Hammer.js and fastclick.js libraries.
