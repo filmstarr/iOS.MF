@@ -75,7 +75,7 @@ function template_main() {
     if ($context['can_post_attachment']) {
       echo '
         <div style="position: relative;">
-          <input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" onclick="setTimeout(function() { showToolbar(); }, 10);" />
+          <input type="file" name="attachment[]" id="input-file" style="padding-left: 5px;" />
           <div id="input-button-background">
             <button id="input-button" type="button" class="needsclick button" style="height: 19px;" onclick="document.getElementById(\'input-file\').click();this.blur();">' . $txt['iChooseFile'] . '</button>
           </div>

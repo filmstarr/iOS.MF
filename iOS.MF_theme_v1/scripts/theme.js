@@ -139,21 +139,10 @@ if (/iPhone|iPod|Android|iPad/.test(window.navigator.platform)) {
       $('.toolbar').css('display', 'none');
       $('#copyright').css('margin-bottom', '4px');
     })
-    .on('blur', 'textarea,input,select', function (e) {
-      setTimeout(function()
-      {
-        var activeElementTag = document.activeElement.tagName.toLowerCase();
-        var activeElementId = document.activeElement.id;
-        if (!$(document.activeElement).is('textarea,input,select,#input-button')) {
-          showToolbar();
-        }
-      }, 1);
+    .on('blur', 'textarea,input,select,#input-button', function (e) {
+      $('.toolbar').css('display', 'initial');
+      $('#copyright').css('margin-bottom', '47px');
     });
-}
-
-function showToolbar() {
-  $('.toolbar').css('display', 'initial');
-  $('#copyright').css('margin-bottom', '47px');  
 }
 
 
