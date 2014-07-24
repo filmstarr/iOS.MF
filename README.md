@@ -3,14 +3,11 @@ iOS.MF
 
 An iOS optimised theme for iPhone, iPad and iPod Touch.
 
-This is a very lightweight theme with only a limited set of pages available and theming applied, but which provides a good user experience for interacting with a the core functionality of SMF.
+This is a very lightweight theme which provides a great user experience when interacting with the core functionality of SMF on mobile devices.
 
-This has been used with various versions of SMF from 2.0 RC3 through to SMF 2.0.7, but has not been tested with all of them.
+This has been used with various versions of SMF from 2.0 RC3 through to SMF 2.0.8, but has not been tested with all of them.
 
-To-Do List
-==============
-
-https://trello.com/b/wevY47wz/ios-mf
+Settings and admin pages should be accessed via the default user theme.
 
 Installation
 ==============
