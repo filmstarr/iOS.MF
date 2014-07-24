@@ -957,3 +957,34 @@ div#poll-moderation {
    left: 15px;
    position: absolute;
 }
+
+
+
+
+
+
+
+
+
+
+
+.ui-loader-default {
+width: 46px !important;
+height: 46px !important;
+border-radius: 23px;
+background-color: white !important;
+opacity: 1.0 !important;
+filter: Alpha(Opacity=100) !important;
+margin-left: -23px !important;
+margin-top: -23px !important;
+}
+
+.ui-loader .ui-icon-loading {
+width: 46px !important;
+height: 46px !important;
+padding: 0 !important;
+-webkit-border-radius: 23px !important;
+border-radius: 23px !important;
+opacity: 0.18;
+filter: Alpha(Opacity=18) !important;
+}
