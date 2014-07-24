@@ -2,6 +2,8 @@
 
 /*
 * Deal with the viewing and sending of persanal messages
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

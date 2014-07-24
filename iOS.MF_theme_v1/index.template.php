@@ -2,6 +2,8 @@
 
 /*
 * The index template, used to generate headers, footers, toolbars and general content that will appear on every theme page
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

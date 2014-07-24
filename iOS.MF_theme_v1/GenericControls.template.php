@@ -2,6 +2,8 @@
 
 /*
 * Generic controls template
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

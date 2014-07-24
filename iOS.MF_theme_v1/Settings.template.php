@@ -2,6 +2,8 @@
 
 /*
 * Options and settings arrays for use configuring the theme
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

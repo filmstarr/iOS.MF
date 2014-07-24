@@ -2,6 +2,8 @@
 
 /*
 * Templates for various menus throughout the theme. We're not going to use these though.
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

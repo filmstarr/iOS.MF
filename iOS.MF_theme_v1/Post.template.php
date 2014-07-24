@@ -2,6 +2,8 @@
 
 /*
 * Post a new topic on the forum or a reply to an existing topic
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

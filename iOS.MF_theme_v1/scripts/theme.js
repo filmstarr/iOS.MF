@@ -1,5 +1,7 @@
 /*
 * Main Javascript file containing iOS.MF specific functions
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

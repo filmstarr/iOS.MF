@@ -2,6 +2,8 @@
 
 /*
 * View all the topics and child boards within a board
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

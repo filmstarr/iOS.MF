@@ -1,5 +1,7 @@
 /* 
 * Main theme CSS file
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 
@@ -221,8 +223,15 @@ a:link, #input-button, .button, .clicked, #search-form > input, .editor, .no-lef
 /* jQuery Mobile overrides */
 
 .ui-loader-default {
-  width: 3.0em !important;
-  height: 3.0em !important;
+  width: 46px !important;
+  height: 46px !important;
+  margin-left: -23px !important;
+  margin-top: -23px !important;
+  background-color: white !important;
+  border-radius: 23px;
+  -webkit-border-radius: 23px !important;
+  opacity: 0.9 !important;
+  filter: Alpha(Opacity=90) !important;
 }
 
 .ui-loader-default > h1 {
@@ -233,9 +242,16 @@ a:link, #input-button, .button, .clicked, #search-form > input, .editor, .no-lef
   border-radius: 7px;
 }
 
-.ui-icon-loading {
+.ui-loader .ui-icon-loading {
+  width: 46px !important;
+  height: 46px !important;
+  padding: 0 !important;
   background-size: 46px 46px !important;
   background: url(../images/ajax-loader.gif) no-repeat;
+  border-radius: 23px !important;
+  -webkit-border-radius: 23px !important;
+  opacity: 0.30;
+  filter: Alpha(Opacity=30) !important;
 }
 
 

@@ -2,6 +2,8 @@
 
 /*
 * English language strings for use across the theme
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

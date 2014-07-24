@@ -2,6 +2,8 @@
 
 /*
 * Templates for new user registration
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

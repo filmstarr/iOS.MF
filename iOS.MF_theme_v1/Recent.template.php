@@ -2,6 +2,8 @@
 
 /*
 * Recent posts and unread posts
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

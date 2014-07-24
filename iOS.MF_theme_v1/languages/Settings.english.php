@@ -2,6 +2,8 @@
 
 /*
 * English language strings for use in the settings pages
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

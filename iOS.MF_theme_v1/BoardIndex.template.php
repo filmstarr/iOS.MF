@@ -2,6 +2,8 @@
 
 /*
 * View all the different forum boards grouped by category (this is the top level home view)
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 
