@@ -4,4 +4,4 @@
 */
 
 ajax-loader.gif generated from Infinite Loop (Gif) by Rob Nichols
-thumbnail.png and noavatar.png created by the author (filmstarr)
+thumbnail.png and noavatar.png created by the author (Ross Huelin)

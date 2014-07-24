@@ -2,6 +2,8 @@
 
 /*
 * Handle logging into the forum. We will also use a quick login form within the main index.template.php file
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

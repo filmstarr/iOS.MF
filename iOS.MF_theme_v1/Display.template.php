@@ -2,6 +2,8 @@
 
 /*
 * View messages and polls within a topic
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

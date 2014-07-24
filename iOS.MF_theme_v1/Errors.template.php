@@ -2,6 +2,8 @@
 
 /*
 * This is the error view which we will see when something unexpected happens
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 

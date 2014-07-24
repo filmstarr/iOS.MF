@@ -2,6 +2,8 @@
 
 /*
 * Template controls specific to the theme
+*
+* License: http://www.opensource.org/licenses/mit-license.php
 */
 
 
