@@ -1,7 +1,7 @@
 iOS.MF
 ==============
 
-An iOS optimised theme for iPhone, iPad and iPod Touch.
+An Simple Machines Forum, iOS optimised theme for iPhone, iPad and iPod Touch.
 
 This is a very lightweight theme which provides a great user experience when interacting with the core functionality of SMF on mobile devices.
 
