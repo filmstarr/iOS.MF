@@ -84,7 +84,7 @@ function template_folder() {
         $unreadNewPosts[] = $message['id'];
       }
     }
-    if (count($unreadNewPosts) >= 1) {
+    if (count($unreadNewPosts) >= 1 && function_exists('mark_messages_unread')) {
       mark_messages_unread($unreadNewPosts);
     }
     
@@ -277,8 +277,8 @@ function template_send() {
         <div class="input-container no-left-padding">
           <span class="input-label">' . $txt['iTo'] . '</span>';
 
-      //The user drop down list has been disabled so we'll just show a simple text input
-      if (isset($settings['replace_PM_ddl_with_text_input']) && $settings['replace_PM_ddl_with_text_input']) {
+      //The user drop down list has been disabled or is unavailable so we'll just show a simple text input
+      if ((isset($settings['replace_PM_ddl_with_text_input']) && $settings['replace_PM_ddl_with_text_input']) || !function_exists('user_list')) {
         echo '<input type="text" tabindex="', $context['tabindex']++, '" name="to" value="" maxlength="50" />';
       }
       //Show a drop down list of all the users
