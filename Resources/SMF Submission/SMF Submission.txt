@@ -1,0 +1,51 @@
+[u][b][size=2em]iOS.MF[/size][/b][/u]
+
+An iOS optimised theme for iPhone, iPad and iPod Touch.
+
+This is a very lightweight theme which provides a great user experience when interacting with the core functionality of SMF on mobile devices.
+
+It is recommended that you use this theme with the "Show most recent posts at the top" option on.
+
+This has been used with various versions of SMF from 2.0 RC3 through to SMF 2.0.8, but has not been tested with all of them.
+
+Settings and admin pages should be accessed via the default user theme.
+
+
+[b][u][size=2em]iOS.MF Mod[/size][/u][/b]
+
+This theme has a mod which adds extra, optional functions to iOS.MF which enable the theme to extend the default SMF behaviour in a number of small ways.
+
+At present this modification enables the following functionality within the theme:
+
+ - A drop down list of forum users when composing personal messages
+ - A count of the unread topics displayed as a badge on the toolbar
+ - When viewing personal messages as a conversation or one at a time, only mark messages as read once they have been opened, rather than viewed in the top level menu
+
+
+[b][u][size=2em]Gestures and Navigation[/size][/u][/b]
+
+Swipe left to go back.
+
+Swipe right to go forward.
+
+Press and hold the previous/next page buttons to go to first/last page respectively.
+
+Tap on the topic title to access quick reply..
+
+Tap the default theme button to go to the forum default theme. Press and hold the default theme button to go to the SMF default theme.
+
+
+[b][u][size=2em]Credits[/size][/u][/b]
+
+This theme is based on the excellent SMF4iPhone by Fabius, butchs and FarFromPerfection: [url]http://custom.simplemachines.org/themes/index.php?lemma=2089[/url].
+
+Thanks to xKroniK13x for contributions and suggestions towards this theme.
+
+The theme uses the Adk Skype Emoticons to give crisp retina smileys (licence: [url]http://creativecommons.org/licenses/by/3.0/[/url]), the Simple Line Icons set from Graphic Burger ([url]http://graphicburger.com/simple-line-icons-set-vol-1/[/url], see also vol-2, vol-3 and vol-4) and Infinite Loop (Gif) by Rob Nichols ([url]https://dribbble.com/shots/1372400-Infinite-Loop-Gif?list=buckets&offset=7[/url]).
+
+Internally we use jQuery, jQuery Mobile, jQuery Autosize, jQuery Magnific Popup, Hammer.js and fastclick.js libraries.
+
+
+[b][u][size=2em]License[/size][/u][/b]
+
+iOS.MF is licensed under the [url=http://opensource.org/licenses/MIT]MIT Open Source license[/url].
