@@ -84,8 +84,8 @@ function template_folder() {
         $unreadNewPosts[] = $message['id'];
       }
     }
-    if (count($unreadNewPosts) >= 1 && function_exists('mark_messages_unread')) {
-      mark_messages_unread($unreadNewPosts);
+    if (count($unreadNewPosts) >= 1 && function_exists('iosmf_mark_messages_unread')) {
+      iosmf_mark_messages_unread($unreadNewPosts);
     }
     
     //We don't have any message folders to show
@@ -278,12 +278,12 @@ function template_send() {
           <span class="input-label">' . $txt['iTo'] . '</span>';
 
       //The user drop down list has been disabled or is unavailable so we'll just show a simple text input
-      if ((isset($settings['replace_PM_ddl_with_text_input']) && $settings['replace_PM_ddl_with_text_input']) || !function_exists('user_list')) {
+      if ((isset($settings['replace_PM_ddl_with_text_input']) && $settings['replace_PM_ddl_with_text_input']) || !function_exists('iosmf_user_list')) {
         echo '<input type="text" tabindex="', $context['tabindex']++, '" name="to" value="" maxlength="50" />';
       }
       //Show a drop down list of all the users
       else {
-        $users = user_list();
+        $users = iosmf_user_list();
         echo '<select class="user-list" tabindex="', $context['tabindex']++, '" style="padding-left: 4px; color: #777;" onchange="if (this.selectedIndex) { addToUser(); }">';
         echo '<option style="color: #777;">' . $txt['iSelectUsers'] . '...</option>';
         foreach ($users as $user) {

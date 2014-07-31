@@ -9,7 +9,7 @@
 
 
 //Get a count of the total number of unread posts for the current user
-function unread_topic_count() {
+function iosmf_unread_topic_count() {
   global $context, $smcFunc, $modSettings;
   
   if (!$context['user']['is_logged']) {
@@ -77,7 +77,7 @@ function unread_topic_count() {
 }
 
 //Return a list of forum users
-function user_list() {
+function iosmf_user_list() {
   global $context, $smcFunc;
   
   if (!$context['user']['is_logged']) {
@@ -97,7 +97,7 @@ function user_list() {
 }
 
 //Mark the specified personal messages as unread
-function mark_messages_unread($personal_messages = null, $label = null, $owner = null) {
+function iosmf_mark_messages_unread($personal_messages = null, $label = null, $owner = null) {
   global $user_info, $context, $smcFunc;
   
   if ($owner === null) {

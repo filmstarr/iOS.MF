@@ -9,3 +9,5 @@ At present this modification enables the following functionality within the them
  - A drop down list of forum users when composing personal messages
  - A count of the unread topics displayed as a badge on the toolbar
  - When viewing personal messages as a conversation or one at a time, only mark messages as read once they have been opened, rather than viewed in the top level menu
+ 
+ 
