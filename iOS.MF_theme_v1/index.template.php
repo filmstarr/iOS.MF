@@ -199,7 +199,7 @@ function template_body_below() {
   $disable_unread_topic_count = (isset($settings['disable_unread_topic_count']) && $settings['disable_unread_topic_count']);
 
   //Find the number of unread topics
-  $unreadTopicCount = $disable_unread_topic_count || !function_exists('unread_topic_count') ? 0 : unread_topic_count();
+  $unreadTopicCount = $disable_unread_topic_count || !function_exists('iosmf_unread_topic_count') ? 0 : iosmf_unread_topic_count();
   
   //Use javascript to set post count as the toolbar isn't reloaded each time; we need to do this within main page content
   echo '
