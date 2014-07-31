@@ -7,8 +7,8 @@
 */
 
 
-require_once ($settings[theme_dir] . '/ThemeControls.php');
-require_once ($settings[theme_dir] . '/ThemeFunctions.php');
+require_once ($settings['theme_dir'] . '/ThemeControls.php');
+require_once ($settings['theme_dir'] . '/ThemeFunctions.php');
 
 //Recent posts
 function template_main() {

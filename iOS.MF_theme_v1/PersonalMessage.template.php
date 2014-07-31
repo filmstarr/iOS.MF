@@ -7,8 +7,8 @@
 */
 
 
-require_once ($settings[theme_dir] . '/ThemeControls.php');
-require_once ($settings[theme_dir] . '/ThemeFunctions.php');
+require_once ($settings['theme_dir'] . '/ThemeControls.php');
+require_once ($settings['theme_dir'] . '/ThemeFunctions.php');
 
 //We won't show anything above or below the personal message template
 function template_pm_above() {

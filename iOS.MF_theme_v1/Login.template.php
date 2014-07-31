@@ -7,7 +7,7 @@
 */
 
 
-require_once ($settings[theme_dir] . '/ThemeControls.php');
+require_once ($settings['theme_dir'] . '/ThemeControls.php');
 
 function template_login() {
   global $context, $scripturl, $settings, $txt;

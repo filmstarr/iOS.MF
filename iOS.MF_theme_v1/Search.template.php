@@ -7,7 +7,7 @@
 */
 
 
-require_once ($settings[theme_dir] . '/ThemeControls.php');
+require_once ($settings['theme_dir'] . '/ThemeControls.php');
 
 //Perform a search
 function template_main() {
