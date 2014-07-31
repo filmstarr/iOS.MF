@@ -14,6 +14,8 @@ Installation
 
 Install the theme by uploading the iOS.MF_theme_v1.zip file through the SMF Administration Center > Configuration > Themes and Layout > Manage and Install > From a file.
 
+Install the additional theme functions by uploading the iOS.MF_mod_v1.zip file through the SMF Administration Center > Package Manager > Download Packages > Upload a Package.
+
 It is recommended that you use this theme with the "Show most recent posts at the top" option on.
 
 Gestures and Navigation

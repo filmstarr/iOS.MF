@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>filmstarr:iOS.MF</id>
+	<name>iOS.MF</name>
+	<version>1.0</version>
+	<type>modification</type>
+
+	<install for="2.0 - 2.99.99">
+		<readme parsebbc="true">readme.txt</readme>
+		<require-file name="iOS.MF.ThemeFunctions.php" destination="$sourcedir" />
+		<code>install.php</code>
+	</install>
+	
+	<uninstall for="2.0 - 2.99.99">
+		<remove-file name="$sourcedir/iOS.MF.ThemeFunctions.php" />
+		<code>uninstall.php</code>
+	</uninstall>
+</package-info>
