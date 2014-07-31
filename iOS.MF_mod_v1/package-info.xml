@@ -6,13 +6,13 @@
 	<version>1.0</version>
 	<type>modification</type>
 
-	<install for="2.0 - 2.99.99,2.0 RC2,2.0 RC3,2.0 RC4,2.0 RC5">
+	<install for="2.0 - 2.99.99">
 		<readme parsebbc="true">readme.txt</readme>
 		<require-file name="iOS.MF.ThemeFunctions.php" destination="$sourcedir" />
 		<code>install.php</code>
 	</install>
 	
-	<uninstall for="2.0 - 2.99.99,2.0 RC2,2.0 RC3,2.0 RC4,2.0 RC5">
+	<uninstall for="2.0 - 2.99.99">
 		<remove-file name="$sourcedir/iOS.MF.ThemeFunctions.php" />
 		<code>uninstall.php</code>
 	</uninstall>
