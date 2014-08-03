@@ -61,8 +61,8 @@ function template_results() {
         
         echo '
       <li onclick="this.className = \'clicked\'; $.mobile.changePage(\'' . $topic['first_post']['href'] . '\');">
-        <div class="title', ($topic['new']) ? ' short-title' : '', '">', $topic['first_post']['subject'], '</div>';
-        if ($topic['new'] && $context['user']['is_logged']) {
+        <div class="title', (isset($topic['new']) && $topic['new']) ? ' short-title' : '', '">', $topic['first_post']['subject'], '</div>';
+        if (isset($topic['new']) && $topic['new'] && $context['user']['is_logged']) {
           echo '
         <div class="new">' . $txt['iNew'] . '</div>';
         }

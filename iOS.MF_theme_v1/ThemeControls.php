@@ -160,7 +160,7 @@ function template_control_quick_reply() {
   $quickReply .= '
       var submitForm = function() {
         submitonce(this);
-        smc_saveEntities("postmodify", ["subject", "' . $context['post_box_name'] . '", "guestname", "evtitle", "question"], "options");
+        smc_saveEntities("postmodify", ["subject", "' . (isset($context['post_box_name']) ? $context['post_box_name'] : 'message') . '", "guestname", "evtitle", "question"], "options");
       };
     </script>';
 
@@ -223,12 +223,13 @@ function template_control_quick_reply() {
   }
   $quickReply.= '
         <input type="hidden" name="attach_del[]" value="0" />
-        <input type="hidden" name="additional_options" value="' . ($context['show_additional_options'] ? 1 : 0) . '" />
+        <input type="hidden" name="additional_options" value="' . (isset($context['show_additional_options']) && $context['show_additional_options'] ? 1 : 0) . '" />
         <input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '" />
         <input type="hidden" name="seqnum" value="' . $context['form_sequence_number'] . '" />
         <input type="hidden" name="topic" value="' . $context['current_topic'] . '" />
         <input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '" />    
         <input type="hidden" name="goback" value="' . $options['return_to_post'] . '" />
+        <input type="hidden" name="icon" value="">
       </form>';
   
   $quickReply.= '
@@ -299,7 +300,7 @@ function parse_page_control($pageIndex) {
   $lastPageCount = $lastPageCountStart && $lastPageCountEnd ? substr($pageIndex, $lastPageCountStart, $lastPageCountEnd - $lastPageCountStart) : 1;
 
   //How many posts per page?
-  $pageSize = $lastPageCount / ($lastLinkedPage - 1);
+  $pageSize = $lastLinkedPage > 1 ? $lastPageCount / ($lastLinkedPage - 1) : 1;
   
   //What are the numbers of the first and last pages?
   $firstPage = 1;

@@ -12,7 +12,7 @@ function template_control_richedit($editorId) {
   global $context;
   
   $editorContext = & $context['controls']['richedit'][$editorId];
-  echo '<textarea class="editor" name="', $editorId, '" id="', $editorId, '" rows="', $editorContext['rows'], '" cols="', $editorContext['columns'], '" tabindex="', $context['tabindex']++, '" style="width: 100%;', isset($context['post_error']['no_message']) || isset($context['post_error']['long_message']) ? 'border: 1px solid red;' : '', '">', $editorContext['value'], '</textarea>';
+  echo '<textarea class="editor" name="', $editorId, '" id="', $editorId, '" rows="', (isset($editorContext['rows']) ? $editorContext['rows'] : '1'), '" cols="', (isset($editorContext['columns']) ? $editorContext['columns'] : '60'), '" tabindex="', $context['tabindex']++, '" style="width: 100%;', (isset($context['post_error']['no_message']) || isset($context['post_error']['long_message']) ? 'border: 1px solid red;' : ''), '">', (isset($editorContext['value']) ? $editorContext['value'] : ''), '</textarea>';
 }
 
 //Verification control used throughout the theme
@@ -75,6 +75,9 @@ function template_control_verification($verifyId, $displayType = 'all', $reset =
   $verifyContent['tracking']++;
   
   return $verification;
+}
+
+function template_control_richedit_buttons($editor_id) {
 }
 
 ?>

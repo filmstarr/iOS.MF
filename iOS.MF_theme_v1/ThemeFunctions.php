@@ -95,7 +95,7 @@ function script_hide_toolbar() {
           jqElement.attr("disabled", true);
 
           jqElement.on("tap", function(event) {
-            if (event.target.id == "', $context['post_box_name'], '") {
+            if (event.target.id == "', (isset($context['post_box_name']) ? $context['post_box_name'] : 'message'), '") {
               if (!$(event.target).is(":focus")) {
 
                 // Hide toolbar

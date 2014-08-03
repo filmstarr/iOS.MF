@@ -47,4 +47,40 @@ function template_kick_guest() {
   template_login();
 }
 
+function template_admin_login() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_maintenance() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_retry_activate() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_resend() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
 ?>

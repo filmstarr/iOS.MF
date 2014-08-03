@@ -123,4 +123,255 @@ function template_edit_options()
   echo $txt['iThemeInfo'];
 }
 
+function template_showPosts() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+function template_editBuddies() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_editIgnoreList() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_trackActivity() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_trackIP() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_showPermissions() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_statPanel() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_pm_settings() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_theme_settings() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_notification() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_groupMembership() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_ignoreboards() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_load_warning_variables() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_viewWarning() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_issueWarning() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_deleteAccount() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_save() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_error_message() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_group_manage() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_birthdate() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_signature_modify() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_avatar_select() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_karma_modify() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_timeformat_modify() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_timeoffset_modify() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_theme_pick() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_profile_smiley_pick() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_authentication_method() {
+    global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
 ?>
