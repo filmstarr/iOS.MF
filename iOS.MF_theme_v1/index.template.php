@@ -271,4 +271,7 @@ function template_button_strip() {
 function theme_linktree() {
 }
 
+function template_menu() {
+}
+
 ?>

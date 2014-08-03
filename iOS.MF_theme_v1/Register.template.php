@@ -190,4 +190,58 @@ function template_after() {
     </div>';
 }
 
+function template_coppa() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_coppa_form() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_verification_sound() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_admin_register() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_edit_agreement() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_edit_reserved_words() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
 ?>

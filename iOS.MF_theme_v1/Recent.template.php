@@ -221,4 +221,13 @@ function template_unread() {
       </div>';
 }
 
+function template_replies() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
 ?>

@@ -58,7 +58,7 @@ function template_folder() {
         }
         
         if ($recipient != $context['user']['username']) {
-          $members = $member . $recipient . ', ';
+          $members = $members . $recipient . ', ';
         } else {
           $selfie = true;
         }
@@ -381,7 +381,7 @@ function template_send() {
   echo '
       <div id="post-container" class="input-container">
         <div class="new-post">
-          ', template_control_richedit($context['post_box_name']), '
+          ', template_control_richedit(isset($context['post_box_name']) ? $context['post_box_name'] : 'message'), '
         </div>
       </div>';
   
@@ -410,6 +410,90 @@ function template_send() {
     <input type="hidden" name="l" value="', isset($context['current_label_id']) ? $context['current_label_id'] : -1, '" />
     <input type="hidden" name="outbox" value="', $context['copy_to_outbox'] ? '1' : '0', '" />
   </form>';
+}
+
+function template_subject_list() {
+}
+
+function template_search() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_search_results() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_ask_delete() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_prune() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_labels() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_report_message() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_report_message_complete() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_rules() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_add_rule() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
 }
 
 ?>

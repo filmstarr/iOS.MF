@@ -45,6 +45,7 @@ $txt['iDefaultTheme'] = 'Default Theme';
 
 //Login template
 $txt['iRemember'] = 'Remember';
+$txt['iGoToDefault'] = 'Please use the default theme for administration pages, options, settings and other advanced functionality';
 
 //Personal message template
 $txt['iSelectUsers'] = 'Select users';

@@ -24,7 +24,7 @@ function template_main() {
   script_hide_toolbar();
 
   echo '
-    <form data-ajax="false" action="', $scripturl, '?action=', $context['destination'], ';', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="', ($context['becomes_approved'] ? '' : 'alert(\'' . $txt['js_post_will_require_approval'] . '\');'), 'submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
+    <form data-ajax="false" action="', $scripturl, '?action=', $context['destination'], ';', empty($context['current_board']) ? '' : 'board=' . $context['current_board'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="', ($context['becomes_approved'] ? '' : 'alert(\'' . $txt['js_post_will_require_approval'] . '\');'), 'submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', (isset($context['post_box_name']) ? $context['post_box_name'] : 'message'), '\', \'guestname\', \'evtitle\', \'question\'], \'options\');" enctype="multipart/form-data" style="margin: 0;">';
   
   //Show any errors
   if (!empty($context['post_error']['messages']) && count($context['post_error']['messages'])) {
@@ -52,7 +52,7 @@ function template_main() {
   echo '
       <div id="post-container" class="input-container">
         <div class="new-post">
-          ', template_control_richedit($context['post_box_name']), '
+          ', template_control_richedit(isset($context['post_box_name']) ? $context['post_box_name'] : 'message'), '
         </div>
       </div>';
   
@@ -138,13 +138,50 @@ function template_main() {
       <input type="hidden" name="subject" value="' . $context['subject'] . '" />';
   }
   echo '
-      <input type="hidden" name="additional_options" value="', $context['show_additional_options'] ? 1 : 0, '" />
+      <input type="hidden" name="additional_options" value="', (isset($context['show_additional_options']) && $context['show_additional_options'] ? 1 : 0), '" />
       <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
       <input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
       <input type="hidden" name="topic" value="', $context['current_topic'], '" />
       <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />    
       <input type="hidden" name="goback" value="', $options['return_to_post'], '" />
+      <input type="hidden" name="icon" value="">
     </form>';
+}
+
+function template_spellcheck() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_quotefast() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_announce() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
+}
+
+function template_announcement_send() {
+  global $txt;
+
+  echo '
+    <div class="errors">
+      <div style="margin-top: 6px;">*', $txt['iGoToDefault'], '</div>
+    </div>';
 }
 
 ?>
