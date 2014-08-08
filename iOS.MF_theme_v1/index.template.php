@@ -93,6 +93,14 @@ function template_html_above() {
 
         $(document).on("pagecontainershow", function() {
           setTopMargin();
+        });';
+
+  //Check whether we need to reload the page because we're not actually in the theme anymore but loaded up another theme via jQuery mobile
+  echo '
+        $(document).on("pagecontainershow", function() {
+          if (!$(".ios-mf-page").length) {
+            location.reload();
+          }
         });
 
       </script>';
@@ -127,7 +135,7 @@ function template_body_above() {
   //ToDo: Add fixed-top-bar class to topbar to fix at the top. Safari doesn't like fixed items when the keyboard is showing at present though (iOS7).
   echo '
     <body>
-      <div id="wrapper" data-role="page">
+      <div id="wrapper" data-role="page" class="ios-mf-page">
         <div data-enhance="false">
           <div class="topbar" id="topbar" data-role="header">
 
