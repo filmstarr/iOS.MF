@@ -324,6 +324,9 @@ function template_send() {
 
               var selectList = userList.children();
               selectList.sort(function(a,b){
+                if (a.innerHTML == "' . $txt['iSelectUsers'] . '...") {
+                  return -1;
+                }
                 return a.value.localeCompare(b.value);
               });
               userList.html(selectList);
