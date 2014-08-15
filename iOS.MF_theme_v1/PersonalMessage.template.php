@@ -327,6 +327,9 @@ function template_send() {
                 if (a.innerHTML == "' . $txt['iSelectUsers'] . '...") {
                   return -1;
                 }
+                if (b.innerHTML == "' . $txt['iSelectUsers'] . '...") {
+                  return 1;
+                }
                 return a.value.localeCompare(b.value);
               });
               userList.html(selectList);
