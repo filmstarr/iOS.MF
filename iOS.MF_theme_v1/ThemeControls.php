@@ -167,7 +167,7 @@ function template_control_quick_reply() {
   //The quick reply form  
   $quickReply.= '
     <div id="quick-reply">
-      <form action="' . $scripturl . '?action=post2;' . (empty($context['current_board']) ? '' : 'board=') . $context['current_board'] . '.new#new" method="post" accept-charset="' . $context['character_set'] . '" name="postmodify" id="postmodify" onsubmit="submitForm();" enctype="multipart/form-data" style="margin: 0;">
+      <form data-ajax="false" action="' . $scripturl . '?action=post2;' . (empty($context['current_board']) ? '' : 'board=') . $context['current_board'] . '.new#new" method="post" accept-charset="' . $context['character_set'] . '" name="postmodify" id="postmodify" onsubmit="submitForm();" enctype="multipart/form-data" style="margin: 0;">
         <div id="post-container" class="input-container" style="padding-bottom: 0;">
           <div class="new-post">
             <textarea class="editor" name="message" id="message" rows="1" cols="60" tabindex="2" style="width: 100%; height: 16px; overflow: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
