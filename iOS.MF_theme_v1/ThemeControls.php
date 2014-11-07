@@ -153,7 +153,6 @@ function template_control_quick_reply() {
   $quickReply .= '
       var title = $(".the-title").last().get(0);
       title.onclick = function() { $(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0); toggleQuickReply();};
-      title.style.color = "#007AFF";
       $(".the-title").addClass("quick-reply-title");';
 
   //Function to call when submitting the post
