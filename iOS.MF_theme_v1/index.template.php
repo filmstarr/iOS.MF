@@ -104,7 +104,13 @@ function template_html_above() {
         });
 
       </script>';
-  
+
+  //Let it snow!
+  $date = getdate();
+  if ($date[mon] == 12 || isset($_GET['letitsnow'])) {
+    let_it_snow();
+  }
+
   //If selected then prevent the default press and hold behaviour in Safari/Chrome, this stops items being selected when using press and hold buttons 
   if (isset($settings['disable_webkit_select']) && $settings['disable_webkit_select']) {
     echo '

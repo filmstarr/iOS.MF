@@ -184,4 +184,49 @@ function parse_message($message) {
   return ($message);
 }
 
+//Let it snow!
+function let_it_snow() {
+  global $settings;
+
+  echo '
+    <script type="text/javascript" src="' . $settings['theme_url'] . '/scripts/snowstorm-min.js"></script>
+    <script type="text/javascript">
+      var disableSnow = ', (isset($_COOKIE['disablesnow'])) ? 'true' : 'false', ';
+      snowStorm.snowColor = "#AED2FA";
+      snowStorm.excludeMobile = false;
+      snowStorm.followMouse = false;
+
+      if (disableSnow) {
+        try {
+          snowStorm.toggleSnow();
+        }
+        catch (e) {
+        }
+      }
+
+      function toggleThemeSnow() {
+        if (!disableSnow) {
+          //Disable snow
+          disableSnow = true;
+          setCookie("disablesnow", "1", "100", "/", "", "");
+          snowStorm.toggleSnow();
+        } else {
+          //Enable snow
+          disableSnow = false;
+          deleteCookie("disablesnow", "/", "", "");
+          snowStorm.toggleSnow();
+        }
+      }
+
+      $(document).on("pagecontainershow", function() {
+        var title = $(".the-title").last();
+  
+        if (!title.hasClass("quick-reply-title")) {
+          var titleElement = title.get(0);
+          titleElement.onclick = function() { $(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0); toggleThemeSnow();};
+        }
+      });
+    </script>';
+}
+
 ?>
