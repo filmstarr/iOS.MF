@@ -212,7 +212,7 @@ function template_body_below() {
             var unreadTopicCount = ', $unreadTopicCount, ';
             var unreadMessageCount = ', $context['user']['unread_messages'], ';
 
-            var unreadTopicCountElement = $(".unreadPosts").last();
+            var unreadTopicCountElement = $(".unread-posts").last();
             var unreadMessageCountElement = $(".unread-messages").last();
 
             unreadTopicCountElement.get()[0].innerHTML = unreadTopicCount;
@@ -255,7 +255,7 @@ function template_body_below() {
       </div>
       <div>
         <div class="toolbar-icon" onclick="', $context['user']['is_logged'] ? '$(this).fadeTo(200 , 0.3).fadeTo(200 , 1.0);go(\'unread;all\');' : '', '" style="background: url(' . $settings['theme_url'] . '/images/icons/newpost.png) transparent center no-repeat; ', $context['user']['is_logged'] ? '' : ' opacity: 0.3;', '"></div>
-        <div class="unread-count unreadPosts"', ($unreadTopicCount > 0 && $context['user']['is_logged'] && !$disable_unread_topic_count ? '>' . $unreadTopicCount : ' style="display:none">'), '</div>
+        <div class="unread-count unread-posts"', ($unreadTopicCount > 0 && $context['user']['is_logged'] && !$disable_unread_topic_count ? '>' . $unreadTopicCount : ' style="display:none">'), '</div>
       </div>
     </div>';
 }
