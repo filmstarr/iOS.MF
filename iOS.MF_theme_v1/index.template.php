@@ -99,7 +99,8 @@ function template_html_above() {
   echo '
         $(document).on("pagecontainershow", function() {
           if (!$(".ios-mf-page").length) {
-            location.reload();
+            var redirectUrl = document.URL + (document.URL.indexOf("?") == -1 ? "?" : (document.URL.substr(document.URL.length -1) !== ";" ? ";" : "")) + "mobisite;";
+            window.location.href = redirectUrl;
           }
         });
 
