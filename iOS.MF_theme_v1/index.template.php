@@ -6,6 +6,7 @@
 * License: http://www.opensource.org/licenses/mit-license.php
 */
 
+global $settings;
 
 require_once ($settings['theme_dir'] . '/ThemeControls.php');
 require_once ($settings['theme_dir'] . '/ThemeFunctions.php');
@@ -140,7 +141,7 @@ function template_body_above() {
           <div class="topbar" id="topbar" data-role="header">
 
             <div id="page-title">
-              <div id="the-title" class="the-title">', parse_title(), '</div>
+              <div id="the-title" class="the-title">', $context['page_title'], '</div>
             </div>';
   
   template_control_quick_login();

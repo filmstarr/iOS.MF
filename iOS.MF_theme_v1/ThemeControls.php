@@ -282,16 +282,16 @@ function template_control_paging($pageIndex = null) {
 //Backward engineer paging links and details from a page index contol
 function parse_page_control($pageIndex) {
   global $context;
-  
+
   //Find the current page number
-  $currentPageStart = strrpos($pageIndex, '<strong>') + 8;
-  $currentPageEnd = strrpos($pageIndex, '</strong>');
-  $currentPage = substr($pageIndex, $currentPageStart, $currentPageEnd - $currentPageStart);
+  $currentPageStart = strrpos($pageIndex, '<span class="current_page">') + 27;
+  $currentPageEnd = strrpos($pageIndex, '</span>');
+  $currentPage = (int)substr($pageIndex, $currentPageStart, $currentPageEnd - $currentPageStart);
   
   //Find the number of the last page
-  $lastLinkEnd = strrpos($pageIndex, '</a>');
+  $lastLinkEnd = strrpos($pageIndex, '</a>', -10);
   $lastLinkStart = $lastLinkEnd ? strrpos($pageIndex, '>', -strlen($pageIndex) + $lastLinkEnd) + 1 : false;
-  $lastLinkedPage = $lastLinkStart && $lastLinkEnd ? substr($pageIndex, $lastLinkStart, $lastLinkEnd - $lastLinkStart) : 1;
+  $lastLinkedPage = $lastLinkStart && $lastLinkEnd ? (int)substr($pageIndex, $lastLinkStart, $lastLinkEnd - $lastLinkStart) : 1;
   
   //Find the count on the last page (the total number of posts)
   $lastPageCountEnd = $lastLinkStart ? $lastLinkStart - 2 : false;

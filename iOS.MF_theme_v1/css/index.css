@@ -94,6 +94,17 @@ textarea {
   font-size: 14px;
 }
 
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus {
+  outline:0px !important;
+  -webkit-appearance:none;
+  box-shadow: none !important;
+}
+
 hr {
   border-top-style: solid;
   border-left-style: none;
@@ -595,7 +606,6 @@ input#input-file {
   display: none;
   background: #F0F0F4;
 }
-
 
 /* Search */
 

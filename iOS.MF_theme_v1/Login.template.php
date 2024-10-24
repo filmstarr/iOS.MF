@@ -6,6 +6,7 @@
 * License: http://www.opensource.org/licenses/mit-license.php
 */
 
+global $settings;
 
 require_once ($settings['theme_dir'] . '/ThemeControls.php');
 
@@ -32,6 +33,11 @@ function template_login() {
   template_control_login_form();
   echo '
       </div>';
+}
+
+function template_logout()
+{
+	template_login();
 }
 
 function template_kick_guest() {

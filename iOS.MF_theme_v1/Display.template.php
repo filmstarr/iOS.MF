@@ -6,6 +6,7 @@
 * License: http://www.opensource.org/licenses/mit-license.php
 */
 
+global $settings;
 
 require_once ($settings['theme_dir'] . '/ThemeControls.php');
 require_once ($settings['theme_dir'] . '/ThemeFunctions.php');

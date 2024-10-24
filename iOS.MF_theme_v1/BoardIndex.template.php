@@ -6,6 +6,9 @@
 * License: http://www.opensource.org/licenses/mit-license.php
 */
 
+function template_boardindex_outer_above()
+{
+}
 
 function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
@@ -46,6 +49,10 @@ function template_main() {
     echo '
       </div>';
   }
+}
+
+function template_boardindex_outer_below()
+{
 }
 
 ?>
