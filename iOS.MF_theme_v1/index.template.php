@@ -133,7 +133,6 @@ function template_html_above() {
 function template_body_above() {
   global $context, $settings, $options, $scripturl, $txt, $modSettings;
   
-  //ToDo: Add fixed-top-bar class to topbar to fix at the top. Safari doesn't like fixed items when the keyboard is showing at present though (iOS7).
   echo '
     <body>
       <div id="wrapper" data-role="page" class="ios-mf-page">

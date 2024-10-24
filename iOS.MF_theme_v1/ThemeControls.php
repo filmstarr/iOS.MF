@@ -20,7 +20,7 @@ function template_control_quick_login() {
     echo '
     <script type="text/javascript">
       var control = $(".show-hide-login").last().get(0);
-      control.onclick = function() { $(".ui-loader").loader("show"); window.location.href = "index.php?action=logout;sesc=', $context['session_id'], '"; };
+      control.onclick = function() { $(".ui-loader").loader("show"); window.location.href = "index.php?action=logout;', $context['session_var'], '=', $context['session_id'], '"; };
     </script>';
   }
   //Script called by the button to show or hide the login form
@@ -76,6 +76,7 @@ function template_control_login_form() {
   echo '<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
       </div>
       <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
+      <input type="hidden" name="', $context['login_token_var'], '" value="', $context['login_token'], '">
       <div class="buttons" style="margin-top: -9px; padding-bottom: 5px;">
         <button onclick="$(\'.ui-loader\').loader(\'show\');" class="button two-buttons" type="submit">' . $txt['login'] . '</button>
         <button class="button two-buttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>

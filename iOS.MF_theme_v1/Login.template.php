@@ -37,7 +37,6 @@ function template_login() {
 
 function template_logout()
 {
-	template_login();
 }
 
 function template_kick_guest() {
