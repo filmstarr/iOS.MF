@@ -92,7 +92,7 @@ function template_main() {
       
       //Show each option with its corresponding percentage
       foreach ($context['poll']['options'] as $option) {
-        if ($context['allow_poll_view']) {
+        if (array_key_exists('allow_results_view', $context)) {
           echo '
               <div class="middle-text', $option['voted_this'] ? ' voted' : '', '">', $option['votes'], ' (', $option['percent'], '%) - ', $option['option'], '
               </div>';
@@ -252,7 +252,7 @@ function template_main() {
 
           //Some details about the attachment
           echo '
-                <br />(', $attachment['size'], ($attachment['is_image'] ? ', ' . $attachment['real_width'] . 'x' . $attachment['real_height'] . ' - ' . $txt['attach_viewed'] : ' - ' . $txt['attach_downloaded']) . ' ' . $attachment['downloads'] . ' ' . $txt['attach_times'] . '.)<br />';
+                <br />(', $attachment['size'], ($attachment['is_image'] ? ', ' . $attachment['real_width'] . 'x' . $attachment['real_height'] . ' - ' . sprintf($txt['attach_viewed'], $attachment['downloads']) : sprintf($txt['attach_downloaded'], $attachment['downloads'])) . ')<br />';
         }
         
         //If we had unapproved attachments clean up.

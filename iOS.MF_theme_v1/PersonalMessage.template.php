@@ -58,14 +58,14 @@ function template_folder() {
           $recipient = $match[1];
         }
         
-        if ($recipient != $context['user']['username']) {
+        if ($recipient != $context['user']['name']) {
           $members = $members . $recipient . ', ';
         } else {
           $selfie = true;
         }
       }
       if ($members == '' && $selfie) {
-        $members = $context['user']['username'] . ', ';
+        $members = $context['user']['name'] . ', ';
       }
       echo '
             <div class="description">', $members, $message['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : parse_time($message['timestamp']), '</div>
@@ -93,7 +93,7 @@ function template_folder() {
     if ($messageCount == 0) {
       echo '
         <div id="unread-link" style="padding-top: 0 !important;">
-          ', $txt['msg_alert_none'], '
+          ', $txt['topic_alert_none'], '
         </div>';
     }
     
@@ -222,7 +222,7 @@ function template_folder() {
     //No messages to show
     if ($messageCount == 0) echo '
     <div id="unread-link" style="padding-top: 0 !important;">
-      ', $txt['msg_alert_none'], '
+      ', $txt['topic_alert_none'], '
     </div>';
     
     //Paging buttons
@@ -415,7 +415,7 @@ function template_send() {
     <input type="hidden" name="pm_head" value="', !empty($context['quoted_message']['pm_head']) ? $context['quoted_message']['pm_head'] : 0, '" />
     <input type="hidden" name="f" value="', isset($context['folder']) ? $context['folder'] : '', '" />
     <input type="hidden" name="l" value="', isset($context['current_label_id']) ? $context['current_label_id'] : -1, '" />
-    <input type="hidden" name="outbox" value="', $context['copy_to_outbox'] ? '1' : '0', '" />
+    <input type="hidden" name="outbox" value="', isset($context['copy_to_outbox']) ? '1' : '0', '" />
   </form>';
 }
 

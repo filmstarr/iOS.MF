@@ -30,8 +30,10 @@ function template_main() {
         echo '
           <div class="new">' . $txt['iNew'] . '</div>';
       }
+      if (array_key_exists('last_post', $board)) {
       echo '
           <div class="description">', $board['last_post']['member']['name'], ', ', $board['last_post']['time'] == 'N/A' ? $txt['no'] . ' ' . $txt['topics'] : parse_time($board['last_post']['timestamp']), '</div>';
+      }
       echo '
         </li>';
     }

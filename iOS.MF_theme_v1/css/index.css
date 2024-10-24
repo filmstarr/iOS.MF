@@ -835,6 +835,14 @@ input#input-file {
   margin-bottom: 4px;
 }
 
+#poll-options div.options .middle-text {
+  display: flex;
+}
+
+#poll-options div.options .middle-text label {
+  padding-left: 10px;
+}
+
 #poll-options div.options .voted {
   font-weight: bold;
 }

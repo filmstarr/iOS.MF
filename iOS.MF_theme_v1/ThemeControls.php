@@ -62,7 +62,7 @@ function template_control_login_form() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
 
   echo '
-    <form data-ajax="false" action="', $scripturl, '?action=login2" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
+    <form data-ajax="false" action="', $context['login_url'], '" name="frmLogin" method="post" accept-charset="', $context['character_set'], '" ', empty($context['disable_login_hashing']) ? ' onsubmit="hashLoginPassword(this, \'' . $context['session_id'] . '\');"' : '', '>
       <div class="no-left-padding input-container pad-top">';
   echo '<span class="input-label">' . $txt['username'] . '</span>';
   echo '<input class="user" type="text" tabindex="', $context['tabindex']++, '" name="user" />
@@ -75,7 +75,8 @@ function template_control_login_form() {
   echo '<span class="input-label">' . $txt['iRemember'] . '</span>';
   echo '<input type="checkbox" checked="checked" name="cookieneverexp" value="1" />
       </div>
-      <input type="hidden" name="hash_passwrd" value="" />
+      <input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
+      <input type="hidden" name="', $context['login_token_var'], '" value="', $context['login_token'], '">
       <div class="buttons" style="margin-top: -9px; padding-bottom: 5px;">
         <button onclick="$(\'.ui-loader\').loader(\'show\');" class="button two-buttons" type="submit">' . $txt['login'] . '</button>
         <button class="button two-buttons" type="button" onclick="go(\'register\')">' . $txt['register'] . '</button>

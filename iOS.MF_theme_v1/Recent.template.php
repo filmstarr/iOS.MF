@@ -208,7 +208,7 @@ function template_unread() {
   if (!$stickyTopics && !$nonStickyTopics) {
     echo '
       <div id="unread-link">
-        ', $txt['msg_alert_none'], '
+        ', $txt['topic_alert_none'], '
       </div>';
   }
   
