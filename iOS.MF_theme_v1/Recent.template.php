@@ -28,7 +28,7 @@ function template_recent() {
   //Loop through the recent posts and check to see if we can show avatars. Typically this would require a mod to be installed  
   $showingAvatars = false;
   foreach ($context['posts'] as $message) {
-    if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) {
+    if (!empty($modSettings['show_user_images']) && empty($options['show_no_avatars'])) {
       if (array_key_exists('avatar', $message['poster'])) {
         $showingAvatars = true;
       }
@@ -61,7 +61,7 @@ function template_recent() {
     echo '
           <div class="poster-info" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['poster']['href']) ? $message['poster']['href'] : '', '\')">
             <span class="name">', $message['poster']['name'], '</span>';
-    if (!empty($settings['show_user_images']) && empty($options['show_no_avatars']) && $showingAvatars) {
+    if (!empty($modSettings['show_user_images']) && empty($options['show_no_avatars']) && $showingAvatars) {
       if (array_key_exists('avatar', $message['poster'])) {
         if (empty($message['poster']['avatar'])) {
           echo '

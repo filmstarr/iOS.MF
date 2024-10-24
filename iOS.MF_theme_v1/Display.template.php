@@ -15,7 +15,7 @@ function template_main() {
   global $context, $settings, $options, $txt, $scripturl, $modSettings;
     
   //Message CSS for when we aren't showing any avatars
-  if (empty($settings['show_user_images']) || !empty($options['show_no_avatars'])) {
+  if (empty($modSettings['show_user_images']) || !empty($options['show_no_avatars'])) {
     echo '
       <style type="text/css">
         .message { min-height: initial !important; }
@@ -179,7 +179,7 @@ function template_main() {
         <div class="poster-info" onclick="$(this).parent().addClass(\'clicked\'); $.mobile.changePage(\'', isset($message['member']['href']) ? $message['member']['href'] : '', '\')">
           <span class="name">', $message['member']['name'], '</span>';
 
-      if (!empty($settings['show_user_images']) && empty($options['show_no_avatars'])) {
+      if (!empty($modSettings['show_user_images']) && empty($options['show_no_avatars'])) {
         if (empty($message['member']['avatar']['image'])) {
           echo '
           <div class="avatar" style="background: url(' . $settings['theme_url'] . '/images/noavatar.png) #F5F5F5 center no-repeat;"></div>';
